@@ -2,6 +2,9 @@ package it.unibo.controller.input;
 
 import java.awt.event.*;
 
+import it.unibo.utilities.GameState;
+
+
 public class MouseInput implements MouseListener{
 
     //in base al bottone cliccato, bisognerà cambiare o richiamare metodi del gamestate
