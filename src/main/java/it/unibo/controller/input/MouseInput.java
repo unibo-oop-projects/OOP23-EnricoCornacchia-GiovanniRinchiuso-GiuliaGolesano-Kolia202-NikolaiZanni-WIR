@@ -1,6 +1,6 @@
 package it.unibo.controller.input;
 
-import java.awt.event.*;;
+import java.awt.event.*;
 
 public class MouseInput implements MouseListener{
 
@@ -9,32 +9,27 @@ public class MouseInput implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+        //invoked when the mouse button has been clicked on a component --> pressed and released
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+        //invoked when the mouse button has been pressed on a component
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+       //invoked when the mouse button has been released on a component 
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseEntered'");
+        //invoked when the mouse enters a component
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
+        //invoke when the mouse exits a component
     }
 
 
