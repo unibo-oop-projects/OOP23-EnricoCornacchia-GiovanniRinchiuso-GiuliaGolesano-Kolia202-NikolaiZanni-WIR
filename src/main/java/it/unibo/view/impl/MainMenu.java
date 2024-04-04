@@ -1,70 +1,54 @@
 package it.unibo.view.impl;
 
-
-
-import it.unibo.utilities.GameState;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainMenu extends Application {
-    public static MenuBar createPauseMenu() {
-        MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("Pause menu");
-        MenuItem resumeItem = new MenuItem("Resume game");
-        resumeItem.setOnAction(event -> {
-            GameState.setGameState(GameState.PLAYING);
-            // Codice per riprendere il gioco
-        });
-
-        MenuItem mainMenuItem = new MenuItem("Main Menu");
-        mainMenuItem.setOnAction(event -> {
-            GameState.setGameState(GameState.HOME);
-            // Codice per tornare al menu principale
-        });
-
-        MenuItem settingsItem = new MenuItem("Settings");
-        settingsItem.setOnAction(event -> {
-            GameState.setGameState(GameState.SETTINGS);
-            // Codice per aprire le impostazioni
-        });
-
-        menu.getItems().addAll(resumeItem, mainMenuItem, settingsItem);
-        menuBar.getMenus().add(menu);
-
-        return menuBar;
-    }
 
     @Override
-    public void start(Stage primaryStage) {
-        // Creazione della barra del menu di pausa
-        VBox root = new VBox();
-        root.getChildren().add(MainMenu.createPauseMenu());
-
-        Scene scene = new Scene(root, 800, 600);
-        primaryStage.setScene(scene);
+    public void start(Stage primaryStage) throws Exception {
+        //Image config = new Image("config.png");'
+        //ImageView configView = new ImageView(config);
+        final Button configButton = new Button("CONFIG");
+        configButton.setFont(new Font(100));
+        configButton.setOnMouseClicked(mouseEvent -> {
+            new AnotherStage().show();
+        });
+        primaryStage.setScene(new Scene(configButton));
+        primaryStage.setTitle("PROVA");
         primaryStage.show();
     }
-
-    public static void launchMenu(String[] args) {
+    private static void run(final String[] args) {
         launch(args);
     }
-
-    public static void run(final String... args) {
-        launch(args);
-    }
-
     public static final class Main {
         private Main() {
         }
+    
+    public static void main(final String... args) {
+        MainMenu.run(args);
+    }
+}
 
-        public static void main(final String... args) {
-            Application.launch(MainMenu.class, args);
+    private static class AnotherStage extends Stage {
+        private static final int WIDTH = 100;
+        private static final int HEIGHT = 100;
+
+        AnotherStage() {
+            super();
+            setTitle("new Stage created" + System.currentTimeMillis());
+            final VBox pane = new VBox();
+            pane.getChildren().add(new Label("RESUME"));
+            pane.getChildren().add(new Label("QUIT"));
+            pane.getChildren().add(new Label("HOME"));
+            setScene(new Scene(pane, WIDTH, HEIGHT));
         }
     }
 }
+
   
