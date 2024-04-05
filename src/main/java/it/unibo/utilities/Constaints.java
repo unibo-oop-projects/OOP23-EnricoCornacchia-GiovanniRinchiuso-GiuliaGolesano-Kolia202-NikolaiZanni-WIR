@@ -2,7 +2,7 @@ package it.unibo.utilities;
 
 public class Constaints {
     
-    public static class Movements{
+    public static class MovementsKey{
         /**
          * Pressed Key A.
          */
