@@ -11,6 +11,7 @@ public class GameController {
     private CollisionManager collisionManager;
 
 
+
     public GameController() {
         inputManager = new InputManager();
         ralphController = new RalphController();

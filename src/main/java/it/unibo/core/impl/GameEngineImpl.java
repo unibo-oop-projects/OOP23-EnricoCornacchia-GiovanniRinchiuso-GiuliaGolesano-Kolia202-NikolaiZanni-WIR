@@ -68,7 +68,7 @@ public class GameEngineImpl implements GameEngine {
 
    
     @Override
-    public void WaitForNextFrame() {
+    public void waitForNextFrame() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'WaitForNextFrame'");
     }

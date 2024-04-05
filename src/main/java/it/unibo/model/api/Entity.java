@@ -14,4 +14,13 @@ public interface Entity {
      */
     Pair<Double, Double> getPosition();
 
+    /**
+     * Set the position of the entity.
+     *
+     * @param pos the new position of the entity as a Pair of Doubles representing the x and y coordinates
+     */
+    Pair<Double, Double> setPosition(Pair<Double, Double> pos);
+
+    void setMovement(Movement movement);
+
 }
