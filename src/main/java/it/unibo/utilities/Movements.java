@@ -6,6 +6,7 @@ public enum Movements {
     DOWN,
     LEFT,
     RIGHT,
+    FIX,
     STOP;
 
     public static Movements current = STOP;

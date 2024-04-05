@@ -3,7 +3,8 @@ package it.unibo.controller.input;
 
 import java.awt.event.*;
 
-import it.unibo.utilities.Constaints.Movements;
+import it.unibo.utilities.Movements;
+import it.unibo.utilities.Constaints.MovementsKey;
 
 public class KeyboardInput implements KeyListener{
 
@@ -32,42 +33,87 @@ public class KeyboardInput implements KeyListener{
     private void setBooleanValues(boolean b, int KeyCode){
         switch (KeyCode) {
             //W 
-            case Movements.UP:
+            case MovementsKey.UP:
                 up = b;
+                if(b){
+                    Movements.setMovements(Movements.UP);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //FRECCIA SU
-            case Movements.UP_ARROW:
+            case MovementsKey.UP_ARROW:
                 up = b;
+                if(b){
+                    Movements.setMovements(Movements.UP);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //A
-            case Movements.LEFT:
+            case MovementsKey.LEFT:
                 left = b;
+                if(b){
+                    Movements.setMovements(Movements.LEFT);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //FRECCIA SINISTRA
-            case Movements.LEFT_ARROW:
+            case MovementsKey.LEFT_ARROW:
                 left = b;
+                if(b){
+                    Movements.setMovements(Movements.LEFT);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //S
-            case Movements.DOWN:
+            case MovementsKey.DOWN:
                 down = b;
+                if(b){
+                    Movements.setMovements(Movements.DOWN);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //FRECCIA GIU
-            case Movements.DOWN_ARROW:
+            case MovementsKey.DOWN_ARROW:
                 down = b;
+                if(b){
+                    Movements.setMovements(Movements.DOWN);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //D
-            case Movements.RIGHT:
+            case MovementsKey.RIGHT:
                 right = b;
+                if(b){
+                    Movements.setMovements(Movements.RIGHT);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //FRECCIA DESTRA
-            case Movements.RIGHT_ARROW:
+            case MovementsKey.RIGHT_ARROW:
                 right = b;
+                if(b){
+                    Movements.setMovements(Movements.RIGHT);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
             //T
-            case Movements.FIX:
+            case MovementsKey.FIX:
                 fix = b;
+                if(b){
+                    Movements.setMovements(Movements.FIX);
+                }else{
+                    Movements.setMovements(Movements.STOP);
+                }
                 break;
-            default:
+            default:    Movements.setMovements(Movements.STOP);
                 break;
         }
     }
