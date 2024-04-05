@@ -10,7 +10,7 @@ import javafx.application.Application;
 
 public final class App {
     private App() { }
-    char prova;
+   
 
     /**
      * Main application entry-point.
@@ -23,4 +23,6 @@ public final class App {
         // While the following would do just fine:
         // JavaFXApp.run(args)
     }
+
+    
 }

@@ -6,6 +6,6 @@ public class InputManager {
     }
 
     public int getInput() {
-        
+        return 0; 
     }
 } 
