@@ -4,6 +4,9 @@ import it.unibo.utilities.GameState;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -12,14 +15,15 @@ public class MainMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        final Button configButton = new Button("CONFIG");
-        configButton.setFont(new Font(100));
+        final ImageView configButton = new ImageView(new Image("config.png"));
+        configButton.setPreserveRatio(true);
         configButton.setOnMouseClicked(mouseEvent -> {
             GameState.setGameState(GameState.PAUSED);
             System.out.println("GameState" + GameState.getGameState());
             new AnotherStage().show();
         });
-        primaryStage.setScene(new Scene(configButton));
+        StackPane root = new StackPane(configButton);
+        primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("PROVA");
         primaryStage.show();
     }
