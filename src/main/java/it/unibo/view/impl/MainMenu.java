@@ -22,8 +22,8 @@ public class MainMenu extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         final ImageView pauseButton = new ImageView(new Image("pause.png"));
-        pauseButton.setFitWidth(80);
-        pauseButton.setFitHeight(80);
+        pauseButton.setFitWidth(50);
+        pauseButton.setFitHeight(50);
         pauseButton.setOnMouseClicked(mouseEvent -> {
             GameState.setGameState(GameState.PAUSED);
             System.out.println("GameState" + GameState.getGameState());
@@ -71,7 +71,7 @@ public class MainMenu extends Application {
             topImageView.setFitWidth(300);
             topImageView.setFitHeight(150);
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
-            root.getChildren().add(topImageView);
+            root.getChildren().add(topImageView); 
             final HBox pane = new HBox(20);
             pane.setAlignment(Pos.CENTER);
             final ImageView continueButton = new ImageView(new Image("continue.png"));
@@ -90,6 +90,7 @@ public class MainMenu extends Application {
             quitButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.GAMEOVER);
                 System.out.println("GameState" + GameState.getGameState());
+                close();
             });
             homeButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.HOME);
