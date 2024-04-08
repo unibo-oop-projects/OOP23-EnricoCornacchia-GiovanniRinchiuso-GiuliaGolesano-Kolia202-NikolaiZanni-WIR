@@ -3,7 +3,6 @@ package it.unibo.model.impl;
 import java.util.Set;
 
 import it.unibo.common.Pair;
-import it.unibo.model.api.Brick;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 
@@ -32,9 +31,7 @@ public class EntityFactoryImpl implements EntityFactory{
 
     @Override
     public Entity createBrick(Pair<Double, Double> pos) {
-        Entity brick = new Brick
-        brick.setPosition(pos);
-        return brick;
+        throw new UnsupportedOperationException("Unimplemented method 'createBrick'");
     }
 
     

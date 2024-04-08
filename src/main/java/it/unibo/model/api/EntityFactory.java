@@ -39,6 +39,6 @@ public interface EntityFactory {
      * @return the created brick entity.
      */
 
-    public Brick createBrick(final Pair<Double, Double> pos);
+    public Entity createBrick(final Pair<Double, Double> pos);
 
 }

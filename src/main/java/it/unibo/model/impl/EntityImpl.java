@@ -8,7 +8,6 @@ import java.util.Set;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.Entity;
-import it.unibo.model.api.Movement;
 import it.unibo.utilities.EntityType;
 
 
@@ -27,10 +26,11 @@ public class EntityImpl implements Entity{
      * @param type     the type of the entity
      * @param position the position of the entity
      */
-    public EntityImpl(final EntityType type, final Pair<Double, Double> position){
+    public EntityImpl(final EntityType type, final Pair<Double, Double> position, final Set<Component> components){
         this.type = type;
         this.components = new HashSet<>();
         this.position = position;
+        this.components.addAll(components);
     }
 
     @Override
