@@ -15,6 +15,5 @@ public interface GameEngine {
      * Render the game.
      */
     void waitForNextFrame();
-   
 }
 

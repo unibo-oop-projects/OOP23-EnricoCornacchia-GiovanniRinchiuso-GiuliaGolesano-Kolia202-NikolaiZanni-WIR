@@ -10,8 +10,6 @@ import javafx.application.Application;
 
 public final class App {
     private App() { }
-   
-
     /**
      * Main application entry-point.
      * @param args
@@ -22,7 +20,5 @@ public final class App {
         // JavaFXApp.launch(args);
         // While the following would do just fine:
         // JavaFXApp.run(args)
-    }
-
-    
+    } 
 }

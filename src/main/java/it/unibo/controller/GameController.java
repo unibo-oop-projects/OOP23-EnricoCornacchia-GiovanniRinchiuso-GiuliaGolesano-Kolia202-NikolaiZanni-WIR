@@ -28,8 +28,11 @@ public class GameController {
         ralphController.throwBrickRightArm();
         brickController.fallBricks();
     }
-
-    public FelixController getFelixController() {
-        return this.felixController;
+    /**
+     * Controls if the game is over.
+     * @return true if the game is over, false otherwise.
+     */
+    public boolean gameOver() {
+        return this.felixController.isAlive();
     } 
 }

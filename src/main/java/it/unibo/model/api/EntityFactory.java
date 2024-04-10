@@ -5,7 +5,7 @@ import it.unibo.common.Pair;
 import java.util.Set;
 
 /**
- * EntityFactory
+ * EntityFactory.
  */
 public interface EntityFactory {
 
@@ -15,7 +15,7 @@ public interface EntityFactory {
      * @param pos starting Felix's position.
      * @return the created Felix entity.
      */
-    public Entity createFelix(final Pair<Double, Double> pos);
+    Entity createFelix(Pair<Double, Double> pos);
 
     /**
      * Create Ralph.
@@ -23,7 +23,7 @@ public interface EntityFactory {
      * @param pos starting Ralph's position.
      * @return the created Ralph entity.
      */
-    public Entity createRalph(final Pair<Double, Double> pos);
+    Entity createRalph(Pair<Double, Double> pos);
 
 
     /**
@@ -31,7 +31,7 @@ public interface EntityFactory {
      * @param pos starting windows's position.
      * @return the created windows entity.
      */
-    public Set<Entity> createWindows(final Set <Pair<Double, Double>> pos);
+    Set<Entity> createWindows(Set<Pair<Double, Double>> pos);
 
     /**
      * Create the brick.
@@ -39,6 +39,6 @@ public interface EntityFactory {
      * @return the created brick entity.
      */
 
-    public Entity createBrick(final Pair<Double, Double> pos);
+    Entity createBrick(Pair<Double, Double> pos);
 
 }

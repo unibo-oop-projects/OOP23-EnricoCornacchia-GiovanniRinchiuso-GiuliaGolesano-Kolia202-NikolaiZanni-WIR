@@ -43,7 +43,7 @@ public class FelixController {
     }
     /**
      * Check if the character is alive.
-     * @return
+     * @return true if Felix have more than 0 lives, false otherwise.
      */
     public boolean isAlive() {
         // TODO Auto-generated method stub

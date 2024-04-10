@@ -12,9 +12,9 @@ import it.unibo.utilities.EntityType;
 
 
 /**
- * EntityImpl
+ * EntityImpl.
  */
-public class EntityImpl implements Entity{
+public class EntityImpl implements Entity {
 
     private final EntityType type;
     private final Set<Component> components;
@@ -25,21 +25,20 @@ public class EntityImpl implements Entity{
      *
      * @param type     the type of the entity
      * @param position the position of the entity
+     * @param components the components of the entity
      */
-    public EntityImpl(final EntityType type, final Pair<Double, Double> position, final Set<Component> components){
+    public EntityImpl(final EntityType type, final Pair<Double, Double> position, final Set<Component> components) {
         this.type = type;
         this.components = new HashSet<>();
         this.position = position;
         this.components.addAll(components);
     }
     /**
-     * EntityImpl constructor.
-     *
-     * @param type     the type of the entity
-     * @param position the position of the entity
+     * Method to add a component to the entity.
+     * @param component the component to add.
      */
     @Override
-    public void addComponent(Component component) {
+    public void addComponent(final Component component) {
         this.components.add(component);
     }
     /**
@@ -56,12 +55,11 @@ public class EntityImpl implements Entity{
      * @return the component of the entity.
      */
     @Override
-    public Optional<Component> getComponent(Class<? extends Component> componentType) {
+    public Optional<Component> getComponent(final Class<? extends Component> componentType) {
         return this.components.stream().filter(componentType::isInstance).findFirst();
     }
     /**
-     * Remove a component from the entity.
-     * @param component the component to remove.
+     * Get the position of the entity.
      */
     @Override
     public Pair<Double, Double> getPosition() {
@@ -72,7 +70,7 @@ public class EntityImpl implements Entity{
      * @param position the new position of the entity.
      */
     @Override
-    public void setPosition(Pair<Double, Double> position) {
+    public void setPosition(final Pair<Double, Double> position) {
         this.position = position;
     }
     /**
@@ -83,6 +81,4 @@ public class EntityImpl implements Entity{
     public EntityType getEntityType() {
         return this.type;
     }
-
-    
 }

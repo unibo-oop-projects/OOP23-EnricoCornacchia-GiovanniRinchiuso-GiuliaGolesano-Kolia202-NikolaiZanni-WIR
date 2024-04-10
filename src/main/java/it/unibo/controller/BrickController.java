@@ -16,7 +16,7 @@ public class BrickController {
 
     /**
      * Getter for the bricks.
-     * @return
+     * @return the set of bricks.
      */
     public Set<Entity> getBricks() {
         return this.bricks;
@@ -28,9 +28,9 @@ public class BrickController {
     public void fallBricks() {
         this.checkBricks();
         for (Entity brick : bricks) {
-            for(Component component : brick.getComponents()) {
-                if(component.getComponent() == ComponentType.MOVEMENT) {
-                    ((MovementComponent)component).move(Constaints.BRICK_SPEED, 0.0, brick);
+            for (Component component : brick.getComponents()) {
+                if (component.getComponent() == ComponentType.MOVEMENT) {
+                    ((MovementComponent) component).move(Constaints.BRICK_SPEED, 0.0, brick);
                 }
             }
         }
@@ -42,9 +42,9 @@ public class BrickController {
 
     private void checkBricks() {
         for (Entity brick : bricks) {
-            for(Component component : brick.getComponents()) {
-                if(component.getComponent() == ComponentType.MOVEMENT) {
-                    if(!((MovementComponent)component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
+            for (Component component : brick.getComponents()) {
+                if (component.getComponent() == ComponentType.MOVEMENT) {
+                    if (!((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
                         bricks.remove(brick);
                     }
                 }

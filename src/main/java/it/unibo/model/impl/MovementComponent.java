@@ -4,19 +4,21 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
-
-public class MovementComponent implements Component{
+/**
+ * Component that allows movement.
+ */
+public class MovementComponent implements Component {
     /**
      * Move the entity.
      * @param x for the x axis.
      * @param y for the y axis.
-     * @param E the entity to move.
+     * @param entity the entity to move.
      */
-    public void move(double x, double y, Entity E) {
-        double newX = E.getPosition().getX() + x;
-        double newY = E.getPosition().getY() + y;
-        if(canMove(x, y, E)){
-            E.setPosition(new Pair<>(newX, newY));
+    public void move(final double x, final double y, final Entity entity) {
+        double newX = entity.getPosition().getX() + x;
+        double newY = entity.getPosition().getY() + y;
+        if (canMove(x, y, entity)) {
+            entity.setPosition(new Pair<>(newX, newY));
         }
     }
 
@@ -26,12 +28,12 @@ public class MovementComponent implements Component{
      * Check if the entity can move.
      * @param x for the x axis.
      * @param y for the y axis.
-     * @param E the entity to move.
+     * @param entity the entity to move.
      * @return true if the entity can move, false otherwise.
      */
-    public boolean canMove(double x, double y, Entity E) {
-        double newX = E.getPosition().getX() + x;
-        double newY = E.getPosition().getY() + y;
+    public boolean canMove(final double x, final double y, final Entity entity) {
+        double newX = entity.getPosition().getX() + x;
+        double newY = entity.getPosition().getY() + y;
         return newX >= 0 && newX <= 10 && newY >= 0 && newY <= 10;
     }
     /**

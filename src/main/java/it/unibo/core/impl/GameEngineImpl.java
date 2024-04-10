@@ -27,8 +27,8 @@ public class GameEngineImpl implements GameEngine {
     public void mainLoop() {
         gameController = new GameController();
         long current = System.currentTimeMillis();
-        while(gameController.getFelixController().isAlive()) {
-            if(System.currentTimeMillis() - current > this.period){
+        while (!gameController.gameOver()) {
+            if (System.currentTimeMillis() - current > this.period) {
                 this.update();
                 this.draw();
                 current = System.currentTimeMillis();
@@ -39,7 +39,7 @@ public class GameEngineImpl implements GameEngine {
      * Draw the game.
      */
     public void draw() {
-        switch(GameState.getGameState()) {
+        switch (GameState.getGameState()) {
             case HOME:
                 //draw preview
                 break;
@@ -67,10 +67,9 @@ public class GameEngineImpl implements GameEngine {
     public void update() {
         gameController.update();
     }
-
-
-
-   
+    /**
+     * Wait for the next frame.
+     */
     @Override
     public void waitForNextFrame() {
         // TODO Auto-generated method stub

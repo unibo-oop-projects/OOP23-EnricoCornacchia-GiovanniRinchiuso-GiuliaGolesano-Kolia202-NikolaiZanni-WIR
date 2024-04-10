@@ -25,5 +25,4 @@ public enum EntityType {
      * Represents the interactable entity.
      */
     WINDOW,
-    
 }

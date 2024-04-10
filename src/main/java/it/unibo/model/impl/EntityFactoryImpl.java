@@ -7,16 +7,16 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 
 /**
- * EntityFactoryImpl
+ * EntityFactoryImpl.
  */
-public class EntityFactoryImpl implements EntityFactory{
+public class EntityFactoryImpl implements EntityFactory {
     /**
      * Create a new Felix.
      * @param pos the position of the new Felix.
      * @return the new Felix.
      */
     @Override
-    public Entity createFelix(Pair<Double, Double> pos) {
+    public Entity createFelix(final Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createFelix'");
     }
@@ -26,7 +26,7 @@ public class EntityFactoryImpl implements EntityFactory{
      * @return the new Ralph.
      */
     @Override
-    public Entity createRalph(Pair<Double, Double> pos) {
+    public Entity createRalph(final Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createRalph'");
     }
@@ -36,7 +36,7 @@ public class EntityFactoryImpl implements EntityFactory{
      * @return the created windows set.
      */
     @Override
-    public Set<Entity> createWindows(Set<Pair<Double, Double>> pos) {
+    public Set<Entity> createWindows(final Set<Pair<Double, Double>> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createWindows'");
     }
@@ -46,10 +46,7 @@ public class EntityFactoryImpl implements EntityFactory{
      * @return the new brick.
      */
     @Override
-    public Entity createBrick(Pair<Double, Double> pos) {
+    public Entity createBrick(final Pair<Double, Double> pos) {
         throw new UnsupportedOperationException("Unimplemented method 'createBrick'");
     }
-
-    
-
 }

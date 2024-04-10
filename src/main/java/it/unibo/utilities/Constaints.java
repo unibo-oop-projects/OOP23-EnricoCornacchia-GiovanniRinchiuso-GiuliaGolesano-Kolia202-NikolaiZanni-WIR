@@ -1,10 +1,10 @@
 package it.unibo.utilities;
 /**
- * Constaints
+ * Constaints.
  */
 public class Constaints {
-    
-    public static class MovementsKey{
+
+    public static class MovementsKey {
         /**
          * Pressed Key A.
          */
@@ -38,17 +38,16 @@ public class Constaints {
          */
         public static final int DOWN_ARROW = 40;
         /**
-         * Pressed Key T
+         * Pressed Key T.
          */
         public static final int FIX = 84;
         /**
          * Pressed Esc.
          */
         public static final int ESCAPE = 27;
-
-        
     }
     /**
      * The speed of the brick.
-     */public static final double BRICK_SPEED = 1.0;
+     */
+    public static final double BRICK_SPEED = 1.0;
 }

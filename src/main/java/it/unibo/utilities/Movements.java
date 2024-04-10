@@ -16,16 +16,14 @@ public enum Movements {
      * Get the current movements.
      * @return the current movements
      */
-    public static Movements getMovements(){
+    public static Movements getMovements() {
         return current;
     }
     /**
      * Set the movements.
      * @param mov the movements
      */
-    public static void setMovements(final Movements mov){
-        current=mov;
+    public static void setMovements(final Movements mov) {
+        current = mov;
     }
-
-    
 }

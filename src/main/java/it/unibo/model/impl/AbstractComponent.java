@@ -7,6 +7,4 @@ import it.unibo.model.api.Component;
  * It provides implementations for the common methods of different types of Components.
  */
 public abstract class AbstractComponent implements Component {
-
-    
 }

@@ -10,6 +10,7 @@ public interface Component {
     /**
      * Return the component.
      * This method should be called to get the state of the component.
+     * @return the component type.
      */
     ComponentType getComponent();
 }
