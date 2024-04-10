@@ -6,7 +6,9 @@ import it.unibo.model.api.Entity;
 import java.util.Set;
 import it.unibo.common.Pair;
 
-
+/**
+ * Component for the brick throwing.
+ */
 public class ThrowBrickComponent implements Component {
 
         private boolean blocked;

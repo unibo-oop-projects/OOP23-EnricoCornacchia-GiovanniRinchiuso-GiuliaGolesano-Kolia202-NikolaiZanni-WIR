@@ -1,5 +1,7 @@
 package it.unibo.utilities;
-
+/**
+ * Constaints
+ */
 public class Constaints {
     
     public static class MovementsKey{

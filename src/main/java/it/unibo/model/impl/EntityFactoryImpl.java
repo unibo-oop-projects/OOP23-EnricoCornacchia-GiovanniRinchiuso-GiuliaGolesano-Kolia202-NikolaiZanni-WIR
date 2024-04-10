@@ -10,25 +10,41 @@ import it.unibo.model.api.EntityFactory;
  * EntityFactoryImpl
  */
 public class EntityFactoryImpl implements EntityFactory{
-
+    /**
+     * Create a new Felix.
+     * @param pos the position of the new Felix.
+     * @return the new Felix.
+     */
     @Override
     public Entity createFelix(Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createFelix'");
     }
-
+    /**
+     * Create a new Ralph.
+     * @param pos the position of the new Ralph.
+     * @return the new Ralph.
+     */
     @Override
     public Entity createRalph(Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createRalph'");
     }
-
+    /**
+     * Create all the Windows.
+     * @param pos the positions of the windows.
+     * @return the created windows set.
+     */
     @Override
-    public Entity createWindows(Set<Pair<Double, Double>> pos) {
+    public Set<Entity> createWindows(Set<Pair<Double, Double>> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createWindows'");
     }
-
+    /**
+     * Create a new brick.
+     * @param pos the position of the new brick.
+     * @return the new brick.
+     */
     @Override
     public Entity createBrick(Pair<Double, Double> pos) {
         throw new UnsupportedOperationException("Unimplemented method 'createBrick'");

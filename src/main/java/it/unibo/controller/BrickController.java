@@ -7,14 +7,24 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constaints;
 
+/**
+ * Controller for the bricks.
+ */
 public class BrickController {
 
     private Set<Entity> bricks;
 
+    /**
+     * Getter for the bricks.
+     * @return
+     */
     public Set<Entity> getBricks() {
         return this.bricks;
     }
 
+    /**
+     * make the bricks fall.
+     */
     public void fallBricks() {
         this.checkBricks();
         for (Entity brick : bricks) {
@@ -25,6 +35,10 @@ public class BrickController {
             }
         }
     }
+
+    /**
+     * Check if the bricks are still in the game.
+     */
 
     private void checkBricks() {
         for (Entity brick : bricks) {

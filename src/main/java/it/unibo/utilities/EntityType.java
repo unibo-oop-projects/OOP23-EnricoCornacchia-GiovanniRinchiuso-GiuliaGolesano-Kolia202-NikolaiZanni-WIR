@@ -25,12 +25,5 @@ public enum EntityType {
      * Represents the interactable entity.
      */
     WINDOW,
-    /**
-     * Represents the border.
-     */
-    WALL,
-    /**
-     * Represents the platform.
-     */
-    PLATFORM
+    
 }

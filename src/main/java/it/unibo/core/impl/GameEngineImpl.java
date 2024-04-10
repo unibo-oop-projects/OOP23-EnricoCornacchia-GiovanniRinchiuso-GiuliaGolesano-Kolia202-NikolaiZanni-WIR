@@ -5,23 +5,27 @@ import it.unibo.controller.GameController;
 import it.unibo.utilities.GameState;
 
 
-
+/**
+ * Implementation of the game engine.
+ */
 
 public class GameEngineImpl implements GameEngine {
 
-    //period to update the game
     private int period;
     private GameController gameController;
-
+    /**
+     * Constructor for the game engine.
+     */
     public GameEngineImpl() {
         period = 10;
-        gameController = new GameController();
     }
 
+    /**
+     * Main loop of the game.
+     */
     @Override
-    //the main loop of the game, every period the game is updated and drawn
     public void mainLoop() {
-        gameController.init();
+        gameController = new GameController();
         long current = System.currentTimeMillis();
         while(gameController.getFelixController().isAlive()) {
             if(System.currentTimeMillis() - current > this.period){
@@ -31,7 +35,9 @@ public class GameEngineImpl implements GameEngine {
             }
         }
     }
-
+    /**
+     * Draw the game.
+     */
     public void draw() {
         switch(GameState.getGameState()) {
             case HOME:
@@ -54,19 +60,14 @@ public class GameEngineImpl implements GameEngine {
         }
     }
 
-
+    /**
+     * Update the game.
+     */
     @Override
     public void update() {
         gameController.update();
     }
 
-
-
-    @Override
-    public void cleanup() {
-        // TODO Auto-generated method stub
-        
-    }
 
 
    

@@ -31,7 +31,7 @@ public interface EntityFactory {
      * @param pos starting windows's position.
      * @return the created windows entity.
      */
-    public Entity createWindows(final Set <Pair<Double, Double>> pos);
+    public Set<Entity> createWindows(final Set <Pair<Double, Double>> pos);
 
     /**
      * Create the brick.

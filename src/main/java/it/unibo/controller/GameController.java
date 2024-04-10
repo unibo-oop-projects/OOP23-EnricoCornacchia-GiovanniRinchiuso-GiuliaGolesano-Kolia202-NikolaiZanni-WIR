@@ -1,62 +1,35 @@
 package it.unibo.controller;
 
-import it.unibo.utilities.GameState;
-
+/**
+ * Main controller of the game.
+ */
 public class GameController {
 
-    private InputManager inputManager;
     private RalphController ralphController;
     private FelixController felixController;
     private BrickController brickController;
-    private CollisionManager collisionManager;
 
 
-
+    /**
+     * Constructor for the GameController.
+     */
     public GameController() {
-        inputManager = new InputManager();
         ralphController = new RalphController();
         felixController = new FelixController();
         brickController = new BrickController();
-        collisionManager = new CollisionManager();
     }
-
-
-    public void readInput() {
-        switch(inputManager.getInput()) {
-            case 0:
-                felixController.moveRight();
-                break;
-            case 1:
-                felixController.moveLeft();
-                break;
-            case 2:
-                felixController.moveDown();
-                break;
-            case 3:
-                felixController.moveUp();
-                break;
-            case 4:
-                felixController.fix();
-                break;
-            default:
-                break;
-        }
-    }
-
+ 
+    /**
+     * Update the game, makes Ralph move and the bricks fall.
+     */
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        ralphController.move();
+        ralphController.throwBrickLeftArm();
+        ralphController.throwBrickRightArm();
+        brickController.fallBricks();
     }
-
-
-    public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
-    }
-
 
     public FelixController getFelixController() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFelixController'");
-    }
-} 
+        return this.felixController;
+    } 
+}
