@@ -30,4 +30,9 @@ public class FelixController {
         throw new UnsupportedOperationException("Unimplemented method 'fix'");
     }
 
+    public boolean isAlive() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
+    }
+
 }

@@ -43,5 +43,10 @@ public class Constaints {
          * Pressed Esc.
          */
         public static final int ESCAPE = 27;
+
+        
     }
+    /**
+     * The speed of the brick.
+     */public static final double BRICK_SPEED = 1.0;
 }

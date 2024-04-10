@@ -21,12 +21,15 @@ public class GameEngineImpl implements GameEngine {
     @Override
     //the main loop of the game, every period the game is updated and drawn
     public void mainLoop() {
-        long current=System.currentTimeMillis();
-        while(System.currentTimeMillis() - current < this.period){
-            this.update();
-            this.draw();
+        gameController.init();
+        long current = System.currentTimeMillis();
+        while(gameController.getFelixController().isAlive()) {
+            if(System.currentTimeMillis() - current > this.period){
+                this.update();
+                this.draw();
+                current = System.currentTimeMillis();
+            }
         }
-
     }
 
     public void draw() {

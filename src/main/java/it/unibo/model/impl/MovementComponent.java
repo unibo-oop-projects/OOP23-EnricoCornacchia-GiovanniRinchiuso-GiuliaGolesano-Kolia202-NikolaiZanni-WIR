@@ -1,9 +1,11 @@
 package it.unibo.model.impl;
 
 import it.unibo.common.Pair;
+import it.unibo.model.api.Component;
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 
-public class MovementComponent {
+public class MovementComponent implements Component{
 
     public void move(double x, double y, Entity E) {
         double newX = E.getPosition().getX() + x;
@@ -19,5 +21,9 @@ public class MovementComponent {
         double newX = E.getPosition().getX() + x;
         double newY = E.getPosition().getY() + y;
         return newX >= 0 && newX <= 10 && newY >= 0 && newY <= 10;
+    }
+
+    public ComponentType getComponent() {
+        return ComponentType.MOVEMENT;
     }
 }

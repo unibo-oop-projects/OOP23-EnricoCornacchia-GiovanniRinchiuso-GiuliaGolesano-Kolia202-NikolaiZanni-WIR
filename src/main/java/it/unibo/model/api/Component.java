@@ -1,5 +1,6 @@
 package it.unibo.model.api;
 
+
 /**
  * Represents a component in the system.
  * A component is an entity that can be updated.
@@ -7,8 +8,8 @@ package it.unibo.model.api;
 public interface Component {
 
     /**
-     * Updates the component.
-     * This method should be called to update the state of the component.
+     * Return the component.
+     * This method should be called to get the state of the component.
      */
-    void update();
+    ComponentType getComponent();
 }

@@ -44,9 +44,19 @@ public class GameController {
     }
 
     public void update() {
-        ralphController.move();
-        this.readInput();
-        brickController.update();
-        collisionManager.check();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+
+    public void init() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'init'");
+    }
+
+
+    public FelixController getFelixController() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFelixController'");
     }
 } 
