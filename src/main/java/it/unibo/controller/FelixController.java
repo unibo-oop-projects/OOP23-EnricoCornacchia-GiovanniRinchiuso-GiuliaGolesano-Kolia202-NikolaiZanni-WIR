@@ -49,5 +49,4 @@ public class FelixController {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
     }
-
 }

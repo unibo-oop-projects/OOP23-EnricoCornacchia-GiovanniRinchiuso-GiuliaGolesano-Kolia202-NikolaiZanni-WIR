@@ -1,14 +1,11 @@
 package it.unibo.model.api;
 
 import it.unibo.common.Pair;
-
 import java.util.Set;
-
 /**
  * EntityFactory.
  */
 public interface EntityFactory {
-
     /**
      * Create Felix.
      * 
@@ -16,7 +13,6 @@ public interface EntityFactory {
      * @return the created Felix entity.
      */
     Entity createFelix(Pair<Double, Double> pos);
-
     /**
      * Create Ralph.
      * 
@@ -24,21 +20,16 @@ public interface EntityFactory {
      * @return the created Ralph entity.
      */
     Entity createRalph(Pair<Double, Double> pos);
-
-
     /**
      * Create the windows.
      * @param pos starting windows's position.
      * @return the created windows entity.
      */
     Set<Entity> createWindows(Set<Pair<Double, Double>> pos);
-
     /**
      * Create the brick.
      * @param pos starting brick's position.
      * @return the created brick entity.
      */
-
     Entity createBrick(Pair<Double, Double> pos);
-
 }
