@@ -12,8 +12,8 @@ import java.util.Set;
  * Controller for Ralph.
  */
 public class RalphController {
-    EntityFactoryImpl entityFactoryImpl = new EntityFactoryImpl();
-    Entity ralph;
+    private EntityFactoryImpl entityFactoryImpl = new EntityFactoryImpl();
+    private Entity ralph;
     /**
      * Constructor for the RalphController.
      */
@@ -29,6 +29,7 @@ public class RalphController {
     }
     /**
      * Throw a brick with the left arm.
+     * @param bricks the set of bricks.
      */
     public void throwBrickLeftArm(final Set<Entity> bricks) {
         for (Component c : ralph.getComponents()) {
@@ -39,6 +40,7 @@ public class RalphController {
     }
     /**
      * Throw a brick with the right arm.
+     * @param bricks the set of bricks.
      */
     public void throwBrickRightArm(final Set<Entity> bricks) {
         for (Component c : ralph.getComponents()) {
