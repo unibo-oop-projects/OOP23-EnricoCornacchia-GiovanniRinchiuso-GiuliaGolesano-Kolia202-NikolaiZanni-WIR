@@ -4,6 +4,7 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.utilities.Constaints;
 /**
  * Component that allows movement.
  */
@@ -21,9 +22,6 @@ public class MovementComponent implements Component {
             entity.setPosition(new Pair<>(newX, newY));
         }
     }
-
-
-    // al posto di 10 e 0 ci dovrebbero essere delle costanti, che però non sono state ancora definite
     /**
      * Check if the entity can move.
      * @param x for the x axis.
@@ -34,7 +32,7 @@ public class MovementComponent implements Component {
     public boolean canMove(final double x, final double y, final Entity entity) {
         double newX = entity.getPosition().getX() + x;
         double newY = entity.getPosition().getY() + y;
-        return newX >= 0 && newX <= 10 && newY >= 0 && newY <= 10;
+        return newX >= Constaints.LEFT_WALL && newX <= Constaints.RIGHT_WALL && newY >= Constaints.DOWN_WALL && newY <= Constaints.UP_WALL;
     }
     /**
      * Getter method for the component type.

@@ -2,6 +2,9 @@ package it.unibo.utilities;
 /**
  * Constaints.
  */
+
+import it.unibo.common.Pair;
+
 public class Constaints {
 
     public static class MovementsKey {
@@ -50,4 +53,36 @@ public class Constaints {
      * The speed of the brick.
      */
     public static final double BRICK_SPEED = 1.0;
+    /**
+     * The position of the left wall.
+     */
+    public static final double LEFT_WALL = 0.0;
+    /**
+     * The position of the right wall.
+     */
+    public static final double RIGHT_WALL = 800.0;
+    /**
+     * The position of the down wall.
+     */
+    public static final double DOWN_WALL = 0.0;
+    /**
+     * The position of the up wall.
+     */
+    public static final double UP_WALL = 600.0;
+    /**
+     * The position of starting Felix.
+     */
+    public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 0.0);
+    /**
+     * The position of starting Ralph.
+     */
+    public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 700.0);
+    /**
+     * The difference between the position of Ralph and the position of his right hand.
+     */
+    public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(8.0, -2.0);
+    /**
+     * The difference between the position of Ralph and the position of his left hand.
+     */
+    public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
 }

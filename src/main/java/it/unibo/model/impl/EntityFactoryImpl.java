@@ -5,6 +5,8 @@ import java.util.Set;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
+import it.unibo.utilities.EntityType;
+import it.unibo.model.api.Component;
 
 /**
  * EntityFactoryImpl.
@@ -47,6 +49,9 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
-        throw new UnsupportedOperationException("Unimplemented method 'createBrick'");
+        Entity brick = new EntityImpl(EntityType.BRICK, pos, null);
+        Component movement = new MovementComponent();
+        brick.addComponent(movement);
+        return brick;
     }
 }
