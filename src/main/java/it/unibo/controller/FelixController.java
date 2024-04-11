@@ -10,7 +10,6 @@ public class FelixController {
      */
     public void moveRight() {
         // TODO Auto-generated method stub
-        
         throw new UnsupportedOperationException("Unimplemented method 'moveRight'");
     }
     /**

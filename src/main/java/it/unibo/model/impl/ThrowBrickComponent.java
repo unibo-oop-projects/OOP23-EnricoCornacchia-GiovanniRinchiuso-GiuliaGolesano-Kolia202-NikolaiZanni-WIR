@@ -13,7 +13,6 @@ public class ThrowBrickComponent implements Component {
 
         private boolean blocked;
         private EntityFactoryImpl entityFactoryImpl;
-        
         /**
          * Constructor for the ThrowBrickComponent.
          */
