@@ -24,8 +24,8 @@ public class GameController {
      */
     public void update() {
         ralphController.move();
-        ralphController.throwBrickLeftArm();
-        ralphController.throwBrickRightArm();
+        ralphController.throwBrickLeftArm(brickController.getBricks());
+        ralphController.throwBrickRightArm(brickController.getBricks());
         brickController.fallBricks();
     }
     /**
