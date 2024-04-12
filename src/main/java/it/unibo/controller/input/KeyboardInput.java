@@ -11,10 +11,19 @@ public class KeyboardInput implements KeyListener{
     public boolean up, down, right, left, fix;
 
     @Override
+    /**
+     * Method called when a button of the keyboard is typed
+     * @param e
+     */
     public void keyTyped(KeyEvent e) {
        }
 
+
     @Override
+    /**
+     * Method called when a button of the keyboard is pressed
+     * @param e
+     */
     public void keyPressed(KeyEvent e) {
         
         int keyCode = e.getKeyCode();
@@ -23,6 +32,10 @@ public class KeyboardInput implements KeyListener{
     }
 
     @Override
+    /**
+     * Method called when the button of the keyboard is released after being pressed
+     * @param e
+     */
     public void keyReleased(KeyEvent e) {
         
         int keyCode = e.getKeyCode();
@@ -30,6 +43,12 @@ public class KeyboardInput implements KeyListener{
 
     }
 
+    /**
+     * Method that set the boolean values about the movements and calls 
+     * the Movements enum methods 
+     * @param b
+     * @param KeyCode
+     */
     private void setBooleanValues(boolean b, int KeyCode){
         switch (KeyCode) {
             //W 

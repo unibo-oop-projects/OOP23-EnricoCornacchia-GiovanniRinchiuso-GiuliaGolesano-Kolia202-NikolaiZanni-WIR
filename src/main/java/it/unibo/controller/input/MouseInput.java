@@ -11,28 +11,48 @@ public class MouseInput implements MouseListener{
     //PAUSE, QUIT, PLAY, LEVEL?, 
 
     @Override
+    /**
+     * Method invoked when the mouse button has been clicked on a component
+     * @param e
+     */
     public void mouseClicked(MouseEvent e) {
-        //invoked when the mouse button has been clicked on a component --> pressed and released
+        
     }
 
     @Override
+    /**
+     * Method invoked when the mouse button has been pressed on a component
+     * @param e
+     */
     public void mousePressed(MouseEvent e) {
-        //invoked when the mouse button has been pressed on a component
+        
     }
 
     @Override
+    /** 
+     * Method invoked when the mouse button has been released on a component 
+     * @param e
+     */
     public void mouseReleased(MouseEvent e) {
-       //invoked when the mouse button has been released on a component 
+       
     }
 
     @Override
+    /**
+     * Method invoked when the mouse enters a component
+     * @param e
+     */
     public void mouseEntered(MouseEvent e) {
-        //invoked when the mouse enters a component
+        
     }
 
     @Override
+    /**
+     * Method invoke when the mouse exits a component
+     * @param e
+     */
     public void mouseExited(MouseEvent e) {
-        //invoke when the mouse exits a component
+        
     }
 
 
