@@ -1,8 +1,6 @@
 package it.unibo.controller.input;
 
-
 import java.awt.event.*;
-
 import it.unibo.utilities.Movements;
 import it.unibo.utilities.Constaints.MovementsKey;
 
@@ -16,8 +14,7 @@ public class KeyboardInput implements KeyListener{
      * @param e
      */
     public void keyTyped(KeyEvent e) {
-       }
-
+    }
 
     @Override
     /**
@@ -25,10 +22,8 @@ public class KeyboardInput implements KeyListener{
      * @param e
      */
     public void keyPressed(KeyEvent e) {
-        
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
-
     }
 
     @Override
@@ -37,10 +32,8 @@ public class KeyboardInput implements KeyListener{
      * @param e
      */
     public void keyReleased(KeyEvent e) {
-        
         int keyCode = e.getKeyCode();
         this.setBooleanValues(false, keyCode);
-
     }
 
     /**
@@ -136,5 +129,4 @@ public class KeyboardInput implements KeyListener{
                 break;
         }
     }
-    
 }

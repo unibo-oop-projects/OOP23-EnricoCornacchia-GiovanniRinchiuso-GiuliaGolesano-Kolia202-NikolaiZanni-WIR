@@ -1,22 +1,18 @@
 package it.unibo.controller.input;
 
 import java.awt.event.*;
-
 import it.unibo.utilities.GameState;
-
 
 public class MouseInput implements MouseListener{
 
     //in base al bottone cliccato, bisognerà cambiare o richiamare metodi del gamestate
     //PAUSE, QUIT, PLAY, LEVEL?, 
-
     @Override
     /**
      * Method invoked when the mouse button has been clicked on a component
      * @param e
      */
-    public void mouseClicked(MouseEvent e) {
-        
+    public void mouseClicked(MouseEvent e) {   
     }
 
     @Override
@@ -25,7 +21,6 @@ public class MouseInput implements MouseListener{
      * @param e
      */
     public void mousePressed(MouseEvent e) {
-        
     }
 
     @Override
@@ -34,7 +29,6 @@ public class MouseInput implements MouseListener{
      * @param e
      */
     public void mouseReleased(MouseEvent e) {
-       
     }
 
     @Override
@@ -43,7 +37,6 @@ public class MouseInput implements MouseListener{
      * @param e
      */
     public void mouseEntered(MouseEvent e) {
-        
     }
 
     @Override
@@ -51,9 +44,6 @@ public class MouseInput implements MouseListener{
      * Method invoke when the mouse exits a component
      * @param e
      */
-    public void mouseExited(MouseEvent e) {
-        
+    public void mouseExited(MouseEvent e) {  
     }
-
-
 }
