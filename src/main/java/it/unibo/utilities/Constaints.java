@@ -85,4 +85,21 @@ public class Constaints {
      * The difference between the position of Ralph and the position of his left hand.
      */
     public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+    /**
+     * The position of the house button
+     */
+    public static final Pair<Double,Double> HOME_BUTTTON = new Pair<>(null, null);
+    /**
+     * The position of the Pause button
+     */
+    public static final Pair<Double,Double> PAUSE_BUTTON = new Pair<>(null, null);
+    /**
+     * The position of the house button
+     */
+    public static final Pair<Double,Double> QUIT_BUTTON = new Pair<>(null, null);
+    /**
+     * The position of the Pause button
+     */
+    public static final Pair<Double,Double> CONTINUE_BUTTON = new Pair<>(null, null);
 }
+
