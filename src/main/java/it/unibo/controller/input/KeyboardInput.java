@@ -10,7 +10,7 @@ public class KeyboardInput implements KeyListener{
 
     @Override
     /**
-     * Method called when a button of the keyboard is typed
+     * Method called when a button of the keyboard is typed.
      * @param e
      */
     public void keyTyped(KeyEvent e) {
@@ -18,7 +18,7 @@ public class KeyboardInput implements KeyListener{
 
     @Override
     /**
-     * Method called when a button of the keyboard is pressed
+     * Method called when a button of the keyboard is pressed.
      * @param e
      */
     public void keyPressed(KeyEvent e) {
@@ -28,7 +28,7 @@ public class KeyboardInput implements KeyListener{
 
     @Override
     /**
-     * Method called when the button of the keyboard is released after being pressed
+     * Method called when the button of the keyboard is released after being pressed.
      * @param e
      */
     public void keyReleased(KeyEvent e) {
@@ -37,8 +37,7 @@ public class KeyboardInput implements KeyListener{
     }
 
     /**
-     * Method that set the boolean values about the movements and calls 
-     * the Movements enum methods 
+     * Method that set the boolean values about the movements and calls the Movements enum methods.
      * @param b
      * @param KeyCode
      */
