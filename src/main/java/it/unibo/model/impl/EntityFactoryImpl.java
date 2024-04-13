@@ -1,5 +1,7 @@
 package it.unibo.model.impl;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.common.Pair;
@@ -13,29 +15,30 @@ import it.unibo.model.api.Component;
  */
 public class EntityFactoryImpl implements EntityFactory {
     /**
-     * Create a new Felix.
-     * @param pos the position of the new Felix.
-     * @return the new Felix.
+     * {@inheritDoc}
      */
     @Override
     public Entity createFelix(final Pair<Double, Double> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createFelix'");
+        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
+                                                                         new PointsComponent(),
+                                                                         new LivesComponent(),
+                                                                         new FixWindowsComponent(),
+                                                                         new HitboxComponent()));
+        Entity felix = new EntityImpl(EntityType.FELIX, pos, components);
+        return felix;
     }
     /**
-     * Create a new Ralph.
-     * @param pos the position of the new Ralph.
-     * @return the new Ralph.
+     * {@inheritDoc}
      */
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createRalph'");
+        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
+                                                                         new HitboxComponent()));
+        Entity ralph = new EntityImpl(EntityType.RALPH, pos, components);
+        return ralph;
     }
     /**
-     * Create all the Windows.
-     * @param pos the positions of the windows.
-     * @return the created windows set.
+     * {@inheritDoc}
      */
     @Override
     public Set<Entity> createWindows(final Set<Pair<Double, Double>> pos) {
@@ -43,9 +46,7 @@ public class EntityFactoryImpl implements EntityFactory {
         throw new UnsupportedOperationException("Unimplemented method 'createWindows'");
     }
     /**
-     * Create a new brick.
-     * @param pos the position of the new brick.
-     * @return the new brick.
+     * {@inheritDoc}
      */
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
