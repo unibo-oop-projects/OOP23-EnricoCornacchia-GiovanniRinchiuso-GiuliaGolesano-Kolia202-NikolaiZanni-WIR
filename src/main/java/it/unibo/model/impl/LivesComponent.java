@@ -4,9 +4,9 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * LivesComponent
+ * LivesComponent, it represents the lives of the entity.
  */
-public class LivesComponent implements Component{
+public class LivesComponent implements Component {
 
     @Override
     public ComponentType getComponent() {
@@ -14,5 +14,4 @@ public class LivesComponent implements Component{
         throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
     }
 
-    
 }

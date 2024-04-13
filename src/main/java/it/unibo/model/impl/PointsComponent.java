@@ -4,9 +4,9 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * PointsComponent
+ * PointsComponent, it represents the points acquired by an entity.
  */
-public class PointsComponent implements Component{
+public class PointsComponent implements Component {
 
     @Override
     public ComponentType getComponent() {
@@ -14,5 +14,4 @@ public class PointsComponent implements Component{
         throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
     }
 
-    
 }

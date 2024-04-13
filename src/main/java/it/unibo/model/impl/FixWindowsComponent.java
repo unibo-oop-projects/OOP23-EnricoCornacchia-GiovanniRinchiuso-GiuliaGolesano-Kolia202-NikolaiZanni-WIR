@@ -4,9 +4,9 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * FixWindowsComponent
+ * FixWindowsComponent, fixes the windows.
  */
-public class FixWindowsComponent implements Component{
+public class FixWindowsComponent implements Component {
 
     @Override
     public ComponentType getComponent() {
@@ -14,5 +14,4 @@ public class FixWindowsComponent implements Component{
         throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
     }
 
-    
 }

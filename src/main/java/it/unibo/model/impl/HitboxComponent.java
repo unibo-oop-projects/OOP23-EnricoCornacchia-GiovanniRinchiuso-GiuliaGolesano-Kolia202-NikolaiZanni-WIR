@@ -4,9 +4,9 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * HitboxComponent
+ * HitboxComponent, it represents the hitbox of the entity.
  */
-public class HitboxComponent implements Component{
+public class HitboxComponent implements Component {
 
     @Override
     public ComponentType getComponent() {
@@ -14,5 +14,4 @@ public class HitboxComponent implements Component{
         throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
     }
 
-    
 }
