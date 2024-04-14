@@ -50,9 +50,8 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
-        Entity brick = new EntityImpl(EntityType.BRICK, pos, null);
-        Component movement = new MovementComponent();
-        brick.addComponent(movement);
-        return brick;
+        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent()));
+        Entity brick = new EntityImpl(EntityType.BRICK, pos, components);
+        return brick;  
     }
 }
