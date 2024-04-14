@@ -28,7 +28,9 @@ public enum Movements {
      * Represents the motionlessness of the player.
      */
     STOP;
-
+    /**
+     * The current movements.
+     */
     public static Movements current = STOP;
     /**
      * Get the current movements.

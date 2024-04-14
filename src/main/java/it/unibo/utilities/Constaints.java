@@ -4,9 +4,13 @@ package it.unibo.utilities;
  */
 
 import it.unibo.common.Pair;
-
+/**
+ * Constaints.
+ */
 public class Constaints {
-
+    /**
+     * keys of movement.
+     */
     public static class MovementsKey {
         /**
          * Pressed Key A.
@@ -86,20 +90,36 @@ public class Constaints {
      */
     public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
     /**
-     * The position of the house button
+     * The position of the house button.
      */
-    public static final Pair<Double,Double> HOME_BUTTTON = new Pair<>(null, null);
+    public static final Pair<Double, Double> HOME_BUTTTON = new Pair<>(null, null);
     /**
-     * The position of the Pause button
+     * The position of the Pause button.
      */
-    public static final Pair<Double,Double> PAUSE_BUTTON = new Pair<>(null, null);
+    public static final Pair<Double, Double> PAUSE_BUTTON = new Pair<>(null, null);
     /**
-     * The position of the house button
+     * The position of the house button.
      */
-    public static final Pair<Double,Double> QUIT_BUTTON = new Pair<>(null, null);
+    public static final Pair<Double, Double> QUIT_BUTTON = new Pair<>(null, null);
     /**
-     * The position of the Pause button
+     * The position of the Pause button.
      */
-    public static final Pair<Double,Double> CONTINUE_BUTTON = new Pair<>(null, null);
+    public static final Pair<Double, Double> CONTINUE_BUTTON = new Pair<>(null, null);
+    /**
+     * The height of the top image.
+     */
+    public static final double TOP_IMAGE_HEIGHT = 150;
+    /**
+     * The width of the top image.
+     */
+    public static final double TOP_IMAGE_WIDTH = 300;
+    /**
+     * The height of the pause button.
+     */
+    public static final double WIDTH_PAUSE_BUTTON = 50;
+    /**
+     * The width of the pause button.
+     */
+    public static final double HEIGHT_PAUSE_BUTTON = 50;
 }
 

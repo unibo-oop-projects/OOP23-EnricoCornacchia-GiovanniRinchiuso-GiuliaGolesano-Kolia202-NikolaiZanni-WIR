@@ -7,7 +7,10 @@ import it.unibo.model.api.ComponentType;
  * FixWindowsComponent, fixes the windows.
  */
 public class FixWindowsComponent implements Component {
-
+    /**
+     * getter of the type of the class.
+     * @return the type of the class.
+     */
     @Override
     public ComponentType getComponent() {
         // TODO Auto-generated method stub
