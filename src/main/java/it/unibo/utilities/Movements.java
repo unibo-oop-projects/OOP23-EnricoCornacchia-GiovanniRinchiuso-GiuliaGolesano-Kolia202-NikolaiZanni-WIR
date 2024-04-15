@@ -31,19 +31,19 @@ public enum Movements {
     /**
      * The current movements.
      */
-    public static Movements current = STOP;
+    private static Movements current = STOP;
     /**
-     * Get the current movements.
-     * @return the current movements
+     * Get the current movement.
+     * @return the current movement
      */
-    public static Movements getMovements() {
+    public static Movements getMovement() {
         return current;
     }
     /**
-     * Set the movements.
-     * @param mov the movements
+     * Set the movement.
+     * @param mov is the movement to set
      */
-    public static void setMovements(final Movements mov) {
+    public static void setMovement(final Movements mov) {
         current = mov;
     }
 }

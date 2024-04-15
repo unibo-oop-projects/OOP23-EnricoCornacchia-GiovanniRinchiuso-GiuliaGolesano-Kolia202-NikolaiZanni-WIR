@@ -9,7 +9,9 @@ import it.unibo.common.Pair;
 /**
  * Constaints.
  */
-public class Constaints {
+public final class Constaints {
+    private Constaints() {
+    }
     /**
      * keys of movement.
      */

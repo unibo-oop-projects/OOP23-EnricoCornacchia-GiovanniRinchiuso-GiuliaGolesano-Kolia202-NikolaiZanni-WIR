@@ -1,6 +1,8 @@
 package it.unibo.controller.input;
 
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import it.unibo.common.Pair;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.GameState;
@@ -48,14 +50,14 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     /**
      * Method invoked when the mouse button has been clicked on a component.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseClicked(final MouseEvent e) {
     }
     @Override
     /**
      * Method invoked when the mouse button has been pressed on a component.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mousePressed(final MouseEvent e) {
         this.hasPressed = true;
@@ -63,7 +65,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     /** 
      * Method invoked when the mouse button has been released on a component.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseReleased(final MouseEvent e) {
         this.hasPressed = false;
@@ -72,21 +74,21 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     /**
      * Method invoked when the mouse enters a component.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseEntered(final MouseEvent e) {
     }
     @Override
     /**
      * Method invoke when the mouse exits a component.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseExited(final MouseEvent e) {
     }
     @Override
     /**
      * Method that set the new position of the mouse.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseDragged(final MouseEvent e) {
         this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
@@ -94,7 +96,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     /**
      * Method that set the new position of the mouse if it has moved.
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseMoved(final MouseEvent e) {
         this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
