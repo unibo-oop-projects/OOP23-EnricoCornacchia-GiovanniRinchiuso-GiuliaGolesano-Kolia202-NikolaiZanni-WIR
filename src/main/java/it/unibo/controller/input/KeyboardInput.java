@@ -57,6 +57,7 @@ public class KeyboardInput implements KeyListener {
      */
     public void keyTyped(final KeyEvent e) {
     }
+
     @Override
     /**
      * Method called when a button of the keyboard is pressed.
@@ -66,6 +67,7 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
+
     @Override
     /**
      * Method called when the button of the keyboard is released after being pressed.
