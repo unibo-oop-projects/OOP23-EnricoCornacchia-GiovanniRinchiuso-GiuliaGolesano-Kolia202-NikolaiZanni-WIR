@@ -108,11 +108,11 @@ public class Constaints {
     /**
      * The height of the top image.
      */
-    public static final double TOP_IMAGE_HEIGHT = 150;
+    public static final double TOP_IMAGE_HEIGHT = 125;
     /**
      * The width of the top image.
      */
-    public static final double TOP_IMAGE_WIDTH = 300;
+    public static final double TOP_IMAGE_WIDTH = 450;
     /**
      * The height of the pause button.
      */
