@@ -2,6 +2,9 @@ package it.unibo.utilities;
 
 import it.unibo.common.Pair;
 
+/**
+ * Class for the constaints used.
+ */
 public class Constaints {
     /**
      * keys of movement.
