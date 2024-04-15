@@ -1,14 +1,7 @@
 package it.unibo.utilities;
 
-/**
- * Constaints.
- */
-
 import it.unibo.common.Pair;
 
-/**
- * Constaints.
- */
 public class Constaints {
     /**
      * keys of movement.

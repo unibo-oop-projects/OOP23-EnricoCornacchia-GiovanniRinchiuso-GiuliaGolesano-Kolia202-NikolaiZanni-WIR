@@ -1,6 +1,7 @@
 package it.unibo.controller.input;
 
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import it.unibo.utilities.Movements;
 import it.unibo.utilities.Constaints.MovementsKey;
 /**
@@ -9,47 +10,41 @@ import it.unibo.utilities.Constaints.MovementsKey;
 public class KeyboardInput implements KeyListener {
 
     private boolean up, down, right, left, fix;
-    
     /**
-    * Getter of the variable up
-    * return up
+    * Getter of the variable up.
+    * @return up
     */
-    public boolean getUp(){
+    public boolean getUp() {
         return this.up;
     }
-    
     /**
-    * Getter of the variable down
-    * return down
+    * Getter of the variable down.
+    * @return down
     */
-    public boolean getDown(){
+    public boolean getDown() {
         return this.down;
     }
-
     /**
-    * Getter of the variable right
-    * return right
+    * Getter of the variable right.
+    * @return right
     */
-    public boolean getRight(){
+    public boolean getRight() {
         return this.right;
     }
-
     /**
-    * Getter of the variable left
-    * return left
+    * Getter of the variable left.
+    * @return left
     */
-    public boolean getLeft(){
+    public boolean getLeft() {
         return this.left;
     }
-
     /**
-    * Getter of the variable fix
-    * return fix
+    * Getter of the variable fix.
+    * @return fix
     */
-    public boolean getFix(){
+    public boolean getFix() {
         return this.fix;
     }
-
     @Override
     /**
      * Method called when a button of the keyboard is typed.
@@ -57,7 +52,6 @@ public class KeyboardInput implements KeyListener {
      */
     public void keyTyped(final KeyEvent e) {
     }
-
     @Override
     /**
      * Method called when a button of the keyboard is pressed.
@@ -67,7 +61,6 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
-
     @Override
     /**
      * Method called when the button of the keyboard is released after being pressed.

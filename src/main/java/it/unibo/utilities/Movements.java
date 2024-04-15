@@ -31,7 +31,7 @@ public enum Movements {
     /**
      * The current movements.
      */
-    public static Movements current = STOP;
+    private static Movements current = STOP;
     /**
      * Get the current movements.
      * @return the current movements
