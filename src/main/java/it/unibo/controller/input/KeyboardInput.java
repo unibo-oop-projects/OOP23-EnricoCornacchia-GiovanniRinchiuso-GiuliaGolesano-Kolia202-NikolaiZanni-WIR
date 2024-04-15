@@ -8,7 +8,47 @@ import it.unibo.utilities.Constaints.MovementsKey;
  */
 public class KeyboardInput implements KeyListener {
 
-    public boolean up, down, right, left, fix;
+    private boolean up, down, right, left, fix;
+    
+    /**
+    * Getter of the variable up
+    * return up
+    */
+    public boolean getUp(){
+        return this.up;
+    }
+    
+    /**
+    * Getter of the variable down
+    * return up
+    */
+    public boolean getDown(){
+        return this.down;
+    }
+
+    /**
+    * Getter of the variable right
+    * return up
+    */
+    public boolean getRight(){
+        return this.right;
+    }
+
+    /**
+    * Getter of the variable left
+    * return up
+    */
+    public boolean getLeft(){
+        return this.left;
+    }
+
+    /**
+    * Getter of the variable fix
+    * return up
+    */
+    public boolean getFix(){
+        return this.fix;
+    }
 
     @Override
     /**
