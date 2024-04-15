@@ -1,9 +1,11 @@
 package it.unibo.utilities;
+
 /**
  * Constaints.
  */
 
 import it.unibo.common.Pair;
+
 /**
  * Constaints.
  */
@@ -53,6 +55,7 @@ public class Constaints {
          */
         public static final int ESCAPE = 27;
     }
+
     /**
      * The speed of the brick.
      */
@@ -82,11 +85,13 @@ public class Constaints {
      */
     public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 700.0);
     /**
-     * The difference between the position of Ralph and the position of his right hand.
+     * The difference between the position of Ralph and the position of his right
+     * hand.
      */
     public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(8.0, -2.0);
     /**
-     * The difference between the position of Ralph and the position of his left hand.
+     * The difference between the position of Ralph and the position of his left
+     * hand.
      */
     public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
     /**
@@ -122,12 +127,11 @@ public class Constaints {
      */
     public static final double HEIGHT_PAUSE_BUTTON = 50;
     /**
-     * The hight of the under image 
+     * The hight of the under image.
      */
     public static final double UNDER_IMAGE_HEIGHT = 200;
     /**
-     * The width of the under image
+     * The width of the under image.
      */
     public static final double UNDER_IMAGE_WIDTH = 450;
 }
-
