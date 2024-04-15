@@ -8,7 +8,47 @@ import it.unibo.utilities.Constaints.MovementsKey;
  */
 public class KeyboardInput implements KeyListener {
 
-    public boolean up, down, right, left, fix;
+    private boolean up, down, right, left, fix;
+    
+    /**
+    * Getter of the variable up
+    * return up
+    */
+    public boolean getUp(){
+        return this.up;
+    }
+    
+    /**
+    * Getter of the variable down
+    * return down
+    */
+    public boolean getDown(){
+        return this.down;
+    }
+
+    /**
+    * Getter of the variable right
+    * return right
+    */
+    public boolean getRight(){
+        return this.right;
+    }
+
+    /**
+    * Getter of the variable left
+    * return left
+    */
+    public boolean getLeft(){
+        return this.left;
+    }
+
+    /**
+    * Getter of the variable fix
+    * return fix
+    */
+    public boolean getFix(){
+        return this.fix;
+    }
 
     @Override
     /**
@@ -17,6 +57,7 @@ public class KeyboardInput implements KeyListener {
      */
     public void keyTyped(final KeyEvent e) {
     }
+
     @Override
     /**
      * Method called when a button of the keyboard is pressed.
@@ -26,6 +67,7 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
+
     @Override
     /**
      * Method called when the button of the keyboard is released after being pressed.
