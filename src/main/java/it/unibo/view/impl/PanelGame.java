@@ -10,12 +10,12 @@ import javax.swing.JPanel;
 public class PanelGame extends JPanel {
 
     //game window dimensionsk
-    private final int tilePixels = 16;
-    private final int scale = 3;
-    private final int col = 12;
-    private final int row = 16;
-    private final int height = tilePixels * scale * row;
-    private final int width = tilePixels * scale * col;
+    private static final int TILE_PIXELS = 16;
+    private static final int SCALE = 3;
+    private static final int COL = 12;
+    private static final int ROW = 16;
+    private final int height = TILE_PIXELS * SCALE * ROW;
+    private final int width = TILE_PIXELS * SCALE * COL;
     /**
      * Constructor of the class.
      */

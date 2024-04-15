@@ -16,10 +16,10 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean hasClicked;
     private boolean hasPressed;
     /**
-     * Constructor of the class.
-     */
+    * Constructor of the class.
+    */
     public MouseInput() {
-        pos = new Pair<Double, Double>(0.0, 0.0);
+        pos = new Pair<>(0.0, 0.0);
     }
     /**
      * Getter of the position.
@@ -32,14 +32,14 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * Getter of the boolean hasClicked.
      * @return if the mouse has clicked
      */
-    public boolean getClick() {
+    public boolean isClicked() {
         return this.hasClicked;
     }
     /**
      * Getter fo the boolean hasPressed.
      * @return if the mouse has clicked
      */
-    public boolean getPress() {
+    public boolean isPressed() {
         return this.hasPressed;
     }
     /**
@@ -59,6 +59,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * Method invoked when the mouse button has been pressed on a component.
      * @param e the MouseEvent
      */
+    @Override
     public void mousePressed(final MouseEvent e) {
         this.hasPressed = true;
     }
@@ -66,6 +67,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * Method invoked when the mouse button has been released on a component.
      * @param e the MouseEvent
      */
+    @Override
     public void mouseReleased(final MouseEvent e) {
         this.hasPressed = false;
         this.hasClicked = true;
@@ -74,43 +76,47 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * Method invoked when the mouse enters a component.
      * @param e the MouseEvent
      */
+    @Override
     public void mouseEntered(final MouseEvent e) {
     }
     /**
      * Method invoke when the mouse exits a component.
      * @param e the MouseEvent
      */
+    @Override
     public void mouseExited(final MouseEvent e) {
     }
     /**
      * Method that set the new position of the mouse.
      * @param e the MouseEvent
      */
+    @Override
     public void mouseDragged(final MouseEvent e) {
-        this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
+        this.pos = new Pair<>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
     }
     /**
      * Method that set the new position of the mouse if it has moved.
      * @param e the MouseEvent
      */
+    @Override
     public void mouseMoved(final MouseEvent e) {
-        this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
+        this.pos = new Pair<>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
     }
     /**
      * Method that determines whether and in which button we are.
      * @return the new GameState of the button clicked
      */
     public GameState buttonClicked() {
-        if (this.pos == Constaints.HOME_BUTTON) {
+        if (this.pos.equals(Constaints.HOME_BUTTON)) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.QUIT_BUTTON) {
+        if (this.pos.equals(Constaints.QUIT_BUTTON)) {
             GameState.setGameState(GameState.GAMEOVER);
         }
-        if (this.pos == Constaints.CONTINUE_BUTTON) {
+        if (this.pos.equals(Constaints.CONTINUE_BUTTON)) {
             GameState.setGameState(GameState.PLAYING);
         }
-        if (this.pos == Constaints.PAUSE_BUTTON) {
+        if (this.pos.equals(Constaints.PAUSE_BUTTON)) {
             GameState.setGameState(GameState.PAUSED);
         }
         return GameState.getGameState();

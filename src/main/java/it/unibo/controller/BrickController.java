@@ -41,8 +41,8 @@ public class BrickController {
     private void checkBricks() {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
-                if (component.getComponent() == ComponentType.MOVEMENT && 
-                !((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
+                if (component.getComponent() == ComponentType.MOVEMENT 
+                && !((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
                     bricks.remove(brick);
                 }
             }

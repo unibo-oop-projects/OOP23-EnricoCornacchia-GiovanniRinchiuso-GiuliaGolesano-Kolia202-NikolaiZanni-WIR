@@ -19,13 +19,12 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createFelix(final Pair<Double, Double> pos) {
-        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new PointsComponent(),
                 new LivesComponent(),
                 new FixWindowsComponent(),
                 new HitboxComponent()));
-        Entity felix = new EntityImpl(EntityType.FELIX, pos, components);
-        return felix;
+        return new EntityImpl(EntityType.FELIX, pos, components);
     }
 
     /**
@@ -33,10 +32,9 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
-        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new HitboxComponent()));
-        Entity ralph = new EntityImpl(EntityType.RALPH, pos, components);
-        return ralph;
+        return new EntityImpl(EntityType.RALPH, pos, components);
     }
 
     /**
@@ -53,8 +51,7 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
-        Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent()));
-        Entity brick = new EntityImpl(EntityType.BRICK, pos, components);
-        return brick;
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        return new EntityImpl(EntityType.BRICK, pos, components);
     }
 }

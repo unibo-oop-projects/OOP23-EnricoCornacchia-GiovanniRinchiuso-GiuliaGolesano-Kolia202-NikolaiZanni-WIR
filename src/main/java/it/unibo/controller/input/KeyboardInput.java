@@ -57,16 +57,18 @@ public class KeyboardInput implements KeyListener {
     * Method called when a button of the keyboard is pressed.
     * @param e the KeyEvent
     */
+    @Override
     public void keyPressed(final KeyEvent e) {
-        int keyCode = e.getKeyCode();
+        final int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
     /**
     * Method called when a button of the keyboard is released after being pressed.
     * @param e the KeyEvent
     */
+    @Override
     public void keyReleased(final KeyEvent e) {
-        int keyCode = e.getKeyCode();
+        final int keyCode = e.getKeyCode();
         this.setBooleanValues(false, keyCode);
     }
     private void setBooleanValues(final boolean b, final int keyCode) {

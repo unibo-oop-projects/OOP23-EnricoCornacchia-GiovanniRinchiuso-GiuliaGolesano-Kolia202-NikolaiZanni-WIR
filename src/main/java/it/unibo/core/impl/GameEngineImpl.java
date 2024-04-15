@@ -11,7 +11,7 @@ import it.unibo.utilities.GameState;
 
 public class GameEngineImpl implements GameEngine {
 
-    private int period;
+    private final int period;
     private GameController gameController;
     /**
      * Constructor for the game engine.

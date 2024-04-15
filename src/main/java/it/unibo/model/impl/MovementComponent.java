@@ -16,8 +16,8 @@ public class MovementComponent implements Component {
      * @param entity the entity to move.
      */
     public void move(final double x, final double y, final Entity entity) {
-        double newX = entity.getPosition().getX() + x;
-        double newY = entity.getPosition().getY() + y;
+        final double newX = entity.getPosition().getX() + x;
+        final double newY = entity.getPosition().getY() + y;
         if (canMove(x, y, entity)) {
             entity.setPosition(new Pair<>(newX, newY));
         }
@@ -30,8 +30,8 @@ public class MovementComponent implements Component {
      * @return true if the entity can move, false otherwise.
      */
     public boolean canMove(final double x, final double y, final Entity entity) {
-        double newX = entity.getPosition().getX() + x;
-        double newY = entity.getPosition().getY() + y;
+        final double newX = entity.getPosition().getX() + x;
+        final double newY = entity.getPosition().getY() + y;
         return newX >= Constaints.LEFT_WALL 
         && newX <= Constaints.RIGHT_WALL 
         && newY >= Constaints.DOWN_WALL 
@@ -41,6 +41,7 @@ public class MovementComponent implements Component {
      * Getter method for the component type.
      * @return the component type.
      */
+    @Override
     public ComponentType getComponent() {
         return ComponentType.MOVEMENT;
     }

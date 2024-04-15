@@ -6,55 +6,11 @@ import it.unibo.common.Pair;
  * Constaints.
  */
 public final class Constaints {
-    private Constaints() {
-    }
     /**
-     * keys of movement.
+     * The name of the gamestate.
      */
-    public static class MovementsKey {
-        /**
-         * Pressed Key A.
-         */
-        public static final int LEFT = 65;
-        /**
-         * Pressed Left arrow.
-         */
-        public static final int LEFT_ARROW = 37;
-        /**
-         * Pressed Key D.
-         */
-        public static final int RIGHT = 68;
-        /**
-         * Pressed Right arrow.
-         */
-        public static final int RIGHT_ARROW = 39;
-        /**
-         * Pressed Key W.
-         */
-        public static final int UP = 87;
-        /**
-         * Pressed Up arrow.
-         */
-        public static final int UP_ARROW = 38;
-        /**
-         * Pressed Key S.
-         */
-        public static final int DOWN = 83;
-        /**
-         * Pressed Down arrow.
-         */
-        public static final int DOWN_ARROW = 40;
-        /**
-         * Pressed Key T.
-         */
-        public static final int FIX = 84;
-        /**
-         * Pressed Esc.
-         */
-        public static final int ESCAPE = 27;
-    }
-
-    /**
+    public static final String GAMESTATE = "GameState: ";
+     /**
      * The speed of the brick.
      */
     public static final double BRICK_SPEED = 1.0;
@@ -132,4 +88,51 @@ public final class Constaints {
      * The width of the under image.
      */
     public static final double UNDER_IMAGE_WIDTH = 450;
+    private Constaints() {
+    }
+    /**
+     * keys of movement.
+     */
+    public static class MovementsKey {
+        /**
+         * Pressed Key A.
+         */
+        public static final int LEFT = 65;
+        /**
+         * Pressed Left arrow.
+         */
+        public static final int LEFT_ARROW = 37;
+        /**
+         * Pressed Key D.
+         */
+        public static final int RIGHT = 68;
+        /**
+         * Pressed Right arrow.
+         */
+        public static final int RIGHT_ARROW = 39;
+        /**
+         * Pressed Key W.
+         */
+        public static final int UP = 87;
+        /**
+         * Pressed Up arrow.
+         */
+        public static final int UP_ARROW = 38;
+        /**
+         * Pressed Key S.
+         */
+        public static final int DOWN = 83;
+        /**
+         * Pressed Down arrow.
+         */
+        public static final int DOWN_ARROW = 40;
+        /**
+         * Pressed Key T.
+         */
+        public static final int FIX = 84;
+        /**
+         * Pressed Esc.
+         */
+        public static final int ESCAPE = 27;
+    }
 }
