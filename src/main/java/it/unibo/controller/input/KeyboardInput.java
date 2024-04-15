@@ -20,7 +20,7 @@ public class KeyboardInput implements KeyListener {
     
     /**
     * Getter of the variable down
-    * return up
+    * return down
     */
     public boolean getDown(){
         return this.down;
@@ -28,7 +28,7 @@ public class KeyboardInput implements KeyListener {
 
     /**
     * Getter of the variable right
-    * return up
+    * return right
     */
     public boolean getRight(){
         return this.right;
@@ -36,7 +36,7 @@ public class KeyboardInput implements KeyListener {
 
     /**
     * Getter of the variable left
-    * return up
+    * return left
     */
     public boolean getLeft(){
         return this.left;
@@ -44,7 +44,7 @@ public class KeyboardInput implements KeyListener {
 
     /**
     * Getter of the variable fix
-    * return up
+    * return fix
     */
     public boolean getFix(){
         return this.fix;
