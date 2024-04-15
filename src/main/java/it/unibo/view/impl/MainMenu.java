@@ -105,8 +105,8 @@ public class MainMenu extends Application {
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
             root.getChildren().add(topImageView);
             ImageView underImageView = new ImageView(underImage);
-            underImageView.setFitHeight(200);
-            underImageView.setFitWidth(450);
+            underImageView.setFitHeight(Constaints.UNDER_IMAGE_HEIGHT);
+            underImageView.setFitWidth(Constaints.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);
             root.getChildren().add(underImageView);
             final HBox pane = new HBox(20);

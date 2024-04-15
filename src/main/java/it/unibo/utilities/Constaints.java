@@ -121,5 +121,13 @@ public class Constaints {
      * The width of the pause button.
      */
     public static final double HEIGHT_PAUSE_BUTTON = 50;
+    /**
+     * The hight of the under image 
+     */
+    public static final double UNDER_IMAGE_HEIGHT = 200;
+    /**
+     * The width of the under image
+     */
+    public static final double UNDER_IMAGE_WIDTH = 450;
 }
 
