@@ -1,8 +1,9 @@
 package it.unibo.controller.input;
 
-import java.awt.event.MouseEvent;
+
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 import it.unibo.common.Pair;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.GameState;
@@ -106,16 +107,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * @return the new GameState of the button clicked
      */
     public GameState buttonClicked() {
-        if (this.pos == Constaints.HOME_BUTTTON) {
+        if (this.pos == Constaints.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
+        if (this.pos == Constaints.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
+        if (this.pos == Constaints.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
+        if (this.pos == Constaints.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
         return GameState.getGameState();

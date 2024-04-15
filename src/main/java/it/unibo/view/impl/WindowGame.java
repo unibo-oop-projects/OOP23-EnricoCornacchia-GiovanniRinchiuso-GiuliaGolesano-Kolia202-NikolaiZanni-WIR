@@ -1,7 +1,6 @@
 package it.unibo.view.impl;
 
 import javax.swing.JFrame;
-
 /**
  * WindowGame, it represents the game window.
  */
