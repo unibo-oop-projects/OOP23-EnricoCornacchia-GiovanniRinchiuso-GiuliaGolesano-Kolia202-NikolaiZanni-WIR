@@ -20,23 +20,25 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createFelix(final Pair<Double, Double> pos) {
         Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
-                                                                         new PointsComponent(),
-                                                                         new LivesComponent(),
-                                                                         new FixWindowsComponent(),
-                                                                         new HitboxComponent()));
+                new PointsComponent(),
+                new LivesComponent(),
+                new FixWindowsComponent(),
+                new HitboxComponent()));
         Entity felix = new EntityImpl(EntityType.FELIX, pos, components);
         return felix;
     }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
         Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent(),
-                                                                         new HitboxComponent()));
+                new HitboxComponent()));
         Entity ralph = new EntityImpl(EntityType.RALPH, pos, components);
         return ralph;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -45,6 +47,7 @@ public class EntityFactoryImpl implements EntityFactory {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createWindows'");
     }
+
     /**
      * {@inheritDoc}
      */
@@ -52,6 +55,6 @@ public class EntityFactoryImpl implements EntityFactory {
     public Entity createBrick(final Pair<Double, Double> pos) {
         Set<Component> components = new HashSet<Component>(Arrays.asList(new MovementComponent()));
         Entity brick = new EntityImpl(EntityType.BRICK, pos, components);
-        return brick;  
+        return brick;
     }
 }

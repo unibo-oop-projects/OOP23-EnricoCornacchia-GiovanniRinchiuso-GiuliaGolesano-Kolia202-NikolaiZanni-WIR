@@ -1,12 +1,14 @@
 package it.unibo.view.impl;
 
 import javax.swing.JFrame;
+
 /**
  * WindowGame, it represents the game window.
  */
 public class WindowGame {
     /**
      * main, it starts the game window.
+     * 
      * @param args the arguments of the main.
      */
     public static void main(final String[] args) {
@@ -16,5 +18,5 @@ public class WindowGame {
         PanelGame panel = new PanelGame();
         window.add(panel);
         window.setVisible(true);
-    }  
+    }
 }
