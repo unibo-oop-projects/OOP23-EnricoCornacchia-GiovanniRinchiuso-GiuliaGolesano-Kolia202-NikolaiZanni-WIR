@@ -55,26 +55,16 @@ public class KeyboardInput implements KeyListener {
     }
     /**
     * Method called when a button of the keyboard is pressed.
-    * Subclasses should override this method to provide custom behavior.
-    * It is recommended that subclasses call {@code super.keyPressed(e)} to
-    * ensure proper handling of keyboard events.
-    * 
     * @param e the KeyEvent
     */
-    @Override
     public void keyPressed(final KeyEvent e) {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
     /**
     * Method called when a button of the keyboard is released after being pressed.
-    * Subclasses should override this method to provide custom behavior.
-    * It is recommended that subclasses call {@code super.keyReleased(e)} to
-    * ensure proper handling of keyboard events.
-    * 
     * @param e the KeyEvent
     */
-    @Override
     public void keyReleased(final KeyEvent e) {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(false, keyCode);

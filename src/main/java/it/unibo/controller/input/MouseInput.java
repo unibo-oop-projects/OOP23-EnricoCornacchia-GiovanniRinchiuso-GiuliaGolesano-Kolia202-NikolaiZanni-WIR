@@ -55,7 +55,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      */
     public void mouseClicked(final MouseEvent e) {
     }
-    @Override
     /**
      * Method invoked when the mouse button has been pressed on a component.
      * @param e the MouseEvent
@@ -63,7 +62,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     public void mousePressed(final MouseEvent e) {
         this.hasPressed = true;
     }
-    @Override
     /** 
      * Method invoked when the mouse button has been released on a component.
      * @param e the MouseEvent
@@ -72,21 +70,18 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         this.hasPressed = false;
         this.hasClicked = true;
     }
-    @Override
     /**
      * Method invoked when the mouse enters a component.
      * @param e the MouseEvent
      */
     public void mouseEntered(final MouseEvent e) {
     }
-    @Override
     /**
      * Method invoke when the mouse exits a component.
      * @param e the MouseEvent
      */
     public void mouseExited(final MouseEvent e) {
     }
-    @Override
     /**
      * Method that set the new position of the mouse.
      * @param e the MouseEvent
@@ -94,7 +89,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     public void mouseDragged(final MouseEvent e) {
         this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
     }
-    @Override
     /**
      * Method that set the new position of the mouse if it has moved.
      * @param e the MouseEvent
