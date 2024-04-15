@@ -68,10 +68,9 @@ public class KeyboardInput implements KeyListener {
 
     @Override
     /**
-     * Method called when a button of the keyboard is pressed.
-     * 
-     * @param e
-     */
+    * Method called when a button of the keyboard is pressed.
+    * @param e the KeyEvent
+    */
     public void keyPressed(final KeyEvent e) {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
@@ -79,11 +78,9 @@ public class KeyboardInput implements KeyListener {
 
     @Override
     /**
-     * Method called when the button of the keyboard is released after being
-     * pressed.
-     * 
-     * @param e
-     */
+    * Method called when a button of the keyboard is released after being pressed.
+    * @param e the KeyEvent
+    */
     public void keyReleased(final KeyEvent e) {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(false, keyCode);

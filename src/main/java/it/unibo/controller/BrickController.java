@@ -27,8 +27,8 @@ public class BrickController {
      */
     public void fallBricks() {
         this.checkBricks();
-        for (Entity brick : bricks) {
-            for (Component component : brick.getComponents()) {
+        for (final Entity brick : bricks) {
+            for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
                     ((MovementComponent) component).move(Constaints.BRICK_SPEED, 0.0, brick);
                 }
@@ -41,8 +41,8 @@ public class BrickController {
      */
 
     private void checkBricks() {
-        for (Entity brick : bricks) {
-            for (Component component : brick.getComponents()) {
+        for (final Entity brick : bricks) {
+            for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
                     if (!((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
                         bricks.remove(brick);

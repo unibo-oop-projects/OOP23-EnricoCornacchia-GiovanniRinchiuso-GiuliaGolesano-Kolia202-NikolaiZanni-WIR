@@ -5,9 +5,9 @@ package it.unibo.controller;
  */
 public class GameController {
 
-    private RalphController ralphController;
-    private FelixController felixController;
-    private BrickController brickController;
+    private final RalphController ralphController;
+    private final FelixController felixController;
+    private final BrickController brickController;
 
 
     /**
