@@ -109,14 +109,14 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         if (this.pos == Constaints.HOME_BUTTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
-            GameState.setGameState(GameState.HOME);
+        if (this.pos == Constaints.QUIT_BUTTON) {
+            GameState.setGameState(GameState.GAMEOVER);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
-            GameState.setGameState(GameState.HOME);
+        if (this.pos == Constaints.CONTINUE_BUTTON) {
+            GameState.setGameState(GameState.PLAYING);
         }
-        if (this.pos == Constaints.HOME_BUTTTON) {
-            GameState.setGameState(GameState.HOME);
+        if (this.pos == Constaints.PAUSE_BUTTON) {
+            GameState.setGameState(GameState.PAUSED);
         }
         return GameState.getGameState();
     }
