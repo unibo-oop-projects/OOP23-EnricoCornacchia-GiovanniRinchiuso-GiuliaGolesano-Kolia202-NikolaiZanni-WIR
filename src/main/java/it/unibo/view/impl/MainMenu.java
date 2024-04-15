@@ -87,24 +87,24 @@ public class MainMenu extends Application {
         AnotherStage() {
             super();
             initStyle(StageStyle.UNDECORATED);
-            Image backgroundMainMenu = new Image(BACKGROUND);
-            Image topImage = new Image(TOP_IMAGE);
-            Image underImage = new Image(UNDER_IMAGE);
-            StackPane root = new StackPane();
-            BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, false);
-            BackgroundImage backgroundImage = new BackgroundImage(
+            final Image backgroundMainMenu = new Image(BACKGROUND);
+            final Image topImage = new Image(TOP_IMAGE);
+            final Image underImage = new Image(UNDER_IMAGE);
+            final StackPane root = new StackPane();
+            final BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, false);
+            final BackgroundImage backgroundImage = new BackgroundImage(
                     backgroundMainMenu,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundPosition.CENTER,
                     backgroundSize);
             root.setBackground(new Background(backgroundImage));
-            ImageView topImageView = new ImageView(topImage);
+            final ImageView topImageView = new ImageView(topImage);
             topImageView.setFitWidth(Constaints.TOP_IMAGE_WIDTH);
             topImageView.setFitHeight(Constaints.TOP_IMAGE_HEIGHT);
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
             root.getChildren().add(topImageView);
-            ImageView underImageView = new ImageView(underImage);
+            final ImageView underImageView = new ImageView(underImage);
             underImageView.setFitHeight(Constaints.UNDER_IMAGE_HEIGHT);
             underImageView.setFitWidth(Constaints.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);

@@ -35,18 +35,15 @@ public class BrickController {
             }
         }
     }
-
     /**
      * Check if the bricks are still in the game.
      */
-
     private void checkBricks() {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
-                if (component.getComponent() == ComponentType.MOVEMENT) {
-                    if (!((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
-                        bricks.remove(brick);
-                    }
+                if (component.getComponent() == ComponentType.MOVEMENT && 
+                !((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
+                    bricks.remove(brick);
                 }
             }
         }

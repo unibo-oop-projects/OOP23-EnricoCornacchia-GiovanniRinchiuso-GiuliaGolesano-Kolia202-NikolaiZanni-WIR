@@ -14,10 +14,10 @@ public final class WindowGame {
      * @throws Exception if an error occurs.
      */
     public static void main(final String[] args) throws Exception {
-        JFrame window = new JFrame();
+        final JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        PanelGame panel = new PanelGame();
+        final PanelGame panel = new PanelGame();
         window.add(panel);
         window.setVisible(true);
     }
