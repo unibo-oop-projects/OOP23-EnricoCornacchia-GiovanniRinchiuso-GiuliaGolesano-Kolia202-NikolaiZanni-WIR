@@ -127,7 +127,7 @@ public class MainMenu extends Application {
             quitButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.GAMEOVER);
                 LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
-                close();
+                super.close();
             });
             homeButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.HOME);

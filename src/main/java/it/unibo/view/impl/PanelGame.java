@@ -17,14 +17,14 @@ public class PanelGame extends JPanel {
     private static final int SCALE = 3;
     private static final int COL = 12;
     private static final int ROW = 16;
-    private final int height = TILE_PIXELS * SCALE * ROW;
-    private final int width = TILE_PIXELS * SCALE * COL;
+    private static final int HEIGHT = TILE_PIXELS * SCALE * ROW;
+    private static final int WIDTH = TILE_PIXELS * SCALE * COL;
 
     /**
      * Constructor of the class.
      */
     public PanelGame() {
-        this.setPreferredSize(new Dimension(width, height));
+        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
     }

@@ -1,4 +1,5 @@
 package it.unibo.controller;
+import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.model.api.Component;
@@ -12,16 +13,21 @@ import it.unibo.utilities.Constaints;
  */
 public class BrickController {
 
-    private Set<Entity> bricks;
+    private final Set<Entity> bricks;
 
+    /**
+     * Constructor for the BrickController.
+     */
+    public BrickController() {
+        bricks = new HashSet<>();
+    }
     /**
      * Getter for the bricks.
      * @return the set of bricks.
      */
     public Set<Entity> getBricks() {
-        return this.bricks;
+        return new HashSet<>(this.bricks);
     }
-
     /**
      * make the bricks fall.
      */
