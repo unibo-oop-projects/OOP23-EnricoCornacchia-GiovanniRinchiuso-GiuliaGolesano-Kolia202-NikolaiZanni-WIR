@@ -11,7 +11,6 @@ public final class WindowGame {
      * main, it starts the game window.
      * 
      * @param args the arguments of the main.
-     * @throws Exception if an error occurs.
      */
     public static void main(final String[] args) {
         final JFrame window = new JFrame();
