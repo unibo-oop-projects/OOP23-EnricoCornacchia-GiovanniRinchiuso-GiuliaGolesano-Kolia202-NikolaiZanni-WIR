@@ -47,7 +47,6 @@ public class MainMenu extends Application {
         });
         final StackPane root = new StackPane(pauseButton);
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("PROVA");
         primaryStage.show();
     }
 
