@@ -18,7 +18,7 @@ public class PointsComponent implements Component {
     /**
      * Method to add ponits.
      */
-    public void addPoints(int pointsToAdd) {
+    public void addPoints(final int pointsToAdd) {
         this.points += pointsToAdd;
     }
     /**
