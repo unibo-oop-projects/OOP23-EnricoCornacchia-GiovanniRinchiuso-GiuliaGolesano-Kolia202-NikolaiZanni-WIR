@@ -1,4 +1,4 @@
-package it.unibo.controller.input;
+package it.unibo.controller.impl.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,7 +7,7 @@ import it.unibo.utilities.Constaints.MovementsKey;
 import javafx.application.Application;
 
 /**
- * Class that manages the keyboard input.
+ * Class that manages the keyboard input with java.awt.
  */
 public class KeyboardInput implements KeyListener {
 

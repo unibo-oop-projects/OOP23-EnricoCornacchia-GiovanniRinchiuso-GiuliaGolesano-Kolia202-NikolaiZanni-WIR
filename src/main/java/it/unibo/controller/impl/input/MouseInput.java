@@ -1,4 +1,4 @@
-package it.unibo.controller.input;
+package it.unibo.controller.impl.input;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
