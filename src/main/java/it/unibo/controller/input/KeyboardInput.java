@@ -13,46 +13,41 @@ public class KeyboardInput implements KeyListener {
     private boolean up, down, right, left, fix;
 
     /**
-     * Getter of the variable up.
-     * 
-     * @return up
-     */
+    * Getter of the variable up.
+    * @return up
+    */
     public boolean getUp() {
         return this.up;
     }
 
     /**
-     * Getter of the variable down.
-     * 
-     * @return down
-     */
+    * Getter of the variable down.
+    * @return down
+    */
     public boolean getDown() {
         return this.down;
     }
 
     /**
-     * Getter of the variable right.
-     * 
-     * @return right
-     */
+    * Getter of the variable right.
+    * @return right
+    */
     public boolean getRight() {
         return this.right;
     }
 
     /**
-     * Getter of the variable left.
-     * 
-     * @return left
-     */
+    * Getter of the variable left.
+    * @return left
+    */
     public boolean getLeft() {
         return this.left;
     }
 
     /**
-     * Getter of the variable fix.
-     * 
-     * @return fix
-     */
+    * Getter of the variable fix.
+    * @return fix
+    */
     public boolean getFix() {
         return this.fix;
     }
