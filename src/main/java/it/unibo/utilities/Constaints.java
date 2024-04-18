@@ -51,7 +51,7 @@ public final class Constaints {
     /**
      * The position of the house button.
      */
-    public static final Pair<Double, Double> HOME_BUTTTON = new Pair<>(null, null);
+    public static final Pair<Double, Double> HOME_BUTTON = new Pair<>(null, null);
     /**
      * The position of the Pause button.
      */

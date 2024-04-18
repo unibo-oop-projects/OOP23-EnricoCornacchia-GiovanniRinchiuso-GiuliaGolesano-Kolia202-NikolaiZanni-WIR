@@ -1,4 +1,4 @@
-package it.unibo.controller;
+package it.unibo.controller.impl;
 
 /**
  * Controller for the Felix character.

@@ -1,28 +1,40 @@
 package it.unibo.view.impl;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
 /**
- * WindowGame, it represents the game window.
+ * WindowGame, it represents the window of the game.
  */
-public final class WindowGame {
-    private WindowGame() {
-    }
-    /**
-     * main, it starts the game window.
-     * 
-     * @param args the arguments of the main.
-     */
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            final JFrame window = new JFrame();
-            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            window.setResizable(false);
-            final PanelGame panel = new PanelGame();
-            window.add(panel);
-            window.pack(); // Pack the components to fit their preferred size
-            window.setLocationRelativeTo(null); // Center the window on the screen
-            window.setVisible(true);
+public class WindowGame extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        BorderPane pane = new BorderPane();
+        Button button = new Button("Press Me!");
+        pane.setCenter(button);
+        Scene scene = new Scene(pane, 200, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        button.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    System.out.println("Enter Pressed");
+                }
+            }
         });
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
     }
 }

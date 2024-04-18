@@ -1,4 +1,4 @@
-package it.unibo.controller;
+package it.unibo.controller.impl;
 
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
