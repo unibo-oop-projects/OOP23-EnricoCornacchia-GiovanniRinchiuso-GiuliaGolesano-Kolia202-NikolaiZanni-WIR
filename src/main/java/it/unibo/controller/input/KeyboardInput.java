@@ -4,64 +4,55 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import it.unibo.utilities.Movements;
 import it.unibo.utilities.Constaints.MovementsKey;
-
 /**
  * Class that manages the keyboard input.
  */
 public class KeyboardInput implements KeyListener {
 
     private boolean up, down, right, left, fix;
-
     /**
     * Getter of the variable up.
     * @return up
     */
-    public boolean getUp() {
+    public boolean isUp() {
         return this.up;
     }
-
     /**
     * Getter of the variable down.
     * @return down
     */
-    public boolean getDown() {
+    public boolean isDown() {
         return this.down;
     }
-
     /**
     * Getter of the variable right.
     * @return right
     */
-    public boolean getRight() {
+    public boolean isRight() {
         return this.right;
     }
-
     /**
     * Getter of the variable left.
     * @return left
     */
-    public boolean getLeft() {
+    public boolean isLeft() {
         return this.left;
     }
-
     /**
     * Getter of the variable fix.
     * @return fix
     */
-    public boolean getFix() {
+    public boolean isFix() {
         return this.fix;
     }
-
     @Override
     /**
      * Method called when a button of the keyboard is typed.
-     * 
-     * @param e
+     * @param e is the KeyEvent
      */
     public void keyTyped(final KeyEvent e) {
+        // TODO Auto-generated method stub
     }
-
-    @Override
     /**
     * Method called when a button of the keyboard is pressed.
     * @param e the KeyEvent
@@ -70,8 +61,6 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(true, keyCode);
     }
-
-    @Override
     /**
     * Method called when a button of the keyboard is released after being pressed.
     * @param e the KeyEvent
@@ -80,99 +69,90 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         this.setBooleanValues(false, keyCode);
     }
-
-    /**
-     * Method that set the boolean values about the movements and calls the
-     * Movements enum methods.
-     * 
-     * @param b
-     * @param KeyCode
-     */
     private void setBooleanValues(final boolean b, final int keyCode) {
         switch (keyCode) {
-            // W
+            //W 
             case MovementsKey.UP:
                 up = b;
                 if (b) {
-                    Movements.setMovements(Movements.UP);
+                    Movements.setMovement(Movements.UP);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // FRECCIA SU
+            //FRECCIA SU
             case MovementsKey.UP_ARROW:
                 up = b;
                 if (b) {
-                    Movements.setMovements(Movements.UP);
+                    Movements.setMovement(Movements.UP);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // A
+            //A
             case MovementsKey.LEFT:
                 left = b;
                 if (b) {
-                    Movements.setMovements(Movements.LEFT);
+                    Movements.setMovement(Movements.LEFT);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // FRECCIA SINISTRA
+            //FRECCIA SINISTRA
             case MovementsKey.LEFT_ARROW:
                 left = b;
                 if (b) {
-                    Movements.setMovements(Movements.LEFT);
+                    Movements.setMovement(Movements.LEFT);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // S
+            //S
             case MovementsKey.DOWN:
                 down = b;
                 if (b) {
-                    Movements.setMovements(Movements.DOWN);
+                    Movements.setMovement(Movements.DOWN);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // FRECCIA GIU
+            //FRECCIA GIU
             case MovementsKey.DOWN_ARROW:
                 down = b;
                 if (b) {
-                    Movements.setMovements(Movements.DOWN);
+                    Movements.setMovement(Movements.DOWN);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // D
+            //D
             case MovementsKey.RIGHT:
                 right = b;
                 if (b) {
-                    Movements.setMovements(Movements.RIGHT);
+                    Movements.setMovement(Movements.RIGHT);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // FRECCIA DESTRA
+            //FRECCIA DESTRA
             case MovementsKey.RIGHT_ARROW:
                 right = b;
                 if (b) {
-                    Movements.setMovements(Movements.RIGHT);
+                    Movements.setMovement(Movements.RIGHT);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            // T
+            //T
             case MovementsKey.FIX:
                 fix = b;
                 if (b) {
-                    Movements.setMovements(Movements.FIX);
+                    Movements.setMovement(Movements.FIX);
                 } else {
-                    Movements.setMovements(Movements.STOP);
+                    Movements.setMovement(Movements.STOP);
                 }
                 break;
-            default:
-                Movements.setMovements(Movements.STOP);
+            default:    Movements.setMovement(Movements.STOP);
                 break;
         }
     }

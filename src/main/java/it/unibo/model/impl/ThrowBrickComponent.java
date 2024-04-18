@@ -12,7 +12,7 @@ import it.unibo.common.Pair;
 public class ThrowBrickComponent implements Component {
 
         private boolean blocked;
-        private EntityFactoryImpl entityFactoryImpl;
+        private final EntityFactoryImpl entityFactoryImpl;
         /**
          * Constructor for the ThrowBrickComponent.
          */
@@ -34,6 +34,7 @@ public class ThrowBrickComponent implements Component {
          * Getter for the component type.
          * @return the component type.
          */
+        @Override
         public ComponentType getComponent() {
             return ComponentType.THROWBRICK;
         }

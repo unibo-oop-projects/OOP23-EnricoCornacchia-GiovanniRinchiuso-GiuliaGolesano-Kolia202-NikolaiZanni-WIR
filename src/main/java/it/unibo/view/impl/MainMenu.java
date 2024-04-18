@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import java.util.logging.Logger;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.GameState;
 import javafx.application.Application;
@@ -21,6 +22,8 @@ import javafx.scene.layout.BackgroundRepeat;
  * MainMenu, it represents the main menu of the game.
  */
 public class MainMenu extends Application {
+    private static final Logger LOGGER = Logger.getLogger(MainMenu.class.getName());
+
     /**
      * start, it starts the main menu.
      * 
@@ -35,48 +38,44 @@ public class MainMenu extends Application {
         pauseButton.setFitHeight(Constaints.HEIGHT_PAUSE_BUTTON);
         pauseButton.setOnMouseClicked(mouseEvent -> {
             GameState.setGameState(GameState.PAUSED);
-            System.out.println("GameState" + GameState.getGameState());
-            AnotherStage secondStage = new AnotherStage();
-            Scene secondScene = secondStage.getScene();
+            LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
+            final AnotherStage secondStage = new AnotherStage();
+            final Scene secondScene = secondStage.getScene();
             secondStage.setScene(secondScene);
             primaryStage.hide();
             secondStage.show();
         });
-        StackPane root = new StackPane(pauseButton);
+        final StackPane root = new StackPane(pauseButton);
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("PROVA");
         primaryStage.show();
     }
 
     /**
-     * run, it runs the main menu.
+     * run, it starts the main menu.
      * 
-     * @param args the arguments of the main menu.
+     * @param args the arguments of the main.
      */
     private static void run(final String[] args) {
         launch(args);
     }
 
     /**
-     * Main, it represents the main class of the main menu.
+     * Main, it starts the main menu.
      */
     public static final class Main {
         private Main() {
         }
 
         /**
-         * main, it represents the main method of the main menu.
+         * main, it starts the main menu.
          * 
-         * @param args the arguments of the main menu.
+         * @param args the arguments of the main.
          */
         public static void main(final String... args) {
             MainMenu.run(args);
         }
     }
 
-    /**
-     * AnotherStage, it represents the stage of the pause menu.
-     */
     private static class AnotherStage extends Stage {
         private static final int WIDTH = 500;
         private static final int HEIGHT = 400;
@@ -87,24 +86,24 @@ public class MainMenu extends Application {
         AnotherStage() {
             super();
             initStyle(StageStyle.UNDECORATED);
-            Image backgroundMainMenu = new Image(BACKGROUND);
-            Image topImage = new Image(TOP_IMAGE);
-            Image underImage = new Image(UNDER_IMAGE);
-            StackPane root = new StackPane();
-            BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, false);
-            BackgroundImage backgroundImage = new BackgroundImage(
+            final Image backgroundMainMenu = new Image(BACKGROUND);
+            final Image topImage = new Image(TOP_IMAGE);
+            final Image underImage = new Image(UNDER_IMAGE);
+            final StackPane root = new StackPane();
+            final BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, false);
+            final BackgroundImage backgroundImage = new BackgroundImage(
                     backgroundMainMenu,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundPosition.CENTER,
                     backgroundSize);
             root.setBackground(new Background(backgroundImage));
-            ImageView topImageView = new ImageView(topImage);
+            final ImageView topImageView = new ImageView(topImage);
             topImageView.setFitWidth(Constaints.TOP_IMAGE_WIDTH);
             topImageView.setFitHeight(Constaints.TOP_IMAGE_HEIGHT);
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
             root.getChildren().add(topImageView);
-            ImageView underImageView = new ImageView(underImage);
+            final ImageView underImageView = new ImageView(underImage);
             underImageView.setFitHeight(Constaints.UNDER_IMAGE_HEIGHT);
             underImageView.setFitWidth(Constaints.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);
@@ -122,16 +121,16 @@ public class MainMenu extends Application {
             homeButton.setFitWidth(100);
             continueButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.PLAYING);
-                System.out.println(("GameState" + GameState.getGameState()));
+                LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
             });
             quitButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.GAMEOVER);
-                System.out.println("GameState" + GameState.getGameState());
-                close();
+                LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
+                super.close();
             });
             homeButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.HOME);
-                System.out.println("GameState" + GameState.getGameState());
+                LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
             });
             pane.getChildren().add(continueButton);
             pane.getChildren().add(quitButton);

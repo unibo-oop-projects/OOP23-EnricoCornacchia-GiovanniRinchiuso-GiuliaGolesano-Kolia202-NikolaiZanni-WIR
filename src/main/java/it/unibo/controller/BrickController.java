@@ -1,4 +1,5 @@
 package it.unibo.controller;
+import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.model.api.Component;
@@ -12,16 +13,21 @@ import it.unibo.utilities.Constaints;
  */
 public class BrickController {
 
-    private Set<Entity> bricks;
+    private final Set<Entity> bricks;
 
+    /**
+     * Constructor for the BrickController.
+     */
+    public BrickController() {
+        bricks = new HashSet<>();
+    }
     /**
      * Getter for the bricks.
      * @return the set of bricks.
      */
     public Set<Entity> getBricks() {
-        return this.bricks;
+        return new HashSet<>(this.bricks);
     }
-
     /**
      * make the bricks fall.
      */
@@ -35,18 +41,15 @@ public class BrickController {
             }
         }
     }
-
     /**
      * Check if the bricks are still in the game.
      */
-
     private void checkBricks() {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
-                if (component.getComponent() == ComponentType.MOVEMENT) {
-                    if (!((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
-                        bricks.remove(brick);
-                    }
+                if (component.getComponent() == ComponentType.MOVEMENT 
+                && !((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
+                    bricks.remove(brick);
                 }
             }
         }

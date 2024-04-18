@@ -4,23 +4,27 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+
 /**
  * PanelGame, it represents the game panel.
  */
 public class PanelGame extends JPanel {
 
-    //game window dimensionsk
-    private final int tilePixels = 16;
-    private final int scale = 3;
-    private final int col = 12;
-    private final int row = 16;
-    private final int height = tilePixels * scale * row;
-    private final int width = tilePixels * scale * col;
+    private static final long serialVersionUID = 1L;
+
+    // game window dimensionsk
+    private static final int TILE_PIXELS = 16;
+    private static final int SCALE = 3;
+    private static final int COL = 12;
+    private static final int ROW = 16;
+    private static final int HEIGHT = TILE_PIXELS * SCALE * ROW;
+    private static final int WIDTH = TILE_PIXELS * SCALE * COL;
+
     /**
      * Constructor of the class.
      */
     public PanelGame() {
-        this.setPreferredSize(new Dimension(width, height));
+        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
     }

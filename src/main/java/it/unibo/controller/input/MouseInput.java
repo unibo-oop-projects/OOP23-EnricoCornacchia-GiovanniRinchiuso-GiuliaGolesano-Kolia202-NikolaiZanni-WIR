@@ -17,10 +17,10 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean hasPressed;
 
     /**
-     * Constructor of the class.
-     */
+    * Constructor of the class.
+    */
     public MouseInput() {
-        pos = new Pair<Double, Double>(0.0, 0.0);
+        pos = new Pair<>(0.0, 0.0);
     }
 
     /**
@@ -37,7 +37,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @return if the mouse has clicked
      */
-    public boolean getClick() {
+    public boolean isClicked() {
         return this.hasClicked;
     }
 
@@ -46,7 +46,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @return if the mouse has clicked
      */
-    public boolean getPress() {
+    public boolean isPressed() {
         return this.hasPressed;
     }
 
@@ -72,6 +72,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mousePressed(final MouseEvent e) {
         this.hasPressed = true;
     }
@@ -82,6 +83,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mouseReleased(final MouseEvent e) {
         this.hasPressed = false;
         this.hasClicked = true;
@@ -93,6 +95,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mouseEntered(final MouseEvent e) {
     }
 
@@ -102,6 +105,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mouseExited(final MouseEvent e) {
     }
 
@@ -111,8 +115,9 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mouseDragged(final MouseEvent e) {
-        this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
+        this.pos = new Pair<>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
     }
 
     @Override
@@ -121,8 +126,9 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * 
      * @param e
      */
+    @Override
     public void mouseMoved(final MouseEvent e) {
-        this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
+        this.pos = new Pair<>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
     }
 
     /**
@@ -131,16 +137,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * @return the new GameState of the button clicked
      */
     public GameState buttonClicked() {
-        if (this.pos == Constaints.HOME_BUTTTON) {
+        if (this.pos.equals(Constaints.HOME_BUTTON)) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos == Constaints.QUIT_BUTTON) {
+        if (this.pos.equals(Constaints.QUIT_BUTTON)) {
             GameState.setGameState(GameState.GAMEOVER);
         }
-        if (this.pos == Constaints.CONTINUE_BUTTON) {
+        if (this.pos.equals(Constaints.CONTINUE_BUTTON)) {
             GameState.setGameState(GameState.PLAYING);
         }
-        if (this.pos == Constaints.PAUSE_BUTTON) {
+        if (this.pos.equals(Constaints.PAUSE_BUTTON)) {
             GameState.setGameState(GameState.PAUSED);
         }
         return GameState.getGameState();
