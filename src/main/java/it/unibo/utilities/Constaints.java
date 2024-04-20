@@ -31,9 +31,22 @@ public final class Constaints {
      */
     public static final double UP_WALL = 600.0;
     /**
-     * The position of starting Felix.
+     * Felix constants.
      */
-    public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 0.0);
+    public static class Felix {
+        /**
+         * The position of starting Felix.
+         */
+        public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 0.0);
+        /**
+         * The width of Felix.
+         */
+        public static final double FELIX_WIDTH = 20.0;
+        /**
+         * The height of Felix.
+         */
+        public static final double FELIX_HEIGHT = 20.0;
+    }
     /**
      * The position of starting Ralph.
      */
