@@ -1,12 +1,12 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
  * HitboxComponent, it represents the hitbox of the entity.
  */
-public class HitboxComponent implements Component {
+public class HitboxComponent extends AbstractComponent {
+
     /**
      * getter of the type of the class.
      * @return the type of the class.

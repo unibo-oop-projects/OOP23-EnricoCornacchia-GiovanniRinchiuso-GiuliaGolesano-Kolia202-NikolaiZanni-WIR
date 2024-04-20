@@ -1,8 +1,7 @@
 package it.unibo.core.impl;
 
 import it.unibo.core.api.GameEngine;
-import it.unibo.controller.GameController;
-
+import it.unibo.controller.impl.GameController;
 
 /**
  * Implementation of the game engine.
