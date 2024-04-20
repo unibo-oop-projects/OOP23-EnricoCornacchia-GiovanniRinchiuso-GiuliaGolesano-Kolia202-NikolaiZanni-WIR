@@ -7,7 +7,9 @@ import java.util.Set;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
+import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
+import it.unibo.utilities.Constaints.Felix;
 import it.unibo.model.api.Component;
 
 /**
@@ -23,7 +25,7 @@ public class EntityFactoryImpl implements EntityFactory {
                 new PointsComponent(),
                 new LivesComponent(),
                 new FixWindowsComponent(),
-                new HitboxComponent()));
+                new HitboxComponent(Felix.FELIX_START.getX(), Felix.FELIX_START.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.FELIX, pos, components);
     }
 
@@ -33,7 +35,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
-                new HitboxComponent()));
+                new HitboxComponent(Constaints.RALPH_START.getX(), Constaints.RALPH_START.getY(), EntityType.RALPH)));
         return new EntityImpl(EntityType.RALPH, pos, components);
     }
 
