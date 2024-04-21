@@ -20,7 +20,7 @@ public interface Entity {
      * @param componentType the type of the component to retrieve
      * @return the component of the specified type, if present
      */
-    Optional<Component> getComponent(final ComponentType componentType);
+    Optional<Component> getComponent(ComponentType componentType);
     /**
      * Add a component to the entity.
      *

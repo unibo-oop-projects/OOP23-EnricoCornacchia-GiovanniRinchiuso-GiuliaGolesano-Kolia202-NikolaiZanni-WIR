@@ -10,7 +10,7 @@ public class LivesComponent implements Component {
 
     private int lives;
 
-    /*
+    /**
      * Initialize lives to 3.
      */
     public LivesComponent() {
@@ -23,8 +23,6 @@ public class LivesComponent implements Component {
     public void stealLives() {
         this.lives = this.lives - 1;
     }
-    
-
     /**
      * Method to get the current lives.
      * 
