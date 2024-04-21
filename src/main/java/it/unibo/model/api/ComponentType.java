@@ -38,5 +38,9 @@ public enum ComponentType {
     /**
      * Stop Ralph component.
      */
-    STOPRALPH;
+    STOPRALPH,
+    /**
+     * hitbox component.
+     */
+    HITBOX;
 }
