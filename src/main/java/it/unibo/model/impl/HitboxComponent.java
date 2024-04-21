@@ -44,6 +44,15 @@ public class HitboxComponent extends AbstractComponent {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    /**
      * Returns the hitbox of the entity.
      *
      * @return the hitbox of the entity.
@@ -116,4 +125,5 @@ public class HitboxComponent extends AbstractComponent {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
     }
+
 }
