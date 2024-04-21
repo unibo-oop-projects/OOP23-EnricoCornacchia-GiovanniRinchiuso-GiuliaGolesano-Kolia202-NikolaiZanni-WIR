@@ -44,6 +44,14 @@ public class HitboxComponent extends AbstractComponent {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update() {
+        
+    }
+
+    /**
      * Returns the hitbox of the entity.
      *
      * @return the hitbox of the entity.
@@ -113,7 +121,6 @@ public class HitboxComponent extends AbstractComponent {
      */
     @Override
     public ComponentType getComponent() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
+        return ComponentType.HITBOX;
     }
 }

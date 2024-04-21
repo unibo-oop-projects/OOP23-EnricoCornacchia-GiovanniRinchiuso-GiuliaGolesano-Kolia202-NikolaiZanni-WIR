@@ -8,6 +8,11 @@ package it.unibo.model.api;
 public interface Component {
 
     /**
+     * Updates the component.
+     */
+    void update();
+
+    /**
      * Return the component.
      * This method should be called to get the state of the component.
      * @return the component type.

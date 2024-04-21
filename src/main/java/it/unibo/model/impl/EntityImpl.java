@@ -7,6 +7,7 @@ import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.EntityType;
 
@@ -55,8 +56,8 @@ public class EntityImpl implements Entity {
      * @return the component of the entity.
      */
     @Override
-    public Optional<Component> getComponent(final Class<? extends Component> componentType) {
-        return this.components.stream().filter(componentType::isInstance).findFirst();
+    public Optional<Component> getComponent(final ComponentType componentType) {
+        return this.components.stream().filter(c -> c.getComponent().equals(componentType)).findFirst();
     }
     /**
      * Get the position of the entity.

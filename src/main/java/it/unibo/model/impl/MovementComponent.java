@@ -45,4 +45,12 @@ public class MovementComponent implements Component {
     public ComponentType getComponent() {
         return ComponentType.MOVEMENT;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }

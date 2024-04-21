@@ -47,5 +47,12 @@ public class PointsComponent implements Component {
     public ComponentType getComponent() {
         return ComponentType.POINTS;
     }
-
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }

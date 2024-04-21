@@ -50,4 +50,12 @@ public class ThrowBrickComponent implements Component {
         public void unblock() {
             this.blocked = false;
         }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void update() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'update'");
+        }
 }

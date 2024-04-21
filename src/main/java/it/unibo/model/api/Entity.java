@@ -15,12 +15,12 @@ public interface Entity {
      */
     Set<Component> getComponents();
     /**
-     * Retrieves an optional component of the specified type from this entity.
+     * Returns the component of the specified type associated with this entity.
      *
-     * @param componentType the class object representing the type of component to retrieve
-     * @return an optional containing the component, or an empty optional if the component is not present
+     * @param componentType the type of the component to retrieve
+     * @return the component of the specified type, if present
      */
-    Optional<Component> getComponent(Class<? extends Component> componentType);
+    Optional<Component> getComponent(final ComponentType componentType);
     /**
      * Add a component to the entity.
      *
