@@ -44,6 +44,70 @@ public class HitboxComponent extends AbstractComponent {
     }
 
     /**
+     * Returns the hitbox of the entity.
+     *
+     * @return the hitbox of the entity.
+     */
+    public Rectangle getHitbox() {
+        return new Rectangle(this.x, this.y, this.hitbox.getWidth(), this.hitbox.getHeight());
+    }
+
+    /**
+     * Sets the hitbox of the entity.
+     *
+     * @param hitbox the new hitbox of the entity.
+     */
+    public void setHitbox(final Rectangle hitbox) {
+        this.hitbox = hitbox;
+    }
+
+    /**
+     * Returns the x-coordinate of the entity.
+     *
+     * @return the x-coordinate of the entity.
+     */
+    public double getX() {
+        return this.x;
+    }
+
+    /**
+     * Sets the x-coordinate of the entity.
+     *
+     * @param x the new x-coordinate of the entity.
+     */
+    public void setX(final double x) {
+        this.x = x;
+    }
+
+    /**
+     * Returns the y-coordinate of the entity.
+     *
+     * @return the y-coordinate of the entity.
+     */
+    public double getY() {
+        return this.y;
+    }
+
+    /**
+     * Sets the y-coordinate of the entity.
+     *
+     * @param y the new y-coordinate of the entity.
+     */
+    public void setY(final double y) {
+        this.y = y;
+    }
+
+    /**
+     * Checks if this hitbox collides with another hitbox.
+     *
+     * @param other the other hitbox to check collision with
+     * @return true if this hitbox collides with the other hitbox, false otherwise.
+     */
+    public boolean collidesWith(final HitboxComponent other) {
+        return this.hitbox.intersects(other.getHitbox());
+    }
+
+    /**
      * getter of the type of the class.
      * @return the type of the class.
      */
