@@ -26,28 +26,28 @@ public class FelixController {
      * Move the character to the right.
      */
     public void moveRight() {
-        MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
+        final MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
         moveComp.move(1, 0, this.felix);
     }
     /**
      * Move the character to the left.
      */
     public void moveLeft() {
-        MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
+        final MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
         moveComp.move(-1, 0, this.felix);
     }
     /**
      * Move the character down.
      */
     public void moveDown() {
-        MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
+        final MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
         moveComp.move(0, -1, this.felix);
     }
     /**
      * Move the character up.
      */
     public void moveUp() {
-        MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
+        final MovementComponent moveComp = (MovementComponent) this.felix.getComponent(ComponentType.MOVEMENT).get();
         moveComp.move(0, 1, this.felix);
     }
     /**
@@ -62,7 +62,7 @@ public class FelixController {
      * @return true if Felix have more than 0 lives, false otherwise.
      */
     public boolean isAlive() {
-        LivesComponent lives = (LivesComponent) this.felix.getComponent(ComponentType.LIFE).get();
+        final LivesComponent lives = (LivesComponent) this.felix.getComponent(ComponentType.LIFE).get();
         return lives.getLives() > 0;
     }
 }

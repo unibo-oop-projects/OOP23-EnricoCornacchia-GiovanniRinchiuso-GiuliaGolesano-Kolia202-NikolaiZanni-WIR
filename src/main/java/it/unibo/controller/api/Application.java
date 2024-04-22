@@ -12,49 +12,42 @@ import it.unibo.controller.impl.RalphController;
  * Class that manages controllers.
  */
 public interface Application {
-    
     /**
      * Getter of the brick controller.
      * 
      * @return the linked brick controller
      */
     BrickController getBrickController();
-
     /**
      * Getter of the collision manager.
      * 
      * @return the linked collision manager
      */
     CollisionManager getCollisionManager();
-
     /**
      * Getter of the felix controller.
      * 
      * @return the linked felix controller
      */
     FelixController getFelixController();
-
     /**
      * Getter of the game controller.
      * 
      * @return the linked game controller
      */
     GameController getGameController();
-
     /**
      * Getter of the input manager.
      * 
      * @return the linked input manager
      */
     InputManager getInputManager();
-
     /**
      * Getter of the ralph controller.
      * 
      * @return the linked ralph controller
      */
     RalphController getRalphController();
-
     /**
      * Getter of the Game Engine.
      * 
