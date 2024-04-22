@@ -23,7 +23,6 @@ import javafx.scene.layout.BackgroundRepeat;
  */
 public class MainMenu extends StackPane {
     private final ImageView pauseButton;
-        private static final Logger LOGGER = Logger.getLogger(MainMenu.class.getName());
 
         public MainMenu() {
             pauseButton = new ImageView("pauseButton.png");
@@ -35,7 +34,6 @@ public class MainMenu extends StackPane {
 
         private void handlePauseButtonClick(MouseEvent event) {
             GameState.setGameState(GameState.PAUSED);
-            LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
             final AnotherStage secondStage = new AnotherStage();
             final Scene secondScene = secondStage.getScene();
             secondStage.initOwner(getScene().getWindow()); // Imposta la finestra principale come proprietario della nuova finestra
@@ -86,19 +84,18 @@ public class MainMenu extends StackPane {
                 homeButton.setFitHeight(100);
                 homeButton.setFitWidth(100);
                 continueButton.setOnMouseClicked(event -> {
-                    GameState.setGameState(GameState.PLAYING);
-                    LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
                     close();
                 });
                 quitButton.setOnMouseClicked(event -> {
-                    GameState.setGameState(GameState.GAMEOVER);
-                    LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
                     close();
                 });
                 homeButton.setOnMouseClicked(event -> {
-                    GameState.setGameState(GameState.HOME);
-                    LOGGER.info(Constaints.GAMESTATE + GameState.getGameState());
                     close();
+                    try {
+                        new HomeMenu().start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
                 pane.getChildren().add(continueButton);
                 pane.getChildren().add(quitButton);
