@@ -185,10 +185,13 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 \end{figure}
 
 \paragraph{Problema:}
-Nella schermata di gioco oltre alla possibilit`a di mettere in pausa il gioco, `e necessario a differenza delle altre schermate che possiedono solo sfondi o immagini, caricare e visualizzare graficamente in modo corretto tutte le animazioni e tutti gli sprites.
+Gestione della schermata di gioco: delle entità presenti, delle loro posizioni, dei loro possibili movimenti, delle vite, dei punteggi e dei funzionamenti pratici del gioco.
 
 \paragraph{Soluzione:}
-Le animazioni sono gi`a caricate come detto in precedenza, poi la GameView tramite getIdle richiede al controller e successivamente al model gli index corretti dell’animazione da mostrare a display. Il metodo update() nella view ci permette di richiedere al controller un aggiornamento da parte del model updateAnimations() di tutti gli indici degli sprite in modo da avere ciclicamente diverse immagini per comporre le animazioni. La view quando viene creata instanzia un oggetto LevelImpl che crea il livello da giocare, `e stato inserito nella view dato che utilizzo librerie grafiche per caricare la mappa, mi avvalgo di una immagine pixel per pixel dove in base all’indice RGB, nel nostro caso rosso, ci permette di ottenere la posizione e il tipo di blocco presente. Tramite getLevelMap() si restituiscono solo i valori interi sia delle posizioni che dei blocchi, per poterli poi passare al gameplay al momento della creazione e inizializzare correttamente le entit`a del livello (per esempio blocco).
+Ho creato un'interfaccia GamePerformance che ha lo scopo di gestire tutti i funzionamenti pratici della partita, con relative implementazioni nella classe GamePerformanceImpl.
+Per quanto riguarda gli sprites delle entità, i cui indici devono essere aggiornati ciclicamente per realizzare una animazione, già caricate nella cartella Resources; ho creato un'interfaccia View che ha lo scopo di disegnare una view, tramite apposito metodo draw, e gestire gli input da tastiera e da mouse, che ne determinano i cambiamenti, tramite apposito metodo update.
+Tale metodo richiede al GameController di aggiornare gli indici .
+La view quando viene creata instanzia un oggetto LevelImpl che crea il livello da giocare, `e stato inserito nella view dato che utilizzo librerie grafiche per caricare la mappa, mi avvalgo di una immagine pixel per pixel dove in base all’indice RGB, nel nostro caso rosso, ci permette di ottenere la posizione e il tipo di blocco presente. Tramite getLevelMap() si restituiscono solo i valori interi sia delle posizioni che dei blocchi, per poterli poi passare al gameplay al momento della creazione e inizializzare correttamente le entit`a del livello (per esempio blocco).
 
 \subsubsection{Gestione listener generici di input da tastiera e mouse}
 
