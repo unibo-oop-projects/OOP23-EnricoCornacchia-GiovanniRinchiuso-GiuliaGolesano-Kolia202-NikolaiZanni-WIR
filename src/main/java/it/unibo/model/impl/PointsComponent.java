@@ -23,14 +23,7 @@ public class PointsComponent implements Component {
     public void addPoints(final int pointsToAdd) {
         this.points += pointsToAdd;
     }
-
-    /**
-     * Method of stealing points
-     */
-    public void stealPoint(final int pointsToSteal) {
-        this.points -= pointsToSteal;
-    }
-
+    
     /**
      * Method to get the current points.
      */

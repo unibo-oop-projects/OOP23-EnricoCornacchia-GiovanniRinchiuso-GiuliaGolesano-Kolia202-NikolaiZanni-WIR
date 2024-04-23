@@ -36,7 +36,9 @@ public class HitboxComponent extends AbstractComponent {
                 break;
             case WINDOW:
                 break;
-            case POWER_UP:
+            case CAKE:
+                break;
+            case BIRD:
                 break;
             default:
                 break;

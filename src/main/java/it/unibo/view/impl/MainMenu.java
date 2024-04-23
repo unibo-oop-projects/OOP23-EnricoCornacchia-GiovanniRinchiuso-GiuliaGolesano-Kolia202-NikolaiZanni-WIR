@@ -1,6 +1,5 @@
 package it.unibo.view.impl;
 
-import java.util.logging.Logger;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.GameState;
 import javafx.geometry.Pos;
@@ -36,7 +35,7 @@ public class MainMenu extends StackPane {
             GameState.setGameState(GameState.PAUSED);
             final AnotherStage secondStage = new AnotherStage();
             final Scene secondScene = secondStage.getScene();
-            secondStage.initOwner(getScene().getWindow()); // Imposta la finestra principale come proprietario della nuova finestra
+            secondStage.initOwner(getScene().getWindow()); 
             secondStage.setScene(secondScene);
             secondStage.show();
         }

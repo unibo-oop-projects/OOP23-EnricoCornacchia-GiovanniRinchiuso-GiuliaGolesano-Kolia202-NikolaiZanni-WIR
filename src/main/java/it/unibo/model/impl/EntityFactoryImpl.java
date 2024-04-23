@@ -56,4 +56,22 @@ public class EntityFactoryImpl implements EntityFactory {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         return new EntityImpl(EntityType.BRICK, pos, components);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Entity createCake(final Pair<Double, Double> pos) {
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        return new EntityImpl(EntityType.CAKE, pos, components);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Entity createBird(Pair<Double, Double> pos) {
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        return new EntityImpl(EntityType.BIRD, pos, components);
+    }
 }
