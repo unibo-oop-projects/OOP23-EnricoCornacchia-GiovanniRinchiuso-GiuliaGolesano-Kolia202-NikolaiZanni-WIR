@@ -2,7 +2,6 @@ package it.unibo.model.impl;
 
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
-import it.unibo.view.impl.PointsView;
 
 /**
  * PointsComponent, it represents the points acquired by an entity.
@@ -10,13 +9,12 @@ import it.unibo.view.impl.PointsView;
 public class PointsComponent implements Component {
 
     private int points;
-    private PointsView pointsView;
 
     /*
      * Initialize points to 0.
      */
     public PointsComponent() {
-        this.points = 10000;
+        this.points = 9999999;
     }
 
     /**
@@ -24,23 +22,12 @@ public class PointsComponent implements Component {
      */
     public void addPoints(final int pointsToAdd) {
         this.points += pointsToAdd;
-        if (pointsView != null) {
-            pointsView.updatePointsLabel();
-        }
     }
-
     /**
      * Method to get the current points.
      */
     public int getPoints() {
         return this.points;
-    }
-
-    /**
-     * Method to set the PointsView.
-     */
-    public void setPointsView(PointsView pointsView) {
-        this.pointsView = pointsView;
     }
 
     /**
@@ -62,3 +49,4 @@ public class PointsComponent implements Component {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }
+

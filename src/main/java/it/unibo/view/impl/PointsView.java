@@ -13,7 +13,6 @@ public class PointsView extends StackPane {
 
     public PointsView(PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
-        this.pointsComponent.setPointsView(this);
         updatePointsLabel();
     }
 
@@ -23,7 +22,8 @@ public class PointsView extends StackPane {
         pointsBackground.setFitHeight(Constaints.HEIGHT_PAUSE_BUTTON);
 
         Label pointsLabel = new Label("score: " + pointsComponent.getPoints());
-        pointsLabel.setStyle("-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
+        pointsLabel.setStyle(
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
         pointsLabel.setPrefSize(pointsBackground.getFitWidth(), pointsBackground.getFitHeight());
         pointsLabel.setAlignment(Pos.CENTER);
         AnchorPane.setLeftAnchor(pointsLabel, 10.0);
