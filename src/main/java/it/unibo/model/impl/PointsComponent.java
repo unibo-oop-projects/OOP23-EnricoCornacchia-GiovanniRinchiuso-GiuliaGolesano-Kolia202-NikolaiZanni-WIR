@@ -5,12 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
-import it.unibo.view.api.Listener;
 
 /**
  * PointsComponent, it represents the points acquired by an entity.
@@ -19,18 +16,11 @@ public class PointsComponent implements Component {
     private int points;
     private int highScore;
     private String filename = "src/main/java/it/unibo/model/impl/scores.txt";
-    private List<Listener> pointsChangeListeners = new ArrayList<>();
-    private static PointsComponent score = new PointsComponent();
-
 
     public PointsComponent() {
         readFromFile();
-        points = 0;
+        this.points = 0;
     }
-    
-    public static PointsComponent getScore() {
-		return score;
-	}
 
     public void readFromFile() {
         try {
@@ -41,24 +31,22 @@ public class PointsComponent implements Component {
                 try {
                     highScore = Integer.parseInt(line.trim());
                 } catch (NumberFormatException e) {
-                    System.out.println("Formato non valido nel file '" + filename);
+                    System.out.println(filename);
                 }
             }
             bufferedReader.close();
         } catch (IOException ex) {
-            System.out.println("Errore durante la lettura del file '" + filename + "'");
+            System.out.println(filename);
         }
     }
-    
-    public int getPoints(){
-		return points;
-	}
 
-    
-    public int getHighScore() {
-        return highScore;
+    public int getPoints() {
+        return this.points;
     }
 
+    public int getHighScore() {
+        return this.highScore;
+    }
 
     public void addPoints(int pointsToAdd) {
         this.points += pointsToAdd;
@@ -67,7 +55,6 @@ public class PointsComponent implements Component {
             highScore = this.points;
             writeToFile(highScore);
         }
-        notifyPointsChanged(this.points);
     }
 
     public void writeToFile(int score) {
@@ -78,24 +65,9 @@ public class PointsComponent implements Component {
             bufferedWriter.newLine();
             bufferedWriter.close();
         } catch (IOException ex) {
-            System.out.println("Error writing to file '" + filename + "'");
+            System.out.println(filename);
         }
     }
-
-    public void registerPointsChangeListener(Listener listener) {
-        pointsChangeListeners.add(listener);
-    }
-
-    public void removePointsChangeListener(Listener listener) {
-        pointsChangeListeners.remove(listener);
-    }
-
-    private void notifyPointsChanged(int newPoints) {
-        for (Listener listener : pointsChangeListeners) {
-            listener.onPointsChanged(newPoints);
-        }
-    }
-    
 
     @Override
     public void update() {

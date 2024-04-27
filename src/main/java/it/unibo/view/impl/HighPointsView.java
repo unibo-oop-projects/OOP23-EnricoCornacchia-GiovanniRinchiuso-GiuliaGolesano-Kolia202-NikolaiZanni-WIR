@@ -18,20 +18,18 @@ public class HighPointsView extends StackPane {
         Label scoreTitleLabel = new Label("HIGHSCORE:");
         Label scoreValueLabel = new Label("" + pointsComponent.getHighScore());
 
-       
         scoreTitleLabel.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: red; -fx-background-color: transparent;");
         scoreValueLabel.setStyle(
                 "-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
 
-    
-        scoreTitleLabel.setPrefWidth(150); 
-        scoreValueLabel.setPrefWidth(150); 
+        scoreTitleLabel.setPrefWidth(150);
+        scoreValueLabel.setPrefWidth(150);
 
-        scoreTitleLabel.setPrefHeight(25); 
-        scoreValueLabel.setPrefHeight(25); 
+        scoreTitleLabel.setPrefHeight(25);
+        scoreValueLabel.setPrefHeight(25);
 
-        AnchorPane.setBottomAnchor(scoreTitleLabel, 20.0); 
+        AnchorPane.setBottomAnchor(scoreTitleLabel, 20.0);
         AnchorPane.setLeftAnchor(scoreTitleLabel, 0.0);
         AnchorPane.setBottomAnchor(scoreValueLabel, 0.0);
         AnchorPane.setLeftAnchor(scoreValueLabel, 0.0);

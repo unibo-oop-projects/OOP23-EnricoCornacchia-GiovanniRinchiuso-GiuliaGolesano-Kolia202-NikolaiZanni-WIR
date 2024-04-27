@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -25,11 +26,12 @@ public class WindowGame extends Application {
 
         PointsComponent pointsComponent = new PointsComponent();
         PointsView pointsView = new PointsView(pointsComponent);
-        pointsComponent.registerPointsChangeListener(pointsView);
-
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
 
         MainMenu mainMenu = new MainMenu();
+
+        LivesComponent livesComponent = new LivesComponent();
+        LivesView livesView = new LivesView(livesComponent);
 
         AnchorPane root = new AnchorPane();
         root.setBackground(background);
@@ -38,19 +40,21 @@ public class WindowGame extends Application {
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
 
-        AnchorPane.setTopAnchor(backgroundImageView, 50.0);
+        AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
         AnchorPane.setRightAnchor(backgroundImageView, 0.0);
 
         root.getChildren().add(backgroundImageView);
 
-        AnchorPane.setRightAnchor(mainMenu, 0.0);
-        AnchorPane.setTopAnchor(mainMenu, 0.0);
+        AnchorPane.setRightAnchor(mainMenu, 7.0);
+        AnchorPane.setTopAnchor(mainMenu, 7.0);
         AnchorPane.setLeftAnchor(pointsView, 150.0);
         AnchorPane.setTopAnchor(pointsView, 0.0);
         AnchorPane.setLeftAnchor(highPointsView, 0.0);
         AnchorPane.setTopAnchor(highPointsView, 0.0);
-        root.getChildren().addAll(mainMenu, pointsView, highPointsView);
+        AnchorPane.setRightAnchor(livesView, 70.0); 
+        AnchorPane.setTopAnchor(livesView, 7.0);
+        root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
 
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);

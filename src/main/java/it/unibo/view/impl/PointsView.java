@@ -4,21 +4,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import it.unibo.model.impl.PointsComponent;
-import it.unibo.view.api.Listener;
 
-public class PointsView extends StackPane implements Listener {
+public class PointsView extends StackPane {
     private PointsComponent pointsComponent;
-    private Label scoreValueLabel;
 
     public PointsView(PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
-        this.pointsComponent.registerPointsChangeListener(this);
-        initializeUI();
+        updatePointsLabel();
     }
 
-    private void initializeUI() {
+    private void updatePointsLabel() {
         Label scoreTitleLabel = new Label("SCORE:");
-        scoreValueLabel = new Label("" + pointsComponent.getPoints());
+        Label scoreValueLabel = new Label("" + pointsComponent.getPoints());
+
         scoreTitleLabel.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: red; -fx-background-color: transparent;");
         scoreValueLabel.setStyle(
@@ -39,10 +37,4 @@ public class PointsView extends StackPane implements Listener {
         getChildren().add(pointsContainer);
     }
 
-    @Override
-    public void onPointsChanged(int newPoints) {
-        scoreValueLabel.setText("" + newPoints);
-        System.out.println("Punteggio aggiornato: " + newPoints);
-        scoreValueLabel.setText(Integer.toString(newPoints));
-    }
 }
