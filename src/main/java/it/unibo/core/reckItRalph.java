@@ -7,9 +7,9 @@ import javafx.application.Application;
 /**
  * Main class.
  */
-public final class ReckItRalph {
+public final class reckItRalph {
 
-    private ReckItRalph() {
+    private reckItRalph() {
     }
 
     /**
