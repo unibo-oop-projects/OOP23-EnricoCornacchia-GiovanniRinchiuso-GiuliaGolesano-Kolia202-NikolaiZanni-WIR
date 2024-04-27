@@ -10,45 +10,65 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * PointsComponent, it represents the points acquired by an entity.
+ * PointsComponent represents the points acquired by an entity.
+ * This class can be extended to customize point-related functionality.
  */
 public class PointsComponent implements Component {
     private int points;
     private int highScore;
-    private String filename = "src/main/java/it/unibo/model/impl/scores.txt";
+    private final String filename = "src/main/java/it/unibo/model/impl/scores.txt";
 
+    /**
+     * Constructor for PointsComponent.
+     */
     public PointsComponent() {
         readFromFile();
         this.points = 0;
     }
 
+    /**
+     * Reads high score from file.
+     */
     public void readFromFile() {
-        try {
-            FileReader fileReader = new FileReader(filename);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try (FileReader fileReader = new FileReader(filename);
+                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line = bufferedReader.readLine();
             if (line != null) {
                 try {
                     highScore = Integer.parseInt(line.trim());
                 } catch (NumberFormatException e) {
-                    System.out.println(filename);
+                    System.out.println("Error parsing high score from file");
                 }
             }
-            bufferedReader.close();
         } catch (IOException ex) {
-            System.out.println(filename);
+            System.out.println("Error reading file: " + filename);
         }
     }
 
+    /**
+     * Gets the current points.
+     * 
+     * @return the current points
+     */
     public int getPoints() {
         return this.points;
     }
 
+    /**
+     * Gets the high score.
+     * 
+     * @return the high score
+     */
     public int getHighScore() {
         return this.highScore;
     }
 
-    public void addPoints(int pointsToAdd) {
+    /**
+     * Adds points to the current total.
+     * 
+     * @param pointsToAdd the points to add
+     */
+    public void addPoints(final int pointsToAdd) {
         this.points += pointsToAdd;
 
         if (this.points > highScore) {
@@ -57,24 +77,31 @@ public class PointsComponent implements Component {
         }
     }
 
-    public void writeToFile(int score) {
-        try {
-            FileWriter fileWriter = new FileWriter(filename);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+    /**
+     * Writes the high score to the file.
+     * 
+     * @param score the high score to write
+     */
+    public void writeToFile(final int score) {
+        try (FileWriter fileWriter = new FileWriter(filename);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
-            bufferedWriter.close();
         } catch (IOException ex) {
-            System.out.println(filename);
+            System.out.println("Error writing file: " + filename);
         }
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        // Implement update logic here
     }
 
+    /**
+     * Gets the component type associated with points.
+     * 
+     * @return the component type for points
+     */
     @Override
     public ComponentType getComponent() {
         return ComponentType.POINTS;

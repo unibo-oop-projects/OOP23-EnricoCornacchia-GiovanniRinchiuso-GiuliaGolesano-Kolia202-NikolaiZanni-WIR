@@ -15,12 +15,18 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * WindowGame, it represents the window of the game.
+ * WindowGame represents the window of the game.
+ * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
+    /**
+     * Starts the game window.
+     *
+     * @param primaryStage the primary stage for the application
+     * @throws Exception if an error occurs during startup
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public void start(final Stage primaryStage) throws Exception {
         BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
 
@@ -52,7 +58,7 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(pointsView, 0.0);
         AnchorPane.setLeftAnchor(highPointsView, 0.0);
         AnchorPane.setTopAnchor(highPointsView, 0.0);
-        AnchorPane.setRightAnchor(livesView, 70.0); 
+        AnchorPane.setRightAnchor(livesView, 70.0);
         AnchorPane.setTopAnchor(livesView, 7.0);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
 

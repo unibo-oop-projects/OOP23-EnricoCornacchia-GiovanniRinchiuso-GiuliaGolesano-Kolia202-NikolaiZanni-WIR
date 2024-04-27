@@ -9,8 +9,17 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * StartGame represents the initial screen of the game.
+ */
 public final class StartGame extends Application {
 
+    /**
+     * Starts the initial screen of the game.
+     *
+     * @param primaryStage the primary stage for the application
+     * @throws Exception if an error occurs during startup
+     */
     @Override
     public void start(final Stage primaryStage) throws Exception {
         Label message = new Label("Hello, StartGame!");

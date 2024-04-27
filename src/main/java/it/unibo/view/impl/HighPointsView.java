@@ -5,16 +5,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import it.unibo.model.impl.PointsComponent;
 
+/**
+ * HighPointsView represents the view for displaying the high score.
+ * This class can be extended to customize the high score display.
+ */
 public class HighPointsView extends StackPane {
-    private PointsComponent pointsComponent;
+    private final PointsComponent pointsComponent;
 
-    public HighPointsView(PointsComponent pointsComponent) {
+    /**
+     * Constructs a HighPointsView with the given PointsComponent.
+     *
+     * @param pointsComponent the PointsComponent to use for high score data
+     */
+    public HighPointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         updatePointsLabel();
     }
 
+    /**
+     * Updates the high score label.
+     */
     public void updatePointsLabel() {
-
         Label scoreTitleLabel = new Label("HIGHSCORE:");
         Label scoreValueLabel = new Label("" + pointsComponent.getHighScore());
 

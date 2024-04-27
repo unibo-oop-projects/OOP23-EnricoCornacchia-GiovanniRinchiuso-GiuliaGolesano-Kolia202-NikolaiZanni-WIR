@@ -5,14 +5,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import it.unibo.model.impl.PointsComponent;
 
+/**
+ * PointsView represents the view for displaying the current score.
+ * This class can be extended to customize the score display.
+ */
 public class PointsView extends StackPane {
-    private PointsComponent pointsComponent;
+    private final PointsComponent pointsComponent;
 
-    public PointsView(PointsComponent pointsComponent) {
+    /**
+     * Constructs a PointsView with the given PointsComponent.
+     *
+     * @param pointsComponent the PointsComponent to use for score data
+     */
+    public PointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         updatePointsLabel();
     }
 
+    /**
+     * Updates the score label.
+     */
     private void updatePointsLabel() {
         Label scoreTitleLabel = new Label("SCORE:");
         Label scoreValueLabel = new Label("" + pointsComponent.getPoints());
@@ -36,5 +48,4 @@ public class PointsView extends StackPane {
         AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
         getChildren().add(pointsContainer);
     }
-
 }
