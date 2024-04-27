@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 public interface View {
     
     /**
-     * Method that draw a new view.
+     * Method that draw a view.
      * 
      * @param g
      */
