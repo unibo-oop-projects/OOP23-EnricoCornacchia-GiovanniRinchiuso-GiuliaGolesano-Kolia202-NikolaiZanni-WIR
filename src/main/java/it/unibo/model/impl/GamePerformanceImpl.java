@@ -2,12 +2,14 @@ package it.unibo.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
 
 /**
@@ -17,10 +19,12 @@ public class GamePerformanceImpl implements GamePerformance{
 
     private final GameController gameController;
     private final EntityFactory entityFactory;
-    private final List<EntityType> entities = new ArrayList<>();
+    private final List<Entity> entities = new ArrayList<>();
     private final List<Integer> inputs = new ArrayList<>();
     private boolean won;
     private boolean lost;
+    private int level;
+    private final Random random = new Random();
     
     public GamePerformanceImpl(final GameController gameController){
         this.gameController = gameController;
@@ -33,16 +37,52 @@ public class GamePerformanceImpl implements GamePerformance{
      * {@inheritDoc}
      */
     public void initialize() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        this.placeFelix();
+        this.placeRalph();
+        this.createGameMap();
+    }
+
+    /**
+     * Method to place the npc Ralph, change according to the level.
+     */
+    private void placeRalph() {
+        switch (this.level) {
+            case 1:
+                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1));
+                break;
+            case 2:
+                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_2));
+                break;
+            case 3:
+                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_3));
+                break;
+            case 4:
+                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_4));
+                break;
+            default:
+                break;
+        }
+    }
+
+    /** 
+     * Method to place the player felix, same position in every level. 
+     */
+    private void placeFelix() {
+        this.entities.add(this.entityFactory.createFelix(Constaints.Felix.FELIX_START));
+    }
+
+    /**
+     * Method that create all the element of the map, according to the level.
+     */
+    private void createGameMap(){
+
     }
 
     /**
      * {@inheritDoc}
      */
     public List<Entity> getEntity() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEntity'");
+        return this.entities;
     }
 
     /**
@@ -135,8 +175,44 @@ public class GamePerformanceImpl implements GamePerformance{
      * {@inheritDoc}
      */
     public void spawnPowerUps() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'spawnPowerUps'");
+    }
+
+    /**
+     * Method that generate a random position for the power ups.
+     * @param e
+     * @return
+     */
+    private Pair<Double,Double> placePowerUps(final EntityType e){
+        boolean alreadyPresent = this.getEntity().stream().anyMatch(ent -> ent.equals(e));
+        double x = 0.0, y = 0.0;
+        do{
+            if(e == EntityType.BIRD) x = Constaints.gameEdges.RIGHT_WALL;
+            //if(e == EntityType.CAKE) x must be one of the windows
+            switch (level) {
+                case 1:
+                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_1);
+                    break;
+                case 2:
+                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_2);
+                    break;
+                case 3:
+                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_3);
+                    break;
+                case 4:
+                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_4);
+                    break;
+                default:
+                    break;
+            }
+        }while(!alreadyPresent && y>Constaints.PowerUps.BIRD_MIN_Y);
+        return new Pair<>(x, y);
+    }
+
+    /**
+     * Method that place a bird power up.
+     */
+    private void placeBird(){
+        this.entities.add(this.entityFactory.createBird(placePowerUps(EntityType.BIRD)));
     }
 
     /**
