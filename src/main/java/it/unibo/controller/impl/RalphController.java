@@ -18,7 +18,7 @@ public class RalphController {
      * Constructor for the RalphController.
      */
     public RalphController() {
-       ralph = entityFactoryImpl.createRalph(Constaints.RALPH_START);
+       ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
     }
     /**
      * Move Ralph.
@@ -34,7 +34,7 @@ public class RalphController {
     public void throwBrickLeftArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.RALPH_LEFT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_LEFT_HAND);
             }
         }
     }
@@ -45,7 +45,7 @@ public class RalphController {
     public void throwBrickRightArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.RALPH_RIGHT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_RIGHT_HAND);
             }
         }
     }

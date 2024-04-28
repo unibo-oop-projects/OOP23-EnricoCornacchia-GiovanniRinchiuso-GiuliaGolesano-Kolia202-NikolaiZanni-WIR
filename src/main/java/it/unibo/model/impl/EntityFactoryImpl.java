@@ -35,7 +35,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
-                new HitboxComponent(Constaints.RALPH_START.getX(), Constaints.RALPH_START.getY(), EntityType.RALPH)));
+                new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH)));
         return new EntityImpl(EntityType.RALPH, pos, components);
     }
 
