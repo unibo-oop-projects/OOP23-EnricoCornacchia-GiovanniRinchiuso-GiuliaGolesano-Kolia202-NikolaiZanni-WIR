@@ -4,31 +4,36 @@ package it.unibo.controller.impl;
  */
 
 import it.unibo.model.api.GamePerformance;
-
+/**
+ * Controller for the input.
+ */
 public class InputManager {
 
     private final GamePerformance gamePerformance;
-
-    public InputManager(final GamePerformance gamePerformance){
+    /**
+     * Constructor for the InputManager.
+     * @param gamePerformance the game performance
+     */
+    public InputManager(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }
 
     /**
      * Method that notify the Game Performance that a key from keyboard has been pressed.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    public void notifyKeyPressed(final int KeyCode){
-        this.gamePerformance.addKey(KeyCode);
+    public void notifyKeyPressed(final int keyCode) {
+        this.gamePerformance.addKey(keyCode);
     }
 
     /**
      * Method that notify the Game Performance that a key from keyboard has been released.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    public void notifyKeyReleased(final int KeyCode){
-        this.gamePerformance.removeKey(KeyCode);
+    public void notifyKeyReleased(final int keyCode) {
+        this.gamePerformance.removeKey(keyCode);
     }
 
 } 
