@@ -3,7 +3,12 @@ package it.unibo.model.impl;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
 import it.unibo.utilities.EntityType;
+import it.unibo.utilities.Constaints.Bird;
+import it.unibo.utilities.Constaints.Brick;
+import it.unibo.utilities.Constaints.Cake;
 import it.unibo.utilities.Constaints.Felix;
+import it.unibo.utilities.Constaints.Ralph;
+import it.unibo.utilities.Constaints.Window;
 
 /**
  * HitboxComponent, it represents the hitbox of the entity.
@@ -30,15 +35,19 @@ public class HitboxComponent extends AbstractComponent {
                 this.hitbox = new Rectangle(x, y, Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
                 break;
             case RALPH:
-
+                this.hitbox = new Rectangle(x, y, Ralph.RALPH_WIDTH, Ralph.RALPH_HEIGHT);
                 break;
             case BRICK:
+                this.hitbox = new Rectangle(x, y, Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
                 break;
             case WINDOW:
+                this.hitbox = new Rectangle(x, y, Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
                 break;
             case CAKE:
+                this.hitbox = new Rectangle(x, y, Cake.CAKE_WIDTH, Cake.CAKE_HEIGHT);
                 break;
             case BIRD:
+                this.hitbox = new Rectangle(x, y, Bird.BIRD_WIDTH, Bird.BIRD_HEIGHT);
                 break;
             default:
                 break;

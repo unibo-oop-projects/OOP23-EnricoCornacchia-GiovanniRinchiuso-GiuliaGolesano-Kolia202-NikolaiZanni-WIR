@@ -10,10 +10,6 @@ public final class Constaints {
      * The name of the gamestate.
      */
     public static final String GAMESTATE = "GameState: ";
-     /**
-     * The speed of the brick.
-     */
-    public static final double BRICK_SPEED = 1.0;
     /**
      * Constaints of the edges positions.
      */
@@ -82,11 +78,70 @@ public final class Constaints {
          * hand.
          */
         public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+        public static final double RALPH_HEIGHT = 0;
+        public static final double RALPH_WIDTH = 0;
+        public static final double BRICK_HEIGHT = 0;
+    }
+    /**
+     * Brick constaints.
+     */
+    public static class Brick {
+        /**
+         * The width of the brick.
+         */
+        public static final double BRICK_WIDTH = 0;
+        /**
+         * The height of the brick.
+         */
+        public static final double BRICK_HEIGHT = 0;
+        /**
+         * The speed of the brick.
+        */
+        public static final double BRICK_SPEED = 1.0;
+    }
+    /**
+     * Window constaints.
+     */
+    public static class Window {
+        /**
+         * The width of the window.
+         */
+        public static final double WINDOW_WIDTH = 0;
+        /**
+         * The height of the window.
+         */
+        public static final double WINDOW_HEIGHT = 0;
+    }
+    /**
+     * Cake constaints.
+     */
+    public static class Cake {
+        /**
+         * The width of the cake.
+         */
+        public static final double CAKE_WIDTH = 0;
+        /**
+         * The height of the cake.
+         */
+        public static final double CAKE_HEIGHT = 0;
+    }
+    /**
+     * Bird constaints.
+     */
+    public static class Bird {
+        /**
+         * The width of the bird.
+         */
+        public static final double BIRD_WIDTH = 0;
+        /**
+         * The height of the bird.
+         */
+        public static final double BIRD_HEIGHT = 0;
     }
     /**
      * Buttons constaints.
      */
-    public static class button{
+    public static class button {
         /**
          * The position of the house button.
          */
