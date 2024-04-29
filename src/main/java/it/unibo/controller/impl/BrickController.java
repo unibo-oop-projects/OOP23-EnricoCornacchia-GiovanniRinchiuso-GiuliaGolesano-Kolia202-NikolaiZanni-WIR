@@ -6,7 +6,7 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constaints.Brick;
 
 /**
  * Controller for the bricks.
@@ -36,19 +36,19 @@ public class BrickController {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
-                    ((MovementComponent) component).move(Constaints.BRICK_SPEED, 0.0, brick);
+                    ((MovementComponent) component).move(Brick.BRICK_SPEED, 0.0, brick);
                 }
             }
         }
     }
     /**
-     * Check if the bricks are still in the game.
+     * Check if the bricks are still in the game. If not, remove them.
      */
     private void checkBricks() {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
-                && !((MovementComponent) component).canMove(Constaints.BRICK_SPEED, 0.0, brick)) {
+                && !((MovementComponent) component).canMove(Brick.BRICK_SPEED, 0.0, brick)) {
                     bricks.remove(brick);
                 }
             }

@@ -5,7 +5,9 @@ import it.unibo.core.api.GameEngine;
 import it.unibo.core.impl.GameEngineImpl;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
-
+/**
+ * Class that implements the Application interface.
+ */
 public class ApplicationImpl implements Application {
 
     private BrickController brickController;
@@ -26,29 +28,26 @@ public class ApplicationImpl implements Application {
         this.gameEngine = new GameEngineImpl();
         this.gameEngine.mainLoop();
     }
-
-    private void setController(){
+    private void setController() {
         this.brickController = new BrickController();
         this.collisionManager = new CollisionManager();
         this.felixController = new FelixController();
         this.gameController = new GameController();
         this.ralphController = new RalphController();
     }
-
     /**
      * Method to update.
      */
-    public void update(){
+    public void update() {
         this.gameController.update();
     }
 
     /**
      * Redraw method.
      */
-    public void drawUpdate(){
-
+    public void drawUpdate() {
+        // TODO Auto-generated method stub
     }
-
     /**
      * {@inheritDoc}
      */
@@ -56,7 +55,6 @@ public class ApplicationImpl implements Application {
     public BrickController getBrickController() {
         return this.brickController;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -64,7 +62,6 @@ public class ApplicationImpl implements Application {
     public CollisionManager getCollisionManager() {
         return this.collisionManager;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -72,7 +69,6 @@ public class ApplicationImpl implements Application {
     public FelixController getFelixController() {
         return this.felixController;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -80,7 +76,6 @@ public class ApplicationImpl implements Application {
     public GameController getGameController() {
         return this.gameController;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -88,7 +83,6 @@ public class ApplicationImpl implements Application {
     public InputManager getInputManager() {
         return this.inputManager;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -96,5 +90,4 @@ public class ApplicationImpl implements Application {
     public RalphController getRalphController() {
         return this.ralphController;
     }
-    
 }
