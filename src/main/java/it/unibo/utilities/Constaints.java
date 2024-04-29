@@ -78,9 +78,14 @@ public final class Constaints {
          * hand.
          */
         public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+        /**
+         * The Ralph height.
+         */
         public static final double RALPH_HEIGHT = 0;
+        /**
+         * The Ralph width.
+         */
         public static final double RALPH_WIDTH = 0;
-        public static final double BRICK_HEIGHT = 0;
     }
     /**
      * Brick constaints.
