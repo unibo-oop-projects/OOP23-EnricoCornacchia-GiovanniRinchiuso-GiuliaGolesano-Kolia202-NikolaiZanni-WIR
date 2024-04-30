@@ -37,33 +37,8 @@ public class GamePerformanceImpl implements GamePerformance{
      * {@inheritDoc}
      */
     public void initialize() {
-        this.placeFelix();
-        this.placeRalph();
         this.createGameMap();
     }
-
-    /**
-     * Method to place the npc Ralph, change according to the level.
-     */
-    private void placeRalph() {
-        switch (this.level) {
-            case 1:
-                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1));
-                break;
-            case 2:
-                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_2));
-                break;
-            case 3:
-                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_3));
-                break;
-            case 4:
-                this.entities.add(this.entityFactory.createRalph(Constaints.Ralph.RALPH_START_LEVEL_4));
-                break;
-            default:
-                break;
-        }
-    }
-
     /** 
      * Method to place the player felix, same position in every level. 
      */
@@ -77,6 +52,7 @@ public class GamePerformanceImpl implements GamePerformance{
     private void createGameMap(){
 
     }
+
 
     /**
      * {@inheritDoc}
@@ -128,14 +104,14 @@ public class GamePerformanceImpl implements GamePerformance{
     /**
      * {@inheritDoc}
      */
-    public boolean gameLost() {
+    public boolean isLost() {
         return this.lost;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean gameWon() {
+    public boolean isWon() {
         return this.won;
     }
 
@@ -222,5 +198,26 @@ public class GamePerformanceImpl implements GamePerformance{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
     }
-    
+    @Override
+    /**
+     * Getter for the level.
+     * @return the level.
+     */
+    public int getLevel() {
+        return this.level;
+    }
+    /**
+     * Setter for the level.
+     * @param level the level to set.
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    /**
+     * Update the game.
+     */
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }

@@ -22,7 +22,7 @@ public class GameController {
      */
     public GameController() {
         gamePerformance = new GamePerformanceImpl(this);
-        ralphController = new RalphController();
+        ralphController = new RalphController(gamePerformance.getLevel());
         felixController = new FelixController();
         brickController = new BrickController();
         gameView = new GameView(this);
@@ -33,16 +33,13 @@ public class GameController {
      * Update the game, makes Ralph move and the bricks fall.
      */
     public void update() {
-        ralphController.move();
-        ralphController.throwBrickLeftArm(brickController.getBricks());
-        ralphController.throwBrickRightArm(brickController.getBricks());
-        brickController.fallBricks();
+        gamePerformance.update();
     }
     /**
      * Controls if the game is over.
      * @return true if the game is over, false otherwise.
      */
     public boolean gameOver() {
-        return this.felixController.isAlive();
+        return this.gamePerformance.isLost();
     } 
 }

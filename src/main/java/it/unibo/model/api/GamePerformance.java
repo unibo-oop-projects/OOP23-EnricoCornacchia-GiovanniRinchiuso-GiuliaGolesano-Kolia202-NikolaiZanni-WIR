@@ -62,14 +62,14 @@ public interface GamePerformance {
      * 
      * @return if Felix has lost.
      */
-    boolean gameLost();
+    boolean isLost();
 
     /**
      * Method that return if the player has won the game.
      * 
      * @return if Felix has won.
      */
-    boolean gameWon();
+    boolean isWon();
 
     /**
      * Method that creates a new brick launched.
@@ -106,5 +106,13 @@ public interface GamePerformance {
      * @return a list of entity power ups.
      */
     List<EntityType> powerUps();
+    /**
+     * Method that returns the level of the game.
+     * 
+     * @return the level of the game.
+     */
+    int getLevel();
+
+    void update();
 
 }

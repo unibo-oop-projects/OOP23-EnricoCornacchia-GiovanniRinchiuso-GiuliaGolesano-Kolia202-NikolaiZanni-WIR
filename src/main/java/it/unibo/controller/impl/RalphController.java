@@ -17,8 +17,21 @@ public class RalphController {
     /**
      * Constructor for the RalphController.
      */
-    public RalphController() {
-       ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
+    public RalphController(final int level) {
+        switch(level) {
+            case 1:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
+                break;
+            case 2:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_2);
+                break;
+            case 3:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_3);
+                break;
+            default:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_4);
+                break;
+        }
     }
     /**
      * Move Ralph.
