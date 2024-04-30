@@ -49,4 +49,11 @@ public class RalphController {
             }
         }
     }
+    /**
+     * Getter for the ralph entity.
+     * @return the ralph entity.
+     */
+    public Entity getRalph() {
+        return ralph;
+    }
 }
