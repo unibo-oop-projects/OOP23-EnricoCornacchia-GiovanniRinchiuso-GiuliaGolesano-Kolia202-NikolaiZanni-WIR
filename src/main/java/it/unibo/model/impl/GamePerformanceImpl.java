@@ -39,6 +39,7 @@ public class GamePerformanceImpl implements GamePerformance{
      * {@inheritDoc}
      */
     public void initialize() {
+        initializeEntities();
         this.createGameMap();
     }
     /**
@@ -58,12 +59,16 @@ public class GamePerformanceImpl implements GamePerformance{
      * Read the entities from the controllers and add them to the list of entities. We will need to add also windows and power ups, but 
      * for now we don't have neither the windows nor the power ups.
      */
-    public void addEntities() {
+    public void initializeEntities() {
         entities.add(this.getRalph());
         entities.add(this.getFelix());
+    }
+    /**
+     * Add bricks or power-ups to the list of entities.
+     */
+    public void addEntities() {
         entities.addAll(this.getBricks());
     }
-
     /**
      * {@inheritDoc}
      */
