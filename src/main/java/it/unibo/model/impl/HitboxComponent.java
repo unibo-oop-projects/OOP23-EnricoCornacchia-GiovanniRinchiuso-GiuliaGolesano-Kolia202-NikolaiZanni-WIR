@@ -59,7 +59,7 @@ public class HitboxComponent extends AbstractComponent {
      */
     @Override
     public void update() {
-        
+        // TODO Auto-generated method stub
     }
 
     /**

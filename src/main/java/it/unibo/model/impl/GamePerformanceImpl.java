@@ -17,7 +17,7 @@ import it.unibo.utilities.EntityType;
 /**
  * Class that manages the game performance of the play.
  */
-public class GamePerformanceImpl implements GamePerformance{
+public class GamePerformanceImpl implements GamePerformance {
 
     private final GameController gameController;
     private final EntityFactory entityFactory;

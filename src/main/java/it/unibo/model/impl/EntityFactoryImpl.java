@@ -69,7 +69,7 @@ public class EntityFactoryImpl implements EntityFactory {
      * {@inheritDoc}
      */
     @Override
-    public Entity createBird(Pair<Double, Double> pos) {
+    public Entity createBird(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         return new EntityImpl(EntityType.BIRD, pos, components);
     }

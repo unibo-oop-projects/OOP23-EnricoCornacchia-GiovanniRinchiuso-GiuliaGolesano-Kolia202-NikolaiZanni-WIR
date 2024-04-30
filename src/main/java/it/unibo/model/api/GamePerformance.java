@@ -40,16 +40,16 @@ public interface GamePerformance {
     /**
      * Method that adds the new key pressed from keyboard.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    void addKey(int KeyCode);
+    void addKey(int keyCode);
 
     /**
      * Method that remove the key released from the keyboard.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    void removeKey(int KeyCode);
+    void removeKey(int keyCode);
 
     /**
      * Method that returns the list of the keys clicked.

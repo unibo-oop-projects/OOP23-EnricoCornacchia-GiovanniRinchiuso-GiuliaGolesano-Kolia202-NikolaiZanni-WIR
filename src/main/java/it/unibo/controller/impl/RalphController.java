@@ -16,9 +16,10 @@ public class RalphController {
     private final Entity ralph;
     /**
      * Constructor for the RalphController.
+     * @param level the level of the game.
      */
     public RalphController(final int level) {
-        switch(level) {
+        switch (level) {
             case 1:
                 ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
                 break;

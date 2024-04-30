@@ -46,7 +46,8 @@ public class BrickController {
         }
     }
     /**
-     * Check if the bricks are still in the game. If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
+     * Check if the bricks are still in the game. 
+     * If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
      */
     private void checkBricks() {
         for (final Entity brick : bricks) {
