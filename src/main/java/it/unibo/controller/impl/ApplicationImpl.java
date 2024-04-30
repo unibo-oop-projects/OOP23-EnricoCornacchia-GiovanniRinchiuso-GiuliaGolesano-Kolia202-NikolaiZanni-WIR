@@ -29,11 +29,11 @@ public class ApplicationImpl implements Application {
         this.gameEngine.mainLoop();
     }
     private void setController() {
-        this.brickController = new BrickController();
+        this.brickController = new BrickController(gamePerformance);
         this.collisionManager = new CollisionManager();
         this.felixController = new FelixController();
         this.gameController = new GameController();
-        this.ralphController = new RalphController();
+        this.ralphController = new RalphController(0);
     }
     /**
      * Method to update.

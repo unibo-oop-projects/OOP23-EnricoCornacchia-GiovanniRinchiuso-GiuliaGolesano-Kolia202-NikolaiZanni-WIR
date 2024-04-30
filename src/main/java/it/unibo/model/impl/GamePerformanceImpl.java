@@ -27,14 +27,16 @@ public class GamePerformanceImpl implements GamePerformance{
     private boolean lost;
     private int level;
     private final Random random = new Random();
-    
-    public GamePerformanceImpl(final GameController gameController){
+    /**
+     * Constructor for the GamePerformanceImpl.
+     * @param gameController the game controller.
+     */
+    public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
         this.entityFactory = new EntityFactoryImpl();
         this.won = false;
         this.lost = false;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -45,7 +47,7 @@ public class GamePerformanceImpl implements GamePerformance{
     /**
      * Method that create all the element of the map, according to the level.
      */
-    private void createGameMap(){
+    private void createGameMap() {
         // TODO Auto-generated method stub
     }
     /**
@@ -54,9 +56,9 @@ public class GamePerformanceImpl implements GamePerformance{
     public Set<Entity> getEntity() {
         return this.entities;
     }
-
     /**
-     * Read the entities from the controllers and add them to the list of entities. We will need to add also windows and power ups, but 
+     * Read the entities from the controllers and add them to the list of entities. 
+     * We will need to add also windows and power ups, but 
      * for now we don't have neither the windows nor the power ups.
      */
     public void initializeEntities() {
@@ -72,26 +74,23 @@ public class GamePerformanceImpl implements GamePerformance{
     /**
      * {@inheritDoc}
      */
-    public void removeEntity(Entity e) {
+    public void removeEntity(final Entity e) {
         this.entities.remove(e);
     }
-
     /**
      * {@inheritDoc}
      */
-    public void addKey(int KeyCode) {
+    public void addKey(final int keyCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addKey'");
     }
-
     /**
      * {@inheritDoc}
      */
-    public void removeKey(int KeyCode) {
+    public void removeKey(final int keyCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeKey'");
     }
-
     /**
      * {@inheritDoc}
      */
@@ -99,37 +98,32 @@ public class GamePerformanceImpl implements GamePerformance{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'inputs'");
     }
-
     /**
      * {@inheritDoc}
      */
     public boolean isLost() {
         return this.lost;
     }
-
     /**
      * {@inheritDoc}
      */
     public boolean isWon() {
         return this.won;
     }
-
     /**
      * {@inheritDoc}
      */
-    public void createBrick(Pair<Double, Double> pos) {
+    public void createBrick(final Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createBrick'");
     }
-
     /**
      * {@inheritDoc}
      */
-    public void removeBrick(Pair<Double, Double> pos) {
+    public void removeBrick(final Pair<Double, Double> pos) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeBrick'");
     }
-
     /**
      * {@inheritDoc}
      */
@@ -137,7 +131,6 @@ public class GamePerformanceImpl implements GamePerformance{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'oneLifeLost'");
     }
-
     /**
      * {@inheritDoc}
      */
@@ -145,48 +138,47 @@ public class GamePerformanceImpl implements GamePerformance{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'oneLifeEarned'");
     }
-
     /**
      * {@inheritDoc}
      */
     public void spawnPowerUps() {
     }
-
     /**
      * Method that generate a random position for the power ups.
      * @param e
-     * @return
+     * @return the position of the power up.
      */
-    private Pair<Double,Double> placePowerUps(final EntityType e){
+    private Pair<Double, Double> placePowerUps(final EntityType e) {
         boolean alreadyPresent = this.getEntity().stream().anyMatch(ent -> ent.equals(e));
         double x = 0.0, y = 0.0;
-        do{
-            if(e == EntityType.BIRD) x = Constaints.gameEdges.RIGHT_WALL;
+        do {
+            if (e == EntityType.BIRD) {
+                x = Constaints.gameEdges.RIGHT_WALL;
+            }
             //if(e == EntityType.CAKE) x must be one of the windows
             switch (level) {
                 case 1:
-                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_1);
+                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_1);
                     break;
                 case 2:
-                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_2);
+                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_2);
                     break;
                 case 3:
-                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_3);
+                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_3);
                     break;
                 case 4:
-                    y=random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_4);
+                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_4);
                     break;
                 default:
                     break;
             }
-        }while(!alreadyPresent && y>Constaints.PowerUps.BIRD_MIN_Y);
+        } while (!alreadyPresent && y > Constaints.PowerUps.BIRD_MIN_Y);
         return new Pair<>(x, y);
     }
-
     /**
      * Method that place a bird power up.
      */
-    private void placeBird(){
+    private void placeBird() {
         this.entities.add(this.entityFactory.createBird(placePowerUps(EntityType.BIRD)));
     }
 
@@ -197,11 +189,11 @@ public class GamePerformanceImpl implements GamePerformance{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
     }
-    @Override
     /**
      * Getter for the level.
      * @return the level.
      */
+    @Override
     public int getLevel() {
         return this.level;
     }
@@ -209,11 +201,12 @@ public class GamePerformanceImpl implements GamePerformance{
      * Setter for the level.
      * @param level the level to set.
      */
-    public void setLevel(int level) {
+    public void setLevel(final int level) {
         this.level = level;
     }
     /**
-     * Update the game. This has to be the main method of this class, that delegates the update of the entities to other private methods.
+     * Update the game. This has to be the main method of this class, 
+     * that delegates the update of the entities to other private methods.
      * When a brick is removed by the brick controller, it will be removed also from the list of entities.
      */
     public void update() {
@@ -240,9 +233,11 @@ public class GamePerformanceImpl implements GamePerformance{
     private Entity getFelix() {
         return this.gameController.getFelixController().getFelix();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void addEntity(Entity e) {
+    public void addEntity(final Entity e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
     }
