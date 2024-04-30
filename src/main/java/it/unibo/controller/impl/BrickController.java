@@ -5,6 +5,7 @@ import java.util.Set;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constaints.Brick;
 
@@ -14,12 +15,15 @@ import it.unibo.utilities.Constaints.Brick;
 public class BrickController {
 
     private final Set<Entity> bricks;
+    private final GamePerformance gamePerformance;
 
     /**
      * Constructor for the BrickController.
+     * @param gamePerformance the game performance.
      */
-    public BrickController() {
+    public BrickController(final GamePerformance gamePerformance) {
         bricks = new HashSet<>();
+        this.gamePerformance = gamePerformance;
     }
     /**
      * Getter for the bricks.
@@ -42,7 +46,7 @@ public class BrickController {
         }
     }
     /**
-     * Check if the bricks are still in the game. If not, remove them.
+     * Check if the bricks are still in the game. If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
      */
     private void checkBricks() {
         for (final Entity brick : bricks) {
@@ -50,6 +54,7 @@ public class BrickController {
                 if (component.getComponent() == ComponentType.MOVEMENT 
                 && !((MovementComponent) component).canMove(Brick.BRICK_SPEED, 0.0, brick)) {
                     bricks.remove(brick);
+                    gamePerformance.removeEntity(brick);
                 }
             }
         }

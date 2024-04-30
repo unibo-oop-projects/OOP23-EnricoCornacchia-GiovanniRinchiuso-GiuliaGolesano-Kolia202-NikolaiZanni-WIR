@@ -1,6 +1,7 @@
 package it.unibo.model.api;
 
 import java.util.List;
+import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.utilities.EntityType;
@@ -20,7 +21,7 @@ public interface GamePerformance {
      * 
      * @return a list of entities present.
      */
-    List<Entity> getEntity();
+    Set<Entity> getEntity();
 
     /**
      * Method that adds a new entity to the game play.
@@ -105,7 +106,7 @@ public interface GamePerformance {
      * 
      * @return a list of entity power ups.
      */
-    List<EntityType> powerUps();
+    Set<EntityType> powerUps();
     /**
      * Method that returns the level of the game.
      * 

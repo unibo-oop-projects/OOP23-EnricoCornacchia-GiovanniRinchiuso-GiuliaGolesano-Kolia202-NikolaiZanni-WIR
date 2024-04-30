@@ -24,7 +24,7 @@ public class GameController {
         gamePerformance = new GamePerformanceImpl(this);
         ralphController = new RalphController(gamePerformance.getLevel());
         felixController = new FelixController();
-        brickController = new BrickController();
+        brickController = new BrickController(this.gamePerformance);
         gameView = new GameView(this);
         inputManager = new InputManager(this.gamePerformance);
     }
@@ -41,5 +41,26 @@ public class GameController {
      */
     public boolean gameOver() {
         return this.gamePerformance.isLost();
+    }
+    /**
+     * Getter for the Ralph controller.
+     * @return the Ralph controller.
+     */
+    public RalphController getRalphController() {
+        return this.ralphController;
     } 
+    /**
+     * Getter for the Felix controller.
+     * @return the Felix controller.
+     */
+    public FelixController getFelixController() {
+        return this.felixController;
+    }
+    /**
+     * Getter for the Brick controller.
+     * @return the Brick controller.
+     */
+    public BrickController getBrickController() {
+        return this.brickController;
+    }
 }

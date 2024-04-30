@@ -1,8 +1,10 @@
 package it.unibo.model.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
@@ -19,7 +21,7 @@ public class GamePerformanceImpl implements GamePerformance{
 
     private final GameController gameController;
     private final EntityFactory entityFactory;
-    private final List<Entity> entities = new ArrayList<>();
+    private final Set<Entity> entities = new HashSet<>();
     private final List<Integer> inputs = new ArrayList<>();
     private boolean won;
     private boolean lost;
@@ -39,42 +41,34 @@ public class GamePerformanceImpl implements GamePerformance{
     public void initialize() {
         this.createGameMap();
     }
-    /** 
-     * Method to place the player felix, same position in every level. 
-     */
-    private void placeFelix() {
-        this.entities.add(this.entityFactory.createFelix(Constaints.Felix.FELIX_START));
-    }
-
     /**
      * Method that create all the element of the map, according to the level.
      */
     private void createGameMap(){
-
+        // TODO Auto-generated method stub
     }
-
-
     /**
      * {@inheritDoc}
      */
-    public List<Entity> getEntity() {
+    public Set<Entity> getEntity() {
         return this.entities;
     }
 
     /**
-     * {@inheritDoc}
+     * Read the entities from the controllers and add them to the list of entities. We will need to add also windows and power ups, but 
+     * for now we don't have neither the windows nor the power ups.
      */
-    public void addEntity(Entity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
+    public void addEntities() {
+        entities.add(this.getRalph());
+        entities.add(this.getFelix());
+        entities.addAll(this.getBricks());
     }
 
     /**
      * {@inheritDoc}
      */
     public void removeEntity(Entity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeEntity'");
+        this.entities.remove(e);
     }
 
     /**
@@ -194,7 +188,7 @@ public class GamePerformanceImpl implements GamePerformance{
     /**
      * {@inheritDoc}
      */
-    public List<EntityType> powerUps() {
+    public Set<EntityType> powerUps() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
     }
@@ -214,10 +208,37 @@ public class GamePerformanceImpl implements GamePerformance{
         this.level = level;
     }
     /**
-     * Update the game.
+     * Update the game. This has to be the main method of this class, that delegates the update of the entities to other private methods.
+     * When a brick is removed by the brick controller, it will be removed also from the list of entities.
      */
     public void update() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+    /**
+     * Returns the set of bricks.
+     * @return the set of bricks.
+     */
+    private Set<Entity> getBricks() {
+        return this.gameController.getBrickController().getBricks();
+    }
+    /**
+     * Returns Ralph.
+     * @return Ralph.
+     */
+    private Entity getRalph() {
+        return this.gameController.getRalphController().getRalph();
+    }
+    /**
+     * Returns Felix.
+     * @return Felix.
+     */
+    private Entity getFelix() {
+        return this.gameController.getFelixController().getFelix();
+    }
+
+    @Override
+    public void addEntity(Entity e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
     }
 }
