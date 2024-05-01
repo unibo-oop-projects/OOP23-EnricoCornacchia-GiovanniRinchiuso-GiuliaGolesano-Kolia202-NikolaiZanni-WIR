@@ -135,16 +135,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * @return the new GameState of the button clicked
      */
     public GameState buttonClicked() {
-        if (this.pos == Constaints.button.HOME_BUTTON) {
+        if (this.pos == Constaints.Button.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos.equals(Constaints.button.QUIT_BUTTON)) {
+        if (this.pos.equals(Constaints.Button.QUIT_BUTTON)) {
             GameState.setGameState(GameState.GAMEOVER);
         }
-        if (this.pos.equals(Constaints.button.CONTINUE_BUTTON)) {
+        if (this.pos.equals(Constaints.Button.CONTINUE_BUTTON)) {
             GameState.setGameState(GameState.PLAYING);
         }
-        if (this.pos.equals(Constaints.button.PAUSE_BUTTON)) {
+        if (this.pos.equals(Constaints.Button.PAUSE_BUTTON)) {
             GameState.setGameState(GameState.PAUSED);
         }
         return GameState.getGameState();

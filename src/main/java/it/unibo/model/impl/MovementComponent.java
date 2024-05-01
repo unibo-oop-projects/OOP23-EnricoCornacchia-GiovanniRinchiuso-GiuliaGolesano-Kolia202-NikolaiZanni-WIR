@@ -32,10 +32,10 @@ public class MovementComponent implements Component {
     public boolean canMove(final double x, final double y, final Entity entity) {
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
-        return newX >= Constaints.gameEdges.LEFT_WALL 
-        && newX <= Constaints.gameEdges.RIGHT_WALL 
-        && newY >= Constaints.gameEdges.DOWN_WALL 
-        && newY <= Constaints.gameEdges.UP_WALL_1;
+        return newX >= Constaints.GameEdges.LEFT_WALL 
+        && newX <= Constaints.GameEdges.RIGHT_WALL 
+        && newY >= Constaints.GameEdges.DOWN_WALL 
+        && newY <= Constaints.GameEdges.UP_WALL_1;
     }
     /**
      * Getter method for the component type.

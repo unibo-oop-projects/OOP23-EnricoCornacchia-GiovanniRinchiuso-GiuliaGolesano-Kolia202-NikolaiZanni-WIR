@@ -13,7 +13,7 @@ public final class Constaints {
     /**
      * Constaints of the edges positions.
      */
-    public static class gameEdges{
+    public static class GameEdges {
         /**
          * The position of the left wall.
          */
@@ -146,7 +146,7 @@ public final class Constaints {
     /**
      * Buttons constaints.
      */
-    public static class button {
+    public static class Button {
         /**
          * The position of the house button.
          */
@@ -236,29 +236,29 @@ public final class Constaints {
     /**
      * Power ups constains.
      */
-    public static class PowerUps{
+    public static class PowerUps {
         /**
          * Starting x of the bird.
          */
         public static final double BIRD_X = 800.0;
         /**
-         * Minimum y of the bird
+         * Minimum y of the bird.
          */
         public static final double BIRD_MIN_Y = 50.0;
         /**
-         * Maximum y of the bird level 1
+         * Maximum y of the bird level 1.
          */
         public static final double BIRD_MAX_Y_1 = 600.0;
         /**
-         * Maximum y of the bird level 2
+         * Maximum y of the bird level 2.
          */
         public static final double BIRD_MAX_Y_2 = 0.0;
         /**
-         * Maximum y of the bird level 3
+         * Maximum y of the bird level 3.
          */
         public static final double BIRD_MAX_Y_3 = 0.0;
         /**
-         * Maximum y of the bird level 4
+         * Maximum y of the bird level 4.
          */
         public static final double BIRD_MAX_Y_4 = 0.0;
     }

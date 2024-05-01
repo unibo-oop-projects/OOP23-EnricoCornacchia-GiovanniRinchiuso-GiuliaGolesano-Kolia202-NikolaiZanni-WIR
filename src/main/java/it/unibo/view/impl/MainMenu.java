@@ -28,8 +28,8 @@ public class MainMenu extends StackPane {
      */
     public MainMenu() {
         pauseButton = new ImageView("pauseButton.png");
-        pauseButton.setFitWidth(Constaints.button.WIDTH_PAUSE_BUTTON);
-        pauseButton.setFitHeight(Constaints.button.HEIGHT_PAUSE_BUTTON);
+        pauseButton.setFitWidth(Constaints.Button.WIDTH_PAUSE_BUTTON);
+        pauseButton.setFitHeight(Constaints.Button.HEIGHT_PAUSE_BUTTON);
         pauseButton.setOnMouseClicked(this::handlePauseButtonClick);
         getChildren().add(pauseButton);
     }
@@ -76,13 +76,13 @@ public class MainMenu extends StackPane {
                     backgroundSize);
             root.setBackground(new Background(backgroundImage));
             final ImageView topImageView = new ImageView(topImage);
-            topImageView.setFitWidth(Constaints.button.TOP_IMAGE_WIDTH);
-            topImageView.setFitHeight(Constaints.button.TOP_IMAGE_HEIGHT);
+            topImageView.setFitWidth(Constaints.Button.TOP_IMAGE_WIDTH);
+            topImageView.setFitHeight(Constaints.Button.TOP_IMAGE_HEIGHT);
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
             root.getChildren().add(topImageView);
             final ImageView underImageView = new ImageView(underImage);
-            underImageView.setFitHeight(Constaints.button.UNDER_IMAGE_HEIGHT);
-            underImageView.setFitWidth(Constaints.button.UNDER_IMAGE_WIDTH);
+            underImageView.setFitHeight(Constaints.Button.UNDER_IMAGE_HEIGHT);
+            underImageView.setFitWidth(Constaints.Button.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);
             root.getChildren().add(underImageView);
             final HBox pane = new HBox(20);

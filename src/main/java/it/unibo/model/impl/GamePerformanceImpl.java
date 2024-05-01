@@ -153,7 +153,7 @@ public class GamePerformanceImpl implements GamePerformance {
         double x = 0.0, y = 0.0;
         do {
             if (e == EntityType.BIRD) {
-                x = Constaints.gameEdges.RIGHT_WALL;
+                x = Constaints.GameEdges.RIGHT_WALL;
             }
             //if(e == EntityType.CAKE) x must be one of the windows
             switch (level) {
