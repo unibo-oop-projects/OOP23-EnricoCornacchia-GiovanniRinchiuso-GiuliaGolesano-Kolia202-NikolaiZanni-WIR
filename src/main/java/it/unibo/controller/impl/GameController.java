@@ -12,6 +12,7 @@ public class GameController {
     private final RalphController ralphController;
     private final FelixController felixController;
     private final BrickController brickController;
+    private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameView gameView;
     private final GamePerformance gamePerformance;
@@ -25,6 +26,7 @@ public class GameController {
         ralphController = new RalphController(gamePerformance.getLevel());
         felixController = new FelixController();
         brickController = new BrickController(this.gamePerformance);
+        collisionManager = new CollisionManager(this.gamePerformance.getEntity());
         gameView = new GameView(this);
         inputManager = new InputManager(this.gamePerformance);
     }
