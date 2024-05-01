@@ -1,6 +1,7 @@
 package it.unibo.model.api;
 
 import java.util.List;
+import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.utilities.EntityType;
@@ -20,7 +21,7 @@ public interface GamePerformance {
      * 
      * @return a list of entities present.
      */
-    List<Entity> getEntity();
+    Set<Entity> getEntity();
 
     /**
      * Method that adds a new entity to the game play.
@@ -39,16 +40,16 @@ public interface GamePerformance {
     /**
      * Method that adds the new key pressed from keyboard.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    void addKey(int KeyCode);
+    void addKey(int keyCode);
 
     /**
      * Method that remove the key released from the keyboard.
      * 
-     * @param KeyCode
+     * @param keyCode
      */
-    void removeKey(int KeyCode);
+    void removeKey(int keyCode);
 
     /**
      * Method that returns the list of the keys clicked.
@@ -62,14 +63,14 @@ public interface GamePerformance {
      * 
      * @return if Felix has lost.
      */
-    boolean gameLost();
+    boolean isLost();
 
     /**
      * Method that return if the player has won the game.
      * 
      * @return if Felix has won.
      */
-    boolean gameWon();
+    boolean isWon();
 
     /**
      * Method that creates a new brick launched.
@@ -105,6 +106,14 @@ public interface GamePerformance {
      * 
      * @return a list of entity power ups.
      */
-    List<EntityType> powerUps();
+    Set<EntityType> powerUps();
+    /**
+     * Method that returns the level of the game.
+     * 
+     * @return the level of the game.
+     */
+    int getLevel();
+
+    void update();
 
 }

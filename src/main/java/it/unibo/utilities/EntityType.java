@@ -16,7 +16,11 @@ public enum EntityType {
     /**
      * Represents the power-up entity.
      */
-    POWER_UP,
+    CAKE,
+    /**
+     * Represents the power-up entity.
+     */
+    BIRD,
     /**
      * Represents the obstacle entity.
      */

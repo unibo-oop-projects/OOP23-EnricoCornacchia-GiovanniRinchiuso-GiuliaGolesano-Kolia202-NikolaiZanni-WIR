@@ -16,9 +16,23 @@ public class RalphController {
     private final Entity ralph;
     /**
      * Constructor for the RalphController.
+     * @param level the level of the game.
      */
-    public RalphController() {
-       ralph = entityFactoryImpl.createRalph(Constaints.RALPH_START);
+    public RalphController(final int level) {
+        switch (level) {
+            case 1:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
+                break;
+            case 2:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_2);
+                break;
+            case 3:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_3);
+                break;
+            default:
+                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_4);
+                break;
+        }
     }
     /**
      * Move Ralph.
@@ -34,7 +48,7 @@ public class RalphController {
     public void throwBrickLeftArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.RALPH_LEFT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_LEFT_HAND);
             }
         }
     }
@@ -45,8 +59,15 @@ public class RalphController {
     public void throwBrickRightArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.RALPH_RIGHT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_RIGHT_HAND);
             }
         }
+    }
+    /**
+     * Getter for the ralph entity.
+     * @return the ralph entity.
+     */
+    public Entity getRalph() {
+        return ralph;
     }
 }

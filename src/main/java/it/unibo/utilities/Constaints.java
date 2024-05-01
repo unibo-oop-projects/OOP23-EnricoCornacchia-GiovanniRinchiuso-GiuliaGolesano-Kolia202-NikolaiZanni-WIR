@@ -10,28 +10,29 @@ public final class Constaints {
      * The name of the gamestate.
      */
     public static final String GAMESTATE = "GameState: ";
-     /**
-     * The speed of the brick.
-     */
-    public static final double BRICK_SPEED = 1.0;
     /**
-     * The position of the left wall.
+     * Constaints of the edges positions.
      */
-    public static final double LEFT_WALL = 0.0;
+    public static class gameEdges{
+        /**
+         * The position of the left wall.
+         */
+        public static final double LEFT_WALL = 0.0;
+        /**
+         * The position of the right wall.
+         */
+        public static final double RIGHT_WALL = 800.0;
+        /**
+         * The position of the down wall.
+         */
+        public static final double DOWN_WALL = 0.0;
+        /**
+         * The position of the up wall.
+         */
+        public static final double UP_WALL_1 = 600.0;
+    }
     /**
-     * The position of the right wall.
-     */
-    public static final double RIGHT_WALL = 800.0;
-    /**
-     * The position of the down wall.
-     */
-    public static final double DOWN_WALL = 0.0;
-    /**
-     * The position of the up wall.
-     */
-    public static final double UP_WALL = 600.0;
-    /**
-     * Felix constants.
+     * Felix constaints.
      */
     public static class Felix {
         /**
@@ -48,60 +49,144 @@ public final class Constaints {
         public static final double FELIX_HEIGHT = 20.0;
     }
     /**
-     * The position of starting Ralph.
+     * Ralph constaints.
      */
-    public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 700.0);
+    public static class Ralph {
+        /**
+         * The position of starting Ralph of the first level.
+         */
+        public static final Pair<Double, Double> RALPH_START_LEVEL_1 = new Pair<>(400.0, 700.0);
+        /**
+         * The position of starting Ralph of the second level.
+         */
+        public static final Pair<Double, Double> RALPH_START_LEVEL_2 = new Pair<>(400.0, 700.0);
+        /**
+         * The position of starting Ralph of the third level.
+         */
+        public static final Pair<Double, Double> RALPH_START_LEVEL_3 = new Pair<>(400.0, 700.0);
+        /**
+         * The position of starting Ralph of the fourth level.
+         */
+        public static final Pair<Double, Double> RALPH_START_LEVEL_4 = new Pair<>(400.0, 700.0);
+        /**
+         * The difference between the position of Ralph and the position of his right
+         * hand.
+         */
+        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(8.0, -2.0);
+        /**
+         * The difference between the position of Ralph and the position of his left
+         * hand.
+         */
+        public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+        /**
+         * The Ralph height.
+         */
+        public static final double RALPH_HEIGHT = 0;
+        /**
+         * The Ralph width.
+         */
+        public static final double RALPH_WIDTH = 0;
+    }
     /**
-     * The difference between the position of Ralph and the position of his right
-     * hand.
+     * Brick constaints.
      */
-    public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(8.0, -2.0);
+    public static class Brick {
+        /**
+         * The width of the brick.
+         */
+        public static final double BRICK_WIDTH = 0;
+        /**
+         * The height of the brick.
+         */
+        public static final double BRICK_HEIGHT = 0;
+        /**
+         * The speed of the brick.
+        */
+        public static final double BRICK_SPEED = 1.0;
+    }
     /**
-     * The difference between the position of Ralph and the position of his left
-     * hand.
+     * Window constaints.
      */
-    public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+    public static class Window {
+        /**
+         * The width of the window.
+         */
+        public static final double WINDOW_WIDTH = 0;
+        /**
+         * The height of the window.
+         */
+        public static final double WINDOW_HEIGHT = 0;
+    }
     /**
-     * The position of the house button.
+     * Cake constaints.
      */
-    public static final Pair<Double, Double> HOME_BUTTON = new Pair<>(null, null);
+    public static class Cake {
+        /**
+         * The width of the cake.
+         */
+        public static final double CAKE_WIDTH = 0;
+        /**
+         * The height of the cake.
+         */
+        public static final double CAKE_HEIGHT = 0;
+    }
     /**
-     * The position of the Pause button.
+     * Bird constaints.
      */
-    public static final Pair<Double, Double> PAUSE_BUTTON = new Pair<>(null, null);
+    public static class Bird {
+        /**
+         * The width of the bird.
+         */
+        public static final double BIRD_WIDTH = 0;
+        /**
+         * The height of the bird.
+         */
+        public static final double BIRD_HEIGHT = 0;
+    }
     /**
-     * The position of the house button.
+     * Buttons constaints.
      */
-    public static final Pair<Double, Double> QUIT_BUTTON = new Pair<>(null, null);
-    /**
-     * The position of the Pause button.
-     */
-    public static final Pair<Double, Double> CONTINUE_BUTTON = new Pair<>(null, null);
-    /**
-     * The height of the top image.
-     */
-    public static final double TOP_IMAGE_HEIGHT = 125;
-    /**
-     * The width of the top image.
-     */
-    public static final double TOP_IMAGE_WIDTH = 450;
-    /**
-     * The height of the pause button.
-     */
-    public static final double WIDTH_PAUSE_BUTTON = 50;
-    /**
-     * The width of the pause button.
-     */
-    public static final double HEIGHT_PAUSE_BUTTON = 50;
-    /**
-     * The hight of the under image.
-     */
-    public static final double UNDER_IMAGE_HEIGHT = 200;
-    /**
-     * The width of the under image.
-     */
-    public static final double UNDER_IMAGE_WIDTH = 450;
-    private Constaints() {
+    public static class button {
+        /**
+         * The position of the house button.
+         */
+        public static final Pair<Double, Double> HOME_BUTTON = new Pair<>(null, null);
+        /**
+         * The position of the Pause button.
+         */
+        public static final Pair<Double, Double> PAUSE_BUTTON = new Pair<>(null, null);
+        /**
+         * The position of the house button.
+         */
+        public static final Pair<Double, Double> QUIT_BUTTON = new Pair<>(null, null);
+        /**
+         * The position of the Pause button.
+         */
+        public static final Pair<Double, Double> CONTINUE_BUTTON = new Pair<>(null, null);
+        /**
+         * The height of the top image.
+         */
+        public static final double TOP_IMAGE_HEIGHT = 125;
+        /**
+         * The width of the top image.
+         */
+        public static final double TOP_IMAGE_WIDTH = 450;
+        /**
+         * The height of the pause button.
+         */
+        public static final double WIDTH_PAUSE_BUTTON = 40;
+        /**
+         * The width of the pause button.
+         */
+        public static final double HEIGHT_PAUSE_BUTTON = 40;
+        /**
+         * The hight of the under image.
+         */
+        public static final double UNDER_IMAGE_HEIGHT = 200;
+        /**
+         * The width of the under image.
+         */
+        public static final double UNDER_IMAGE_WIDTH = 450;
     }
     /**
      * keys of movement.
@@ -147,5 +232,34 @@ public final class Constaints {
          * Pressed Esc.
          */
         public static final int ESCAPE = 27;
+    }
+    /**
+     * Power ups constains.
+     */
+    public static class PowerUps{
+        /**
+         * Starting x of the bird.
+         */
+        public static final double BIRD_X = 800.0;
+        /**
+         * Minimum y of the bird
+         */
+        public static final double BIRD_MIN_Y = 50.0;
+        /**
+         * Maximum y of the bird level 1
+         */
+        public static final double BIRD_MAX_Y_1 = 600.0;
+        /**
+         * Maximum y of the bird level 2
+         */
+        public static final double BIRD_MAX_Y_2 = 0.0;
+        /**
+         * Maximum y of the bird level 3
+         */
+        public static final double BIRD_MAX_Y_3 = 0.0;
+        /**
+         * Maximum y of the bird level 4
+         */
+        public static final double BIRD_MAX_Y_4 = 0.0;
     }
 }

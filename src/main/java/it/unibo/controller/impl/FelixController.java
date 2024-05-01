@@ -65,4 +65,11 @@ public class FelixController {
         final LivesComponent lives = (LivesComponent) this.felix.getComponent(ComponentType.LIFE).get();
         return lives.getLives() > 0;
     }
+    /**
+     * Getter for the Felix entity.
+     * @return the Felix entity.
+     */
+    public Entity getFelix() {
+        return this.felix;
+    }
 }

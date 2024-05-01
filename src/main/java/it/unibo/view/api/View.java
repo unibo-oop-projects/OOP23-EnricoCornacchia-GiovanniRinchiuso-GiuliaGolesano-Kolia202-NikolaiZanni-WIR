@@ -11,7 +11,7 @@ public interface View {
     /**
      * Method that draw a view.
      * 
-     * @param g
+     * @param g the graphics context
      */
     void draw(GraphicsContext g);
 
@@ -23,14 +23,14 @@ public interface View {
     /**
      * Method that manages an input from keyboard.
      * 
-     * @param KeyCode
+     * @param keyCode the code of the key pressed
      */
-    void KeyboardInputManage(int KeyCode);
+    void KeyboardInputManage(int keyCode);
 
     /**
      * Method that manages an input form mouse.
      * 
-     * @param clickPos
+     * @param clickPos the position of the click
      */
     void MouseInputManage(Pair<Integer,Integer> clickPos);
 

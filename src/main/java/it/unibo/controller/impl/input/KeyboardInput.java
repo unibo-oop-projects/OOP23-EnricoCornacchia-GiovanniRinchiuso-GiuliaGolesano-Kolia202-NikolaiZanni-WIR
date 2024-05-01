@@ -15,7 +15,8 @@ public class KeyboardInput implements KeyListener {
     private Application app;
 
     /**
-     * Constructor.
+     * Constructor. 
+     * @param app the application
      */
     public KeyboardInput(final Application app) {
         this.app = app;
@@ -38,7 +39,6 @@ public class KeyboardInput implements KeyListener {
     public boolean isDown() {
         return this.down;
     }
-
     /**
      * Getter of the variable right.
      * 
@@ -47,7 +47,6 @@ public class KeyboardInput implements KeyListener {
     public boolean isRight() {
         return this.right;
     }
-
     /**
      * Getter of the variable left.
      * 
@@ -56,7 +55,6 @@ public class KeyboardInput implements KeyListener {
     public boolean isLeft() {
         return this.left;
     }
-
     /**
      * Getter of the variable fix.
      * 
@@ -65,14 +63,14 @@ public class KeyboardInput implements KeyListener {
     public boolean isFix() {
         return this.fix;
     }
-
     @Override
     /**
      * Method called when a button of the keyboard is typed.
      * 
      * @param e is the KeyEvent
      */
-    public void keyTyped(final KeyEvent e) {}
+    public void keyTyped(final KeyEvent e) { 
+    }
 
     /**
      * Method called when a button of the keyboard is pressed.

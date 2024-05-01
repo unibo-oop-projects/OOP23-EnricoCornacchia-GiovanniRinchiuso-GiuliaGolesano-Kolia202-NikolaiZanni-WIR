@@ -20,9 +20,10 @@ public class MouseInput implements MouseListener, MouseMotionListener {
 
     /**
     * Constructor of the class.
+    * @param app the application
     */
     public MouseInput(final Application app) {
-        this.app=app;
+        this.app = app;
         pos = new Pair<>(0.0, 0.0);
     }
 
@@ -64,7 +65,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method invoked when the mouse button has been clicked on a component.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseClicked(final MouseEvent e) {
     }
@@ -73,7 +74,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method invoked when the mouse button has been pressed on a component.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mousePressed(final MouseEvent e) {
         this.hasPressed = true;
@@ -94,7 +95,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method invoked when the mouse enters a component.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseEntered(final MouseEvent e) {
     }
@@ -103,7 +104,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method invoke when the mouse exits a component.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseExited(final MouseEvent e) {
     }
@@ -112,7 +113,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method that set the new position of the mouse.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseDragged(final MouseEvent e) {
         this.pos = new Pair<Double, Double>(Double.valueOf(e.getX()), Double.valueOf(e.getY())); 
@@ -122,7 +123,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     /**
      * Method that set the new position of the mouse if it has moved.
      * 
-     * @param e
+     * @param e the MouseEvent
      */
     public void mouseMoved(final MouseEvent e) {
         this.pos = new Pair<>(Double.valueOf(e.getX()), Double.valueOf(e.getY()));
@@ -134,16 +135,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
      * @return the new GameState of the button clicked
      */
     public GameState buttonClicked() {
-        if (this.pos == Constaints.HOME_BUTTON) {
+        if (this.pos == Constaints.button.HOME_BUTTON) {
             GameState.setGameState(GameState.HOME);
         }
-        if (this.pos.equals(Constaints.QUIT_BUTTON)) {
+        if (this.pos.equals(Constaints.button.QUIT_BUTTON)) {
             GameState.setGameState(GameState.GAMEOVER);
         }
-        if (this.pos.equals(Constaints.CONTINUE_BUTTON)) {
+        if (this.pos.equals(Constaints.button.CONTINUE_BUTTON)) {
             GameState.setGameState(GameState.PLAYING);
         }
-        if (this.pos.equals(Constaints.PAUSE_BUTTON)) {
+        if (this.pos.equals(Constaints.button.PAUSE_BUTTON)) {
             GameState.setGameState(GameState.PAUSED);
         }
         return GameState.getGameState();
