@@ -3,6 +3,7 @@ package it.unibo.model.api;
 import java.util.Optional;
 import java.util.Set;
 import it.unibo.common.Pair;
+import it.unibo.model.impl.AbstractComponent;
 import it.unibo.utilities.EntityType;
 /**
  * Entity.
@@ -26,7 +27,7 @@ public interface Entity {
      *
      * @param component the component to add
      */
-    void addComponent(Component component);
+    void addComponent(AbstractComponent component);
     /**
      * Get the position of the entity.
      *

@@ -32,6 +32,7 @@ public class EntityImpl implements Entity {
         this.type = type;
         this.components = new HashSet<>();
         this.position = position;
+        components.forEach(c -> ((AbstractComponent) c).setEntity(this));
         this.components.addAll(components);
     }
     /**
@@ -39,7 +40,8 @@ public class EntityImpl implements Entity {
      * @param component the component to add.
      */
     @Override
-    public void addComponent(final Component component) {
+    public void addComponent(final AbstractComponent component) {
+        component.setEntity(this);
         this.components.add(component);
     }
     /**
