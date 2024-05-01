@@ -2,6 +2,7 @@ package it.unibo.controller.impl;
 
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
@@ -12,14 +13,18 @@ import it.unibo.utilities.Constaints.Felix;
  */
 public class FelixController {
 
-    private final EntityFactoryImpl entityFactoryImpl = new EntityFactoryImpl();
+    private final EntityFactoryImpl entityFactoryImpl;
     private Entity felix;
+    private final GamePerformance gamePerformance;
 
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
+     * @param gamePerformance the game performance.
      */
-    public FelixController() {
+    public FelixController(final GamePerformance gamePerformance) {
+        this.gamePerformance = gamePerformance;
+        this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.felix = entityFactoryImpl.createFelix(Felix.FELIX_START);
     }
     /**

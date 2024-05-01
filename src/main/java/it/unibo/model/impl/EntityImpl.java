@@ -9,6 +9,7 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
 
 
@@ -20,20 +21,24 @@ public class EntityImpl implements Entity {
     private final EntityType type;
     private final Set<Component> components;
     private Pair<Double, Double> position;
+    private final GamePerformance gamePerformance;
 
     /**
      * EntityImpl constructor.
      *
      * @param type     the type of the entity
      * @param position the position of the entity
+     * @param gamePerformance the game performance of the entity
      * @param components the components of the entity
      */
-    public EntityImpl(final EntityType type, final Pair<Double, Double> position, final Set<Component> components) {
+    public EntityImpl(final EntityType type, final Pair<Double, Double> position, 
+                      final GamePerformance gamePerformance, final Set<Component> components) {
         this.type = type;
         this.components = new HashSet<>();
         this.position = position;
         components.forEach(c -> ((AbstractComponent) c).setEntity(this));
         this.components.addAll(components);
+        this.gamePerformance = gamePerformance;
     }
     /**
      * Method to add a component to the entity.
@@ -83,5 +88,12 @@ public class EntityImpl implements Entity {
     @Override
     public EntityType getEntityType() {
         return this.type;
+    }
+    /**
+     * @{@inheritDoc}
+     */
+    @Override
+    public GamePerformance getGamePerformance() {
+        return this.gamePerformance;
     }
 }

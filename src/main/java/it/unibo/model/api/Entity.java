@@ -46,4 +46,10 @@ public interface Entity {
      * @return the type of the entity
      */
     EntityType getEntityType();
+    /**
+     * Get the game performance of the entity.
+     * 
+     * @return the game performance of the entity
+     */
+    GamePerformance getGamePerformance();
 }

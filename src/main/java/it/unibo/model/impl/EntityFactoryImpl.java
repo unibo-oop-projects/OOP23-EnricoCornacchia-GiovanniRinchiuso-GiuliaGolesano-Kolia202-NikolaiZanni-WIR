@@ -7,6 +7,7 @@ import java.util.Set;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
 import it.unibo.utilities.Constaints.Felix;
 import it.unibo.model.api.Component;
@@ -15,6 +16,16 @@ import it.unibo.model.api.Component;
  * EntityFactoryImpl.
  */
 public class EntityFactoryImpl implements EntityFactory {
+    private final GamePerformance gamePerformance;
+
+    /**
+     * EntityFactoryImpl constructor.
+     * @param gamePerformance the game performance of the entity factory.
+     */
+    public EntityFactoryImpl(final GamePerformance gamePerformance) {
+        this.gamePerformance = gamePerformance;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -25,7 +36,7 @@ public class EntityFactoryImpl implements EntityFactory {
                 new LivesComponent(),
                 new FixWindowsComponent(),
                 new HitboxComponent(Felix.FELIX_START.getX(), Felix.FELIX_START.getY(), EntityType.FELIX)));
-        return new EntityImpl(EntityType.FELIX, pos, components);
+        return new EntityImpl(EntityType.FELIX, pos, gamePerformance, components);
     }
 
     /**
@@ -35,7 +46,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH)));
-        return new EntityImpl(EntityType.RALPH, pos, components);
+        return new EntityImpl(EntityType.RALPH, pos, gamePerformance, components);
     }
 
     /**
@@ -53,7 +64,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        return new EntityImpl(EntityType.BRICK, pos, components);
+        return new EntityImpl(EntityType.BRICK, pos, gamePerformance, components);
     }
 
     /**
@@ -62,7 +73,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        return new EntityImpl(EntityType.CAKE, pos, components);
+        return new EntityImpl(EntityType.CAKE, pos, gamePerformance, components);
     }
 
     /**
@@ -71,6 +82,6 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBird(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        return new EntityImpl(EntityType.BIRD, pos, components);
+        return new EntityImpl(EntityType.BIRD, pos, gamePerformance, components);
     }
 }

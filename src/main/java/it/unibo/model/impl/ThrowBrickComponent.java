@@ -3,6 +3,8 @@ package it.unibo.model.impl;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.GamePerformance;
+
 import java.util.Set;
 import it.unibo.common.Pair;
 
@@ -13,12 +15,15 @@ public class ThrowBrickComponent implements Component {
 
         private boolean blocked;
         private final EntityFactoryImpl entityFactoryImpl;
+        private final GamePerformance gamePerformance;
         /**
          * Constructor for the ThrowBrickComponent.
+         * @param gamePerformance the game performance.
          */
-        public ThrowBrickComponent() {
+        public ThrowBrickComponent(final GamePerformance gamePerformance) {
             this.blocked = false;
-            this.entityFactoryImpl = new EntityFactoryImpl();
+            this.gamePerformance = gamePerformance;
+            this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         }
         /**
          * Create a new brick in the position passed as parameter and add it to the set of bricks.

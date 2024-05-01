@@ -33,7 +33,7 @@ public class GamePerformanceImpl implements GamePerformance {
      */
     public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
-        this.entityFactory = new EntityFactoryImpl();
+        this.entityFactory = new EntityFactoryImpl(this);
         this.won = false;
         this.lost = false;
     }
