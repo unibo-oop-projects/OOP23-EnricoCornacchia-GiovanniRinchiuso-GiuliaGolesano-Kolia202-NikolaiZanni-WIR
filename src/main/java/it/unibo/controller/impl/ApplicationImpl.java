@@ -30,7 +30,7 @@ public class ApplicationImpl implements Application {
     }
     private void setController() {
         this.brickController = new BrickController(gamePerformance);
-        this.collisionManager = new CollisionManager();
+        this.collisionManager = new CollisionManager(gamePerformance.getEntity());
         this.felixController = new FelixController();
         this.gameController = new GameController();
         this.ralphController = new RalphController(0);
