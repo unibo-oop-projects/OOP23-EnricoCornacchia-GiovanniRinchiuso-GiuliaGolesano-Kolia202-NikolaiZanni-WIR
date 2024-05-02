@@ -262,4 +262,41 @@ public final class Constaints {
          */
         public static final double BIRD_MAX_Y_4 = 0.0;
     }
+    /**
+     * Windows constains.
+     */
+    public static class Windows{
+        /**
+         * Number of windows in the first level.
+         */
+        public static final int NUM_LEVEL_1 = 15;
+        /**
+         * Number of windows in the second level.
+         */
+        public static final int NUM_LEVEL_2 = 20;
+        /**
+         * Number of windows in the third level.
+         */
+        public static final int NUM_LEVEL_3 = 25;
+        /**
+         * Number of windows in the fourth level.
+         */
+        public static final int NUM_LEVEL_4 = 30;
+        /**
+         * Number of broken windows in the first level.
+         */
+        public static final int BROKEN_1 = 5;
+        /**
+         * Number of broken windows in the second level.
+         */
+        public static final int BROKEN_2 = 8;
+        /**
+         * Number of broken windows in the third level.
+         */
+        public static final int BROKEN_3 = 10;
+        /**
+         * Number of broken windows in the fourth level.
+         */
+        public static final int BROKEN_4 = 13;
+    }
 }
