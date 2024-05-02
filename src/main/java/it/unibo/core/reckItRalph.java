@@ -1,6 +1,6 @@
 package it.unibo.core;
 
-import it.unibo.controller.impl.ApplicationImpl;
+import it.unibo.controller.impl.GameController;
 import it.unibo.view.impl.GameApp;
 import javafx.application.Application;
 
@@ -18,7 +18,7 @@ public final class reckItRalph {
      * @param args
      */
     public static void main(final String[] args) {
-        new ApplicationImpl();
+        new GameController();
         Application.launch(GameApp.class);
     }
 }
