@@ -267,21 +267,21 @@ public final class Constaints {
      */
     public static class Windows{
         /**
-         * Number of windows in the first level.
+         * Number of floors of windows in the first level.
          */
-        public static final int NUM_LEVEL_1 = 15;
+        public static final int NUM_FLOORS_1 = 3;
         /**
-         * Number of windows in the second level.
+         * Number of floors of windows in the second level.
          */
-        public static final int NUM_LEVEL_2 = 20;
+        public static final int NUM_FLOORS_2 = 4;
         /**
-         * Number of windows in the third level.
+         * Number of floors of windows in the third level.
          */
-        public static final int NUM_LEVEL_3 = 25;
+        public static final int NUM_FLOORS_3 = 5;
         /**
-         * Number of windows in the fourth level.
+         * Number of floors of windows in the fourth level.
          */
-        public static final int NUM_LEVEL_4 = 30;
+        public static final int NUM_FLOORS_4 = 6;
         /**
          * Number of broken windows in the first level.
          */
@@ -298,5 +298,29 @@ public final class Constaints {
          * Number of broken windows in the fourth level.
          */
         public static final int BROKEN_4 = 13;
+        /**
+         * Y coordinate of the firs floor.
+         */
+        public static final double FLOOR_1_Y = 0.0;
+        /**
+         * Y coordinate of the second floor.
+         */
+        public static final double FLOOR_2_Y = 0.0;
+        /**
+         * Y coordinate of the third floor.
+         */
+        public static final double FLOOR_3_Y = 0.0;
+        /**
+         * Y coordinate of the fourth floor.
+         */
+        public static final double FLOOR_4_Y = 0.0;
+        /**
+         * Y coordinate of the fifth floor.
+         */
+        public static final double FLOOR_5_Y = 0.0;
+        /**
+         * Y coordinate of the sixth floor.
+         */
+        public static final double FLOOR_6_Y = 0.0;
     }
 }
