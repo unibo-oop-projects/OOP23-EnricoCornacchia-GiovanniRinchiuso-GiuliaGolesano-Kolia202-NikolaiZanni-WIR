@@ -21,6 +21,10 @@ public enum GameState {
      */
     GAMEOVER,
     /**
+     * Represents the game being won.
+     */
+    WIN,
+    /**
      * Represents the settings screen.
      */
     SETTINGS;

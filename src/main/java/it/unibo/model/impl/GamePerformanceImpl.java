@@ -13,6 +13,7 @@ import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
+import it.unibo.utilities.GameState;
 
 /**
  * Class that manages the game performance of the play.
@@ -105,10 +106,24 @@ public class GamePerformanceImpl implements GamePerformance {
         return this.lost;
     }
     /**
+     * Set the gameover gamestate.
+     */
+    public void setLost(){
+        this.lost=true;
+        GameState.setGameState(GameState.GAMEOVER);
+    }
+    /**
      * {@inheritDoc}
      */
     public boolean isWon() {
         return this.won;
+    }
+    /**
+     * Set the win gamestate.
+     */
+    public void setWin(){
+        this.won=true;
+        GameState.setGameState(GameState.WIN);
     }
     /**
      * {@inheritDoc}
@@ -121,8 +136,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     public void removeBrick(final Pair<Double, Double> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeBrick'");
+        this.entities.remove(entities.stream().filter(e ->e.getEntityType() == EntityType.BRICK).toList());
     }
     /**
      * {@inheritDoc}
@@ -181,7 +195,6 @@ public class GamePerformanceImpl implements GamePerformance {
     private void placeBird() {
         this.entities.add(this.entityFactory.createBird(placePowerUps(EntityType.BIRD)));
     }
-
     /**
      * {@inheritDoc}
      */

@@ -12,12 +12,11 @@ public class GameController {
     private final RalphController ralphController;
     private final FelixController felixController;
     private final BrickController brickController;
+    private final WindowsController windowsController;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameView gameView;
     private final GamePerformance gamePerformance;
-
-
     /**
      * Constructor for the GameController.
      */
@@ -26,11 +25,11 @@ public class GameController {
         ralphController = new RalphController(gamePerformance.getLevel(), this.gamePerformance);
         felixController = new FelixController(this.gamePerformance);
         brickController = new BrickController(this.gamePerformance);
+        windowsController = new WindowsController(0, gamePerformance);
         collisionManager = new CollisionManager(this.gamePerformance.getEntity());
         gameView = new GameView(this);
         inputManager = new InputManager(this.gamePerformance);
     }
- 
     /**
      * Update the game, makes Ralph move and the bricks fall.
      */
