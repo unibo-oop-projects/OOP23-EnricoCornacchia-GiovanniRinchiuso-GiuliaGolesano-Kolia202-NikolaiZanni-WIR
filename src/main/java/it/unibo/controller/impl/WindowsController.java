@@ -12,7 +12,11 @@ public class WindowsController {
     private final GamePerformance gamePerformance;
     //private final Map<Pair<Double,Double>, Integer> Windows;
     private boolean broken;
-    
+    /**
+     * Constructor.
+     * @param level
+     * @param gamePerformance
+     */
     public WindowsController(final int level, final GamePerformance gamePerformance){
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
@@ -47,9 +51,14 @@ public class WindowsController {
                 break;
         }
     }
-
+    /**
+     * Method that create a floor of windows.
+     * @param y
+     */
     private void createLine(double y){
         
     }
+
+
 
 }
