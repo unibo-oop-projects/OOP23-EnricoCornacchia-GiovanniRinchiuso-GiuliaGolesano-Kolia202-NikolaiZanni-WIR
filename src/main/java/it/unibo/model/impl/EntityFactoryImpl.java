@@ -35,7 +35,7 @@ public class EntityFactoryImpl implements EntityFactory {
                 new PointsComponent(),
                 new LivesComponent(),
                 new FixWindowsComponent(),
-                new HitboxComponent(Felix.FELIX_START.getX(), Felix.FELIX_START.getY(), EntityType.FELIX)));
+                new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.FELIX, pos, gamePerformance, components);
     }
 
