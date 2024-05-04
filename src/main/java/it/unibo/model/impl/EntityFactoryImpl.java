@@ -9,7 +9,6 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
-import it.unibo.utilities.Constaints.Felix;
 import it.unibo.model.api.Component;
 
 /**
