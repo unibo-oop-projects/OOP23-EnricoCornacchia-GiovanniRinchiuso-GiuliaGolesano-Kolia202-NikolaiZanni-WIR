@@ -1,8 +1,10 @@
 package it.unibo.model.impl;
 
+import it.unibo.common.Pair;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
 import it.unibo.utilities.Constaints.Bird;
 import it.unibo.utilities.Constaints.Brick;
@@ -61,7 +63,59 @@ public class HitboxComponent extends AbstractComponent {
     @Override
     public void update() {
         Entity entity = this.getEntity();
+        final EntityType type = entity.getEntityType();
+        if (type==EntityType.FELIX) {
+            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
+        } else if (type==EntityType.BRICK) {
+            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
+        } else if (type==EntityType.WINDOW) {
+            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
+        } else if (type==EntityType.CAKE) {
+            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Cake.CAKE_WIDTH, Cake.CAKE_HEIGHT);
+        } else if (type==EntityType.BIRD) {
+            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Bird.BIRD_WIDTH, Bird.BIRD_HEIGHT);
+        }
+    }
 
+    /**
+     * Checks for collisions with the edges of the game area and handles them accordingly.
+     * If the hitbox of the entity goes beyond the left or right walls, it is repositioned to the nearest valid position.
+     * If the hitbox of the entity goes beyond the bottom wall and the entity is of type BRICK, it is removed from the game.
+     */
+    public void checkEdgesCollisions() {
+        if (this.hitbox.getX() < Constaints.GameEdges.LEFT_WALL) {
+            this.hitbox.setX(Constaints.GameEdges.LEFT_WALL);
+            this.getEntity().setPosition(new Pair<Double,Double>(Constaints.GameEdges.LEFT_WALL, this.hitbox.getY()));
+        }
+        if (this.hitbox.getX() > Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth()) {
+            this.hitbox.setX(Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth());
+            this.getEntity().setPosition(new Pair<Double,Double>(Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth(), this.hitbox.getY()));
+        }
+        if (this.hitbox.getY() <= Constaints.GameEdges.DOWN_WALL) {
+            if (this.getEntity().getEntityType() == EntityType.BRICK) {
+                this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
+            }
+        }
+    }
+
+    /**
+     * Checks for collisions with other entities.
+     */
+    public void checkOtherEntitiesCollisions() {
+        for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
+            if (!e.equals(this.getEntity())) {
+                if (this.collidesWith((HitboxComponent)e.getComponent(ComponentType.HITBOX).get())) {
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
+                        this.getEntity().getGamePerformance().removeBrick(e.getPosition());
+                        this.getEntity().getGamePerformance().oneLifeLost();
+                    }
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
+                        //this.getEntity().getGamePerformance().removeCake(e.getPosition());
+                        this.getEntity().getGamePerformance().oneLifeEarned();
+                    }
+                }
+            }
+        }
     }
 
     /**

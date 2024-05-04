@@ -46,7 +46,7 @@ public class CollisionManager {
      * Check if there is a collision.
      */
     public void check() {
-        this.hitboxes.forEach(h -> h.update());
+        this.hitboxes.stream().forEach(h -> h.update());
     }
 
 }
