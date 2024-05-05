@@ -64,9 +64,13 @@ public class HitboxComponent extends AbstractComponent {
     public void update() {
         Entity entity = this.getEntity();
         final EntityType type = entity.getEntityType();
+        this.checkEdgesCollisions();
         if (type==EntityType.FELIX) {
+            this.checkOtherEntitiesCollisions();
+            this.checkPlatformCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
         } else if (type==EntityType.BRICK) {
+            this.checkOtherEntitiesCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
         } else if (type==EntityType.WINDOW) {
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -95,6 +99,94 @@ public class HitboxComponent extends AbstractComponent {
             if (this.getEntity().getEntityType() == EntityType.BRICK) {
                 this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
             }
+        }
+    }
+
+    public void checkPlatformCollisions() {
+        final int level = this.getEntity().getGamePerformance().getLevel();
+        switch(level) {
+            case 1:
+                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
+                }
+                break;
+            case 2:
+                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
+                }
+                break;
+            case 3:
+                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
+                }
+                else if (this .hitbox.getY() > Constaints.Windows.FLOOR_5_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_5_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_5_Y));
+                }
+                break;
+            case 4:
+                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
+                }
+                else if (this .hitbox.getY() > Constaints.Windows.FLOOR_5_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_5_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_5_Y));
+                }
+                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_6_Y) {
+                    this.hitbox.setY(Constaints.Windows.FLOOR_6_Y);
+                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_6_Y));
+                }
+                break;
+            default:
+                break;
         }
     }
 
