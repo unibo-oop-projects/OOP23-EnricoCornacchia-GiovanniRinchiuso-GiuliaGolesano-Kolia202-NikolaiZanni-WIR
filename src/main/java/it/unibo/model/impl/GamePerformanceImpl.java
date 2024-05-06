@@ -42,7 +42,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     public void initialize() {
-        initializeEntities();
+        this.initializeEntities();
         this.createGameMap();
     }
     /**
@@ -109,7 +109,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * Set the gameover gamestate.
      */
     public void setLost(){
-        this.lost=true;
+        this.lost = true;
         GameState.setGameState(GameState.GAMEOVER);
     }
     /**
@@ -122,7 +122,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * Set the win gamestate.
      */
     public void setWin(){
-        this.won=true;
+        this.won = true;
         GameState.setGameState(GameState.WIN);
     }
     /**
