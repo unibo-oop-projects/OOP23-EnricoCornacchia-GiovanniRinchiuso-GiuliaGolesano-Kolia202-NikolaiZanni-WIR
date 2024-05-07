@@ -26,7 +26,6 @@ public class GamePerformanceImpl implements GamePerformance {
     private final List<Integer> inputs = new ArrayList<>();
     private boolean won;
     private boolean lost;
-    private int level;
     private final Random random = new Random();
     /**
      * Constructor for the GamePerformanceImpl.
@@ -65,12 +64,6 @@ public class GamePerformanceImpl implements GamePerformance {
     public void initializeEntities() {
         entities.add(this.getRalph());
         entities.add(this.getFelix());
-    }
-    /**
-     * Add bricks or power-ups to the list of entities.
-     */
-    public void addEntities() {
-        entities.addAll(this.getBricks());
     }
     /**
      * {@inheritDoc}
@@ -170,7 +163,7 @@ public class GamePerformanceImpl implements GamePerformance {
                 x = Constaints.GameEdges.RIGHT_WALL;
             }
             //if(e == EntityType.CAKE) x must be one of the windows
-            switch (level) {
+            switch (this.getLevel()) {
                 case 1:
                     y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_1);
                     break;
@@ -203,27 +196,12 @@ public class GamePerformanceImpl implements GamePerformance {
         throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
     }
     /**
-     * Getter for the level.
-     * @return the level.
-     */
-    @Override
-    public int getLevel() {
-        return this.level;
-    }
-    /**
-     * Setter for the level.
-     * @param level the level to set.
-     */
-    public void setLevel(final int level) {
-        this.level = level;
-    }
-    /**
      * Update the game. This has to be the main method of this class, 
      * that delegates the update of the entities to other private methods.
      * When a brick is removed by the brick controller, it will be removed also from the list of entities.
      */
     public void update() {
-        // TODO Auto-generated method stub
+        entities.addAll(this.getBricks());
     }
     /**
      * Returns the set of bricks.
@@ -253,5 +231,12 @@ public class GamePerformanceImpl implements GamePerformance {
     public void addEntity(final Entity e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLevel() {
+        return this.gameController.getLevel();
     }
 }

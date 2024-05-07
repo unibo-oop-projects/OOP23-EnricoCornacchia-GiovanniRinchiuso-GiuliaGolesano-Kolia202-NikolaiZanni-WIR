@@ -16,17 +16,19 @@ public class GameController {
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GamePerformance gamePerformance;
+    private int level;
     /**
      * Constructor for the GameController.
      */
     public GameController() {
         gamePerformance = new GamePerformanceImpl(this);
-        ralphController = new RalphController(gamePerformance.getLevel(), this.gamePerformance);
+        ralphController = new RalphController(this.gamePerformance);
         felixController = new FelixController(this.gamePerformance);
         brickController = new BrickController(this.gamePerformance);
         windowsController = new WindowsController(0, gamePerformance);
         collisionManager = new CollisionManager(this.gamePerformance.getEntity());
         inputManager = new InputManager(this.gamePerformance);
+        level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
      * Update the game, makes Ralph move and the bricks fall.
@@ -34,6 +36,7 @@ public class GameController {
     public void update() {
         brickController.fallBricks();
         ralphController.update(brickController.getBricks());
+        gamePerformance.update();
     }
     /**
      * Controls if the game is over.
@@ -63,4 +66,27 @@ public class GameController {
     public BrickController getBrickController() {
         return this.brickController;
     }
+    /**
+     * Getter for the Windows controller.
+     * @return the Windows controller.
+     */
+    public WindowsController getWindowsController() {
+        return this.windowsController;
+    }
+    /**
+     * Getter for the level.
+     * @return the level.
+     */
+    public int getLevel() {
+        return this.level;
+    }
+    /**
+     * Setter for the level.
+     * @param level the new level.
+     */
+    public void setLevel(final int level) {
+        this.level = level;
+    }
+
+
 }

@@ -101,7 +101,7 @@ public class HitboxComponent extends AbstractComponent {
             }
         }
     }
-
+    
     public void checkPlatformCollisions() {
         final int level = this.getEntity().getGamePerformance().getLevel();
         switch(level) {

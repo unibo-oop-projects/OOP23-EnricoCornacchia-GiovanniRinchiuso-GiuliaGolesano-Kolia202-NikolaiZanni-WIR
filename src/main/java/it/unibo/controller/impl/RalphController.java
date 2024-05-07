@@ -16,17 +16,15 @@ public class RalphController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final Entity ralph;
     private final GamePerformance gamePerformance;
-    private final int level;
     /**
      * Constructor for the RalphController.
      * @param level the level of the game.
      * @param gamePerformance the game performance.
      */
-    public RalphController(final int level, final GamePerformance gamePerformance) {
+    public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
-        this.level = level;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        switch (this.level) {
+        switch (this.gamePerformance.getLevel()) {
             case 1:
                 ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
                 break;

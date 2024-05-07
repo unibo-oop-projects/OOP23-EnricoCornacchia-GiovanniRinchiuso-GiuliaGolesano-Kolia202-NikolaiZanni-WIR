@@ -108,12 +108,12 @@ public interface GamePerformance {
      */
     Set<EntityType> powerUps();
     /**
-     * Method that returns the level of the game.
-     * 
-     * @return the level of the game.
+     * Method that updates the game play.
+     */
+    void update();
+    /**
+     * Getter of the level
      */
     int getLevel();
-
-    void update();
 
 }
