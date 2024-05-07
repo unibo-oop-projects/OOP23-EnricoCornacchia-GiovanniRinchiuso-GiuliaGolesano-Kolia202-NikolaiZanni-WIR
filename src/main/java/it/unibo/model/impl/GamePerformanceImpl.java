@@ -129,7 +129,10 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     public void removeBrick(final Pair<Double, Double> pos) {
-        this.entities.remove(entities.stream().filter(e ->e.getEntityType() == EntityType.BRICK).toList());
+        entities.remove(entities.stream()
+                               .filter(e -> e.getEntityType() == EntityType.BRICK && e.getPosition().equals(pos))
+                               .findFirst()
+                               .orElse(null));
     }
     /**
      * {@inheritDoc}

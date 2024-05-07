@@ -2,7 +2,6 @@ package it.unibo.controller.impl;
 
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
-import it.unibo.view.impl.GameView;
 
 /**
  * Main controller of the game.
