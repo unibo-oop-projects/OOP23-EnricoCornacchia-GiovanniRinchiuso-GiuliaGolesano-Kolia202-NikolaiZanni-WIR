@@ -24,7 +24,7 @@ public class GameController {
         ralphController = new RalphController(this.gamePerformance);
         felixController = new FelixController(this.gamePerformance);
         brickController = new BrickController(this.gamePerformance);
-        windowsController = new WindowsController(0, gamePerformance);
+        windowsController = new WindowsController(gamePerformance);
         collisionManager = new CollisionManager(this.gamePerformance.getEntity());
         inputManager = new InputManager(this.gamePerformance);
         level = 1; //level will be set by the settings view, if is not set it will be 1
@@ -85,6 +85,13 @@ public class GameController {
      */
     public void setLevel(final int level) {
         this.level = level;
+    }
+    /**
+     * Getter for the winning condition.
+     * @return true if the game is won, false otherwise.
+     */
+    public boolean isWin() {
+        return this.windowsController.isWon();
     }
 
 

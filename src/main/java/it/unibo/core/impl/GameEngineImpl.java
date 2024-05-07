@@ -14,7 +14,6 @@ public class GameEngineImpl implements GameEngine {
     private final int period;
     private final GameController gameController;
     private final GameView gameView;
-    private GameState gamestate;
     /**
      * Constructor for the game engine.
      */
@@ -23,21 +22,24 @@ public class GameEngineImpl implements GameEngine {
         gameController = new GameController();
         gameView = new GameView(gameController);
     }
-
     /**
      * Main loop of the game.
      */
     @Override
     public void mainLoop() {
         long current = System.currentTimeMillis();
-        while (gameController.gameIsNotOver()) {
+        while (gameController.gameIsNotOver() && gameController.isWin()) {
             if (System.currentTimeMillis() - current > this.period) {
                 this.update();
                 this.draw();
                 current = System.currentTimeMillis();
             }
         }
-        gamestate = gamestate.GAMEOVER;
+        if(!gameController.gameIsNotOver()) {
+            GameState.setGameState(GameState.WIN);
+        } else {
+        GameState.setGameState(GameState.GAMEOVER);
+        }
     }
     /**
      * Draw the game.

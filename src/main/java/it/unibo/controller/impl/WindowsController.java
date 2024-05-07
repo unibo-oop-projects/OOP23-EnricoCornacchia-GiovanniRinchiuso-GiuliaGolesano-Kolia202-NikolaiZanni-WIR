@@ -14,13 +14,12 @@ public class WindowsController {
     private boolean broken;
     /**
      * Constructor.
-     * @param level
-     * @param gamePerformance
+     * @param gamePerformance the game performance.
      */
-    public WindowsController(final int level, final GamePerformance gamePerformance){
+    public WindowsController(final GamePerformance gamePerformance){
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        switch (level) {
+        switch (this.gamePerformance.getLevel()) {
             case 1:
                 createLine(Constaints.Windows.FLOOR_1_Y);
                 createLine(Constaints.Windows.FLOOR_2_Y);
@@ -57,6 +56,14 @@ public class WindowsController {
      */
     private void createLine(double y){
         
+    }
+    /**
+     * Method that check if there are broken windows.
+     * @return
+     */
+    public boolean isWon() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isWon'");
     }
 
 
