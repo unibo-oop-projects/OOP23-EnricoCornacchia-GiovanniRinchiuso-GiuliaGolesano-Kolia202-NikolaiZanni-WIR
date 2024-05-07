@@ -16,6 +16,7 @@ public class RalphController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final Entity ralph;
     private final GamePerformance gamePerformance;
+    private final int level;
     /**
      * Constructor for the RalphController.
      * @param level the level of the game.
@@ -23,8 +24,9 @@ public class RalphController {
      */
     public RalphController(final int level, final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
+        this.level = level;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        switch (level) {
+        switch (this.level) {
             case 1:
                 ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
                 break;
@@ -74,5 +76,12 @@ public class RalphController {
      */
     public Entity getRalph() {
         return ralph;
+    }
+    /**
+     * Update Ralph position, and make him throwing bricks.
+     */
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

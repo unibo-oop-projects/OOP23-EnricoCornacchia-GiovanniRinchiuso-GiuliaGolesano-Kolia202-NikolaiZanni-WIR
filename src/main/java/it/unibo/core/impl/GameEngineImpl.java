@@ -1,6 +1,7 @@
 package it.unibo.core.impl;
 
 import it.unibo.core.api.GameEngine;
+import it.unibo.view.impl.GameView;
 import it.unibo.controller.impl.GameController;
 
 /**
@@ -11,12 +12,15 @@ public class GameEngineImpl implements GameEngine {
 
     private final int period;
     private final GameController gameController;
+    private final GameView gameView;
     /**
      * Constructor for the game engine.
      */
     public GameEngineImpl() {
         period = 10;
         gameController = new GameController();
+        gameView = new GameView(gameController);
+
     }
 
     /**
@@ -25,7 +29,7 @@ public class GameEngineImpl implements GameEngine {
     @Override
     public void mainLoop() {
         long current = System.currentTimeMillis();
-        while (!gameController.gameOver()) {
+        while (gameController.gameIsNotOver()) {
             if (System.currentTimeMillis() - current > this.period) {
                 this.update();
                 this.draw();

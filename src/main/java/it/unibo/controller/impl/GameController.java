@@ -15,7 +15,6 @@ public class GameController {
     private final WindowsController windowsController;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
-    private final GameView gameView;
     private final GamePerformance gamePerformance;
     /**
      * Constructor for the GameController.
@@ -27,21 +26,21 @@ public class GameController {
         brickController = new BrickController(this.gamePerformance);
         windowsController = new WindowsController(0, gamePerformance);
         collisionManager = new CollisionManager(this.gamePerformance.getEntity());
-        gameView = new GameView(this);
         inputManager = new InputManager(this.gamePerformance);
     }
     /**
      * Update the game, makes Ralph move and the bricks fall.
      */
     public void update() {
-        gamePerformance.update();
+        brickController.fallBricks();
+        ralphController.update();
     }
     /**
      * Controls if the game is over.
      * @return true if the game is over, false otherwise.
      */
-    public boolean gameOver() {
-        return this.gamePerformance.isLost();
+    public boolean gameIsNotOver() {
+        return this.felixController.isAlive();
     }
     /**
      * Getter for the Ralph controller.
