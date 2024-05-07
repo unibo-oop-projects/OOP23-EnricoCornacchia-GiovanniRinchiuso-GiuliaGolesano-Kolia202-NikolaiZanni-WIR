@@ -121,13 +121,6 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public void createBrick(final Pair<Double, Double> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createBrick'");
-    }
-    /**
-     * {@inheritDoc}
-     */
     public void removeBrick(final Pair<Double, Double> pos) {
         entities.remove(entities.stream()
                                .filter(e -> e.getEntityType() == EntityType.BRICK && e.getPosition().equals(pos))
@@ -199,9 +192,7 @@ public class GamePerformanceImpl implements GamePerformance {
         throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
     }
     /**
-     * Update the game. This has to be the main method of this class, 
-     * that delegates the update of the entities to other private methods.
-     * When a brick is removed by the brick controller, it will be removed also from the list of entities.
+     * The main method that updates the game, adding the new entities (bricks) to the list of entities.
      */
     public void update() {
         entities.addAll(this.getBricks());

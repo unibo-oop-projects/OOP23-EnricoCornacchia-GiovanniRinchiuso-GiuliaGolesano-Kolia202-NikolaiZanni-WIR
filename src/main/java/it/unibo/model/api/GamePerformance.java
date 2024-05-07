@@ -71,14 +71,6 @@ public interface GamePerformance {
      * @return if Felix has won.
      */
     boolean isWon();
-
-    /**
-     * Method that creates a new brick launched.
-     * 
-     * @param pos
-     */
-    void createBrick(Pair<Double,Double> pos);
-
     /**
      * Method that removes tha brick when he got to the bottom of the field.
      * 

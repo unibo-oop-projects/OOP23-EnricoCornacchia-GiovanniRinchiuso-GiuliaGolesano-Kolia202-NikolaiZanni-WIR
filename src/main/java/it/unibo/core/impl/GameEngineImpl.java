@@ -1,6 +1,7 @@
 package it.unibo.core.impl;
 
 import it.unibo.core.api.GameEngine;
+import it.unibo.utilities.GameState;
 import it.unibo.view.impl.GameView;
 import it.unibo.controller.impl.GameController;
 
@@ -13,6 +14,7 @@ public class GameEngineImpl implements GameEngine {
     private final int period;
     private final GameController gameController;
     private final GameView gameView;
+    private GameState gamestate;
     /**
      * Constructor for the game engine.
      */
@@ -20,7 +22,6 @@ public class GameEngineImpl implements GameEngine {
         period = 10;
         gameController = new GameController();
         gameView = new GameView(gameController);
-
     }
 
     /**
@@ -36,6 +37,7 @@ public class GameEngineImpl implements GameEngine {
                 current = System.currentTimeMillis();
             }
         }
+        gamestate = gamestate.GAMEOVER;
     }
     /**
      * Draw the game.
