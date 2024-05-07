@@ -33,7 +33,7 @@ public class GameController {
      */
     public void update() {
         brickController.fallBricks();
-        ralphController.update();
+        ralphController.update(brickController.getBricks());
     }
     /**
      * Controls if the game is over.

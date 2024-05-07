@@ -80,8 +80,9 @@ public class RalphController {
     /**
      * Update Ralph position, and make him throwing bricks.
      */
-    public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public void update(final Set<Entity> bricks) {
+        this.throwBrickLeftArm(bricks);
+        this.throwBrickRightArm(bricks);
+        this.move();
     }
 }
