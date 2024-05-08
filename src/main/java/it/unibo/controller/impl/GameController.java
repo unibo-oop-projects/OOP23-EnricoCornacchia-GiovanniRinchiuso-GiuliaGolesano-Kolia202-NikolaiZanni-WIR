@@ -20,22 +20,22 @@ public class GameController {
      * Constructor for the GameController.
      */
     public GameController() {
-        gamePerformance = new GamePerformanceImpl(this);
-        ralphController = new RalphController(this.gamePerformance);
-        felixController = new FelixController(this.gamePerformance);
-        brickController = new BrickController(this.gamePerformance);
-        windowsController = new WindowsController(gamePerformance);
-        collisionManager = new CollisionManager(this.gamePerformance.getEntity());
-        inputManager = new InputManager(this.gamePerformance);
-        level = 1; //level will be set by the settings view, if is not set it will be 1
+        this.gamePerformance = new GamePerformanceImpl(this);
+        this.ralphController = new RalphController(this.gamePerformance);
+        this.felixController = new FelixController(this.gamePerformance);
+        this.brickController = new BrickController(this.gamePerformance);
+        this.windowsController = new WindowsController(gamePerformance);
+        this.collisionManager = new CollisionManager(this.gamePerformance.getEntity());
+        this.inputManager = new InputManager(this.gamePerformance);
+        this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
      * Update the game, makes Ralph move and the bricks fall.
      */
     public void update() {
-        brickController.fallBricks();
-        ralphController.update(brickController.getBricks());
-        gamePerformance.update();
+        this.brickController.fallBricks();
+        this.ralphController.update(brickController.getBricks());
+        this.gamePerformance.update();
     }
     /**
      * Controls if the game is over.

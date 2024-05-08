@@ -13,7 +13,6 @@ import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
-import it.unibo.utilities.GameState;
 
 /**
  * Class that manages the game performance of the play.
@@ -24,8 +23,6 @@ public class GamePerformanceImpl implements GamePerformance {
     private final EntityFactory entityFactory;
     private final Set<Entity> entities = new HashSet<>();
     private final List<Integer> inputs = new ArrayList<>();
-    private boolean won;
-    private boolean lost;
     private final Random random = new Random();
     /**
      * Constructor for the GamePerformanceImpl.
@@ -34,8 +31,6 @@ public class GamePerformanceImpl implements GamePerformance {
     public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
         this.entityFactory = new EntityFactoryImpl(this);
-        this.won = false;
-        this.lost = false;
     }
     /**
      * {@inheritDoc}
@@ -96,27 +91,13 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     public boolean isLost() {
-        return this.lost;
-    }
-    /**
-     * Set the gameover gamestate.
-     */
-    public void setLost(){
-        this.lost = true;
-        GameState.setGameState(GameState.GAMEOVER);
+        return !gameController.gameIsNotOver();
     }
     /**
      * {@inheritDoc}
      */
     public boolean isWon() {
-        return this.won;
-    }
-    /**
-     * Set the win gamestate.
-     */
-    public void setWin(){
-        this.won = true;
-        GameState.setGameState(GameState.WIN);
+        return gameController.isWin();
     }
     /**
      * {@inheritDoc}
