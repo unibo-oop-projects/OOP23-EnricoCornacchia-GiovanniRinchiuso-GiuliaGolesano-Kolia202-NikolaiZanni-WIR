@@ -7,6 +7,11 @@ import it.unibo.common.Pair;
  */
 public final class Constaints {
     /**
+     * Private constructor.
+     */
+    private Constaints() {
+    }
+    /**
      * The name of the gamestate.
      */
     public static final String GAMESTATE = "GameState: ";
@@ -265,7 +270,7 @@ public final class Constaints {
     /**
      * Windows constains.
      */
-    public static class Windows{
+    public static class Windows {
         /**
          * Number of floors of windows in the first level.
          */

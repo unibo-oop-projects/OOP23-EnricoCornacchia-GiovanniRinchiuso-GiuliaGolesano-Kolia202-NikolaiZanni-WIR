@@ -16,7 +16,7 @@ public class WindowsController {
      * Constructor.
      * @param gamePerformance the game performance.
      */
-    public WindowsController(final GamePerformance gamePerformance){
+    public WindowsController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         switch (this.gamePerformance.getLevel()) {
@@ -52,20 +52,18 @@ public class WindowsController {
     }
     /**
      * Method that create a floor of windows.
-     * @param y
+     * @param y the y coordinate of the floor.
      */
-    private void createLine(double y){
-        
+    private void createLine(final double y) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createLine'");
     }
     /**
      * Method that check if there are broken windows.
-     * @return
+     * @return true if the game is won, false otherwise.
      */
     public boolean isWon() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isWon'");
     }
-
-
-
 }

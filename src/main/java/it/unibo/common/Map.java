@@ -2,26 +2,27 @@ package it.unibo.common;
 
 /**
  * Class for a Map.
+ * @param <E> the entity
+ * @param <P> the position
  */
-public class Map<E,P> {
-    
+public class Map<E, P> {
     private final E entity;
     private final P pos;
     /**
      * Constructor.
-     * @param entity
-     * @param pos
+     * @param entity the entity
+     * @param pos the position
      */
-    public Map(final E entity, final P pos){
-        this.entity=entity;
-        this.pos=pos;
+    public Map(final E entity, final P pos) {
+        this.entity = entity;
+        this.pos = pos;
     }
     /**
      * Getter of the entity.
      * 
      * @return the entity
      */
-    public final E getEntity(){
+    public final E getEntity() {
         return this.entity;
     }
     /**
@@ -29,7 +30,7 @@ public class Map<E,P> {
      * 
      * @return the position
      */
-    public final P getPos(){
+    public final P getPos() {
         return this.pos;
     }
 }

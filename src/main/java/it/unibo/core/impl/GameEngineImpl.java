@@ -35,7 +35,7 @@ public class GameEngineImpl implements GameEngine {
                 current = System.currentTimeMillis();
             }
         }
-        if(!gameController.gameIsNotOver()) {
+        if (!gameController.gameIsNotOver()) {
             GameState.setGameState(GameState.WIN);
         } else {
         GameState.setGameState(GameState.GAMEOVER);

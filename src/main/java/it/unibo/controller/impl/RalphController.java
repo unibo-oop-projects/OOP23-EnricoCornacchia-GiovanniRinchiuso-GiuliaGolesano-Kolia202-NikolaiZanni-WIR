@@ -18,7 +18,6 @@ public class RalphController {
     private final GamePerformance gamePerformance;
     /**
      * Constructor for the RalphController.
-     * @param level the level of the game.
      * @param gamePerformance the game performance.
      */
     public RalphController(final GamePerformance gamePerformance) {
@@ -77,6 +76,7 @@ public class RalphController {
     }
     /**
      * Update Ralph position, and make him throwing bricks.
+     * @param bricks the set of bricks.
      */
     public void update(final Set<Entity> bricks) {
         this.throwBrickLeftArm(bricks);

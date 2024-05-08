@@ -10,7 +10,6 @@ import it.unibo.utilities.EntityType;
  * Interface that manages the game performance with all actions and elements present in the game play. 
  */
 public interface GamePerformance {
-
     /**
      * Method that initialize the game.
      */
@@ -26,28 +25,28 @@ public interface GamePerformance {
     /**
      * Method that adds a new entity to the game play.
      * 
-     * @param e
+     * @param e the entity to add.
      */
     void addEntity(Entity e);
 
     /**
      * Method that removes a entity from the game play.
      * 
-     * @param e
+     * @param e the entity to remove.
      */
     void removeEntity(Entity e);
 
     /**
      * Method that adds the new key pressed from keyboard.
      * 
-     * @param keyCode
+     * @param keyCode the key pressed
      */
     void addKey(int keyCode);
 
     /**
      * Method that remove the key released from the keyboard.
      * 
-     * @param keyCode
+     * @param keyCode the key released
      */
     void removeKey(int keyCode);
 
@@ -74,25 +73,21 @@ public interface GamePerformance {
     /**
      * Method that removes tha brick when he got to the bottom of the field.
      * 
-     * @param pos
+     * @param pos the position of the brick.
      */
-    void removeBrick(Pair<Double,Double> pos);
-
+    void removeBrick(Pair<Double, Double> pos);
     /**
      * Method that removes a life from the player’s stocks if a brick hit him.
      */
     void oneLifeLost();
-
     /**
      * Method that adds one life to the player's stock if he took a power ups.
      */
     void oneLifeEarned();
-
     /** 
      * Method that manages the spawn of power ups. passare per parametro il tipo di power ups??
      */
     void spawnPowerUps();
-
     /**
      * Method that returns all the power ups currently present in the game play.
      * 
@@ -107,5 +102,4 @@ public interface GamePerformance {
      * Getter of the level
      */
     int getLevel();
-
 }
