@@ -13,6 +13,7 @@ import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
+import javafx.scene.input.KeyCode;
 
 /**
  * Class that manages the game performance of the play.
@@ -22,7 +23,7 @@ public class GamePerformanceImpl implements GamePerformance {
     private final GameController gameController;
     private final EntityFactory entityFactory;
     private final Set<Entity> entities = new HashSet<>();
-    private final List<Integer> inputs = new ArrayList<>();
+    private final List<KeyCode> inputs = new ArrayList<>();
     private final Random random = new Random();
     /**
      * Constructor for the GamePerformanceImpl.
@@ -69,16 +70,14 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public void addKey(final int keyCode) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addKey'");
+    public void addKey(final KeyCode keyCode) {
+        this.inputs.add(keyCode);
     }
     /**
      * {@inheritDoc}
      */
-    public void removeKey(final int keyCode) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeKey'");
+    public void removeKey(final KeyCode keyCode) {
+        this.inputs.clear();
     }
     /**
      * {@inheritDoc}

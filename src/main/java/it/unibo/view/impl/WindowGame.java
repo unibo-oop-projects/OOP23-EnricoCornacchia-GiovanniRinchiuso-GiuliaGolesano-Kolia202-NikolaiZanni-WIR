@@ -1,18 +1,26 @@
 package it.unibo.view.impl;
 
+import javax.swing.text.Utilities;
+
+import it.unibo.controller.impl.GameController;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
+import it.unibo.utilities.Constaints;
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
 
 /**
  * WindowGame represents the window of the game.
@@ -46,6 +54,8 @@ public class WindowGame extends Application {
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
 
+        GameController gameController = new GameController();
+
         AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
         AnchorPane.setRightAnchor(backgroundImageView, 0.0);
@@ -66,5 +76,22 @@ public class WindowGame extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("StartGame");
         primaryStage.show();
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                switch(event.getCode()){
+                    case S: gameController.moveFelixDown(event.getCode());
+                    break;
+                    case A: gameController.moveFelixDown(event.getCode());
+                    break;
+                    case D: gameController.moveFelixDown(event.getCode());
+                    break;
+                    case W: gameController.moveFelixDown(event.getCode());
+                    break;
+                }
+            }
+            
+        });
     }
 }

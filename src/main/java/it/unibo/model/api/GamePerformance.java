@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.utilities.EntityType;
+import javafx.scene.input.KeyCode;
 
 /**
  * Interface that manages the game performance with all actions and elements present in the game play. 
@@ -39,16 +40,16 @@ public interface GamePerformance {
     /**
      * Method that adds the new key pressed from keyboard.
      * 
-     * @param keyCode the key pressed
+     * @param e the key pressed
      */
-    void addKey(int keyCode);
+    void addKey(KeyCode e);
 
     /**
      * Method that remove the key released from the keyboard.
      * 
      * @param keyCode the key released
      */
-    void removeKey(int keyCode);
+    void removeKey(KeyCode keyCode);
 
     /**
      * Method that returns the list of the keys clicked.

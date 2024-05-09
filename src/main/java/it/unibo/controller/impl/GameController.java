@@ -1,7 +1,10 @@
 package it.unibo.controller.impl;
 
+import java.beans.EventHandler;
+
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
+import javafx.scene.input.KeyCode;
 
 /**
  * Main controller of the game.
@@ -13,7 +16,6 @@ public class GameController {
     private final BrickController brickController;
     private final WindowsController windowsController;
     private final CollisionManager collisionManager;
-    private final InputManager inputManager;
     private final GamePerformance gamePerformance;
     private int level;
     /**
@@ -26,7 +28,6 @@ public class GameController {
         this.brickController = new BrickController(this.gamePerformance);
         this.windowsController = new WindowsController(gamePerformance);
         this.collisionManager = new CollisionManager(this.gamePerformance.getEntity());
-        this.inputManager = new InputManager(this.gamePerformance);
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
@@ -93,6 +94,36 @@ public class GameController {
     public boolean isWin() {
         return this.windowsController.isWon();
     }
-
-
+    /**
+     * Method to move the player after receiving keyboard input "down".
+     * @param e
+     */
+    public void moveFelixDown(KeyCode e){
+        this.felixController.moveDown();
+        this.gamePerformance.addKey(e);
+    }
+    /**
+     * Method to move the player after receiving keyboard input "left".
+     * @param e
+     */
+    public void moveFelixLeft(KeyCode e){
+        this.felixController.moveLeft();
+        this.gamePerformance.addKey(e);
+    }
+    /**
+     * Method to move the player after receiving keyboard input "right".
+     * @param e
+     */
+    public void moveFelixRight(KeyCode e){
+        this.felixController.moveRight();
+        this.gamePerformance.addKey(e);
+    }
+    /**
+     * Method to move the player after receiving keyboard input "up".
+     * @param e
+     */
+    public void moveFelixUp(KeyCode e){
+        this.felixController.moveUp();
+        this.gamePerformance.addKey(e);
+    }
 }
