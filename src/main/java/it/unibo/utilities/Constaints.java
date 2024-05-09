@@ -1,6 +1,7 @@
 package it.unibo.utilities;
 
 import it.unibo.common.Pair;
+import javafx.scene.input.KeyCode;
 
 /**
  * Class for the constaints used.
@@ -194,51 +195,6 @@ public final class Constaints {
         public static final double UNDER_IMAGE_WIDTH = 450;
     }
     /**
-     * keys of movement.
-     */
-    public static class MovementsKey {
-        /**
-         * Pressed Key A.
-         */
-        public static final int LEFT = 65;
-        /**
-         * Pressed Left arrow.
-         */
-        public static final int LEFT_ARROW = 37;
-        /**
-         * Pressed Key D.
-         */
-        public static final int RIGHT = 68;
-        /**
-         * Pressed Right arrow.
-         */
-        public static final int RIGHT_ARROW = 39;
-        /**
-         * Pressed Key W.
-         */
-        public static final int UP = 87;
-        /**
-         * Pressed Up arrow.
-         */
-        public static final int UP_ARROW = 38;
-        /**
-         * Pressed Key S.
-         */
-        public static final int DOWN = 83;
-        /**
-         * Pressed Down arrow.
-         */
-        public static final int DOWN_ARROW = 40;
-        /**
-         * Pressed Key T.
-         */
-        public static final int FIX = 84;
-        /**
-         * Pressed Esc.
-         */
-        public static final int ESCAPE = 27;
-    }
-    /**
      * Power ups constains.
      */
     public static class PowerUps {
@@ -274,19 +230,7 @@ public final class Constaints {
         /**
          * Number of floors of windows in the first level.
          */
-        public static final int NUM_FLOORS_1 = 3;
-        /**
-         * Number of floors of windows in the second level.
-         */
-        public static final int NUM_FLOORS_2 = 4;
-        /**
-         * Number of floors of windows in the third level.
-         */
-        public static final int NUM_FLOORS_3 = 5;
-        /**
-         * Number of floors of windows in the fourth level.
-         */
-        public static final int NUM_FLOORS_4 = 6;
+        public static final int NUM_FLOORS = 3;
         /**
          * Number of broken windows in the first level.
          */
@@ -303,29 +247,5 @@ public final class Constaints {
          * Number of broken windows in the fourth level.
          */
         public static final int BROKEN_4 = 13;
-        /**
-         * Y coordinate of the firs floor.
-         */
-        public static final double FLOOR_1_Y = 0.0;
-        /**
-         * Y coordinate of the second floor.
-         */
-        public static final double FLOOR_2_Y = 0.0;
-        /**
-         * Y coordinate of the third floor.
-         */
-        public static final double FLOOR_3_Y = 0.0;
-        /**
-         * Y coordinate of the fourth floor.
-         */
-        public static final double FLOOR_4_Y = 0.0;
-        /**
-         * Y coordinate of the fifth floor.
-         */
-        public static final double FLOOR_5_Y = 0.0;
-        /**
-         * Y coordinate of the sixth floor.
-         */
-        public static final double FLOOR_6_Y = 0.0;
     }
 }

@@ -103,7 +103,7 @@ public class HitboxComponent extends AbstractComponent {
     }
     
     public void checkPlatformCollisions() {
-        final int level = this.getEntity().getGamePerformance().getLevel();
+        /*final int level = this.getEntity().getGamePerformance().getLevel();
         switch(level) {
             case 1:
                 if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
@@ -187,7 +187,7 @@ public class HitboxComponent extends AbstractComponent {
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     /**
