@@ -202,30 +202,16 @@ La view quando viene creata instanzia un oggetto LevelImpl che crea il livello d
 \end{figure}
 
 \paragraph{Problema:}
-Notificare le view quando avviene un mouse event o un key event.
+Per giocare è necessario far muovere il giocatore sulla schermata di gioco, così da poter vincere e superare i livelli.
 
 \paragraph{Soluzione:}
-Siccome ogni view pu`o ricevere gli stessi eventi, abbiamo deciso di creare due listener generici MouseInputs e KeyboardInputs. Essi vengono aggiunti alla classe ApplicationPanel, quando riceveranno un evento, in base allo stato di gioco, lo invieranno alla corretta view. Se `e un input da tastiera, sar`a inviato come codice intero, nell’altro caso, sar`a inviata una coppia di interi con le coordinate x e y del punto premuto dal mouse. Quando durante il gioco avviene la pressione di un tasto che corrisponde ad un movimento, sar`a notificato al GameController che si preoccuper`a di passarlo al Gameplay in modo tale da aggiungerlo alla lista di tasti premuti, da processare successivamente nell’input component. Utilizziamo una lista di tasti in modo da evitare ipotetici inconvenienti come la perdita di un tasto dovuto al lag.
+Rispettando il più possibile il pattern architetturale MVC, ho gestito gli input da tastiera tramite un apposito EventHandler nel pannello di View con maggior priorità. Il KeyCode registrato dall'evento l'ho poi passato alla classe principale di Controller che, a sua volta, lo ha delegato al Controller specifico del personaggio in grado di muoversi, e ha fatto si che la classe generale di Model registrasse il dato nella sua lista di input.
 
-\subsubsection{Gestione degli input del player InputsComponent}
+\subsubsection{Creazione delle finestre}
 
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/input_components.png}
-\caption{Rappresentazione UML della gestione degli input del player InputsComponent.}
-\end{figure}
-
-\paragraph{Problema:}
-Durante il gioco `e necessario aggiornare gli input da tastiera per poter far muovere il nostro player.
-
-\paragraph{Soluzione:}
-Siccome ogni view pu`o ricevere gli stessi eventi, abbiamo deciso di creare due listener generici MouseInputs e KeyboardInputs. Essi vengono aggiunti alla classe ApplicationPanel, quando riceveranno un evento, in base allo stato di gioco, lo invieranno alla corretta view. Se `e un input da tastiera, sar`a inviato come codice intero, nell’altro caso, sar`a inviata una coppia di interi con le coordinate x e y del punto premuto dal mouse. Quando durante il gioco avviene la pressione di un tasto che corrisponde ad un movimento, sar`a notificato al GameController che si preoccuper`a di passarlo al Gameplay in modo tale da aggiungerlo alla lista di tasti premuti, da processare successivamente nell’input component. Utilizziamo una lista di tasti in modo da evitare ipotetici inconvenienti come la perdita di un tasto dovuto al lag.
-
-\subsubsection{Gestione delle collisioni}
-
-\begin{figure}[H]
-\centering{}
-\includegraphics[width=\textwidth]{img/collision.png}
+\includegraphics[width=\textwidth]{img/windows.png}
 \caption{Rappresentazione UML della gestione delle collisioni.}
 \end{figure}
 
