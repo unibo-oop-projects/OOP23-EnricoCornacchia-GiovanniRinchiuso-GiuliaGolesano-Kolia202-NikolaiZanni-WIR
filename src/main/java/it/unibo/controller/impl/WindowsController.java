@@ -1,11 +1,7 @@
 package it.unibo.controller.impl;
 
-import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
-import it.unibo.utilities.Constaints;
-import it.unibo.common.Map;
-import it.unibo.common.Pair;
 
 public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;

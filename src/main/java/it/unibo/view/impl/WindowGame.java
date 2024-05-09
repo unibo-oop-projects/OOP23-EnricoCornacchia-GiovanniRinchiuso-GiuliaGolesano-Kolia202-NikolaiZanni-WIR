@@ -1,13 +1,9 @@
 package it.unibo.view.impl;
 
-import javax.swing.text.Utilities;
-
 import it.unibo.controller.impl.GameController;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
-import it.unibo.utilities.Constaints;
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,7 +16,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.input.KeyCode;
 
 /**
  * WindowGame represents the window of the game.
@@ -88,6 +83,8 @@ public class WindowGame extends Application {
                     case D: gameController.moveFelixDown(event.getCode());
                     break;
                     case W: gameController.moveFelixDown(event.getCode());
+                    break;
+                    default:
                     break;
                 }
             }

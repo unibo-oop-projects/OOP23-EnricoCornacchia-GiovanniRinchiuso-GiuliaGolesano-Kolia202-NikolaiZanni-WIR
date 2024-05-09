@@ -1,7 +1,5 @@
 package it.unibo.controller.impl;
 
-import java.beans.EventHandler;
-
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
 import javafx.scene.input.KeyCode;

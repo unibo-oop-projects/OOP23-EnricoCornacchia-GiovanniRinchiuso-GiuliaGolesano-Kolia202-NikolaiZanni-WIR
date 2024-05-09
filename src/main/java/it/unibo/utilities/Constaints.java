@@ -61,19 +61,7 @@ public final class Constaints {
         /**
          * The position of starting Ralph of the first level.
          */
-        public static final Pair<Double, Double> RALPH_START_LEVEL_1 = new Pair<>(400.0, 700.0);
-        /**
-         * The position of starting Ralph of the second level.
-         */
-        public static final Pair<Double, Double> RALPH_START_LEVEL_2 = new Pair<>(400.0, 700.0);
-        /**
-         * The position of starting Ralph of the third level.
-         */
-        public static final Pair<Double, Double> RALPH_START_LEVEL_3 = new Pair<>(400.0, 700.0);
-        /**
-         * The position of starting Ralph of the fourth level.
-         */
-        public static final Pair<Double, Double> RALPH_START_LEVEL_4 = new Pair<>(400.0, 700.0);
+        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 700.0);
         /**
          * The difference between the position of Ralph and the position of his right
          * hand.
@@ -206,22 +194,6 @@ public final class Constaints {
          * Minimum y of the bird.
          */
         public static final double BIRD_MIN_Y = 50.0;
-        /**
-         * Maximum y of the bird level 1.
-         */
-        public static final double BIRD_MAX_Y_1 = 600.0;
-        /**
-         * Maximum y of the bird level 2.
-         */
-        public static final double BIRD_MAX_Y_2 = 0.0;
-        /**
-         * Maximum y of the bird level 3.
-         */
-        public static final double BIRD_MAX_Y_3 = 0.0;
-        /**
-         * Maximum y of the bird level 4.
-         */
-        public static final double BIRD_MAX_Y_4 = 0.0;
     }
     /**
      * Windows constains.

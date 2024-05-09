@@ -7,7 +7,6 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.utilities.Constaints.Felix;
-import javafx.scene.input.KeyEvent;
 
 /**
  * Controller for the Felix character.
@@ -17,7 +16,6 @@ public class FelixController {
     private final EntityFactoryImpl entityFactoryImpl;
     private Entity felix;
     private final GamePerformance gamePerformance;
-    private KeyEvent event;
 
     /**
      * Constructs a new FelixController object.

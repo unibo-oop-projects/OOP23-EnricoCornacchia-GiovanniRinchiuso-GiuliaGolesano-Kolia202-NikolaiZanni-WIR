@@ -138,27 +138,11 @@ public class GamePerformanceImpl implements GamePerformance {
             if (e == EntityType.BIRD) {
                 x = Constaints.GameEdges.RIGHT_WALL;
             }
-            //if(e == EntityType.CAKE) x must be one of the windows
-            switch (this.getLevel()) {
-                case 1:
-                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_1);
-                    break;
-                case 2:
-                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_2);
-                    break;
-                case 3:
-                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_3);
-                    break;
-                case 4:
-                    y = random.nextDouble(Constaints.PowerUps.BIRD_MAX_Y_4);
-                    break;
-                default:
-                    break;
-            }
+            y = random.nextDouble(Constaints.PowerUps.BIRD_MIN_Y);
         } while (!alreadyPresent && y > Constaints.PowerUps.BIRD_MIN_Y);
         return new Pair<>(x, y);
     }
-    /**
+    /**Ks
      * Method that place a bird power up.
      */
     private void placeBird() {

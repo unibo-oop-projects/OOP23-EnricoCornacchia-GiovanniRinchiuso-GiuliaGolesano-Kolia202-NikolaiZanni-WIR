@@ -23,20 +23,7 @@ public class RalphController {
     public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        switch (this.gamePerformance.getLevel()) {
-            case 1:
-                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_1);
-                break;
-            case 2:
-                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_2);
-                break;
-            case 3:
-                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_3);
-                break;
-            default:
-                ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START_LEVEL_4);
-                break;
-        }
+        ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START);
     }
     /**
      * Move Ralph.
