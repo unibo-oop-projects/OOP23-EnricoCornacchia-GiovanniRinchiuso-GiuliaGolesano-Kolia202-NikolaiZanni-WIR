@@ -24,6 +24,13 @@ public interface GamePerformance {
     Set<Entity> getEntity();
 
     /**
+     * Getter for the list of input.
+     * 
+     * @return a list of inputs.
+     */
+    List<KeyCode> getInputs();
+
+    /**
      * Method that adds a new entity to the game play.
      * 
      * @param e the entity to add.
@@ -49,58 +56,44 @@ public interface GamePerformance {
      * 
      * @param keyCode the key released
      */
-    void removeKey(KeyCode keyCode);
+    void clearInput(KeyCode keyCode);
 
-    /**
-     * Method that returns the list of the keys clicked.
-     * 
-     * @return the list of inputs
-     */
-    List<Integer> inputs();
-
-    /**
-     * Method that return if the player has lost the game.
-     * 
-     * @return if Felix has lost.
-     */
-    boolean isLost();
-
-    /**
-     * Method that return if the player has won the game.
-     * 
-     * @return if Felix has won.
-     */
-    boolean isWon();
     /**
      * Method that removes tha brick when he got to the bottom of the field.
      * 
      * @param pos the position of the brick.
      */
     void removeBrick(Pair<Double, Double> pos);
+
     /**
      * Method that removes a life from the player’s stocks if a brick hit him.
      */
     void oneLifeLost();
+
     /**
      * Method that adds one life to the player's stock if he took a power ups.
      */
     void oneLifeEarned();
+
     /** 
      * Method that manages the spawn of power ups. passare per parametro il tipo di power ups??
      */
     void spawnPowerUps();
-    /**
-     * Method that returns all the power ups currently present in the game play.
-     * 
-     * @return a list of entity power ups.
-     */
-    Set<EntityType> powerUps();
-    /**
-     * Method that updates the game play.
-     */
-    void update();
+
     /**
      * Getter of the level
      */
     int getLevel();
+
+    /**
+     * Get all the power ups currently present in the game.
+     * @return
+     */
+    List<Entity> getPowerUpsPresent();
+
+    /**
+     * Get all the brick currently present in the game.
+     * @return
+     */
+    List<Entity> getBrickPresent();
 }
