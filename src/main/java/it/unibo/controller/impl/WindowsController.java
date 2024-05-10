@@ -1,12 +1,13 @@
 package it.unibo.controller.impl;
 
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 
 public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
-    //list of windows with state broken or fixed
+    private final GameController gameController;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
@@ -15,7 +16,7 @@ public class WindowsController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         switch (this.gamePerformance.getLevel()) {
-            case 1:
+            case 1: 
                 break;
             case 2:
                 break;
@@ -23,7 +24,7 @@ public class WindowsController {
                 break;
             case 4:
                 break;
-            default:
+            default: 
                 break;
         }
     }
@@ -40,7 +41,9 @@ public class WindowsController {
      * @return true if the game is won, false otherwise.
      */
     public boolean isWon() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isWon'");
+        for(var w: this.gamePerformance.getWindows()){
+            
+        }
+        return false;
     }
 }

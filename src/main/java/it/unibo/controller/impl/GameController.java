@@ -111,7 +111,7 @@ public class GameController {
      * Method to move the player after receiving keyboard input "right".
      * @param e
      */
-    public void moveFelixRight(KeyCode e){
+    public void moveFelixRight(KeyCode e){ 
         this.felixController.moveRight();
         this.gamePerformance.addKey(e);
     }

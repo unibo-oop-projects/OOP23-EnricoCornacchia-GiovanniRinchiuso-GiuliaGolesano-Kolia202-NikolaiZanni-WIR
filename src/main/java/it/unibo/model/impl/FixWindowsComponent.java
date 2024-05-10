@@ -13,16 +13,6 @@ public class FixWindowsComponent implements Component {
      */
     @Override
     public ComponentType getComponent() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getComponent'");
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        return ComponentType.FIXWINDOWS;
     }
 }
