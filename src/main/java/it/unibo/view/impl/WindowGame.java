@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyEvent;
 
 /**
  * WindowGame represents the window of the game.
@@ -71,23 +72,33 @@ public class WindowGame extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("StartGame");
         primaryStage.show();
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                switch(event.getCode()){
-                    case S: gameController.moveFelixDown(event.getCode());
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case S: gameController.moveFelixDown(event.getCode());
+                case A: gameController.moveFelixLeft(event.getCode());
+                case D: gameController.moveFelixRight(event.getCode());
+                case W: gameController.moveFelixUp(event.getCode());
+                case Z:
+                    /*Thread timerThread = new Thread(() -> {
+                        long startTime = System.currentTimeMillis();
+                        long duration = 0;
+                        while (event.isPressed() && duration < 3000) {
+                            duration = System.currentTimeMillis() - startTime;
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (duration >= 3000) {
+                            gameController.fixWindows(event.getCode());
+                        }
+                    });
+                    timerThread.setDaemon(true); 
+                    timerThread.start();*/
                     break;
-                    case A: gameController.moveFelixDown(event.getCode());
+                default:
                     break;
-                    case D: gameController.moveFelixDown(event.getCode());
-                    break;
-                    case W: gameController.moveFelixDown(event.getCode());
-                    break;
-                    case T: gameController
-                    default:
-                    break;
-                }
             }
         });
     }
