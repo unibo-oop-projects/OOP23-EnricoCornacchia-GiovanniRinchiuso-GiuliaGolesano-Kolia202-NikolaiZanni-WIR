@@ -88,7 +88,6 @@ public class WindowGame extends Application {
                     break;
                 }
             }
-            
         });
     }
 }

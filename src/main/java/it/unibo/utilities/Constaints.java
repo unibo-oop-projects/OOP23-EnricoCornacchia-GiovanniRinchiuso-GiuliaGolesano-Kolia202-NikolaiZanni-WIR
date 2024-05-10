@@ -231,10 +231,6 @@ public final class Constaints {
      */
     public static class Animations{
         /**
-         * Empy constructor.
-         */
-        private Animations() { }
-        /**
          * Number of frames for Felix animation.
          */
         public static final int NUM_FRAMES_FELIX = 0;

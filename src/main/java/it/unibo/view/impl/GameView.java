@@ -49,5 +49,4 @@ public class GameView implements View{
         this.window_fix = new Image[Constaints.Animations.NUM_FRAMES_WINDOW];
         this.cake_spawn = new Image[Constaints.Animations.NUM_FRAMES_CAKE];
     }
-    
 }
