@@ -8,6 +8,7 @@ import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
@@ -84,12 +85,6 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public void clearInput(final KeyCode keyCode) {
-        this.inputs.clear();
-    }
-    /**
-     * {@inheritDoc}
-     */
     public void removeBrick(final Pair<Double, Double> pos) {
         entities.remove(entities.stream()
                                .filter(e -> e.getEntityType() == EntityType.BRICK && e.getPosition().equals(pos))
@@ -148,7 +143,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     @Override
-    public List<Entity> getPowerUpsPresent(){
+    public List<Entity> getPowerUpsPresent() {
         return this.entities.stream()
                                 .filter(entity -> entity.getEntityType() == EntityType.BIRD 
                                                     || entity.getEntityType() == EntityType.CAKE).toList();
@@ -157,13 +152,23 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     @Override
-    public List<Entity> getBrickPresent(){
+    public List<Entity> getBrickPresent() {
         return this.entities.stream()
                                 .filter(entity -> entity.getEntityType() == EntityType.BRICK).toList();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getLevel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLevel'");
+    public List<Entity> getWindows() {
+        return this.entities.stream()
+                                .filter(entity -> entity.getEntityType() == EntityType.WINDOW).toList();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLevel(){
+        return this.gameController.getLevel();
     }
 }

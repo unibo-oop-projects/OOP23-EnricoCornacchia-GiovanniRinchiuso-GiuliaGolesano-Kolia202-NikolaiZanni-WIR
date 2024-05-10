@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import it.unibo.common.Pair;
+import it.unibo.controller.impl.GameController;
 import it.unibo.utilities.EntityType;
 import javafx.scene.input.KeyCode;
 
@@ -52,13 +53,6 @@ public interface GamePerformance {
     void addKey(KeyCode e);
 
     /**
-     * Method that remove the key released from the keyboard.
-     * 
-     * @param keyCode the key released
-     */
-    void clearInput(KeyCode keyCode);
-
-    /**
      * Method that removes tha brick when he got to the bottom of the field.
      * 
      * @param pos the position of the brick.
@@ -81,11 +75,6 @@ public interface GamePerformance {
     void spawnPowerUps();
 
     /**
-     * Getter of the level
-     */
-    int getLevel();
-
-    /**
      * Get all the power ups currently present in the game.
      * @return
      */
@@ -96,4 +85,17 @@ public interface GamePerformance {
      * @return
      */
     List<Entity> getBrickPresent();
+
+    /**
+     * Get all the windows in the entities list.
+     * @return
+     */
+    List<Entity> getWindows();
+
+    /**
+     * Get the level.
+     * 
+     * @return the game controller.
+     */
+    int getLevel();
 }

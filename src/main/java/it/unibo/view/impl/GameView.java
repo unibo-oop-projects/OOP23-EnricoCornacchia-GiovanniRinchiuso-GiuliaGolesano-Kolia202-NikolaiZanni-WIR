@@ -1,6 +1,5 @@
 package it.unibo.view.impl;
 
-import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
 import it.unibo.utilities.Constaints;
 import it.unibo.view.api.View;
