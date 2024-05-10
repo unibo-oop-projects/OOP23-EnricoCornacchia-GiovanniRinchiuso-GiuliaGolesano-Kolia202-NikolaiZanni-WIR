@@ -1,6 +1,12 @@
 package it.unibo.utilities;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import it.unibo.common.Pair;
+import javafx.print.Collation;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -219,5 +225,48 @@ public final class Constaints {
          * Number of broken windows in the fourth level.
          */
         public static final int BROKEN_4 = 13;
+    }
+    /**
+     * Animations constaints.
+     */
+    public static class Animations{
+        /**
+         * Empy constructor.
+         */
+        private Animations() { }
+        /**
+         * Number of frames for Felix animation.
+         */
+        public static final int NUM_FRAMES_FELIX = 0;
+        /**
+         * Number of frames for Ralph animation.
+         */
+        public static final int NUM_FRAMES_RALPH = 0;
+        /**
+         * Number of frames for Brick fall animation.
+         */
+        public static final int NUM_FRAMES_BRICK = 0;
+        /**
+         * Number of frames for Cake spawn animation.
+         */
+        public static final int NUM_FRAMES_CAKE = 0;
+        /**
+         * Number of frames for Window fix animation.
+         */
+        public static final int NUM_FRAMES_WINDOW = 0;
+        /**
+         * Number of frames for Bird fly animation.
+         */
+        public static final int NUM_FRAMES_BIRD = 0;
+        /**
+         * Map of index and image.
+         */
+        public static final Map<Integer, Image> playerMap = new HashMap<>();
+        /**
+         * Getter for the map.
+         */
+        public static Map<Integer, Image> getPlayerMap() {
+            return Collections.unmodifiableMap(playerMap);
+        }   
     }
 }
