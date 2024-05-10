@@ -39,6 +39,16 @@ public class GamePerformanceImpl implements GamePerformance {
     public void initialize() {
         this.initializeEntities();
         this.createGameMap();
+        this.spawnPowerUps();
+    }
+    /**
+     * Read the entities from the controllers and add them to the list of entities. 
+     * We will need to add also windows and power ups, but 
+     * right now we don't have them.
+     */
+    public void initializeEntities() {
+        entities.add(this.gameController.getRalphController().getRalph());
+        entities.add(this.gameController.getFelixController().getFelix());
     }
     /**
      * Method that create all the element of the map, according to the level.
@@ -53,13 +63,11 @@ public class GamePerformanceImpl implements GamePerformance {
         return this.entities;
     }
     /**
-     * Read the entities from the controllers and add them to the list of entities. 
-     * We will need to add also windows and power ups, but 
-     * for now we don't have neither the windows nor the power ups.
+     * {@inheritDoc}
      */
-    public void initializeEntities() {
-        entities.add(this.getRalph());
-        entities.add(this.getFelix());
+    @Override
+    public List<KeyCode> getInputs(){
+        return this.inputs;
     }
     /**
      * {@inheritDoc}
@@ -76,27 +84,8 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public void removeKey(final KeyCode keyCode) {
+    public void clearInput(final KeyCode keyCode) {
         this.inputs.clear();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    public List<Integer> inputs() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inputs'");
-    }
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isLost() {
-        return !gameController.gameIsNotOver();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isWon() {
-        return gameController.isWin();
     }
     /**
      * {@inheritDoc}
@@ -142,7 +131,7 @@ public class GamePerformanceImpl implements GamePerformance {
         } while (!alreadyPresent && y > Constaints.PowerUps.BIRD_MIN_Y);
         return new Pair<>(x, y);
     }
-    /**Ks
+    /**
      * Method that place a bird power up.
      */
     private void placeBird() {
@@ -151,50 +140,30 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public Set<EntityType> powerUps() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'powerUps'");
-    }
-    /**
-     * The main method that updates the game, adding the new entities (bricks) to the list of entities.
-     */
-    public void update() {
-        entities.addAll(this.getBricks());
-    }
-    /**
-     * Returns the set of bricks.
-     * @return the set of bricks.
-     */
-    private Set<Entity> getBricks() {
-        return this.gameController.getBrickController().getBricks();
-    }
-    /**
-     * Returns Ralph.
-     * @return Ralph.
-     */
-    private Entity getRalph() {
-        return this.gameController.getRalphController().getRalph();
-    }
-    /**
-     * Returns Felix.
-     * @return Felix.
-     */
-    private Entity getFelix() {
-        return this.gameController.getFelixController().getFelix();
-    }
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void addEntity(final Entity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
+        this.entities.add(e);
     }
     /**
      * {@inheritDoc}
      */
     @Override
+    public List<Entity> getPowerUpsPresent(){
+        return this.entities.stream()
+                                .filter(entity -> entity.getEntityType() == EntityType.BIRD 
+                                                    || entity.getEntityType() == EntityType.CAKE).toList();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Entity> getBrickPresent(){
+        return this.entities.stream()
+                                .filter(entity -> entity.getEntityType() == EntityType.BRICK).toList();
+    }
+    @Override
     public int getLevel() {
-        return this.gameController.getLevel();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLevel'");
     }
 }
