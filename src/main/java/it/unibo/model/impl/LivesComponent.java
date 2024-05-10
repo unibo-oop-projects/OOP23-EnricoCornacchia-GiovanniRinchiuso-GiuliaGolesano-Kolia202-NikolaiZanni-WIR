@@ -9,12 +9,14 @@ import it.unibo.model.api.ComponentType;
 public class LivesComponent implements Component {
 
     private int lives;
+    private boolean immortal;
 
     /**
      * Initialize lives to 3.
      */
     public LivesComponent() {
         this.lives = 3;
+        this.immortal = false;
     }
 
     /**

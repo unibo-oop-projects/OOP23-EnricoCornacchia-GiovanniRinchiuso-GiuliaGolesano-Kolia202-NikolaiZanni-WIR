@@ -4,7 +4,7 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
- * FixWindowsComponent, fixes the windows.
+ * FixWindowsComponent, Felix fixes the windows.
  */
 public class FixWindowsComponent implements Component {
     /**
