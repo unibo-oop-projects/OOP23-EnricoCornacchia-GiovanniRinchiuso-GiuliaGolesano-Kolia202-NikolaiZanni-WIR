@@ -34,7 +34,6 @@ public class GameController {
     public void update() {
         this.brickController.fallBricks();
         this.ralphController.update(brickController.getBricks());
-        this.gamePerformance.update();
     }
     /**
      * Controls if the game is over.
@@ -122,6 +121,11 @@ public class GameController {
      */
     public void moveFelixUp(KeyCode e){
         this.felixController.moveUp();
+        this.gamePerformance.addKey(e);
+    }
+
+    public void fixWindows(KeyCode e){
+        this.felixController.fix();
         this.gamePerformance.addKey(e);
     }
 }

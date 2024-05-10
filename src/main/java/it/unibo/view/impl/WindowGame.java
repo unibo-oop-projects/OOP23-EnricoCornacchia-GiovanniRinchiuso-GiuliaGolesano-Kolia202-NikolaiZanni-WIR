@@ -84,6 +84,7 @@ public class WindowGame extends Application {
                     break;
                     case W: gameController.moveFelixDown(event.getCode());
                     break;
+                    case T: gameController
                     default:
                     break;
                 }
