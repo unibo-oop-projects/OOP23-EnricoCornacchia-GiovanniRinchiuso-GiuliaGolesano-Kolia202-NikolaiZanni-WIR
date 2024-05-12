@@ -40,7 +40,7 @@ public class BrickController {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
-                    ((MovementComponent) component).move(Brick.BRICK_SPEED, 0.0, brick);
+                    ((MovementComponent) component).move(this.getBrickSpeedByLevel(), 0.0, brick);
                 }
             }
         }
@@ -53,11 +53,23 @@ public class BrickController {
         for (final Entity brick : bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
-                && !((MovementComponent) component).canMove(Brick.BRICK_SPEED, 0.0, brick)) {
+                && !((MovementComponent) component).canMove(this.getBrickSpeedByLevel(), 0.0, brick)) {
                     bricks.remove(brick);
                     gamePerformance.removeEntity(brick);
                 }
             }
         }
+    }
+
+    private double getBrickSpeedByLevel() {
+        switch (gamePerformance.getLevel()) {
+            case 1:
+                return Brick.BRICK_SPEED_LEVEL_1;
+            case 2:
+                return Brick.BRICK_SPEED_LEVEL_2;
+            case 3:
+                return Brick.BRICK_SPEED_LEVEL_3;
+        }
+        return 0;
     }
 }

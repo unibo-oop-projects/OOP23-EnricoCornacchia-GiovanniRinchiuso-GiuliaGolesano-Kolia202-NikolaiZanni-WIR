@@ -100,9 +100,17 @@ public final class Constaints {
          */
         public static final double BRICK_HEIGHT = 0;
         /**
-         * The speed of the brick.
+         * The speed of the brick at level 1.
         */
-        public static final double BRICK_SPEED = 1.0;
+        public static final double BRICK_SPEED_LEVEL_1 = 0;
+        /**
+         * The speed of the brick at level 2.
+        */
+        public static final double BRICK_SPEED_LEVEL_2 = 0;
+        /**
+         * The speed of the brick at level 3.
+        */
+        public static final double BRICK_SPEED_LEVEL_3 = 0;
     }
     /**
      * Window constaints.
