@@ -6,12 +6,6 @@ package it.unibo.model.api;
  * A component is an entity that can be updated.
  */
 public interface Component {
-
-    /**
-     * Updates the component.
-     */
-    void update();
-
     /**
      * Return the component.
      * This method should be called to get the state of the component.

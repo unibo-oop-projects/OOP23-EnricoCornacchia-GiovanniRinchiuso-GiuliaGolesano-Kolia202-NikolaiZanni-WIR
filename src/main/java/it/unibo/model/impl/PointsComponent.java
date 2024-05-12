@@ -92,7 +92,6 @@ public class PointsComponent implements Component {
         }
     }
 
-    @Override
     public void update() {
         // Implement update logic here
     }

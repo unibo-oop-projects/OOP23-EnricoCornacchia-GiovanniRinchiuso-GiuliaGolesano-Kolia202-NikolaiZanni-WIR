@@ -58,9 +58,8 @@ public class HitboxComponent extends AbstractComponent {
     }
 
     /**
-     * {@inheritDoc}
+     * Updates the hitbox of the entity.
      */
-    @Override
     public void update() {
         Entity entity = this.getEntity();
         final EntityType type = entity.getEntityType();
