@@ -66,8 +66,11 @@ public class RalphController {
      * @param bricks the set of bricks.
      */
     public void update(final Set<Entity> bricks) {
-        this.throwBrickLeftArm(bricks);
-        this.throwBrickRightArm(bricks);
-        this.move();
+        final int cycle = this.gamePerformance.getLevel();
+        for (int i = 0; i < cycle; i++) {
+            this.throwBrickLeftArm(bricks);
+            this.throwBrickRightArm(bricks);
+            this.move();
+        }
     }
 }

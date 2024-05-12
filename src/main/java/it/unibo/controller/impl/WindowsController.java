@@ -7,7 +7,6 @@ import it.unibo.model.impl.EntityFactoryImpl;
 public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
-    private final GameController gameController;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
