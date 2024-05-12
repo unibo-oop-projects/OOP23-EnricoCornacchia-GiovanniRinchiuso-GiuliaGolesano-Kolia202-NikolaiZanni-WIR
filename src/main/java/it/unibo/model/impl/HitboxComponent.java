@@ -65,17 +65,22 @@ public class HitboxComponent extends AbstractComponent {
         final EntityType type = entity.getEntityType();
         this.checkEdgesCollisions();
         if (type==EntityType.FELIX) {
+            this.checkEdgesCollisions();
             this.checkOtherEntitiesCollisions();
             this.checkPlatformCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
         } else if (type==EntityType.BRICK) {
+            this.checkEdgesCollisions();
             this.checkOtherEntitiesCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
         } else if (type==EntityType.WINDOW) {
+            this.checkOtherEntitiesCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         } else if (type==EntityType.CAKE) {
+            this.checkOtherEntitiesCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Cake.CAKE_WIDTH, Cake.CAKE_HEIGHT);
         } else if (type==EntityType.BIRD) {
+            this.checkOtherEntitiesCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(), Bird.BIRD_WIDTH, Bird.BIRD_HEIGHT);
         }
     }
