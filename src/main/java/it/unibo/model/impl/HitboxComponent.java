@@ -103,91 +103,18 @@ public class HitboxComponent extends AbstractComponent {
     }
     
     public void checkPlatformCollisions() {
-        /*final int level = this.getEntity().getGamePerformance().getLevel();
-        switch(level) {
-            case 1:
-                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
-                }
-                break;
-            case 2:
-                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
-                }
-                break;
-            case 3:
-                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
-                }
-                else if (this .hitbox.getY() > Constaints.Windows.FLOOR_5_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_5_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_5_Y));
-                }
-                break;
-            case 4:
-                if (this.hitbox.getY() > Constaints.Windows.FLOOR_1_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_1_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_1_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_2_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_2_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_2_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_3_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_3_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_3_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_4_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_4_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_4_Y));
-                }
-                else if (this .hitbox.getY() > Constaints.Windows.FLOOR_5_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_5_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_5_Y));
-                }
-                else if (this.hitbox.getY() > Constaints.Windows.FLOOR_6_Y) {
-                    this.hitbox.setY(Constaints.Windows.FLOOR_6_Y);
-                    this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), Constaints.Windows.FLOOR_6_Y));
-                }
-                break;
-            default:
-                break;
-        }*/
+        if (this.hitbox.getY() > Constaints.Floors.FLOOR_1_Y && this.hitbox.getY() < Constaints.Floors.FLOOR_2_Y) {
+            this.hitbox.setY(Constaints.Floors.FLOOR_1_Y);
+            this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), this.hitbox.getY()));
+        }
+        else if (this.hitbox.getY() > Constaints.Floors.FLOOR_2_Y && this.hitbox.getY() < Constaints.Floors.FLOOR_3_Y) {
+            this.hitbox.setY(Constaints.Floors.FLOOR_2_Y);
+            this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), this.hitbox.getY()));
+        }
+        else if (this.hitbox.getY() > Constaints.Floors.FLOOR_3_Y) {
+            this.hitbox.setY(Constaints.Floors.FLOOR_3_Y);
+            this.getEntity().setPosition(new Pair<Double,Double>(this.hitbox.getX(), this.hitbox.getY()));
+        }
     }
 
     /**
@@ -216,7 +143,7 @@ public class HitboxComponent extends AbstractComponent {
      * @return the hitbox of the entity.
      */
     public Rectangle getHitbox() {
-        return new Rectangle(this.x, this.y, this.hitbox.getWidth(), this.hitbox.getHeight());
+        return new Rectangle(this.hitbox.getX(), this.hitbox.getY(), this.hitbox.getWidth(), this.hitbox.getHeight());
     }
 
     /**

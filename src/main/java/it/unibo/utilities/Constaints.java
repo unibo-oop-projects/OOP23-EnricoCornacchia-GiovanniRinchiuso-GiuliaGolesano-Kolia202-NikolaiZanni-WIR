@@ -202,6 +202,23 @@ public final class Constaints {
         public static final double BIRD_MIN_Y = 50.0;
     }
     /**
+     * Floors constains.
+     */
+    public class Floors {
+        /**
+         * The position of the first floor.
+         */
+        public static final double FLOOR_1_Y = 200.0;
+        /**
+         * The position of the second floor.
+         */
+        public static final double FLOOR_2_Y = 400.0;
+        /**
+         * The position of the third floor.
+         */
+        public static final double FLOOR_3_Y = 600.0;
+    }
+    /**
      * Windows constains.
      */
     public static class Windows {
