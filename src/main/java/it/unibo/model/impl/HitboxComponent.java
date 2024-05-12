@@ -106,6 +106,9 @@ public class HitboxComponent extends AbstractComponent {
         }
     }
     
+    /**
+     * Checks for collisions with platforms and adjusts the position of the entity accordingly.
+     */
     public void checkPlatformCollisions() {
         if (this.hitbox.getY() > Constaints.Floors.FLOOR_1_Y && this.hitbox.getY() < Constaints.Floors.FLOOR_2_Y) {
             this.hitbox.setY(Constaints.Floors.FLOOR_1_Y);
