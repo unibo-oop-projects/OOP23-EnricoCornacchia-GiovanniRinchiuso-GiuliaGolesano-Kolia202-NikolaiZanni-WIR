@@ -203,11 +203,39 @@ public final class Constaints {
         /**
          * Starting x of the bird.
          */
-        public static final double BIRD_X = 800.0;
+        public static final double BIRD_MAX_X = 800.0;
+        /**
+         * Strating x of the bird.
+         */
+        public static final double BIRD_MIN_x = 0.0;
         /**
          * Minimum y of the bird.
          */
-        public static final double BIRD_MIN_Y = 50.0;
+        public static final double BIRD_MIN_Y = 200.0;
+        /**
+         * Maximum y of the bird.
+         */
+        public static final double BIRD_MAX_Y = 600.0;
+        /**
+         * The position of the first floor cake y.
+         */
+        public static final double CAKE_FLOOR_1_Y = 200.0;
+        /**
+         * The position of the second floor cake y.
+         */
+        public static final double CAKE_FLOOR_2_Y = 400.0;
+        /**
+         * The position of the tird floor cake y.
+         */
+        public static final double CAKE_FLOOR_3_Y = 600.0;
+        /**
+         * Maximum x of the cake.
+         */
+        public static final double CAKE_MAX_X = 600.0;
+        /**
+         * Minimum y of the cake.
+         */
+        public static final double CAKE_MIN_X = 200.0;
     }
     /**
      * Floors constains.

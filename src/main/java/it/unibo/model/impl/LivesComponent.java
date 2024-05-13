@@ -9,21 +9,22 @@ import it.unibo.model.api.ComponentType;
 public class LivesComponent implements Component {
 
     private int lives;
-    private boolean immortal;
-
+    private ImmortalityComponent immortalityComponent;
     /**
      * Initialize lives to 3.
      */
     public LivesComponent() {
         this.lives = 3;
-        this.immortal = false;
+        this.immortalityComponent = new ImmortalityComponent();
     }
 
     /**
      * Method of stealing a life.
      */
     public void stealLives() {
+        if(!immortalityComponent.getImmortality()) {
         this.lives = this.lives - 1;
+        }
     }
     /**
      * Method to get the current lives.

@@ -32,10 +32,6 @@ public enum ComponentType {
      */
     FIXEDWINDOWS, 
     /**
-     * Extra life component.
-     */ 
-    GIVEFELIXEXTRALIFE, 
-    /**
      * Stop Ralph component.
      */
     STOPRALPH,

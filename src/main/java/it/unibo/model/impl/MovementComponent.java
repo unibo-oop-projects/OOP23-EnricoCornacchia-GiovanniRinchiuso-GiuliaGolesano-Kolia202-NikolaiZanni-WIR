@@ -5,14 +5,22 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constaints;
+import it.unibo.utilities.EntityType;
+
 /**
  * Component that allows movement.
  */
 public class MovementComponent implements Component {
+    private StopralphComponent stopralphComponent;
+
+    public MovementComponent() {
+        this.stopralphComponent = new StopralphComponent();
+    }
     /**
      * Move the entity.
-     * @param x for the x axis.
-     * @param y for the y axis.
+     * 
+     * @param x      for the x axis.
+     * @param y      for the y axis.
      * @param entity the entity to move.
      */
     public void move(final double x, final double y, final Entity entity) {
@@ -22,23 +30,30 @@ public class MovementComponent implements Component {
             entity.setPosition(new Pair<>(newX, newY));
         }
     }
+
     /**
      * Check if the entity can move.
-     * @param x for the x axis.
-     * @param y for the y axis.
+     * 
+     * @param x      for the x axis.
+     * @param y      for the y axis.
      * @param entity the entity to move.
      * @return true if the entity can move, false otherwise.
      */
     public boolean canMove(final double x, final double y, final Entity entity) {
+        if (entity.getEntityType() == EntityType.RALPH && stopralphComponent.getStopRalph()) {
+            return false;
+        }
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
-        return newX >= Constaints.GameEdges.LEFT_WALL 
-        && newX <= Constaints.GameEdges.RIGHT_WALL 
-        && newY >= Constaints.GameEdges.DOWN_WALL 
-        && newY <= Constaints.GameEdges.UP_WALL_1;
+        return newX >= Constaints.GameEdges.LEFT_WALL
+                && newX <= Constaints.GameEdges.RIGHT_WALL
+                && newY >= Constaints.GameEdges.DOWN_WALL
+                && newY <= Constaints.GameEdges.UP_WALL_1;
     }
+
     /**
      * Getter method for the component type.
+     * 
      * @return the component type.
      */
     @Override

@@ -15,6 +15,8 @@ public class GameController {
     private final WindowsController windowsController;
     private final CollisionManager collisionManager;
     private final GamePerformance gamePerformance;
+    private final BirdController birdController;
+    private final CakeController cakeController;
     private int level;
     /**
      * Constructor for the GameController.
@@ -26,6 +28,8 @@ public class GameController {
         this.brickController = new BrickController(this.gamePerformance);
         this.windowsController = new WindowsController(gamePerformance);
         this.collisionManager = new CollisionManager(this.gamePerformance.getEntity());
+        this.birdController = new BirdController(gamePerformance);
+        this.cakeController = new CakeController(gamePerformance);
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
@@ -69,6 +73,20 @@ public class GameController {
      */
     public WindowsController getWindowsController() {
         return this.windowsController;
+    }
+    /**
+     * Getter for the Bird controller.
+     * @return the Bird Controller.
+     */
+    public BirdController getBirdController() {
+        return this.birdController;
+    }
+    /**
+     * Getter for the Cake controller.
+     * @return the Cake controller.
+     */
+    public CakeController getCakeController() {
+        return this.cakeController;
     }
     /**
      * Getter for the level.
