@@ -11,7 +11,7 @@ public class StopRalphComponent extends AbstractComponent{
         this.blocked = false;
     }
 
-    public void setStopralph() {
+    public void setStopRalph() {
         this.blocked = true;
         this.startTime = System.currentTimeMillis();
     }

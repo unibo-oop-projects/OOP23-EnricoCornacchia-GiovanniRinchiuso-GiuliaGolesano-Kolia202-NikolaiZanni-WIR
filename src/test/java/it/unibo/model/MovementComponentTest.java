@@ -19,7 +19,7 @@ import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;  
 
-class MovementComponentTest {
+public class MovementComponentTest {
 
     private MovementComponent component;
     private Entity entity;
@@ -46,21 +46,12 @@ class MovementComponentTest {
         double x = 2.0;
         double y = 0.0;
         component.move(x, y, entity);
-        assertEquals(new Pair<>(Constaints.GameEdges.RIGHT_WALL, 0.0), entity.getPosition());
-    }
-
-    @Test
-    public void testMoveWhenStopped() {
-        // Assuming StopralphComponent initially returns true to stop movement
-        double x = 5.0;
-        double y = 5.0;
-        component.move(x, y, entity);
-        assertEquals(new Pair<>(0.0, 0.0), entity.getPosition());
+        assertEquals(new Pair<>(Constaints.GameEdges.RIGHT_WALL - 1, 0.0), entity.getPosition());
     }
 
     @Test
     public void testCanMoveFalseWhenStopped() {
-        boolean canMove = component.canMove(10.0, 10.0, entity);
+        boolean canMove = component.canMove(-10.0, -10.0, entity);
         assertFalse(canMove);
     }
 

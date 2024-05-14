@@ -2,7 +2,6 @@ package it.unibo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,7 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.StopRalphComponent;
-import it.unibo.model.impl.ThrowBrickComponent; 
-import it.unibo.model.impl.StopRalphComponent; 
+import it.unibo.model.impl.ThrowBrickComponent;  
 
 class ThrowBrickComponentTest {
     private ThrowBrickComponent component;
@@ -41,9 +39,11 @@ class ThrowBrickComponentTest {
 
     @Test
     void testAddBrickWhenBlocked() {
-        stopRalph.setStopralph();
+        System.out.println(System.currentTimeMillis());
+        stopRalph.setStopRalph();
         Pair<Double, Double> position = new Pair<>(1.0, 2.0);
         component.addBrickToThrow(bricks, position);
+        System.out.println(System.currentTimeMillis());
         assertTrue(bricks.isEmpty(), "No brick should be added when component is blocked");
     }
 }
