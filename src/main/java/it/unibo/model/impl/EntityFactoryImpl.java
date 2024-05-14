@@ -104,7 +104,7 @@ public class EntityFactoryImpl implements EntityFactory {
         double birdY = rand.nextDouble() * (Constaints.PowerUps.BIRD_MAX_Y - Constaints.PowerUps.BIRD_MIN_Y) + Constaints.PowerUps.BIRD_MIN_Y;
         final Pair<Double, Double> randomPos = new Pair<>(birdX, birdY);
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        new StopralphComponent();
+        new StopRalphComponent();
         new MovementComponent();
         return new EntityImpl(EntityType.BIRD, randomPos, gamePerformance, components);
     }
