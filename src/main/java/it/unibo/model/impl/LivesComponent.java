@@ -1,12 +1,11 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
  * LivesComponent, it represents the lives of the entity.
  */
-public class LivesComponent implements Component {
+public class LivesComponent extends AbstractComponent {
 
     private int lives;
     private ImmortalityComponent immortalityComponent;

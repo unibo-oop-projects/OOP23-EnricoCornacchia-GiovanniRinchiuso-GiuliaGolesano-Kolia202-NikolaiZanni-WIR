@@ -1,9 +1,8 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
-public class StopralphComponent implements Component {
+public class StopralphComponent extends AbstractComponent  {
 
     private boolean blocked;
     private long startTime;

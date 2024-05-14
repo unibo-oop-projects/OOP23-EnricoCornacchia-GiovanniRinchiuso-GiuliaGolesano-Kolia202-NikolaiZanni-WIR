@@ -6,7 +6,7 @@ import it.unibo.model.api.ComponentType;
 /**
  * FixWindowsComponent, Felix fixes the windows.
  */
-public class FixWindowsComponent implements Component {
+public class FixWindowsComponent extends AbstractComponent {
     /**
      * getter of the type of the class.
      * @return the type of the class.

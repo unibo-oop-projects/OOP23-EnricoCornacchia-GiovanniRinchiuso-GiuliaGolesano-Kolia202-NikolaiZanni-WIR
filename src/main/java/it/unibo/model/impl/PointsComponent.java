@@ -6,14 +6,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**
  * PointsComponent represents the points acquired by an entity.
  * This class can be extended to customize point-related functionality.
  */
-public class PointsComponent implements Component {
+public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
     private final String filename = "src/main/java/it/unibo/model/impl/scores.txt";

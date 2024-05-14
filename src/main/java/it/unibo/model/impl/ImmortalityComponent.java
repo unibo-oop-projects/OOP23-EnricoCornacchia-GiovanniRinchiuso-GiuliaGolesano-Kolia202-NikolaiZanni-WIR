@@ -1,9 +1,9 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
-public class ImmortalityComponent implements Component {
+public class ImmortalityComponent extends AbstractComponent {
+    
     private boolean immortality;
     private long startTime;
 

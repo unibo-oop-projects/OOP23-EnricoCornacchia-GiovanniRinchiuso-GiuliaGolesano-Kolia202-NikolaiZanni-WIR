@@ -6,7 +6,7 @@ import it.unibo.model.api.ComponentType;
 /**
  * Component of the windows.
  */
-public class FixedWindowsComponent implements Component {
+public class FixedWindowsComponent extends AbstractComponent {
 
     boolean isFixed = false;
 
