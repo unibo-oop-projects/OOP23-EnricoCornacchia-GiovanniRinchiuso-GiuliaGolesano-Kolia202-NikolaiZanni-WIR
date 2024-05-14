@@ -22,11 +22,13 @@ import javafx.scene.layout.BackgroundRepeat;
  */
 public class MainMenu extends StackPane {
     private final ImageView pauseButton;
+    private final Stage gameStage;
 
     /**
      * Constructs a MainMenu.
      */
-    public MainMenu() {
+    public MainMenu(Stage gamStage) {
+        this.gameStage = gamStage;
         pauseButton = new ImageView("pauseButton.png");
         pauseButton.setFitWidth(Constaints.Button.WIDTH_PAUSE_BUTTON);
         pauseButton.setFitHeight(Constaints.Button.HEIGHT_PAUSE_BUTTON);
@@ -41,7 +43,7 @@ public class MainMenu extends StackPane {
      */
     private void handlePauseButtonClick(final MouseEvent event) {
         GameState.setGameState(GameState.PAUSED);
-        final AnotherStage secondStage = new AnotherStage();
+        final AnotherStage secondStage = new AnotherStage(gameStage);
         final Scene secondScene = secondStage.getScene();
         secondStage.initOwner(getScene().getWindow());
         secondStage.setScene(secondScene);
@@ -57,11 +59,13 @@ public class MainMenu extends StackPane {
         private static final String BACKGROUND = "backgroundMainMenu.png";
         private static final String TOP_IMAGE = "gamePause.png";
         private static final String UNDER_IMAGE = "underImage.png";
+        private final Stage gameStage;
 
         /**
          * Constructs an AnotherStage.
          */
-        public AnotherStage() {
+        public AnotherStage(Stage gameStage) {
+            this.gameStage = gameStage;
             initStyle(StageStyle.UNDECORATED);
             final Image backgroundMainMenu = new Image(BACKGROUND);
             final Image topImage = new Image(TOP_IMAGE);
@@ -97,13 +101,21 @@ public class MainMenu extends StackPane {
             homeButton.setFitHeight(100);
             homeButton.setFitWidth(100);
             continueButton.setOnMouseClicked(event -> {
+                GameState.setGameState(GameState.PLAYING);
                 close();
             });
             quitButton.setOnMouseClicked(event -> {
+                gameStage.close();
                 close();
+                try {
+                    new EndGame().start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
             homeButton.setOnMouseClicked(event -> {
-                close();
+                gameStage.close(); 
+                close(); 
                 try {
                     new HomeMenu().start(new Stage());
                 } catch (Exception e) {

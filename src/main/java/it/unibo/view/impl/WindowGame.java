@@ -20,14 +20,12 @@ import javafx.stage.Stage;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
-    /**
-     * Starts the game window.
-     *
-     * @param primaryStage the primary stage for the application
-     * @throws Exception if an error occurs during startup
-     */
+    private Stage primaryStage; 
+    
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
+
         BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
 
@@ -35,7 +33,7 @@ public class WindowGame extends Application {
         PointsView pointsView = new PointsView(pointsComponent);
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
 
-        MainMenu mainMenu = new MainMenu();
+        MainMenu mainMenu = new MainMenu(primaryStage); 
 
         LivesComponent livesComponent = new LivesComponent();
         LivesView livesView = new LivesView(livesComponent);
