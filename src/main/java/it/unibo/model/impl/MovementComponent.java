@@ -4,7 +4,6 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constaints;
-import it.unibo.utilities.EntityType;
 
 /**
  * Component that allows movement.

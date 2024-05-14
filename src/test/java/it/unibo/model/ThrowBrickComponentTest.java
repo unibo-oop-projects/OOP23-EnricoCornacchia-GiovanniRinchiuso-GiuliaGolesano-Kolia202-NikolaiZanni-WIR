@@ -16,17 +16,11 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.ThrowBrickComponent;  
 
-
-
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.HashSet;
-
 class ThrowBrickComponentTest {
     private ThrowBrickComponent component;
     private Set<Entity> bricks;
-    private GamePerformance gamePerformance;  // Mock or stub if needed
+    private GamePerformance gamePerformance; 
+    private  // Mock or stub if needed
 
     @BeforeEach
     void setUp() {
