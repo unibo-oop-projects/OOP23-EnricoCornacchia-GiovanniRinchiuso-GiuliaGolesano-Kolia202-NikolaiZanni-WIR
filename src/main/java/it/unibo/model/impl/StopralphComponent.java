@@ -2,12 +2,12 @@ package it.unibo.model.impl;
 
 import it.unibo.model.api.ComponentType;
 
-public class StopralphComponent extends AbstractComponent  {
+public class StopRalphComponent extends AbstractComponent{
 
     private boolean blocked;
     private long startTime;
 
-    public StopralphComponent() {
+    public StopRalphComponent() {
         this.blocked = false;
     }
 
