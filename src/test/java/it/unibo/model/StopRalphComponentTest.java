@@ -1,6 +1,10 @@
 package it.unibo.model;
 
+import it.unibo.controller.impl.GameController;
+import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.StopRalphComponent;
+import it.unibo.model.impl.ThrowBrickComponent;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -10,43 +14,28 @@ import org.junit.jupiter.api.Test;
 public class StopRalphComponentTest {
 
     private StopRalphComponent stopRalphComponent;
+    private ThrowBrickComponent throwBrickComponent;
 
     @BeforeEach
     public void setUp() {
         stopRalphComponent = new StopRalphComponent();
+        throwBrickComponent = new ThrowBrickComponent(new GamePerformanceImpl(new GameController()));
     }
 
     @Test
-    public void testInitiallyNotBlocked() {
-        assertFalse(stopRalphComponent.getStopRalph());
+    void testSetStopRalph() {
+        stopRalphComponent.setStopRalph(throwBrickComponent);
+        assertTrue(throwBrickComponent.isBlocked(), "ThrowBrickComponent should be blocked after calling setStopRalph");
     }
 
     @Test
-    public void testSetStopRalph() {
-        stopRalphComponent.setStopRalph();
-        assertTrue(stopRalphComponent.getStopRalph());
-    }
-
-    @Test
-    public void testAutoUnblockAfterTimeout() throws InterruptedException {
-        stopRalphComponent.setStopRalph();
-        assertTrue(stopRalphComponent.getStopRalph());
+    void testCheckUnlockRalph() throws InterruptedException {
+        stopRalphComponent.setStopRalph(throwBrickComponent);
 
         // Aspetta un po' più di 10 secondi per testare l'autosblocco
-        Thread.sleep(10100);  // Attenzione: l'uso di sleep nei test può rendere i test lenti e meno affidabili
+        Thread.sleep(10100);
 
-        assertFalse(stopRalphComponent.getStopRalph());
-    }
-
-    @Test
-    public void testContinuousBlocking() throws InterruptedException {
-        stopRalphComponent.setStopRalph();
-        assertTrue(stopRalphComponent.getStopRalph());
-
-        Thread.sleep(5000);  // Metà del tempo necessario per sbloccarsi
-        assertTrue(stopRalphComponent.getStopRalph());
-
-        Thread.sleep(6000);  // Altri 5 secondi, totale 10 secondi
-        assertFalse(stopRalphComponent.getStopRalph());
+        stopRalphComponent.checkUnlockRalph(throwBrickComponent);
+        assertFalse(throwBrickComponent.isBlocked(), "ThrowBrickComponent should be unblocked after calling checkUnlockRalph");
     }
 }

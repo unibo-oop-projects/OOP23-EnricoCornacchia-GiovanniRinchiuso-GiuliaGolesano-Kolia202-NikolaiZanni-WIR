@@ -12,9 +12,9 @@ import it.unibo.common.Pair;
  */
 public class ThrowBrickComponent extends AbstractComponent {
 
-        private StopRalphComponent stopRalphComponent;
         private final EntityFactoryImpl entityFactoryImpl;
         private final GamePerformance gamePerformance;
+        private boolean blocked;
         /**
          * Constructor for the ThrowBrickComponent.
          * @param gamePerformance the game performance.
@@ -22,7 +22,7 @@ public class ThrowBrickComponent extends AbstractComponent {
         public ThrowBrickComponent(final GamePerformance gamePerformance) {
             this.gamePerformance = gamePerformance;
             this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-            this.stopRalphComponent = new StopRalphComponent();
+            blocked = false;
         }
         /**
          * Create a new brick in the position passed as parameter and add it to the set of bricks.
@@ -30,9 +30,28 @@ public class ThrowBrickComponent extends AbstractComponent {
          * @param position  the position where the brick will be created.
          */
         public void addBrickToThrow(final Set<Entity> bricks, final Pair<Double, Double> position) {
-            if (!stopRalphComponent.getStopRalph()) {
+            if (!blocked) {
                 bricks.add(entityFactoryImpl.createBrick(position));
             }
+        }
+        /**
+         * Set the component as blocked.
+         */
+        public void setBlocked() {
+            this.blocked = true;
+        }
+        /**
+         * Set the component as unblocked.
+         */
+        public void setUnblocked() {
+            this.blocked = false;
+        }
+        /**
+         * Getter for the component status.
+         * @return the component status.
+         */
+        public boolean isBlocked() {
+            return this.blocked;
         }
         /**
          * Getter for the component type.

@@ -2,28 +2,23 @@ package it.unibo.model.impl;
 
 import it.unibo.model.api.ComponentType;
 
+
 public class StopRalphComponent extends AbstractComponent{
 
-    private boolean blocked;
     private long startTime;
 
-    public StopRalphComponent() {
-        this.blocked = false;
-    }
-
-    public void setStopRalph() {
-        this.blocked = true;
+    public void setStopRalph(ThrowBrickComponent throwBrickComponent) {
+        throwBrickComponent.setBlocked();
         this.startTime = System.currentTimeMillis();
     }
 
-    public boolean getStopRalph() {
-        if (this.blocked) {
+    public void checkUnlockRalph(ThrowBrickComponent throwBrickComponent) {
+        if (throwBrickComponent.isBlocked()) {
             long currentTime = System.currentTimeMillis();
             if (currentTime - this.startTime >= 10000) {
-                this.blocked = false;
+                throwBrickComponent.setUnblocked();
             }
         }
-        return this.blocked;
     }
 
     @Override
