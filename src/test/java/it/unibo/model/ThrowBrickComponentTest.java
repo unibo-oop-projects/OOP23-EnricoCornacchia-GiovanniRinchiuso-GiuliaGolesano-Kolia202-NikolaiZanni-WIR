@@ -14,19 +14,22 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
-import it.unibo.model.impl.ThrowBrickComponent;  
+import it.unibo.model.impl.StopRalphComponent;
+import it.unibo.model.impl.ThrowBrickComponent; 
+import it.unibo.model.impl.StopRalphComponent; 
 
 class ThrowBrickComponentTest {
     private ThrowBrickComponent component;
     private Set<Entity> bricks;
     private GamePerformance gamePerformance; 
-    private  // Mock or stub if needed
+    private StopRalphComponent stopRalph;// Mock or stub if needed
 
     @BeforeEach
     void setUp() {
         gamePerformance = new GamePerformanceImpl(null);  // Assume you have an implementation
         component = new ThrowBrickComponent(gamePerformance);
         bricks = new HashSet<>();
+        stopRalph = new StopRalphComponent();
     }
 
     @Test
@@ -38,18 +41,9 @@ class ThrowBrickComponentTest {
 
     @Test
     void testAddBrickWhenBlocked() {
-        component.block();
+        stopRalph.setStopralph();
         Pair<Double, Double> position = new Pair<>(1.0, 2.0);
         component.addBrickToThrow(bricks, position);
         assertTrue(bricks.isEmpty(), "No brick should be added when component is blocked");
-    }
-
-    @Test
-    void testBlockAndUnblock() {
-        component.block();
-        assertTrue(component.isBlocked(), "Component should be blocked");
-
-        component.unblock();
-        assertFalse(component.isBlocked(), "Component should be unblocked after calling unblock");
     }
 }
