@@ -55,4 +55,11 @@ public class ThrowBrickComponent implements Component {
         public void unblock() {
             this.blocked = false;
         }
+        /**
+         * Check if the component is blocked.
+         * @return true if the component is blocked, false otherwise.
+         */
+        public boolean isBlocked() {
+            return this.blocked;
+        }
 }
