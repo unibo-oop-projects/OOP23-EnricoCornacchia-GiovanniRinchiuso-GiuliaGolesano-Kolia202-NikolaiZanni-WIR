@@ -1,6 +1,5 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
@@ -11,7 +10,7 @@ import it.unibo.common.Pair;
 /**
  * Component for the brick throwing.
  */
-public class ThrowBrickComponent implements Component {
+public class ThrowBrickComponent extends AbstractComponent {
 
         private boolean blocked;
         private final EntityFactoryImpl entityFactoryImpl;
