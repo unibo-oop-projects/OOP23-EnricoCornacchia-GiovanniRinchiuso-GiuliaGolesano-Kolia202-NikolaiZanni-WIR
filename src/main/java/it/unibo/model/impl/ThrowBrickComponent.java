@@ -12,7 +12,7 @@ import it.unibo.common.Pair;
  */
 public class ThrowBrickComponent extends AbstractComponent {
 
-        private boolean blocked;
+        private StopralphComponent stopralphComponent;
         private final EntityFactoryImpl entityFactoryImpl;
         private final GamePerformance gamePerformance;
         /**
@@ -20,9 +20,9 @@ public class ThrowBrickComponent extends AbstractComponent {
          * @param gamePerformance the game performance.
          */
         public ThrowBrickComponent(final GamePerformance gamePerformance) {
-            this.blocked = false;
             this.gamePerformance = gamePerformance;
             this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
+            this.stopralphComponent = new StopralphComponent();
         }
         /**
          * Create a new brick in the position passed as parameter and add it to the set of bricks.
@@ -30,7 +30,7 @@ public class ThrowBrickComponent extends AbstractComponent {
          * @param position  the position where the brick will be created.
          */
         public void addBrickToThrow(final Set<Entity> bricks, final Pair<Double, Double> position) {
-            if (!blocked) {
+            if (!stopralphComponent.getStopRalph()) {
                 bricks.add(entityFactoryImpl.createBrick(position));
             }
         }
@@ -41,24 +41,5 @@ public class ThrowBrickComponent extends AbstractComponent {
         @Override
         public ComponentType getComponent() {
             return ComponentType.THROWBRICK;
-        }
-        /**
-         * Block the component.
-         */
-        public void block() {
-            this.blocked = true;
-        }
-        /**
-         * Unblock the component.
-         */
-        public void unblock() {
-            this.blocked = false;
-        }
-        /**
-         * Check if the component is blocked.
-         * @return true if the component is blocked, false otherwise.
-         */
-        public boolean isBlocked() {
-            return this.blocked;
         }
 }

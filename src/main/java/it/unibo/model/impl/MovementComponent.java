@@ -10,10 +10,8 @@ import it.unibo.utilities.EntityType;
  * Component that allows movement.
  */
 public class MovementComponent extends AbstractComponent {
-    private StopralphComponent stopralphComponent;
 
     public MovementComponent() {
-        this.stopralphComponent = new StopralphComponent();
     }
     /**
      * Move the entity.
@@ -39,9 +37,6 @@ public class MovementComponent extends AbstractComponent {
      * @return true if the entity can move, false otherwise.
      */
     public boolean canMove(final double x, final double y, final Entity entity) {
-        if (entity.getEntityType() == EntityType.RALPH && stopralphComponent.getStopRalph()) {
-            return false;
-        }
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
         return newX >= Constaints.GameEdges.LEFT_WALL

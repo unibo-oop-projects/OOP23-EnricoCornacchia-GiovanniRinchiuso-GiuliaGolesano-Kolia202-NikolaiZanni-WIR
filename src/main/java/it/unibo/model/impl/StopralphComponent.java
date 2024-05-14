@@ -5,26 +5,26 @@ import it.unibo.model.api.ComponentType;
 
 public class StopralphComponent implements Component {
 
-    private boolean stopRalph;
+    private boolean blocked;
     private long startTime;
 
     public StopralphComponent() {
-        this.stopRalph = false;
+        this.blocked = false;
     }
 
     public void setStopralph() {
-        this.stopRalph = true;
+        this.blocked = true;
         this.startTime = System.currentTimeMillis();
     }
 
     public boolean getStopRalph() {
-        if (this.stopRalph) {
+        if (this.blocked) {
             long currentTime = System.currentTimeMillis();
             if (currentTime - this.startTime >= 10000) {
-                this.stopRalph = false;
+                this.blocked = false;
             }
         }
-        return this.stopRalph;
+        return this.blocked;
     }
 
     @Override
