@@ -23,7 +23,7 @@ public class StopRalphComponentTest {
 
     @Test
     public void testSetStopRalph() {
-        stopRalphComponent.getStopRalph();
+        stopRalphComponent.setStopRalph();
         assertTrue(stopRalphComponent.getStopRalph());
     }
 

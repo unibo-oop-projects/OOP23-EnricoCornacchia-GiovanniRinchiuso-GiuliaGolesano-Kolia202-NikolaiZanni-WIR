@@ -20,7 +20,7 @@ class ThrowBrickComponentTest {
     private ThrowBrickComponent component;
     private Set<Entity> bricks;
     private GamePerformance gamePerformance; 
-    private StopRalphComponent stopRalph;// Mock or stub if needed
+    private StopRalphComponent stopRalph; 
 
     @BeforeEach
     void setUp() {
@@ -31,19 +31,19 @@ class ThrowBrickComponentTest {
     }
 
     @Test
-    void testAddBrickWhenUnblocked() {
-        Pair<Double, Double> position = new Pair<>(1.0, 2.0);
-        component.addBrickToThrow(bricks, position);
-        assertEquals(1, bricks.size(), "Brick should be added when component is not blocked");
-    }
-
-    @Test
     void testAddBrickWhenBlocked() {
         System.out.println(System.currentTimeMillis());
         stopRalph.setStopRalph();
         Pair<Double, Double> position = new Pair<>(1.0, 2.0);
         component.addBrickToThrow(bricks, position);
         System.out.println(System.currentTimeMillis());
-        assertTrue(bricks.isEmpty(), "No brick should be added when component is blocked");
+        assertEquals(0, bricks.size(), "No brick should be added when component is blocked");
+    }
+
+    @Test
+    void testAddBrickWhenUnblocked() {
+        Pair<Double, Double> position = new Pair<>(1.0, 2.0);
+        component.addBrickToThrow(bricks, position);
+        assertEquals(1, bricks.size(), "Brick should be added when component is not blocked");
     }
 }
