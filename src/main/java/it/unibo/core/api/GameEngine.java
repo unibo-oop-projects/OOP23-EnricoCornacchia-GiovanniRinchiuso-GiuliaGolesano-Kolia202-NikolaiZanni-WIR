@@ -11,9 +11,5 @@ public interface GameEngine {
      * Update the game.
      */
     void update();
-    /**
-     * Render the game.
-     */
-    void waitForNextFrame();
 }
 

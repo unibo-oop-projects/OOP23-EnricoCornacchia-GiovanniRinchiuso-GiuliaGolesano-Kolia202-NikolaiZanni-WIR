@@ -14,6 +14,7 @@ public class GameEngineImpl implements GameEngine {
     private final int period;
     private final GameController gameController;
     private final GameView gameView;
+    private boolean hasChanged;
     /**
      * Constructor for the game engine.
      */
@@ -21,12 +22,12 @@ public class GameEngineImpl implements GameEngine {
         period = 10;
         gameController = new GameController();
         gameView = new GameView(gameController);
+        hasChanged = false;
     }
     /**
-     * Main loop of the game.
+     *Loop of the game.
      */
-    @Override
-    public void mainLoop() {
+    private void gameLoop() {
         long current = System.currentTimeMillis();
         while (gameController.gameIsNotOver() && gameController.isWin()) {
             if (System.currentTimeMillis() - current > this.period) {
@@ -40,6 +41,44 @@ public class GameEngineImpl implements GameEngine {
         } else {
         GameState.setGameState(GameState.GAMEOVER);
         }
+        this.hasChanged = true;
+    }
+    /**
+     * Start the game.
+     */
+    @Override
+    public void mainLoop() {
+        while(true){
+            do {
+                switch(GameState.getGameState()) {
+                    case HOME:
+                        //gameView.drawHome();
+                        hasChanged = false;
+                        break;
+                    case PLAYING:
+                        gameLoop();
+                        break;
+                    case WIN:
+                        //gameView.drawWin();
+                        hasChanged = false;
+                        break;
+                    case GAMEOVER:
+                        //gameView.drawGameOver();
+                        hasChanged = false;
+                        break;
+                    case SETTINGS:
+                        //gameView.drawSettings();
+                        hasChanged = false;
+                        break;
+                    case PAUSED:
+                        //gameView.drawPaused();
+                        hasChanged = false;
+                        break;
+                    default:
+                        break;
+                }   
+            } while (hasChanged);
+        }
     }
     /**
      * Draw the game.
@@ -48,7 +87,6 @@ public class GameEngineImpl implements GameEngine {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Draw'");
     }
-
     /**
      * Update the game.
      */
@@ -56,12 +94,10 @@ public class GameEngineImpl implements GameEngine {
     public void update() {
         gameController.update();
     }
-    /**
-     * Wait for the next frame.
+    /*
+     * Setter true for hasChanged.
      */
-    @Override
-    public void waitForNextFrame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'WaitForNextFrame'");
+    public void setHasChangedTrue() {
+        this.hasChanged = true;
     }
 }
