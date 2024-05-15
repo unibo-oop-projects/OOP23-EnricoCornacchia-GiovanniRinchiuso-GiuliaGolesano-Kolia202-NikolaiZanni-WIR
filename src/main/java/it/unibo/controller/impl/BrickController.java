@@ -19,7 +19,7 @@ public class BrickController {
 
     /**
      * Constructor for the BrickController.
-     * @param gamePerformance the game performance.
+     * @param gamePerformance the game performance, where every entity is stored.
      */
     public BrickController(final GamePerformance gamePerformance) {
         bricks = new HashSet<>();
@@ -30,17 +30,17 @@ public class BrickController {
      * @return the set of bricks.
      */
     public Set<Entity> getBricks() {
-        return new HashSet<>(this.bricks);
+        return this.bricks;
     }
     /**
      * make the bricks fall.
      */
     public void fallBricks() {
         this.checkBricks();
-        for (final Entity brick : bricks) {
+        for (final Entity brick : this.bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
-                    ((MovementComponent) component).move(this.getBrickSpeedByLevel(), 0.0, brick);
+                    ((MovementComponent) component).move(0.0, -this.getBrickSpeedByLevel(), brick);
                 }
             }
         }
@@ -50,19 +50,19 @@ public class BrickController {
      * If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
      */
     private void checkBricks() {
-        for (final Entity brick : bricks) {
+        for (final Entity brick : this.bricks) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
-                && !((MovementComponent) component).canMove(this.getBrickSpeedByLevel(), 0.0, brick)) {
-                    bricks.remove(brick);
-                    gamePerformance.removeEntity(brick);
+                && !((MovementComponent) component).canMove(0.0, -this.getBrickSpeedByLevel(), brick)) {
+                    this.bricks.remove(brick);
+                    this.gamePerformance.removeEntity(brick);
                 }
             }
         }
     }
 
     private double getBrickSpeedByLevel() {
-        switch (gamePerformance.getLevel()) {
+        switch (this.gamePerformance.getLevel()) {
             case 1:
                 return Brick.BRICK_SPEED_LEVEL_1;
             case 2:

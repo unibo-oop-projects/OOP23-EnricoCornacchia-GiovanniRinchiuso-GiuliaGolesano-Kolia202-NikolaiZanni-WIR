@@ -37,7 +37,7 @@ public class EntityFactoryImpl implements EntityFactory {
                 new LivesComponent(),
                 new FixWindowsComponent(),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
-        return new EntityImpl(EntityType.FELIX, pos, gamePerformance, components);
+        return new EntityImpl(EntityType.FELIX, pos, this.gamePerformance, components);
     }
 
     /**
@@ -46,9 +46,9 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
-                new ThrowBrickComponent(gamePerformance),
+                new ThrowBrickComponent(this.gamePerformance),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH)));
-        return new EntityImpl(EntityType.RALPH, pos, gamePerformance, components);
+        return new EntityImpl(EntityType.RALPH, pos, this.gamePerformance, components);
     }
 
     /**
@@ -66,7 +66,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        return new EntityImpl(EntityType.BRICK, pos, gamePerformance, components);
+        return new EntityImpl(EntityType.BRICK, pos, this.gamePerformance, components);
     }
 
     /**
@@ -92,7 +92,7 @@ public class EntityFactoryImpl implements EntityFactory {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         new ImmortalityComponent();
         new LivesComponent();
-        return new EntityImpl(EntityType.CAKE, randomPos, gamePerformance, components);
+        return new EntityImpl(EntityType.CAKE, randomPos, this.gamePerformance, components);
     }
 
     /**
@@ -107,6 +107,6 @@ public class EntityFactoryImpl implements EntityFactory {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         new StopRalphComponent();
         new MovementComponent();
-        return new EntityImpl(EntityType.BIRD, randomPos, gamePerformance, components);
+        return new EntityImpl(EntityType.BIRD, randomPos, this.gamePerformance, components);
     }
 }
