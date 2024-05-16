@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import it.unibo.model.api.Entity;
 import it.unibo.view.api.View;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -9,15 +10,21 @@ import javafx.scene.image.Image;
  */
 public class FelixView implements View{
 
+    private Image image;
+    private Entity felix;
+
+    public FelixView(final Entity felix) {
+        this.felix = felix;
+        this.image = getSource("Felix.png");
+    }
+
     @Override
     public void draw(GraphicsContext g) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        g.drawImage(image, felix.getPosition().getX(), felix.getPosition().getY());
     }
 
     @Override
     public Image getSource(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSource'");
+        return new Image(name);
     }
 }
