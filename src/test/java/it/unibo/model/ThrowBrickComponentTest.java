@@ -1,6 +1,5 @@
 package it.unibo.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -14,7 +13,6 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
-import it.unibo.model.impl.StopRalphComponent;
 import it.unibo.model.impl.ThrowBrickComponent;  
 
 class ThrowBrickComponentTest {

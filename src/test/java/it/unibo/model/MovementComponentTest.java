@@ -6,18 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
-import java.util.HashSet;
  
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
-import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constaints;
-import it.unibo.utilities.EntityType;  
+
 
 public class MovementComponentTest {
 
