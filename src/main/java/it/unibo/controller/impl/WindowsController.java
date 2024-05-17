@@ -1,6 +1,5 @@
 package it.unibo.controller.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
