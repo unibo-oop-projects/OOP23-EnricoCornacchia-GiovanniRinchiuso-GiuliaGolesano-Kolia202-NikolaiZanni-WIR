@@ -49,7 +49,12 @@ public class InputTest {
         robot.press(KeyCode.D).release(KeyCode.D);
         assertTrue(gamePerformance.getInputs().contains(KeyCode.D), "KeyCode D should be in the input list");
 
-        robot.press(KeyCode.Z).release(KeyCode.Z);
+        robot.press(KeyCode.Z);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(gamePerformance.getInputs().contains(KeyCode.Z), "KeyCode Z should be in the input list");
     }
 }

@@ -1,8 +1,6 @@
 package it.unibo.view.impl;
 
 import it.unibo.controller.impl.GameController;
-import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import javafx.application.Application;
@@ -10,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -23,6 +22,7 @@ import javafx.stage.Stage;
  */
 public class WindowGame extends Application {
     private Stage primaryStage; 
+    private boolean zKeyPressed = false;
     
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -72,36 +72,44 @@ public class WindowGame extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case S: gameController.moveFelixDown(event.getCode());
-                System.out.print("Key S pressed, lets move felix down!\n");
+                //System.out.print("Key S pressed, lets move felix down!\n");
                 break;
                 case A: gameController.moveFelixLeft(event.getCode());
-                System.out.print("Key A pressed, lets move felix left!\n");
+                //System.out.print("Key A pressed, lets move felix left!\n");
                 break;
                 case D: gameController.moveFelixRight(event.getCode());
-                System.out.print("Key D pressed, lets move felix right!\n");
+                //System.out.print("Key D pressed, lets move felix right!\n");
                 break;
                 case W: gameController.moveFelixUp(event.getCode());
-                System.out.print("Key W pressed, lets move felix up!\n");
+                //System.out.print("Key W pressed, lets move felix up!\n");
                 break;
+                //AGGIUNGERE COLLISSIONE CON FINESTRA E COORDINATE FINESTRA CHE STA SISTEMANDO
                 case Z:
-                    /*Thread timerThread = new Thread(() -> {
-                        long startTime = System.currentTimeMillis();
-                        long duration = 0;
-                        while (event.isPressed() && duration < 3000) {
-                            duration = System.currentTimeMillis() - startTime;
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    zKeyPressed = true;
+                    
+                    Thread timerThread = new Thread(() -> {
+                        try {
+                            Thread.sleep(5000); 
+                            
+                            if (zKeyPressed) {
+                                gameController.fixWindows(event.getCode());
+                                //System.out.print("Key Z pressed for 5 seconds!\n");
                             }
-                        }
-                        if (duration >= 3000) {
-                            gameController.fixWindows(event.getCode());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            zKeyPressed = false;
                         }
                     });
-                    timerThread.setDaemon(true); 
-                    timerThread.start();*/
+                    timerThread.start();
+
+                    scene.setOnKeyReleased(releasedEvent -> {
+                        if (releasedEvent.getCode() == KeyCode.Z) {
+                            zKeyPressed = false;
+                        }
+                    });
                     break;
+
                 default:
                     break;
             }

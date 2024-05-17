@@ -64,8 +64,7 @@ public class FelixController {
      * Jump.
      */
     public void fix() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fix'");
+        System.out.print("fixing the windows");
     }
     /**
      * Check if the character is alive.
