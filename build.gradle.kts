@@ -48,6 +48,12 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    // Dipendenze per TestFX
+    val testFxVersion = "4.0.16-alpha"
+    testImplementation("org.testfx:testfx-core:$testFxVersion")
+    testImplementation("org.testfx:testfx-junit5:$testFxVersion")
+
 }
 
 tasks.withType<Test> {
