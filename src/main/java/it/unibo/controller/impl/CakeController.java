@@ -45,4 +45,11 @@ public class CakeController {
     public void stopCakeCreation() {
         scheduler.shutdown();
     }
+    /*
+     * This method implement the logic of the update of the game
+     */
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }

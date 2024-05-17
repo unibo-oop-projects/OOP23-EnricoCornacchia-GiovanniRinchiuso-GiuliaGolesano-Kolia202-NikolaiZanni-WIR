@@ -38,6 +38,8 @@ public class GameController {
     public void update() {
         this.brickController.fallBricks();
         this.ralphController.update(brickController.getBricks());
+        this.cakeController.update();
+        this.birdController.update();
     }
     /**
      * Controls if the game is over.
@@ -111,42 +113,42 @@ public class GameController {
     }
     /**
      * Method to move the player after receiving keyboard input "down".
-     * @param e
+     * @param e the keyCode
      */
-    public void moveFelixDown(KeyCode e){
+    public void moveFelixDown(final KeyCode e){
         this.felixController.moveDown();
         //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
      * Method to move the player after receiving keyboard input "left".
-     * @param e
+     * @param e the keyCode
      */
-    public void moveFelixLeft(KeyCode e){
+    public void moveFelixLeft(final KeyCode e){
         this.felixController.moveLeft();
         //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
      * Method to move the player after receiving keyboard input "right".
-     * @param e
+     * @param e the KeyCode
      */
-    public void moveFelixRight(KeyCode e){ 
+    public void moveFelixRight(final KeyCode e){ 
         this.felixController.moveRight();
         //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
      * Method to move the player after receiving keyboard input "up".
-     * @param e
+     * @param e the KeyCode
      */
-    public void moveFelixUp(KeyCode e){
+    public void moveFelixUp(final KeyCode e){
         this.felixController.moveUp();
         //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
 
-    public void fixWindows(KeyCode e){
+    public void fixWindows(final KeyCode e){
         this.felixController.fix();
         //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
