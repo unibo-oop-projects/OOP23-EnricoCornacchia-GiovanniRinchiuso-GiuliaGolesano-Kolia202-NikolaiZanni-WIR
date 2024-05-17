@@ -22,7 +22,7 @@ public class GameEngineImpl implements GameEngine {
         period = 10;
         gameController = new GameController();
         gameView = new GameView(gameController);
-        hasChanged = false;
+        hasChanged = true;
     }
     /**
      *Loop of the game.
@@ -44,12 +44,12 @@ public class GameEngineImpl implements GameEngine {
         this.hasChanged = true;
     }
     /**
-     * Start the game.
+     * Main loop, it delegates the drawing to the view based on the game state.
      */
     @Override
     public void mainLoop() {
-        while(true){
-            do {
+        while(true) {
+            while (hasChanged) {
                 switch(GameState.getGameState()) {
                     case HOME:
                         //gameView.drawHome();
@@ -77,7 +77,7 @@ public class GameEngineImpl implements GameEngine {
                     default:
                         break;
                 }   
-            } while (hasChanged);
+            } 
         }
     }
     /**

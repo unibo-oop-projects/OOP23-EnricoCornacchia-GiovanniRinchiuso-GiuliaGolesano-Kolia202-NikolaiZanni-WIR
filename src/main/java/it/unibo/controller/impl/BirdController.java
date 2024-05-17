@@ -27,7 +27,7 @@ public class BirdController {
     private void scheduleBirdCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             bird = entityFactoryImpl.createBird(null);
-        }, 5, 10, TimeUnit.SECONDS);
+        }, Constaints.PowerUps.INITIAL_DELAY, Constaints.PowerUps.PERIOD, TimeUnit.SECONDS);
     }
 
     public void moveBird() {

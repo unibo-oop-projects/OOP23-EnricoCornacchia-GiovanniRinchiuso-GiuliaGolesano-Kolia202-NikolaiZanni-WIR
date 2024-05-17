@@ -236,6 +236,14 @@ public final class Constaints {
          * Minimum y of the cake.
          */
         public static final double CAKE_MIN_X = 200.0;
+        /**
+         * The initial delay of the power ups.
+         */
+        public static final long INITIAL_DELAY = 5;
+        /**
+         * The period of the power ups.
+         */
+        public static final long PERIOD = 10;
     }
     /**
      * Floors constains.
