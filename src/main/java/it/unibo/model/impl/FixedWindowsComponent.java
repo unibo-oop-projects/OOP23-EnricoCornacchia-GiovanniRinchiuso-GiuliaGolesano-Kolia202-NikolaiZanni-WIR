@@ -8,8 +8,14 @@ import it.unibo.model.api.ComponentType;
  */
 public class FixedWindowsComponent extends AbstractComponent {
 
-    boolean isFixed = false;
-
+    private boolean isFixed;
+    /**
+     * Constructor.
+     * @param state
+     */
+    public FixedWindowsComponent(final boolean state){
+        this.isFixed = state;
+    }
     @Override
     public ComponentType getComponent() {
         return ComponentType.FIXEDWINDOWS;
@@ -27,5 +33,4 @@ public class FixedWindowsComponent extends AbstractComponent {
     public boolean getFixed(){
         return this.isFixed;
     }
-    
 }
