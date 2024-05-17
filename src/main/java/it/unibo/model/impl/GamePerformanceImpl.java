@@ -81,6 +81,7 @@ public class GamePerformanceImpl implements GamePerformance {
      */
     public void addKey(final KeyCode keyCode) {
         this.inputs.add(keyCode);
+        //System.out.print("Keycode added\n");
     }
     /**
      * {@inheritDoc}

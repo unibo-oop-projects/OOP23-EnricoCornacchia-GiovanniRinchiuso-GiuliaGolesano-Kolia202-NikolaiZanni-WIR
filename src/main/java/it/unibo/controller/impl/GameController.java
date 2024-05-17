@@ -115,6 +115,7 @@ public class GameController {
      */
     public void moveFelixDown(KeyCode e){
         this.felixController.moveDown();
+        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -123,6 +124,7 @@ public class GameController {
      */
     public void moveFelixLeft(KeyCode e){
         this.felixController.moveLeft();
+        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -131,6 +133,7 @@ public class GameController {
      */
     public void moveFelixRight(KeyCode e){ 
         this.felixController.moveRight();
+        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -139,11 +142,13 @@ public class GameController {
      */
     public void moveFelixUp(KeyCode e){
         this.felixController.moveUp();
+        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
 
     public void fixWindows(KeyCode e){
         this.felixController.fix();
+        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
 }

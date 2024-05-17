@@ -1,6 +1,8 @@
 package it.unibo.view.impl;
 
 import it.unibo.controller.impl.GameController;
+import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import javafx.application.Application;
@@ -70,9 +72,17 @@ public class WindowGame extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case S: gameController.moveFelixDown(event.getCode());
+                System.out.print("Key S pressed, lets move felix down!\n");
+                break;
                 case A: gameController.moveFelixLeft(event.getCode());
+                System.out.print("Key A pressed, lets move felix left!\n");
+                break;
                 case D: gameController.moveFelixRight(event.getCode());
+                System.out.print("Key D pressed, lets move felix right!\n");
+                break;
                 case W: gameController.moveFelixUp(event.getCode());
+                System.out.print("Key W pressed, lets move felix up!\n");
+                break;
                 case Z:
                     /*Thread timerThread = new Thread(() -> {
                         long startTime = System.currentTimeMillis();
