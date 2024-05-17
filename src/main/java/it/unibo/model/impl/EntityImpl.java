@@ -63,7 +63,7 @@ public class EntityImpl implements Entity {
      * @return the component of the entity.
      */
     @Override
-    public Optional<Component> getComponent(final ComponentType componentType) {
+    public Optional<Component> getTheComponent(final ComponentType componentType) {
         return this.components.stream().filter(c -> c.getComponent().equals(componentType)).findFirst();
     }
     /**

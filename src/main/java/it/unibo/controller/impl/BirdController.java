@@ -33,7 +33,7 @@ public class BirdController {
     public void moveBird() {
         if (bird != null) {
             if (bird.getPosition().getX() == Constaints.PowerUps.BIRD_MIN_x) {
-                final MovementComponent moveComp = (MovementComponent) this.bird.getComponent(ComponentType.MOVEMENT)
+                final MovementComponent moveComp = (MovementComponent) this.bird.getTheComponent(ComponentType.MOVEMENT)
                         .get();
                 if (bird.getPosition().getX() < Constaints.GameEdges.RIGHT_WALL) {
                     moveComp.move(1, 0, this.bird);
@@ -42,7 +42,7 @@ public class BirdController {
                     bird = null;
                 }
             } else if (bird.getPosition().getX() == Constaints.PowerUps.BIRD_MAX_X) {
-                final MovementComponent moveComp = (MovementComponent) this.bird.getComponent(ComponentType.MOVEMENT)
+                final MovementComponent moveComp = (MovementComponent) this.bird.getTheComponent(ComponentType.MOVEMENT)
                         .get();
                 if (bird.getPosition().getX() > Constaints.GameEdges.LEFT_WALL) {
                     moveComp.move(-1, 0, this.bird);

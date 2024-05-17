@@ -22,7 +22,7 @@ public class CollisionManager {
     public CollisionManager(final Set<Entity> entities) {
         this.hitboxes = new HashSet<>();
         this.hitboxes.addAll(entities.stream()
-            .flatMap(e -> e.getComponent(ComponentType.HITBOX).stream())
+            .flatMap(e -> e.getTheComponent(ComponentType.HITBOX).stream())
             .map(c -> (HitboxComponent) c)
             .collect(Collectors.toSet()));
     }

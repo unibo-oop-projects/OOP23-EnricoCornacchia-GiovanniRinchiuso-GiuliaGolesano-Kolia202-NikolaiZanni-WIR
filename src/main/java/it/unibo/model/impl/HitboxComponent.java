@@ -130,7 +130,7 @@ public class HitboxComponent extends AbstractComponent {
     public void checkOtherEntitiesCollisions() {
         for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
             if (!e.equals(this.getEntity())) {
-                if (this.collidesWith((HitboxComponent)e.getComponent(ComponentType.HITBOX).get())) {
+                if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
                         this.getEntity().getGamePerformance().oneLifeLost();
