@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
- 
+
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.EntityFactoryImpl;

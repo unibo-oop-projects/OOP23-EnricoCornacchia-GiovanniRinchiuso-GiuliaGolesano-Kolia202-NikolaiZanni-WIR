@@ -3,6 +3,9 @@ package it.unibo.core.impl;
 import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
 import it.unibo.view.impl.GameView;
+
+import java.util.function.BooleanSupplier;
+
 import it.unibo.controller.impl.GameController;
 
 /**
@@ -99,5 +102,19 @@ public class GameEngineImpl implements GameEngine {
      */
     public void setHasChangedTrue() {
         this.hasChanged = true;
+    }
+    /*
+     * Getter of the GameController.
+     * @return the GameController.
+     */
+    public GameController getGameController() {
+       return this.gameController;
+    }
+    /*
+     * Getter of the hasChanged.
+     * @return true if the GameState has been changed, false otherwise.
+     */
+    public boolean hasChanged() {
+        return this.hasChanged;
     }
 }
