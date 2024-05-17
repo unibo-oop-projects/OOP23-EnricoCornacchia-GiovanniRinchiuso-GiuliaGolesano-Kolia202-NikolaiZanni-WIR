@@ -54,6 +54,9 @@ dependencies {
     testImplementation("org.testfx:testfx-core:$testFxVersion")
     testImplementation("org.testfx:testfx-junit5:$testFxVersion")
 
+    // Dipendenze per GSon 
+    implementation 'com.google.code.gson:gson:2.8.8'
+
 }
 
 tasks.withType<Test> {
