@@ -59,6 +59,7 @@ public class MainMenu extends StackPane {
         private static final String BACKGROUND = "backgroundMainMenu.png";
         private static final String TOP_IMAGE = "gamePause.png";
         private static final String UNDER_IMAGE = "underImage.png";
+        @SuppressWarnings("unused")
         private final Stage gameStage;
 
         /**

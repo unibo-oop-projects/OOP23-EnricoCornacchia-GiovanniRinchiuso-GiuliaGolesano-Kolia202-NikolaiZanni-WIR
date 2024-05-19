@@ -1,7 +1,6 @@
 package it.unibo.model.api;
 
 import it.unibo.common.Pair;
-import java.util.Set;
 
 /**
  * EntityFactory.
@@ -29,7 +28,7 @@ public interface EntityFactory {
      * @param pos starting windows's position.
      * @return the created windows entity.
      */
-    Set<Entity> createWindows(Set<Pair<Double, Double>> pos);
+    Entity createWindows(Pair<Double, Double> pos, boolean state);
 
     /**
      * Create the brick.

@@ -21,6 +21,7 @@ import javafx.stage.Stage;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
+    @SuppressWarnings("unused")
     private Stage primaryStage; 
     private boolean zKeyPressed = false;
     

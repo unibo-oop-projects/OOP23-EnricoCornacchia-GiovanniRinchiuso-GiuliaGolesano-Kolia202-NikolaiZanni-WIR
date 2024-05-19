@@ -13,6 +13,7 @@ public class GameController {
     private final FelixController felixController;
     private final BrickController brickController;
     private final WindowsController windowsController;
+    @SuppressWarnings("unused")
     private final CollisionManager collisionManager;
     private final GamePerformance gamePerformance;
     private final BirdController birdController;
@@ -109,7 +110,7 @@ public class GameController {
      * @return true if the game is won, false otherwise.
      */
     public boolean isWin() {
-        return this.windowsController.Won();
+        return this.windowsController.won();
     }
     /**
      * Method to move the player after receiving keyboard input "down".

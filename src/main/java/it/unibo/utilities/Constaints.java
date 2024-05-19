@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.common.Pair;
-import javafx.print.Collation;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 
 /**
  * Class for the constaints used.

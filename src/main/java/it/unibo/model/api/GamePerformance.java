@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import it.unibo.common.Pair;
-import it.unibo.controller.impl.GameController;
-import it.unibo.utilities.EntityType;
 import javafx.scene.input.KeyCode;
 
 /**

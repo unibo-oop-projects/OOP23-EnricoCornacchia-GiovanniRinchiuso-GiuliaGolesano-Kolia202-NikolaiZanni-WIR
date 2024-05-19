@@ -8,7 +8,6 @@ import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
-import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
@@ -54,8 +53,23 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * Method that create all the element of the map, according to the level.
      */
-    private void createGameMap() {
-        // TODO Auto-generated method stub
+    public void createGameMap() {
+        switch (this.gameController.getLevel()) {
+            case 1:
+                this.gameController.getWindowsController().windowsGrid(Constaints.Windows.BROKEN_1);
+                break;
+            case 2:
+                this.gameController.getWindowsController().windowsGrid(Constaints.Windows.BROKEN_2);
+                break;
+            case 3:
+                this.gameController.getWindowsController().windowsGrid(Constaints.Windows.BROKEN_3);
+                break;   
+            case 4:
+                this.gameController.getWindowsController().windowsGrid(Constaints.Windows.BROKEN_4);
+                break;
+            default:
+                break;
+        }
     }
     /**
      * {@inheritDoc}
@@ -116,6 +130,7 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * Method that place a bird power up.
      */
+    @SuppressWarnings("unused")
     private void placeBird() {
         this.entities.add(this.entityFactory.createBird(placePowerUps(EntityType.BIRD)));
     }

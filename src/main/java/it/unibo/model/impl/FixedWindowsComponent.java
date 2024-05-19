@@ -1,6 +1,5 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 
 /**

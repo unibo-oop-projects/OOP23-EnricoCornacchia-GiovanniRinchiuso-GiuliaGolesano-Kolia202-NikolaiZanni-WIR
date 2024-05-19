@@ -55,9 +55,10 @@ public class EntityFactoryImpl implements EntityFactory {
      * {@inheritDoc}
      */
     @Override
-    public Set<Entity> createWindows(final Set<Pair<Double, Double>> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createWindows'");
+    public Entity createWindows(final Pair<Double, Double> pos, final boolean state) {
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
+                new FixedWindowsComponent(state)));
+        return new EntityImpl(EntityType.WINDOW, pos, this.gamePerformance, components);
     }
 
     /**

@@ -1,6 +1,5 @@
 package it.unibo.model.impl;
 
-import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import javafx.scene.input.KeyCode;
 
@@ -24,6 +23,7 @@ public class FixWindowsComponent extends AbstractComponent {
         //AGGIUNGERE SE SI TROVA IN COLLISIONE CON UNA FINESTRA
         if(code == KeyCode.Z) {
             //ANDARE NELLA FINESTRA GIUSTA E SETTARE IL COMPONENT A TRUE
+            //WindowsView.fixAnimation();
         }
     }
 }

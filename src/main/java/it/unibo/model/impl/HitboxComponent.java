@@ -19,8 +19,8 @@ import it.unibo.utilities.Constaints.Window;
 public class HitboxComponent extends AbstractComponent {
 
     private Rectangle hitbox;
-    private final double x;
-    private final double y;
+    @SuppressWarnings("unused")
+    private final double x, y;
 
     /**
      * Constructs a new HitboxComponent with the specified x and y coordinates and entity type.
@@ -133,11 +133,11 @@ public class HitboxComponent extends AbstractComponent {
                 if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
-                        this.getEntity().getGamePerformance().oneLifeLost();
+                        //this.getEntity().getGamePerformance().oneLifeLost();
                     }
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
                         //this.getEntity().getGamePerformance().removeCake(e.getPosition());
-                        this.getEntity().getGamePerformance().oneLifeEarned();
+                        //this.getEntity().getGamePerformance().oneLifeEarned();
                     }
                 }
             }
