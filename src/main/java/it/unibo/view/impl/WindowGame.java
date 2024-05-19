@@ -1,6 +1,7 @@
 package it.unibo.view.impl;
 
 import it.unibo.controller.impl.GameController;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import javafx.application.Application;
@@ -24,7 +25,8 @@ public class WindowGame extends Application {
     @SuppressWarnings("unused")
     private Stage primaryStage; 
     private boolean zKeyPressed = false;
-    
+    GamePerformance gamePerformance;
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -38,7 +40,7 @@ public class WindowGame extends Application {
 
         MainMenu mainMenu = new MainMenu(primaryStage); 
 
-        LivesComponent livesComponent = new LivesComponent();
+        LivesComponent livesComponent = new LivesComponent(gamePerformance);
         LivesView livesView = new LivesView(livesComponent);
 
         AnchorPane root = new AnchorPane();

@@ -34,7 +34,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public Entity createFelix(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new PointsComponent(),
-                new LivesComponent(),
+                new LivesComponent(this.gamePerformance),
                 new FixWindowsComponent(),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.FELIX, pos, this.gamePerformance, components);
@@ -92,7 +92,7 @@ public class EntityFactoryImpl implements EntityFactory {
         final Pair<Double, Double> randomPos = new Pair<>(cakeX, cakeY);
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         new ImmortalityComponent();
-        new LivesComponent();
+        new LivesComponent(this.gamePerformance);
         return new EntityImpl(EntityType.CAKE, randomPos, this.gamePerformance, components);
     }
 
