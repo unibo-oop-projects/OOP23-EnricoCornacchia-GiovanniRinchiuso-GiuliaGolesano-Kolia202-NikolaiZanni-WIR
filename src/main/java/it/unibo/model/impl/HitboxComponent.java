@@ -138,8 +138,16 @@ public class HitboxComponent extends AbstractComponent {
                         ((LivesComponent)this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
                     }
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
-                        //this.getEntity().getGamePerformance().removeCake(e.getPosition());
-                        //this.getEntity().getGamePerformance().oneLifeEarned();
+                        this.getEntity().getGamePerformance().removeEntity(e);
+                        ((ImmortalityComponent)this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
+                                                   .setImmortality(((LivesComponent)this.getEntity()
+                                                   .getTheComponent(ComponentType.LIFE).get()));
+                    }
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BIRD) {
+                        this.getEntity().getGamePerformance().removeEntity(e);
+                        ((StopRalphComponent)this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
+                                                 .setStopRalph(((ThrowBrickComponent)this.getEntity()
+                                                 .getTheComponent(ComponentType.THROWBRICK).get()));
                     }
                 }
             }
