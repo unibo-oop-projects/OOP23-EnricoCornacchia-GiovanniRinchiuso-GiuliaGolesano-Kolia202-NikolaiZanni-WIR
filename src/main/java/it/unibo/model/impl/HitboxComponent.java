@@ -156,7 +156,7 @@ public class HitboxComponent extends AbstractComponent {
 
     /**
      * Checks for collisions with windows in the game and returns the position of the first window collided with.
-     * If the entity is FELIX and collides with a window, the position of the window is returned.
+     * If the entity is Felix and collides with a window, the position of the window is returned.
      * If no collisions occur, an empty Optional is returned.
      * 
      * @return An Optional containing the position of the first window collided with, or an empty Optional if no collisions occurred.
