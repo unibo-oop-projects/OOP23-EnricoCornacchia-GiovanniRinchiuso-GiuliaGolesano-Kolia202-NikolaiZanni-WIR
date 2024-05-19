@@ -59,16 +59,6 @@ public interface GamePerformance {
      */
     void removeBrick(Pair<Double, Double> pos);
 
-    /**
-     * Method that removes a life from the player’s stocks if a brick hit him.
-     */
-    void oneLifeLost();
-
-    /**
-     * Method that adds one life to the player's stock if he took a power ups.
-     */
-    void oneLifeEarned();
-
     /** 
      * Method that manages the spawn of power ups. passare per parametro il tipo di power ups??
      */

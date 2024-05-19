@@ -109,7 +109,7 @@ public class GameController {
      * @return true if the game is won, false otherwise.
      */
     public boolean isWin() {
-        return this.windowsController.isWon();
+        return this.windowsController.Won();
     }
     /**
      * Method to move the player after receiving keyboard input "down".

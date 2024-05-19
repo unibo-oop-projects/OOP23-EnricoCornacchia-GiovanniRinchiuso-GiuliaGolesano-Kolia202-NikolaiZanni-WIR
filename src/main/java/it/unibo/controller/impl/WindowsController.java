@@ -20,7 +20,7 @@ public class WindowsController {
      * Method that check if there are broken windows.
      * @return true if the game is won, false otherwise.
      */
-    public boolean isWon() {
+    public boolean Won() {
         return this.gamePerformance.getWindows().stream()
             .allMatch(w -> w.getTheComponent(ComponentType.FIXEDWINDOWS)
                             .map(c -> ((FixedWindowsComponent) c).getFixed())

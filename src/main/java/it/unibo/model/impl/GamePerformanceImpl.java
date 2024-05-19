@@ -95,20 +95,6 @@ public class GamePerformanceImpl implements GamePerformance {
     /**
      * {@inheritDoc}
      */
-    public void oneLifeLost() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'oneLifeLost'");
-    }
-    /**
-     * {@inheritDoc}
-     */
-    public void oneLifeEarned() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'oneLifeEarned'");
-    }
-    /**
-     * {@inheritDoc}
-     */
     public void spawnPowerUps() {
     }
     /**
