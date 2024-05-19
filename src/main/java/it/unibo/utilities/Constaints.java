@@ -312,7 +312,7 @@ public final class Constaints {
         /**
          * Number of frames for Bird fly animation.
          */
-        public static final int NUM_FRAMES_BIRD = 0;
+        public static final int NUM_FRAMES_BIRD = 4;
         /**
          * Map of index and image.
          */
