@@ -2,16 +2,16 @@ package it.unibo.view.impl;
 
 import it.unibo.controller.impl.GameController;
 import it.unibo.utilities.Constaints;
-import it.unibo.view.api.View;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
  * Game view, manages the game view.
  */
-public class GameView implements View{
+public class GameView{
 
+    @SuppressWarnings("unused")
     private final GameController gameController;
+    @SuppressWarnings("unused")
     private Image[] felix, ralph, brick_fall, window_fix, bird_fly, cake_spawn;
 
 
@@ -23,14 +23,6 @@ public class GameView implements View{
     public GameView(final GameController gameController){
         this.gameController = gameController;
         this.animation();
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public void draw(GraphicsContext g) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
     /**

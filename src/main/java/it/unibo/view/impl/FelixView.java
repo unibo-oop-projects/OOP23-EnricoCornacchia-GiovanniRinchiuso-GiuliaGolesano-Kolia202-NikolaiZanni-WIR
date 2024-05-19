@@ -5,6 +5,7 @@ import it.unibo.utilities.Constaints;
 import it.unibo.view.api.View;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Class responsible for the view of Felix.
@@ -30,7 +31,6 @@ public class FelixView implements View{
         this.frameHeightRight = this.imageRight.getHeight();
     }
 
-    @Override
     public void draw(GraphicsContext g) {
         Image image = getImage();
         double frameWidth = image == imageLeft ? frameWidthLeft : frameWidthRight;
@@ -52,5 +52,23 @@ public class FelixView implements View{
     private Image getImage() {
         return this.imageLeft;
         //return felix.getDirection() == Movements.LEFT ? imageLeft : imageRight;
+    }
+
+    @Override
+    public void updateFrame() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateFrame'");
+    }
+
+    @Override
+    public Image getFrame(int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFrame'");
+    }
+
+    @Override
+    public ImageView getImageView() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getImageView'");
     }
 }
