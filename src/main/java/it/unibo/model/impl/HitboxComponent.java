@@ -1,5 +1,7 @@
 package it.unibo.model.impl;
 
+import java.util.Optional;
+
 import it.unibo.common.Pair;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
@@ -142,6 +144,19 @@ public class HitboxComponent extends AbstractComponent {
                 }
             }
         }
+    }
+
+    public Optional<Pair<Double, Double>> checkWindowsCollisions() {
+        for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
+            if (!e.equals(this.getEntity())) {
+                if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.WINDOW) {
+                        return Optional.of(e.getPosition());
+                    }
+                }
+            }
+        }
+        return Optional.empty();
     }
 
     /**
