@@ -135,7 +135,7 @@ public class HitboxComponent extends AbstractComponent {
                 if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
-                        //this.getEntity().getGamePerformance().oneLifeLost();
+                        ((LivesComponent)this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
                     }
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
                         //this.getEntity().getGamePerformance().removeCake(e.getPosition());
