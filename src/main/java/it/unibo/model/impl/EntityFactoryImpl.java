@@ -21,6 +21,7 @@ public class EntityFactoryImpl implements EntityFactory {
 
     /**
      * EntityFactoryImpl constructor.
+     * 
      * @param gamePerformance the game performance of the entity factory.
      */
     public EntityFactoryImpl(final GamePerformance gamePerformance) {
@@ -76,18 +77,19 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
         Random rand = new Random();
-        double cakeX = rand.nextDouble() * (Constaints.PowerUps.CAKE_MAX_X - Constaints.PowerUps.CAKE_MIN_X) + Constaints.PowerUps.CAKE_MIN_X;
+        double cakeX = rand.nextDouble() * (Constaints.PowerUps.CAKE_MAX_X - Constaints.PowerUps.CAKE_MIN_X)
+                + Constaints.PowerUps.CAKE_MIN_X;
         double cakeY;
         switch (rand.nextInt(3)) {
             case 0:
-            cakeY = Constaints.PowerUps.CAKE_FLOOR_1_Y;
-            break;
+                cakeY = Constaints.PowerUps.CAKE_FLOOR_1_Y;
+                break;
             case 1:
-            cakeY = Constaints.PowerUps.CAKE_FLOOR_2_Y;
-            break;
+                cakeY = Constaints.PowerUps.CAKE_FLOOR_2_Y;
+                break;
             default:
-            cakeY = Constaints.PowerUps.CAKE_FLOOR_3_Y;
-            break;
+                cakeY = Constaints.PowerUps.CAKE_FLOOR_3_Y;
+                break;
         }
         final Pair<Double, Double> randomPos = new Pair<>(cakeX, cakeY);
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
@@ -101,13 +103,12 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createBird(final Pair<Double, Double> pos) {
-        Random rand = new Random();
-        double birdX = rand.nextDouble() * (Constaints.PowerUps.BIRD_MAX_X - Constaints.PowerUps.BIRD_MIN_x) + Constaints.PowerUps.BIRD_MIN_x;
-        double birdY = rand.nextDouble() * (Constaints.PowerUps.BIRD_MAX_Y - Constaints.PowerUps.BIRD_MIN_Y) + Constaints.PowerUps.BIRD_MIN_Y;
-        final Pair<Double, Double> randomPos = new Pair<>(birdX, birdY);
+        BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
+        Pair<Double, Double> birdPosition = birdPositionComponent.getBirdPosition();
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        components.add(birdPositionComponent); 
         new StopRalphComponent();
         new MovementComponent();
-        return new EntityImpl(EntityType.BIRD, randomPos, this.gamePerformance, components);
+        return new EntityImpl(EntityType.BIRD, birdPosition, this.gamePerformance, components);
     }
 }

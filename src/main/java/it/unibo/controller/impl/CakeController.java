@@ -38,7 +38,7 @@ public class CakeController {
         }, 5, TimeUnit.SECONDS);
     }
 
-    public Entity getBird() {
+    public Entity getCake() {
         return this.cake;
     }
 
