@@ -1,13 +1,16 @@
 package it.unibo.controller.impl;
 
+import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constaints;
-import it.unibo.common.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,46 +18,48 @@ import java.util.concurrent.TimeUnit;
 public class BirdController {
     private final EntityFactoryImpl entityFactoryImpl;
     private Entity bird;
+    private List<Entity> birds;
     private final GamePerformance gamePerformance;
     private final ScheduledExecutorService scheduler;
-    private boolean moveRight;
+    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
 
     public BirdController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        moveRight = false;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.birds = new ArrayList<>();
         scheduleBirdCreation();
     }
 
     private void scheduleBirdCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             bird = entityFactoryImpl.createBird(null);
+            gamePerformance.addEntity(bird);
+            birds.add(bird);
         }, Constaints.PowerUps.INITIAL_DELAY, Constaints.PowerUps.PERIOD, TimeUnit.SECONDS);
     }
 
-    public void birdMovent() {
-        final MovementComponent moveComp = (MovementComponent) this.bird.getTheComponent(ComponentType.MOVEMENT).get();
-        if (moveComp.canMove(1, 0, bird) && moveRight) {
-            moveComp.move(1, 0, bird);
-        } else if (moveComp.canMove(-1, 0, bird) && !moveRight) {
-            moveComp.move(-1, 0, bird);
-        } else {
-            gamePerformance.removeEntity(bird);
+    public void moveBird() {
+        for (final Entity bird : this.birds) {
+            for (final Component component : bird.getComponents()) {
+                if (component.getComponent() == ComponentType.BIRDPOSITION
+                        && ((MovementComponent) component).canMove(1.0, 0.0, bird)
+                        && (birdPositionComponent.hasToMoveRight())) {
+                    ((MovementComponent) component).move(1.0, 0.0, bird);
+                } else if (component.getComponent() == ComponentType.BIRDPOSITION
+                        && ((MovementComponent) component).canMove(-1.0, 0.0, bird)
+                        && !(birdPositionComponent.hasToMoveRight())) {
+                    ((MovementComponent) component).move(-1.0, 0.0, bird);
+                } else {
+                    this.birds.remove(bird);
+                    this.gamePerformance.removeEntity(bird);
+                }
+            }
         }
     }
 
-    public void hasToMoveRight() {
-        Pair<Double, Double> currentPos = bird.getPosition();
-        if (currentPos.getX() == Constaints.PowerUps.BIRD_MIN_x) {
-            moveRight = true;
-        } else {
-            moveRight = false;
-        }
-    }
-
-    public Entity getBirds() {
-        return this.bird;
+    public List<Entity> getBirds() {
+        return this.birds;
     }
 
     public void stopBirdCreation() {
@@ -62,7 +67,5 @@ public class BirdController {
     }
 
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

@@ -2,14 +2,12 @@ package it.unibo.model.impl;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.utilities.Constaints;
 import it.unibo.utilities.EntityType;
 import it.unibo.model.api.Component;
 
@@ -76,26 +74,13 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
-        Random rand = new Random();
-        double cakeX = rand.nextDouble() * (Constaints.PowerUps.CAKE_MAX_X - Constaints.PowerUps.CAKE_MIN_X)
-                + Constaints.PowerUps.CAKE_MIN_X;
-        double cakeY;
-        switch (rand.nextInt(3)) {
-            case 0:
-                cakeY = Constaints.PowerUps.CAKE_FLOOR_1_Y;
-                break;
-            case 1:
-                cakeY = Constaints.PowerUps.CAKE_FLOOR_2_Y;
-                break;
-            default:
-                cakeY = Constaints.PowerUps.CAKE_FLOOR_3_Y;
-                break;
-        }
-        final Pair<Double, Double> randomPos = new Pair<>(cakeX, cakeY);
+        CakePositionComponent cakePositionComponent = new CakePositionComponent();
+        Pair<Double, Double> birdPosition = cakePositionComponent.randomPosition();
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        components.add(cakePositionComponent); 
         new ImmortalityComponent();
         new LivesComponent(this.gamePerformance);
-        return new EntityImpl(EntityType.CAKE, randomPos, this.gamePerformance, components);
+        return new EntityImpl(EntityType.CAKE, birdPosition, this.gamePerformance, components);
     }
 
     /**
@@ -104,7 +89,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBird(final Pair<Double, Double> pos) {
         BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
-        Pair<Double, Double> birdPosition = birdPositionComponent.getBirdPosition();
+        Pair<Double, Double> birdPosition = birdPositionComponent.randomPosition();
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
         components.add(birdPositionComponent); 
         new StopRalphComponent();

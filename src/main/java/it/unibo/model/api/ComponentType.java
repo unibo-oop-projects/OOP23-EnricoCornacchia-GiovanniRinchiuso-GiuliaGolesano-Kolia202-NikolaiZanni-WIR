@@ -42,5 +42,9 @@ public enum ComponentType {
     /**
      * Bird position component.
      */
-    BIRDPOSITION;
+    BIRDPOSITION,
+    /**
+     * Cake position Component.
+     */
+    CAKEPOSITION;
 }
