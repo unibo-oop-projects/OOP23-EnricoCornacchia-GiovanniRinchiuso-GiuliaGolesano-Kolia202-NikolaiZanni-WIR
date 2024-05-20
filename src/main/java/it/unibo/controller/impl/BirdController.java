@@ -28,7 +28,6 @@ public class BirdController {
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
         this.birds = new ArrayList<>();
-        scheduleBirdCreation();
     }
 
     private void scheduleBirdCreation() {
@@ -67,5 +66,7 @@ public class BirdController {
     }
 
     public void update() {
+        scheduleBirdCreation();
+        moveBird();
     }
 }

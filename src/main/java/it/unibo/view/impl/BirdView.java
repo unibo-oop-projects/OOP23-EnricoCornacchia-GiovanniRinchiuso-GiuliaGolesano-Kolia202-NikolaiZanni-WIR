@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import it.unibo.model.api.Entity;
+import it.unibo.model.impl.BirdPositionComponent;
 
 public class BirdView implements View {
 
@@ -16,6 +17,7 @@ public class BirdView implements View {
     private final double frameHeightLeft;
     private final double frameWidthRight;
     private final double frameHeightRight;
+    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
     private int currentFrame = 0;
 
     public BirdView(final Entity bird) {
@@ -36,6 +38,7 @@ public class BirdView implements View {
         g.drawImage(image, upperCorner, 0, frameWidth, frameHeight,
                 bird.getPosition().getX(), bird.getPosition().getY(),
                 Constaints.Bird.BIRD_WIDTH, Constaints.Bird.BIRD_HEIGHT);
+                updateFrame();
     }
 
     @Override
@@ -44,13 +47,13 @@ public class BirdView implements View {
     }
 
     private Image getImage() {
-        return this.imageLeft;
+        return birdPositionComponent.hasToMoveRight() ? imageRight : imageLeft;
     }
 
     @Override
     public void updateFrame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateFrame'");
+        int maxFrames = 2;
+        currentFrame = (currentFrame + 1) % maxFrames;
     }
 
     @Override

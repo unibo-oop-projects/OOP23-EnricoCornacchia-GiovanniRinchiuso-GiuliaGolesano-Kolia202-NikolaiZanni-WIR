@@ -1,7 +1,6 @@
 package it.unibo.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,24 +10,19 @@ import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.BirdPositionComponent;
-import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 
 class BirdControllerTest {
     private BirdController birdController;
     private GamePerformance gamePerformance;
     private GameController gameController;
-    private EntityFactoryImpl entityFactory;
-    private BirdPositionComponent birdPositionComponent;
 
     @BeforeEach
     void setUp() {
         gameController = new GameController();
         gamePerformance = new GamePerformanceImpl(this.gameController);
         birdController = new BirdController(this.gamePerformance);
-        entityFactory = new EntityFactoryImpl(this.gamePerformance);
-        birdPositionComponent = new BirdPositionComponent();
+
     }
 
     @Test

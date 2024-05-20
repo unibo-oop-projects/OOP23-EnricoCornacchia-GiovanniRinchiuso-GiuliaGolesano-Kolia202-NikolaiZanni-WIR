@@ -18,13 +18,12 @@ public class CakeController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduleCakeCreation();
     }
 
-    private void scheduleCakeCreation() {
+    public void scheduleCakeCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             generateAndRemoveCake();
-        }, 5,10, TimeUnit.SECONDS);
+        }, 5, 10, TimeUnit.SECONDS);
     }
 
     private void generateAndRemoveCake() {
@@ -45,6 +44,7 @@ public class CakeController {
     public void stopCakeCreation() {
         scheduler.shutdown();
     }
+
     /*
      * This method implement the logic of the update of the game
      */
