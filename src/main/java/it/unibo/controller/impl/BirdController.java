@@ -21,7 +21,7 @@ public class BirdController {
     private List<Entity> birds;
     private final GamePerformance gamePerformance;
     private final ScheduledExecutorService scheduler;
-    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
+    BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
 
     public BirdController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
@@ -30,7 +30,7 @@ public class BirdController {
         this.birds = new ArrayList<>();
     }
 
-    private void scheduleBirdCreation() {
+    public void scheduleBirdCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             bird = entityFactoryImpl.createBird(null);
             gamePerformance.addEntity(bird);
@@ -42,16 +42,20 @@ public class BirdController {
         for (final Entity bird : this.birds) {
             for (final Component component : bird.getComponents()) {
                 if (component.getComponent() == ComponentType.BIRDPOSITION
-                        && ((MovementComponent) component).canMove(1.0, 0.0, bird)
-                        && (birdPositionComponent.hasToMoveRight())) {
-                    ((MovementComponent) component).move(1.0, 0.0, bird);
+                        && ((BirdPositionComponent) component).hasToMoveRight()) {
+                    if (component.getComponent() == ComponentType.MOVEMENT
+                            && ((MovementComponent) component).canMove(1.0, 0, bird)) {
+                        ((MovementComponent) component).move(1.0, 0.0, bird);
+                    }
                 } else if (component.getComponent() == ComponentType.BIRDPOSITION
-                        && ((MovementComponent) component).canMove(-1.0, 0.0, bird)
-                        && !(birdPositionComponent.hasToMoveRight())) {
-                    ((MovementComponent) component).move(-1.0, 0.0, bird);
-                } else {
-                    this.birds.remove(bird);
-                    this.gamePerformance.removeEntity(bird);
+                        && !((BirdPositionComponent) component).hasToMoveRight()) {
+                    if (component.getComponent() == ComponentType.MOVEMENT
+                            && ((MovementComponent) component).canMove(-1.0, 0, bird)) {
+                        ((MovementComponent) component).move(-1.0, 0.0, bird);
+                    } else {
+                        this.birds.remove(bird);
+                        this.gamePerformance.removeEntity(bird);
+                    }
                 }
             }
         }

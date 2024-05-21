@@ -15,6 +15,7 @@ public interface View {
     Image getSource(final String name);
     /**
      * Update the frame.
+     * @return 
      */
     void updateFrame();
     /** 

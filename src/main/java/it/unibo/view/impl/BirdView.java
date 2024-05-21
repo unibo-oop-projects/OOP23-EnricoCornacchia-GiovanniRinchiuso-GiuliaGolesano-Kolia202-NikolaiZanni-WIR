@@ -5,6 +5,7 @@ import it.unibo.view.api.View;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.BirdPositionComponent;
 
@@ -13,32 +14,30 @@ public class BirdView implements View {
     private final Image imageLeft;
     private final Image imageRight;
     private Entity bird;
-    private final double frameWidthLeft;
-    private final double frameHeightLeft;
-    private final double frameWidthRight;
-    private final double frameHeightRight;
-    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
+    private final double frameWidthL;
+    private final double frameHeightL;
+    private final double frameWidthR;
+    private final double frameHeightR;
+    private Image frameImage;
     private int currentFrame = 0;
+
+    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
 
     public BirdView(final Entity bird) {
         this.bird = bird;
         this.imageLeft = getSource("birdMovementLeft.png");
         this.imageRight = getSource("birdMovementRight.png");
-        this.frameWidthLeft = this.imageLeft.getWidth() / 4;
-        this.frameHeightLeft = this.imageLeft.getHeight();
-        this.frameWidthRight = this.imageRight.getWidth() / 4;
-        this.frameHeightRight = this.imageRight.getHeight();
+        this.frameWidthL = imageLeft.getWidth() / Constaints.Animations.NUM_FRAMES_BIRD;
+        this.frameHeightL = imageLeft.getHeight();
+        this.frameWidthR = imageRight.getWidth() / Constaints.Animations.NUM_FRAMES_BIRD;
+        this.frameHeightR = imageRight.getHeight();
     }
 
     public void draw(GraphicsContext g) {
-        Image image = getImage();
-        double frameWidth = image == imageLeft ? frameWidthLeft : frameWidthRight;
-        double frameHeight = image == imageLeft ? frameHeightLeft : frameHeightRight;
-        double upperCorner = currentFrame * frameWidth;
-        g.drawImage(image, upperCorner, 0, frameWidth, frameHeight,
+        updateFrame();
+        g.drawImage(frameImage,
                 bird.getPosition().getX(), bird.getPosition().getY(),
                 Constaints.Bird.BIRD_WIDTH, Constaints.Bird.BIRD_HEIGHT);
-                updateFrame();
     }
 
     @Override
@@ -52,20 +51,30 @@ public class BirdView implements View {
 
     @Override
     public void updateFrame() {
-        int maxFrames = 2;
-        currentFrame = (currentFrame + 1) % maxFrames;
+        currentFrame = (currentFrame + 1) % Constaints.Animations.NUM_FRAMES_BIRD;
+        getFrame(currentFrame);
     }
 
     @Override
-    public Image getFrame(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFrame'");
+    public Image getFrame(int currentFrame) {
+        Image image = getImage();
+        if (image == imageLeft) {
+            double upperCorner = currentFrame * frameWidthL;
+            frameImage = new WritableImage(image.getPixelReader(), (int) upperCorner, 0, (int) frameWidthL,
+                    (int) frameHeightL);
+        } else {
+            double upperCorner = currentFrame * frameWidthR;
+            frameImage = new WritableImage(image.getPixelReader(), (int) upperCorner, 0, (int) frameWidthR,
+                    (int) frameHeightR);
+        }
+        return frameImage;
     }
 
     @Override
     public ImageView getImageView() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getImageView'");
+        draw(null); 
+        ImageView imageView = new ImageView();
+        imageView.setImage(frameImage);
+        return imageView;
     }
-
 }
