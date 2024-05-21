@@ -24,7 +24,7 @@ public class LivesComponent extends AbstractComponent {
      * Method of stealing a life.
      */
     public void stealLives() {
-        if (!immortality && getLives() > 3) {
+        if (!immortality && getLives() > 0) {
             lives--;
             if (getLives() == 0) {
                 GameState.setGameState(GameState.GAMEOVER);

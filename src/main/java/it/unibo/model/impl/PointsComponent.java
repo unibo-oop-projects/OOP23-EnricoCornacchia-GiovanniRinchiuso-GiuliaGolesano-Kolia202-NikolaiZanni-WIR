@@ -22,6 +22,8 @@ public class PointsComponent extends AbstractComponent {
      */
     public PointsComponent() {
         this.points = 0;
+        this.highScore = 0;
+        writeToFile(0);
     }
 
     /**
