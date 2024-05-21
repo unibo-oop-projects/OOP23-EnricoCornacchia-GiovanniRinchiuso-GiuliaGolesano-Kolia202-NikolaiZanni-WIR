@@ -32,8 +32,7 @@ public class RalphController {
     public void move() {
         final double random = Math.random() > 0.5 ? 1 : -1;
         final Double nextX = ralph.getPosition().getX() + random;
-        final MovementComponent moveComp = (MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get();
-        moveComp.move(nextX, 0, this.ralph);
+        ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get()).move(nextX, 0, ralph);
     }
     /**
      * Throw a brick with the left arm.
