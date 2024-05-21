@@ -1,7 +1,9 @@
 package it.unibo.view.impl;
 
+import java.util.Optional;
 import java.util.Set;
 
+import it.unibo.common.Pair;
 import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
 import it.unibo.controller.impl.WindowsController;
@@ -124,8 +126,10 @@ public class WindowGame extends Application {
                             Thread.sleep(5000);
 
                             if (zKeyPressed) {
-                                gameController.fixWindows(event.getCode());
-                                // System.out.print("Key Z pressed for 5 seconds!\n");
+                                /*Optional<Pair<Double, Double>> windowPosition = .getcheckWindowsCollisions();
+                                windowPosition.ifPresent(pos -> {
+                                gameController.fixWindow(pos, KeyCode.Z);
+                                });*/
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
