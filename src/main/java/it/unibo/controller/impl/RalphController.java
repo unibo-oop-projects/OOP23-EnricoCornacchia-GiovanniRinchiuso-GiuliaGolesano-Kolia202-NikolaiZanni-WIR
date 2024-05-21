@@ -5,6 +5,7 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
+import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
 import it.unibo.utilities.Constaints;
 import java.util.Set;
@@ -29,8 +30,10 @@ public class RalphController {
      * Move Ralph.
      */
     public void move() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
+        final double random = Math.random() > 0.5 ? 1 : -1;
+        final Double nextX = ralph.getPosition().getX() + random;
+        final MovementComponent moveComp = (MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get();
+        moveComp.move(nextX, 0, this.ralph);
     }
     /**
      * Throw a brick with the left arm.
