@@ -284,6 +284,10 @@ public final class Constaints {
          * Number of broken windows in the fourth level.
          */
         public static final int BROKEN_4 = 13;
+        /**
+         * Number of broken windows in the fourth level.
+         */
+        public static final int NUM_WINDOWS = 15;
     }
     /**
      * Animations constaints.

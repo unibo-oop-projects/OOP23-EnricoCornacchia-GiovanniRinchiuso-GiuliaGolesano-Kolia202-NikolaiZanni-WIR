@@ -1,13 +1,16 @@
 package it.unibo.view.impl;
 
+import java.util.Set;
+
 import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
+import it.unibo.controller.impl.WindowsController;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
-import javafx.animation.AnimationTimer;
+import it.unibo.utilities.Constaints;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -29,9 +32,11 @@ public class WindowGame extends Application {
     @SuppressWarnings("unused")
     private Stage primaryStage;
     private boolean zKeyPressed = false;
+    @SuppressWarnings("unused")
     private BirdController birdController;
     GameController gameController = new GameController();
     GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
+    WindowsController windowsController = new WindowsController(gamePerformance);
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -57,7 +62,18 @@ public class WindowGame extends Application {
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
 
-        addWindowsGrid(root);
+        switch (this.gameController.getLevel()) {
+            case 1: addWindowsGrid(root, Constaints.Windows.BROKEN_1); 
+                break;
+            case 2: addWindowsGrid(root, Constaints.Windows.BROKEN_2); 
+                break;
+            case 3: addWindowsGrid(root, Constaints.Windows.BROKEN_3); 
+                break;
+            case 4: addWindowsGrid(root, Constaints.Windows.BROKEN_4); 
+                break;
+            default:
+                break;
+        }
 
         AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
@@ -132,32 +148,17 @@ public class WindowGame extends Application {
         });
     }
     /**
-     * Method that create a windows grid on the main pane.
+     * Method that creates a windows grid on the main pane.
      * @param root
+     * @param broken the number of broken windows.
      */
-    private void addWindowsGrid(final AnchorPane root) {
-        int windowWidth = 128; // Larghezza di ogni finestra
-        int windowHeight = 128; // Altezza di ogni finestra
-        int windowSpacing = 10; // Spaziatura tra le finestre
-        int gridRows = 3; // Numero di righe della griglia
-        int gridCols = 3; // Numero di colonne della griglia
-        int gridOffsetX = 50; // Offset X della griglia
-        int gridOffsetY = 50; // Offset Y della griglia
-
-        int index = 0;
-        for (Entity entity : gamePerformance.getWindows()) {
-            if (index >= gridRows * gridCols) break;
-            int row = index / gridCols;
-            int col = index % gridCols;
-            double x = gridOffsetX + col * (windowWidth + windowSpacing);
-            double y = gridOffsetY + row * (windowHeight + windowSpacing);
-
+    private void addWindowsGrid(final AnchorPane root, final int broken) {
+        Set<Entity> windows = windowsController.windowsGrid(broken);
+        windows.forEach(window -> {
             WindowsView windowView = new WindowsView();
-            windowView.getImageView().setLayoutX(x);
-            windowView.getImageView().setLayoutY(y);
+            windowView.getImageView().setLayoutX(window.getPosition().getX());
+            windowView.getImageView().setLayoutY(window.getPosition().getY());
             root.getChildren().add(windowView.getImageView());
-
-            index++;
-        }
+        });
     }
 }
