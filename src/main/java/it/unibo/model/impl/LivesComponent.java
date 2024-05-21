@@ -1,6 +1,8 @@
 package it.unibo.model.impl;
 
 import it.unibo.model.api.ComponentType;
+import it.unibo.model.api.GamePerformance;
+import it.unibo.utilities.GameState;
 
 /**
  * LivesComponent, it represents the lives of the entity.
@@ -8,37 +10,44 @@ import it.unibo.model.api.ComponentType;
 public class LivesComponent extends AbstractComponent {
 
     private int lives;
-    private ImmortalityComponent immortalityComponent;
+    private boolean immortality;
+
     /**
      * Initialize lives to 3.
      */
-    public LivesComponent() {
+    public LivesComponent(final GamePerformance gamePerformance) {
         this.lives = 3;
-        this.immortalityComponent = new ImmortalityComponent();
+        immortality = false;
     }
 
     /**
      * Method of stealing a life.
      */
     public void stealLives() {
-        if(!immortalityComponent.getImmortality()) {
-        this.lives = this.lives - 1;
+        if (!immortality && getLives() > 3) {
+            lives--;
+            if (getLives() == 0) {
+                GameState.setGameState(GameState.GAMEOVER);
+            }
         }
     }
-    /**
-     * Method to get the current lives.
-     * 
-     * @return the current numer of lives.
-     */
-    public final int getLives() {
+
+    public int getLives() {
         return this.lives;
     }
 
-    /**
-     * getter of the type of the class.
-     * 
-     * @return the type of the class.
-     */
+    public void setImmortality() {
+        this.immortality = true;
+    }
+
+    public boolean isImmortality() {
+        return this.immortality;
+    }
+
+    public void setStopImmortality() {
+        this.immortality = false;
+    }
+
     @Override
     public ComponentType getComponent() {
         return ComponentType.LIFE;

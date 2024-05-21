@@ -21,7 +21,6 @@ public class PointsComponent extends AbstractComponent {
      * Constructor for PointsComponent.
      */
     public PointsComponent() {
-        readFromFile();
         this.points = 0;
     }
 
@@ -89,10 +88,6 @@ public class PointsComponent extends AbstractComponent {
         } catch (IOException ex) {
             System.out.println("Error writing file: " + filename);
         }
-    }
-
-    public void update() {
-        // Implement update logic here
     }
 
     /**

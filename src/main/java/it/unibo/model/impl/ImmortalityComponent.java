@@ -4,26 +4,20 @@ import it.unibo.model.api.ComponentType;
 
 public class ImmortalityComponent extends AbstractComponent {
     
-    private boolean immortality;
     private long startTime;
 
-    public ImmortalityComponent() {
-        this.immortality = false;
-    }
-
-    public void setImmortality() {
-        this.immortality = true;
+    public void setImmortality(LivesComponent livesComponent) {
+        livesComponent.setImmortality();
         this.startTime = System.currentTimeMillis(); 
     }
 
-    public boolean getImmortality() {
-        if (this.immortality) {
+    public void chekStopImmortality(LivesComponent livesComponent) {
+        if (livesComponent.isImmortality()) {
             long currentTime = System.currentTimeMillis();
             if (currentTime - this.startTime >= 10000) { 
-                this.immortality = false; 
+                livesComponent.setStopImmortality(); 
             }
         }
-        return this.immortality;
     }
 
     @Override

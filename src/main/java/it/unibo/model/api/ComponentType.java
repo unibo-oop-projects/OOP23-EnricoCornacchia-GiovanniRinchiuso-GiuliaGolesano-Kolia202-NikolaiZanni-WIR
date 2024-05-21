@@ -38,5 +38,13 @@ public enum ComponentType {
     /**
      * hitbox component.
      */
-    HITBOX;
+    HITBOX,
+    /**
+     * Bird position component.
+     */
+    BIRDPOSITION,
+    /**
+     * Cake position Component.
+     */
+    CAKEPOSITION;
 }

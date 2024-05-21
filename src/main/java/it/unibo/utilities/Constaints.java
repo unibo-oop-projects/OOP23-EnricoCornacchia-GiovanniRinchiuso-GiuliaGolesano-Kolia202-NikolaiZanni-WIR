@@ -143,11 +143,11 @@ public final class Constaints {
         /**
          * The width of the bird.
          */
-        public static final double BIRD_WIDTH = 0;
+        public static final double BIRD_WIDTH = 100;
         /**
          * The height of the bird.
          */
-        public static final double BIRD_HEIGHT = 0;
+        public static final double BIRD_HEIGHT = 100;
     }
     /**
      * Buttons constaints.
@@ -312,7 +312,7 @@ public final class Constaints {
         /**
          * Number of frames for Bird fly animation.
          */
-        public static final int NUM_FRAMES_BIRD = 0;
+        public static final int NUM_FRAMES_BIRD = 2;
         /**
          * Map of index and image.
          */

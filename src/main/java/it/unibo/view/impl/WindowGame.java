@@ -1,11 +1,13 @@
 package it.unibo.view.impl;
 
-import it.unibo.model.api.Entity;
+import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
+import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -25,14 +27,16 @@ import javafx.stage.Stage;
  */
 public class WindowGame extends Application {
     @SuppressWarnings("unused")
-    private Stage primaryStage; 
+    private Stage primaryStage;
     private boolean zKeyPressed = false;
+    private BirdController birdController;
     GameController gameController = new GameController();
-        GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
-    
+    GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+        this.birdController = new BirdController(gamePerformance);
 
         BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
@@ -41,9 +45,9 @@ public class WindowGame extends Application {
         PointsView pointsView = new PointsView(pointsComponent);
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
 
-        MainMenu mainMenu = new MainMenu(primaryStage); 
+        MainMenu mainMenu = new MainMenu(primaryStage);
 
-        LivesComponent livesComponent = new LivesComponent();
+        LivesComponent livesComponent = new LivesComponent(gamePerformance);
         LivesView livesView = new LivesView(livesComponent);
 
         AnchorPane root = new AnchorPane();
@@ -71,35 +75,41 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(livesView, 7.0);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
 
+
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("StartGame");
         primaryStage.show();
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case S: gameController.moveFelixDown(event.getCode());
-                //System.out.print("Key S pressed, lets move felix down!\n");
-                break;
-                case A: gameController.moveFelixLeft(event.getCode());
-                //System.out.print("Key A pressed, lets move felix left!\n");
-                break;
-                case D: gameController.moveFelixRight(event.getCode());
-                //System.out.print("Key D pressed, lets move felix right!\n");
-                break;
-                case W: gameController.moveFelixUp(event.getCode());
-                //System.out.print("Key W pressed, lets move felix up!\n");
-                break;
-                //AGGIUNGERE COLLISSIONE CON FINESTRA E COORDINATE FINESTRA CHE STA SISTEMANDO
+                case S:
+                    gameController.moveFelixDown(event.getCode());
+                    // System.out.print("Key S pressed, lets move felix down!\n");
+                    break;
+                case A:
+                    gameController.moveFelixLeft(event.getCode());
+                    // System.out.print("Key A pressed, lets move felix left!\n");
+                    break;
+                case D:
+                    gameController.moveFelixRight(event.getCode());
+                    // System.out.print("Key D pressed, lets move felix right!\n");
+                    break;
+                case W:
+                    gameController.moveFelixUp(event.getCode());
+                    // System.out.print("Key W pressed, lets move felix up!\n");
+                    break;
+                // AGGIUNGERE COLLISSIONE CON FINESTRA E COORDINATE FINESTRA CHE STA SISTEMANDO
                 case Z:
                     zKeyPressed = true;
-                    
+
                     Thread timerThread = new Thread(() -> {
                         try {
-                            Thread.sleep(5000); 
-                            
+                            Thread.sleep(5000);
+
                             if (zKeyPressed) {
                                 gameController.fixWindows(event.getCode());
-                                //System.out.print("Key Z pressed for 5 seconds!\n");
+                                // System.out.print("Key Z pressed for 5 seconds!\n");
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();

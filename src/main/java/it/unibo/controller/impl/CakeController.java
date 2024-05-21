@@ -18,13 +18,12 @@ public class CakeController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduleCakeCreation();
     }
 
-    private void scheduleCakeCreation() {
+    public void scheduleCakeCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             generateAndRemoveCake();
-        }, 5,10, TimeUnit.SECONDS);
+        }, 5, 10, TimeUnit.SECONDS);
     }
 
     private void generateAndRemoveCake() {
@@ -38,18 +37,18 @@ public class CakeController {
         }, 5, TimeUnit.SECONDS);
     }
 
-    public Entity getBird() {
+    public Entity getCake() {
         return this.cake;
     }
 
     public void stopCakeCreation() {
         scheduler.shutdown();
     }
+
     /*
      * This method implement the logic of the update of the game
      */
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        scheduleCakeCreation();
     }
 }

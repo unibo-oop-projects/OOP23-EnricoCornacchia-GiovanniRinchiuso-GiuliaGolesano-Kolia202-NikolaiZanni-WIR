@@ -1,5 +1,7 @@
 package it.unibo.model.impl;
 
+import java.util.Optional;
+
 import it.unibo.common.Pair;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
@@ -133,15 +135,43 @@ public class HitboxComponent extends AbstractComponent {
                 if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
-                        //this.getEntity().getGamePerformance().oneLifeLost();
+                        ((LivesComponent)this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
                     }
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
-                        //this.getEntity().getGamePerformance().removeCake(e.getPosition());
-                        //this.getEntity().getGamePerformance().oneLifeEarned();
+                        this.getEntity().getGamePerformance().removeEntity(e);
+                        ((ImmortalityComponent)this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
+                                                   .setImmortality(((LivesComponent)this.getEntity()
+                                                   .getTheComponent(ComponentType.LIFE).get()));
+                    }
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BIRD) {
+                        this.getEntity().getGamePerformance().removeEntity(e);
+                        ((StopRalphComponent)this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
+                                                 .setStopRalph(((ThrowBrickComponent)this.getEntity()
+                                                 .getTheComponent(ComponentType.THROWBRICK).get()));
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Checks for collisions with windows in the game and returns the position of the first window collided with.
+     * If the entity is Felix and collides with a window, the position of the window is returned.
+     * If no collisions occur, an empty Optional is returned.
+     * 
+     * @return An Optional containing the position of the first window collided with, or an empty Optional if no collisions occurred.
+     */
+    public Optional<Pair<Double, Double>> checkWindowsCollisions() {
+        for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
+            if (!e.equals(this.getEntity())) {
+                if (this.collidesWith((HitboxComponent)e.getTheComponent(ComponentType.HITBOX).get())) {
+                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.WINDOW) {
+                        return Optional.of(e.getPosition());
+                    }
+                }
+            }
+        }
+        return Optional.empty();
     }
 
     /**

@@ -7,20 +7,19 @@ import javafx.scene.image.Image;
 /**
  * Game view, manages the game view.
  */
-public class GameView{
+public class GameView {
 
     @SuppressWarnings("unused")
     private final GameController gameController;
     @SuppressWarnings("unused")
     private Image[] felix, ralph, brick_fall, window_fix, bird_fly, cake_spawn;
 
-
     /**
      * Constructor.
      * 
      * @param gameController
      */
-    public GameView(final GameController gameController){
+    public GameView(final GameController gameController) {
         this.gameController = gameController;
         this.animation();
     }
@@ -29,10 +28,10 @@ public class GameView{
      * {@inheritDoc}
      */
     public Image getSource(final String name) {
-        return new Image("src/main/resources/"+name+".png");
+        return new Image("src/main/resources/" + name + ".png");
     }
 
-    private void animation(){
+    private void animation() {
         this.felix = new Image[Constaints.Animations.NUM_FRAMES_FELIX];
         this.ralph = new Image[Constaints.Animations.NUM_FRAMES_RALPH];
         this.brick_fall = new Image[Constaints.Animations.NUM_FRAMES_BRICK];
