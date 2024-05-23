@@ -32,7 +32,7 @@ public class WindowsView implements View{
      */
     @Override
     public Image getSource(final String name) {
-        return new Image("/src/main/resources/" + name + ".png");
+        return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     /**
      * Method to change the animation of the fixing window.
