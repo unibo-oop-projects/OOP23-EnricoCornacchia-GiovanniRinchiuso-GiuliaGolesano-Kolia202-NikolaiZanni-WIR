@@ -51,8 +51,10 @@ public class WindowsController {
      */
     public Set<Entity> windowsGrid(final int broken) {
         this.entities = new HashSet<>();
-        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(broken, false));
-        windowStates.addAll(Collections.nCopies(gridRows * gridCols - broken, true));
+        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(gridRows * gridCols, false));
+        for (int i = 0; i < broken; i++) {
+            windowStates.set(i, true);
+        }
         Collections.shuffle(windowStates);
 
         int index = 0;

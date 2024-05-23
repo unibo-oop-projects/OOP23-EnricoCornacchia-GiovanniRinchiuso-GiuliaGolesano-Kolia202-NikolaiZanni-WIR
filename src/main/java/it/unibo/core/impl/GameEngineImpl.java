@@ -2,8 +2,6 @@ package it.unibo.core.impl;
 
 import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
-import it.unibo.view.impl.GameView;
-
 import it.unibo.controller.impl.GameController;
 
 /**
@@ -14,8 +12,6 @@ public class GameEngineImpl implements GameEngine {
 
     private final int period;
     private final GameController gameController;
-    @SuppressWarnings("unused")
-    private final GameView gameView;
     private boolean hasChanged;
     /**
      * Constructor for the game engine.
@@ -23,7 +19,6 @@ public class GameEngineImpl implements GameEngine {
     public GameEngineImpl() {
         period = 10;
         gameController = new GameController();
-        gameView = new GameView(gameController);
         hasChanged = true;
     }
     /**
