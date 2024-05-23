@@ -60,7 +60,7 @@ public class GamePerformanceImpl implements GamePerformance {
     @Override
     public void addKey(final KeyCode keyCode) {
         this.inputs.add(keyCode);
-        //System.out.print("Keycode added\n");
+        System.out.print(this.inputs);
     }
     /**
      * {@inheritDoc}
