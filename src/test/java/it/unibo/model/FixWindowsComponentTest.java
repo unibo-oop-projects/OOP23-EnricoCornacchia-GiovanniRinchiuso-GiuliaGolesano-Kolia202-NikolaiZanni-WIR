@@ -14,7 +14,9 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
-
+/**
+ * Class to test the fix windows component.
+ */
 public class FixWindowsComponentTest {
 
     FixWindowsComponent fixWindowsComponent;
