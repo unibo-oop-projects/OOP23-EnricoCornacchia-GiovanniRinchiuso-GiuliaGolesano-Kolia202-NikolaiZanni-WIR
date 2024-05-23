@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -43,10 +44,12 @@ public class WindowGame extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+        this.primaryStage.setResizable(false);
         this.birdController = new BirdController(gamePerformance);
 
-        BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
-        Background background = new Background(backgroundFill);
+        Pane blackPane = new Pane();
+        blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
+        blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         PointsComponent pointsComponent = new PointsComponent();
         PointsView pointsView = new PointsView(pointsComponent);
@@ -58,30 +61,38 @@ public class WindowGame extends Application {
         LivesView livesView = new LivesView(livesComponent);
 
         AnchorPane root = new AnchorPane();
-        root.setBackground(background);
-
+        // Immagine di sfondo 1 (TopLine.png)
         Image backgroundImage = new Image("TopLine.png");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
-
-        switch (this.gameController.getLevel()) {
-            case 1: addWindowsGrid(root, Constaints.Windows.BROKEN_1); 
-                break;
-            case 2: addWindowsGrid(root, Constaints.Windows.BROKEN_2); 
-                break;
-            case 3: addWindowsGrid(root, Constaints.Windows.BROKEN_3); 
-                break;
-            case 4: addWindowsGrid(root, Constaints.Windows.BROKEN_4); 
-                break;
-            default:
-                break;
-        }
-
         AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
         AnchorPane.setRightAnchor(backgroundImageView, 0.0);
 
-        root.getChildren().add(backgroundImageView);
+        // Immagine di sfondo 2 (building_top.png)
+        Image buildingTopImage = new Image("building_top.png");
+        ImageView buildingTopImageView = new ImageView(buildingTopImage);
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45);  // Imposta la larghezza doppia
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come la sua dimensione originale
+        AnchorPane.setTopAnchor(buildingTopImageView, 78.0);  // Sposta l'immagine verso il basso di 3/4 cm
+        AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
+        AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
+        buildingTopImageView.setTranslateX(243.5); // Sposta l'immagine di 100 unità lungo l'asse x
+        buildingTopImageView.setTranslateY(9); // Sposta l'immagine di 50 unità lungo l'asse y
+
+        // Immagine di sfondo 3 (building_centre.png)
+        Image newBackgroundImage = new Image("building_centre.png");
+        ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
+        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45);  // Imposta la larghezza doppia
+        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45);  // Imposta l'altezza doppia
+        buildingCentreImageView.setTranslateX(400); // Sposta l'immagine di 100 unità lungo l'asse x
+        buildingCentreImageView.setTranslateY(100);
+        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0);  // Sposta l'immagine verso il basso di 3/4 cm
+        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;  // Centra l'immagine orizzontalmente
+        AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
+
+        // Aggiunta delle immagini all'AnchorPane
+        root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
 
         AnchorPane.setRightAnchor(mainMenu, 7.0);
         AnchorPane.setTopAnchor(mainMenu, 7.0);
@@ -97,6 +108,19 @@ public class WindowGame extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("StartGame");
         primaryStage.show();
+
+        switch (this.gameController.getLevel()) {
+            case 1: addWindowsGrid(root, Constaints.Windows.BROKEN_1); 
+                break;
+            case 2: addWindowsGrid(root, Constaints.Windows.BROKEN_2); 
+                break;
+            case 3: addWindowsGrid(root, Constaints.Windows.BROKEN_3); 
+                break;
+            case 4: addWindowsGrid(root, Constaints.Windows.BROKEN_4); 
+                break;
+            default:
+                break;
+        }
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -116,7 +140,7 @@ public class WindowGame extends Application {
                     zKeyPressed = true;
                     Thread timerThread = new Thread(() -> {
                         try {
-                            Thread.sleep(5000);
+                            Thread.sleep(3000);
 
                             if (zKeyPressed) {
                                 Optional<Pair<Double, Double>> windowPosition = gameController.getFelixController().checkWindowsCollisions();
