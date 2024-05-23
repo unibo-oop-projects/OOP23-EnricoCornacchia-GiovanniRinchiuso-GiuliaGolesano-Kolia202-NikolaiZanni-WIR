@@ -75,12 +75,10 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
         CakePositionComponent cakePositionComponent = new CakePositionComponent();
-        Pair<Double, Double> birdPosition = cakePositionComponent.randomPosition();
+        Pair<Double, Double> cakePosition = cakePositionComponent.randomPosition();
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        components.add(cakePositionComponent); 
-        new ImmortalityComponent();
-        new LivesComponent(this.gamePerformance);
-        return new EntityImpl(EntityType.CAKE, birdPosition, this.gamePerformance, components);
+        components.add(cakePositionComponent);
+        return new EntityImpl(EntityType.CAKE, cakePosition, this.gamePerformance, components);
     }
 
     /**
@@ -91,8 +89,7 @@ public class EntityFactoryImpl implements EntityFactory {
         BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
         Pair<Double, Double> birdPosition = birdPositionComponent.randomPosition();
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
-        components.add(birdPositionComponent); 
-        new StopRalphComponent();
+        components.add(birdPositionComponent);
         new MovementComponent();
         return new EntityImpl(EntityType.BIRD, birdPosition, this.gamePerformance, components);
     }

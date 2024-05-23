@@ -35,32 +35,32 @@ public class FelixController {
      * Move the character to the right.
      */
     public void moveRight() {
-        final MovementComponent moveComp = (MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get();
-        moveComp.move(1, 0, this.felix);
+        ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
+                                       .move(1, 0, this.felix);
         //System.out.print("moved right\n");
     }
     /**
      * Move the character to the left.
      */
     public void moveLeft() {
-        final MovementComponent moveComp = (MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get();
-        moveComp.move(-1, 0, this.felix);
+        ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
+                                       .move(-1, 0, this.felix);
         //System.out.print("moved left\n");
     }
     /**
      * Move the character down.
      */
     public void moveDown() {
-        final MovementComponent moveComp = (MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get();
-        moveComp.move(0, -1, this.felix);
+        ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
+                                       .move(0, -1, this.felix);
         //System.out.print("moved down\n");
     }
     /**
      * Move the character up.
      */
     public void moveUp() {
-        final MovementComponent moveComp = (MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get();
-        moveComp.move(0, 1, this.felix);
+        ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
+                                       .move(0, 1, this.felix);
         //System.out.print("moved up\n");
     }
     /**
