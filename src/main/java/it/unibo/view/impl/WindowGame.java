@@ -93,7 +93,6 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(livesView, 7.0);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
 
-
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("StartGame");
@@ -103,33 +102,28 @@ public class WindowGame extends Application {
             switch (event.getCode()) {
                 case S:
                     gameController.moveFelixDown(event.getCode());
-                    // System.out.print("Key S pressed, lets move felix down!\n");
                     break;
                 case A:
                     gameController.moveFelixLeft(event.getCode());
-                    // System.out.print("Key A pressed, lets move felix left!\n");
                     break;
                 case D:
                     gameController.moveFelixRight(event.getCode());
-                    // System.out.print("Key D pressed, lets move felix right!\n");
                     break;
                 case W:
                     gameController.moveFelixUp(event.getCode());
-                    // System.out.print("Key W pressed, lets move felix up!\n");
                     break;
-                // AGGIUNGERE COLLISSIONE CON FINESTRA E COORDINATE FINESTRA CHE STA SISTEMANDO
                 case Z:
                     zKeyPressed = true;
-
                     Thread timerThread = new Thread(() -> {
                         try {
                             Thread.sleep(5000);
 
                             if (zKeyPressed) {
-                                /*Optional<Pair<Double, Double>> windowPosition = .getcheckWindowsCollisions();
+                                Optional<Pair<Double, Double>> windowPosition = gameController.getFelixController().checkWindowsCollisions();
                                 windowPosition.ifPresent(pos -> {
-                                gameController.fixWindow(pos, KeyCode.Z);
-                                });*/
+                                    gameController.getFelixController().fixWindow(pos);
+                                    System.out.print("Key Z pressed for 3 seconds, window fixed at position: " + pos + "\n");
+                                });
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -138,14 +132,12 @@ public class WindowGame extends Application {
                         }
                     });
                     timerThread.start();
-
                     scene.setOnKeyReleased(releasedEvent -> {
                         if (releasedEvent.getCode() == KeyCode.Z) {
                             zKeyPressed = false;
                         }
                     });
                     break;
-
                 default:
                     break;
             }

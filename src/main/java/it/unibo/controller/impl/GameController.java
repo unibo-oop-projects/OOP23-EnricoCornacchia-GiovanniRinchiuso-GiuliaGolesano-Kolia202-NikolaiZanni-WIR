@@ -1,9 +1,6 @@
 package it.unibo.controller.impl;
 
-import it.unibo.common.Pair;
-import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import javafx.scene.input.KeyCode;
 
@@ -121,7 +118,6 @@ public class GameController {
      */
     public void moveFelixDown(final KeyCode e){
         this.felixController.moveDown();
-        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -130,7 +126,6 @@ public class GameController {
      */
     public void moveFelixLeft(final KeyCode e){
         this.felixController.moveLeft();
-        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -139,7 +134,6 @@ public class GameController {
      */
     public void moveFelixRight(final KeyCode e){ 
         this.felixController.moveRight();
-        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
     /**
@@ -148,23 +142,11 @@ public class GameController {
      */
     public void moveFelixUp(final KeyCode e){
         this.felixController.moveUp();
-        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
 
     public void fixWindows(final KeyCode e){
         this.felixController.fix();
-        //System.out.print("game controller called\n");
         this.gamePerformance.addKey(e);
     }
-    public void fixWindow(Pair<Double, Double> windowPosition, final KeyCode e) {
-        this.gamePerformance.getWindows().stream()
-            .filter(w -> w.getPosition().equals(windowPosition))
-            .findFirst()
-            .ifPresent(window -> {
-                window.getTheComponent(ComponentType.FIXEDWINDOWS)
-                    .map(c -> (FixedWindowsComponent) c)
-                    .ifPresent(FixedWindowsComponent::setFixed);
-            });
-}
 }

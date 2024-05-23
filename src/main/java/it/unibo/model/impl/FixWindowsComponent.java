@@ -1,6 +1,8 @@
 package it.unibo.model.impl;
 
+import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
+import it.unibo.model.api.GamePerformance;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -19,11 +21,15 @@ public class FixWindowsComponent extends AbstractComponent {
      * Method to fix a windows.
      * @param code
      */
-    public void fixing(final KeyCode code/*, coordinate finestra */) {
-        //AGGIUNGERE SE SI TROVA IN COLLISIONE CON UNA FINESTRA
-        if(code == KeyCode.Z) {
-            //ANDARE NELLA FINESTRA GIUSTA E SETTARE IL COMPONENT A TRUE
-            //WindowsView.fixAnimation();
-        }
+    public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance) {
+        gamePerformance.getWindows().stream()
+        .filter(w -> w.getPosition().equals(windowPosition))
+        .findFirst()
+        .ifPresent(window -> {
+            window.getTheComponent(ComponentType.FIXEDWINDOWS)
+                  .map(c -> (FixedWindowsComponent) c)
+                  .ifPresent(FixedWindowsComponent::setFixed);
+        });
+        gamePerformance.addKey(KeyCode.Z);
     }
 }

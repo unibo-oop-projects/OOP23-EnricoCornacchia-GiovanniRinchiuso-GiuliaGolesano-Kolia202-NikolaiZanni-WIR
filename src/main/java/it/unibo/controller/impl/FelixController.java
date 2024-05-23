@@ -1,12 +1,16 @@
 package it.unibo.controller.impl;
 
+import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
+import it.unibo.model.impl.FixWindowsComponent;
+import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.utilities.Constaints.Felix;
+import java.util.Optional;
 
 /**
  * Controller for the Felix character.
@@ -80,4 +84,22 @@ public class FelixController {
     public Entity getFelix() {
         return this.felix;
     }
+    /** 
+     * Method to fix the windows.
+     */
+    public void fixWindow(Pair<Double, Double> windowPosition) {
+        FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
+        fixComp.fixing(windowPosition, this.gamePerformance);
+    }
+    /**
+     * Method to ckeck which window has to be fixed.
+     * @return
+     */
+    public Optional<Pair<Double, Double>> checkWindowsCollisions() {
+        HitboxComponent hitboxComponent = (HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).orElseThrow(
+            () -> new IllegalStateException("Felix does not have a HitboxComponent")
+        );
+        return hitboxComponent.checkWindowsCollisions();
+    }
+
 }
