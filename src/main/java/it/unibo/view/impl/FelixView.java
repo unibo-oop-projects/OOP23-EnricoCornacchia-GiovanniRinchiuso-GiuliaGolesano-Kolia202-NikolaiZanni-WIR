@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
@@ -37,6 +38,7 @@ public class FelixView implements View{
 
     public void draw(GraphicsContext g) {
         if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
+        this.currentFrame = 0;
         this.sprite = getImage();
         this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
         this.imageView.setFitHeight(this.sprite.getHeight());
@@ -64,8 +66,7 @@ public class FelixView implements View{
 
     @Override
     public Image getFrame(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFrame'");
+        return new WritableImage(this.sprite.getPixelReader(), index * ((int)this.sprite.getWidth()) / FRAME_COUNT, 0, ((int)this.sprite.getWidth()) / FRAME_COUNT, (int)this.sprite.getHeight());
     }
 
     @Override
