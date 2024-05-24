@@ -12,9 +12,11 @@ import javafx.scene.image.ImageView;
  */
 public class FelixView implements View{
 
+    private static final int FRAME_COUNT = 4;
+    private static final int ANIMATION_DURATION = 1000;
     private ImageView imageView;
-    private final Image spriteLeft;
-    private final Image spriteRight;
+    private Image spriteLeft;
+    private Image spriteRight;
     private Entity felix;
     private final double frameWidthLeft;
     private final double frameHeightLeft;
@@ -27,9 +29,9 @@ public class FelixView implements View{
         this.imageView = new ImageView();
         this.spriteLeft = getSource("felix_movement_left.png");
         this.spriteRight = getSource("felix_movement_right.png");
-        this.frameWidthLeft = this.spriteLeft.getWidth() / 4;
+        this.frameWidthLeft = this.spriteLeft.getWidth() / FRAME_COUNT;
         this.frameHeightLeft = this.spriteLeft.getHeight();
-        this.frameWidthRight = this.spriteRight.getWidth() / 4;
+        this.frameWidthRight = this.spriteRight.getWidth() / FRAME_COUNT;
         this.frameHeightRight = this.spriteRight.getHeight();
     }
 
@@ -45,7 +47,7 @@ public class FelixView implements View{
 
     @Override
     public Image getSource(String name) {
-        return new Image(name);
+        return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
     private Image getImage() {
@@ -55,8 +57,8 @@ public class FelixView implements View{
 
     @Override
     public void updateFrame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateFrame'");
+        imageView.setImage(getFrame(currentFrame));
+        currentFrame++;
     }
 
     @Override
