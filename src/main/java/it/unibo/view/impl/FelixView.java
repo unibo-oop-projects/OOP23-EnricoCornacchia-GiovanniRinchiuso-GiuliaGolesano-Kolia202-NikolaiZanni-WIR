@@ -7,7 +7,6 @@ import it.unibo.view.api.View;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -29,6 +28,9 @@ public class FelixView implements View{
     private Timeline timeline;
     private int currentFrame = 0;
 
+    /**
+     * Builder for the Felix view.
+     */
     public FelixView(final Entity felix) {
         this.felix = felix;
         this.imageView = new ImageView();
@@ -36,7 +38,11 @@ public class FelixView implements View{
         this.spriteRight = getSource("felix_movement_right.png");
     }
 
-    public void draw(GraphicsContext g) {
+    /**
+     * Animates the Felix sprite.
+     * If the animation is already running, the method returns without doing anything.
+     */
+    public void animateFelix() {
         if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
         this.currentFrame = 0;
         this.sprite = getImage();
@@ -53,11 +59,6 @@ public class FelixView implements View{
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
-    private Image getImage() {
-        List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
-        return inputs.get(inputs.size()-1) == KeyCode.RIGHT ? this.spriteRight : this.spriteLeft;
-    }
-
     @Override
     public void updateFrame() {
         imageView.setImage(getFrame(currentFrame));
@@ -72,5 +73,15 @@ public class FelixView implements View{
     @Override
     public ImageView getImageView() {
         return this.imageView;
+    }
+    
+    /**
+     * Returns the appropriate sprite based on the last input received.
+     *
+     * @return The sprite to be displayed.
+     */
+    private Image getImage() {
+        List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
+        return inputs.get(inputs.size()-1) == KeyCode.RIGHT ? this.spriteRight : this.spriteLeft;
     }
 }
