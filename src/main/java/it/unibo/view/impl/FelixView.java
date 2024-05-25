@@ -16,7 +16,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Felix.
  */
-public class FelixView implements View{
+public class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;
@@ -30,6 +30,8 @@ public class FelixView implements View{
 
     /**
      * Builder for the Felix view.
+     * 
+     * @param felix the Felix entity.
      */
     public FelixView(final Entity felix) {
         this.felix = felix;
@@ -55,7 +57,7 @@ public class FelixView implements View{
     }
 
     @Override
-    public Image getSource(String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -67,14 +69,16 @@ public class FelixView implements View{
 
     @Override
     public Image getFrame(int index) {
-        return new WritableImage(this.sprite.getPixelReader(), index * ((int)this.sprite.getWidth()) / FRAME_COUNT, 0, ((int)this.sprite.getWidth()) / FRAME_COUNT, (int)this.sprite.getHeight());
+        return new WritableImage(this.sprite.getPixelReader(),
+                                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT, 0, 
+                                 ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
     }
 
     @Override
     public ImageView getImageView() {
         return this.imageView;
     }
-    
+
     /**
      * Returns the appropriate sprite based on the last input received.
      *
@@ -82,6 +86,6 @@ public class FelixView implements View{
      */
     private Image getImage() {
         List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
-        return inputs.get(inputs.size()-1) == KeyCode.RIGHT ? this.spriteRight : this.spriteLeft;
+        return inputs.get(inputs.size() - 1) == KeyCode.RIGHT ? this.spriteRight : this.spriteLeft;
     }
 }

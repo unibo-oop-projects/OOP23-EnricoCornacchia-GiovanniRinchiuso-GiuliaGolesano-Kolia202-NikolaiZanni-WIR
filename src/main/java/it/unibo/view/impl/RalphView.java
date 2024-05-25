@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 /**
  * Class responsible for the view of Ralph.
  */
-public class RalphView implements View{
+public class RalphView implements View {
 
     @Override
     public Image getSource(String name) {
