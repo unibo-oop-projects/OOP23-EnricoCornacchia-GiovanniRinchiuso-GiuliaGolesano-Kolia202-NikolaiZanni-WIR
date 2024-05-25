@@ -44,7 +44,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     @Override
-    public List<KeyCode> getInputs(){
+    public List<KeyCode> getInputs() {
         return this.inputs;
     }
     /**
@@ -108,7 +108,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     @Override
-    public int getLevel(){
+    public int getLevel() {
         return this.gameController.getLevel();
     }
 }

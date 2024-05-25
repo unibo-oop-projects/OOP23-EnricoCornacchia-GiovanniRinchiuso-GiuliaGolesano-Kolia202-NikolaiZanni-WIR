@@ -51,17 +51,20 @@ public interface GamePerformance {
     void removeBrick(Pair<Double, Double> pos);
     /**
      * Get all the power ups currently present in the game.
-     * @return
+     * 
+     * @return the list of power ups.
      */
     List<Entity> getPowerUpsPresent();
     /**
      * Get all the brick currently present in the game.
-     * @return
+     * 
+     * @return the list of bricks.
      */
     List<Entity> getBrickPresent();
     /**
      * Get all the windows in the entities list.
-     * @return
+     * 
+     * @return the list of windows.
      */
     List<Entity> getWindows();
     /**

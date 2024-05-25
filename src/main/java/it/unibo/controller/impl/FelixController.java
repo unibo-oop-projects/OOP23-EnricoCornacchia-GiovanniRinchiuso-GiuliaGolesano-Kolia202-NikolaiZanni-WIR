@@ -64,12 +64,6 @@ public class FelixController {
         //System.out.print("moved up\n");
     }
     /**
-     * Fix the window.
-     */
-    public void fix() {
-        //System.out.print("fixing the windows");
-    }
-    /**
      * Check if the character is alive.
      * @return true if Felix have more than 0 lives, false otherwise.
      */
@@ -86,8 +80,9 @@ public class FelixController {
     }
     /** 
      * Method to fix the windows.
+     * @param windowPosition the position of the window to fix.
      */
-    public void fixWindow(Pair<Double, Double> windowPosition) {
+    public void fixWindow(final Pair<Double, Double> windowPosition) {
         FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
         fixComp.fixing(windowPosition, this.gamePerformance);
     }

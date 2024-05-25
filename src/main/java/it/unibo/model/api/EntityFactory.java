@@ -26,6 +26,7 @@ public interface EntityFactory {
      * Create the windows.
      * 
      * @param pos starting windows's position.
+     * @param state windows state.
      * @return the created windows entity.
      */
     Entity createWindows(Pair<Double, Double> pos, boolean state);
