@@ -69,6 +69,7 @@ public class BrickController {
                 return Brick.BRICK_SPEED_LEVEL_2;
             case 3:
                 return Brick.BRICK_SPEED_LEVEL_3;
+            default:
         }
         return 0;
     }

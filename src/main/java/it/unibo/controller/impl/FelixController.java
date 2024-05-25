@@ -88,7 +88,7 @@ public class FelixController {
     }
     /**
      * Method to ckeck which window has to be fixed.
-     * @return
+     * @return the position of the window to fix.
      */
     public Optional<Pair<Double, Double>> checkWindowsCollisions() {
         HitboxComponent hitboxComponent = (HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).orElseThrow(
