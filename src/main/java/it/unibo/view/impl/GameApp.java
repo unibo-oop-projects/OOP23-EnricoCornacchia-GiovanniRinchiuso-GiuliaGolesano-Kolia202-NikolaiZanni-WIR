@@ -7,14 +7,11 @@ import javafx.stage.Stage;
  * Sample GameApp application.
  */
 public final class GameApp extends Application {
-
     @Override
     public void start(final Stage primaryStage) throws Exception {
         StartGame startGame = new StartGame();
         startGame.start(primaryStage);
     }
-
-
     /**
      * Program's entry point.
      * 
@@ -23,7 +20,6 @@ public final class GameApp extends Application {
     public static void run(final String... args) {
         launch(args);
     }
-
     /**
      * Entry point's class.
      */

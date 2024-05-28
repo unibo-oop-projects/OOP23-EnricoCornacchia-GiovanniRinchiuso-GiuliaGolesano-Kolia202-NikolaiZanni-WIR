@@ -29,7 +29,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 /**
  * WindowGame represents the window of the game.
  * This class can be extended to customize the game window.
@@ -183,10 +182,6 @@ public class WindowGame extends Application {
             windowView.getImageView().setLayoutX(window.getPosition().getX());
             windowView.getImageView().setLayoutY(window.getPosition().getY());
             root.getChildren().add(windowView.getImageView());
-        });
-
-        
+        });   
     }
-
-    
 }

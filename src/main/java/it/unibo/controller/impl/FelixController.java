@@ -11,7 +11,6 @@ import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.utilities.Constaints.Felix;
 import java.util.Optional;
-
 /**
  * Controller for the Felix character.
  */
@@ -20,7 +19,6 @@ public class FelixController {
     private final EntityFactoryImpl entityFactoryImpl;
     private Entity felix;
     private final GamePerformance gamePerformance;
-
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
@@ -96,5 +94,4 @@ public class FelixController {
         );
         return hitboxComponent.checkWindowsCollisions();
     }
-
 }
