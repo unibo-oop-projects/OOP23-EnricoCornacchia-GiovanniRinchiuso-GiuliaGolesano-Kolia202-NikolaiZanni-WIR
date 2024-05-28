@@ -19,13 +19,13 @@ public class WindowsController {
     private Set<Entity> entities;
     @SuppressWarnings("unused")
     private int cont;
-    private int windowWidth = 80;
-    private int windowHeight = 80;
-    private int windowSpacing = 20;
-    private int gridRows = 3;
-    private int gridCols = 3;
-    private int gridOffsetX = 50;
-    private int gridOffsetY = 50;
+    private int WINDOW_WIDTH = 80;
+    private int WINDOW_HEIGHT = 80;
+    private int WINDOW_SPACING = 20;
+    private int GRID_ROWS = 3;
+    private int GRID_COLS = 3;
+    private int GRID_OFFSET_X = 50;
+    private int GRID_OFFSET_Y = 50;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
@@ -51,18 +51,18 @@ public class WindowsController {
      */
     public Set<Entity> windowsGrid(final int broken) {
         this.entities = new HashSet<>();
-        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(gridRows * gridCols, false));
+        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(GRID_ROWS * GRID_COLS, false));
         for (int i = 0; i < broken; i++) {
             windowStates.set(i, true);
         }
         Collections.shuffle(windowStates);
 
         int index = 0;
-        for (int row = 0; row < gridRows; row++) {
-            for (int col = 0; col < gridCols; col++) {
+        for (int row = 0; row < GRID_ROWS; row++) {
+            for (int col = 0; col < GRID_COLS; col++) {
                 if (index >= windowStates.size()) break;
-                double x = gridOffsetX + col * (windowWidth + windowSpacing);
-                double y = gridOffsetY + row * (windowHeight + windowSpacing);
+                double x = GRID_OFFSET_X + col * (WINDOW_WIDTH + WINDOW_SPACING);
+                double y = GRID_OFFSET_Y + row * (WINDOW_HEIGHT + WINDOW_SPACING);
                 boolean state = windowStates.get(index);
                 Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
                 entities.add(window);

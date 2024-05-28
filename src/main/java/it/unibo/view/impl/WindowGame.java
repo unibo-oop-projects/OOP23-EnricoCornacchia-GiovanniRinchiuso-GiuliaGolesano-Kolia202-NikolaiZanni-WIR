@@ -180,5 +180,9 @@ public class WindowGame extends Application {
             windowView.getImageView().setLayoutY(window.getPosition().getY());
             root.getChildren().add(windowView.getImageView());
         });
+
+        
     }
+
+    
 }
