@@ -30,6 +30,5 @@ public class FixWindowsComponent extends AbstractComponent {
                   .map(c -> (FixedWindowsComponent) c)
                   .ifPresent(FixedWindowsComponent::setFixed);
         });
-        gamePerformance.addKey(KeyCode.Z);
     }
 }

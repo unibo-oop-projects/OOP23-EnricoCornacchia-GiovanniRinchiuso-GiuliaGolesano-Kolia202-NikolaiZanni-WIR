@@ -1,6 +1,10 @@
 package it.unibo.controller.impl;
 
+import it.unibo.common.Pair;
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.FixWindowsComponent;
+import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import javafx.scene.input.KeyCode;
 
@@ -145,8 +149,9 @@ public class GameController {
         this.gamePerformance.addKey(e);
     }
 
-    public void fixWindows(final KeyCode e){
-        this.felixController.fix();
+    public void fixWindows(final KeyCode e, Pair<Double, Double> pos){
+        FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
+        fixComp.fixing(pos, this.gamePerformance);
         this.gamePerformance.addKey(e);
     }
 }
