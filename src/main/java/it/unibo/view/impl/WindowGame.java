@@ -11,6 +11,7 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.FixWindowsComponent;
+import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
@@ -181,7 +182,9 @@ public class WindowGame extends Application {
             WindowsView windowView = new WindowsView();
             windowView.getImageView().setLayoutX(window.getPosition().getX());
             windowView.getImageView().setLayoutY(window.getPosition().getY());
-            root.getChildren().add(windowView.getImageView());
+            FixedWindowsComponent fixComp = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+            if(fixComp.getFixed() == true) root.getChildren().add(windowView.fixedwindows());
+            else root.getChildren().add(windowView.brokenWindow());
         });   
     }
 }

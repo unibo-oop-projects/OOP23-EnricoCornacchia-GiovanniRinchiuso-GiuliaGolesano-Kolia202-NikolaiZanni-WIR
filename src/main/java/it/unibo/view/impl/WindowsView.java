@@ -11,8 +11,8 @@ import javafx.util.Duration;
 
 public class WindowsView implements View{
     private static final int FRAME_COUNT = 4;
-    private static final int FRAME_WIDTH = 128; 
-    private static final int FRAME_HEIGHT = 128; 
+    private static final int FRAME_WIDTH = 45; 
+    private static final int FRAME_HEIGHT = 60; 
     private static final int ANIMATION_DURATION = 1000; 
     private ImageView imageView;
     private Image spriteSheet;
@@ -68,5 +68,19 @@ public class WindowsView implements View{
     @Override
     public ImageView getImageView() {
         return this.imageView;
+    }
+    /**
+     * Static view of a fixed window.
+     * @return
+     */
+    public ImageView fixedwindows() {
+        return new ImageView(getFrame(0));
+    }
+    /**
+     * Static view of a broken window.
+     * @return
+     */
+    public ImageView brokenWindow() {
+        return new ImageView(getFrame(FRAME_COUNT - 1));
     }
 }
