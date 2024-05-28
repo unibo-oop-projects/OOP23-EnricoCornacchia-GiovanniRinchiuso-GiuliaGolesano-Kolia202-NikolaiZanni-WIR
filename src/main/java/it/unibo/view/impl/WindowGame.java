@@ -7,9 +7,12 @@ import it.unibo.common.Pair;
 import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
 import it.unibo.controller.impl.WindowsController;
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
+import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constaints;
@@ -143,9 +146,10 @@ public class WindowGame extends Application {
                             Thread.sleep(3000);
 
                             if (zKeyPressed) {
-                                Optional<Pair<Double, Double>> windowPosition = gameController.getFelixController().checkWindowsCollisions();
+                                HitboxComponent hitComp = (HitboxComponent) this.gameController.getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
+                                Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
                                 windowPosition.ifPresent(pos -> {
-                                    gameController.getFelixController().fixWindow(pos);
+                                    gameController.getFelixController().fixWindow(windowPosition.get());
                                     System.out.print("Key Z pressed for 3 seconds, window fixed at position: " + pos + "\n");
                                 });
                             }
