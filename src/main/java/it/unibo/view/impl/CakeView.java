@@ -63,6 +63,7 @@ public class CakeView implements View{
     }
 
     private Image getImage() {
+        return cakeUpDown;
         
     }
 
