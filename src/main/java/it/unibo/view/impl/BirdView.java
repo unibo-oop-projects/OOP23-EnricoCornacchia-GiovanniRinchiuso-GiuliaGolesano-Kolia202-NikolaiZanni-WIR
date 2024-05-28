@@ -2,79 +2,73 @@ package it.unibo.view.impl;
 
 import it.unibo.utilities.Constaints;
 import it.unibo.view.api.View;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.util.Duration;
+
+import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
-import it.unibo.model.impl.BirdPositionComponent;
 
 public class BirdView implements View {
 
-    private final Image imageLeft;
-    private final Image imageRight;
+    private static final int FRAME_COUNT = 4;
+    private static final int ANIMATION_DURATION = 1000;
+    private ImageView imageView;
+    private Image birdteLeft;
+    private Image birdRight;
+    private Image sprite;
     private Entity bird;
-    private final double frameWidthL;
-    private final double frameHeightL;
-    private final double frameWidthR;
-    private final double frameHeightR;
-    private Image frameImage;
+    private Timeline timeline;
     private int currentFrame = 0;
-
-    private final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
 
     public BirdView(final Entity bird) {
         this.bird = bird;
-        this.imageLeft = getSource("birdMovementLeft.png");
-        this.imageRight = getSource("birdMovementRight.png");
-        this.frameWidthL = imageLeft.getWidth() / Constaints.Animations.NUM_FRAMES_BIRD;
-        this.frameHeightL = imageLeft.getHeight();
-        this.frameWidthR = imageRight.getWidth() / Constaints.Animations.NUM_FRAMES_BIRD;
-        this.frameHeightR = imageRight.getHeight();
+        this.imageView = new ImageView();
+        this.birdRight = getSource("BirdMovementRight.png");
+        this.birdteLeft = getSource("BirdMovementLeft.png");
     }
 
-    public void draw(GraphicsContext g) {
-        updateFrame();
-        g.drawImage(frameImage,
-                bird.getPosition().getX(), bird.getPosition().getY(),
-                Constaints.Bird.BIRD_WIDTH, Constaints.Bird.BIRD_HEIGHT);
+    public void animateBird() {
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
+        this.currentFrame = 0;
+        this.sprite = getImage();
+        this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
+        this.imageView.setFitHeight(this.sprite.getHeight());
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
+        this.timeline.setCycleCount(FRAME_COUNT);
+        this.timeline.setOnFinished(e -> imageView.setImage(getFrame(FRAME_COUNT - 1)));
+        this.timeline.play();
     }
 
     @Override
     public Image getSource(String name) {
-        return new Image(name);
+        return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
     private Image getImage() {
-        return birdPositionComponent.hasToMoveRight() ? imageRight : imageLeft;
+        Pair<Double, Double> bird = this.bird.getPosition();
+        return bird.getX() == Constaints.PowerUps.BIRD_MIN_x ? this.birdRight : this.birdteLeft;
     }
 
     @Override
     public void updateFrame() {
-        currentFrame = (currentFrame + 1) % Constaints.Animations.NUM_FRAMES_BIRD;
-        getFrame(currentFrame);
+        imageView.setImage(getFrame(currentFrame));
+        currentFrame++;
     }
 
     @Override
-    public Image getFrame(int currentFrame) {
-        Image image = getImage();
-        if (image == imageLeft) {
-            double upperCorner = currentFrame * frameWidthL;
-            frameImage = new WritableImage(image.getPixelReader(), (int) upperCorner, 0, (int) frameWidthL,
-                    (int) frameHeightL);
-        } else {
-            double upperCorner = currentFrame * frameWidthR;
-            frameImage = new WritableImage(image.getPixelReader(), (int) upperCorner, 0, (int) frameWidthR,
-                    (int) frameHeightR);
-        }
-        return frameImage;
+    public Image getFrame(int index) {
+        return new WritableImage(this.sprite.getPixelReader(),
+                                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT, 0, 
+                                 ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
     }
 
     @Override
     public ImageView getImageView() {
-        draw(null); 
-        ImageView imageView = new ImageView();
-        imageView.setImage(frameImage);
-        return imageView;
+        return this.imageView;
     }
 }
