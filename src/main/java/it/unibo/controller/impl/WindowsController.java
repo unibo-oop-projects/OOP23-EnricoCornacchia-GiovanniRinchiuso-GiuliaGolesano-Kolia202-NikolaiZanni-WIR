@@ -19,11 +19,11 @@ public class WindowsController {
     private Set<Entity> entities;
     private int WINDOW_WIDTH = 53;
     private int WINDOW_HEIGHT = 80;
-    private int WINDOW_SPACING = 0;
+    private int WINDOW_SPACING = -1;
     private int GRID_ROWS = 3;
     private int GRID_COLS = 5;
-    private int GRID_OFFSET_X = 278;
-    private int GRID_OFFSET_Y = 310;
+    private int GRID_OFFSET_X = 280;
+    private int GRID_OFFSET_Y = 317;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
