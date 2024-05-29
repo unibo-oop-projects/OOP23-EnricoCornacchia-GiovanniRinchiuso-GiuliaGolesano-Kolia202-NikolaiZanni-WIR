@@ -6,14 +6,14 @@ import it.unibo.common.Pair;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import it.unibo.utilities.EntityType;
-import it.unibo.utilities.Constaints.Bird;
-import it.unibo.utilities.Constaints.Brick;
-import it.unibo.utilities.Constaints.Cake;
-import it.unibo.utilities.Constaints.Felix;
-import it.unibo.utilities.Constaints.Ralph;
-import it.unibo.utilities.Constaints.Window;
+import it.unibo.utilities.Constants.Bird;
+import it.unibo.utilities.Constants.Brick;
+import it.unibo.utilities.Constants.Cake;
+import it.unibo.utilities.Constants.Felix;
+import it.unibo.utilities.Constants.Ralph;
+import it.unibo.utilities.Constants.Window;
 
 /**
  * HitboxComponent, it represents the hitbox of the entity.
@@ -98,17 +98,17 @@ public class HitboxComponent extends AbstractComponent {
      * If the hitbox of the entity goes beyond the bottom wall and the entity is of type BRICK, it is removed from the game.
      */
     public void checkEdgesCollisions() {
-        if (this.hitbox.getX() < Constaints.GameEdges.LEFT_WALL) {
-            this.hitbox.setX(Constaints.GameEdges.LEFT_WALL);
-            this.getEntity().setPosition(new Pair<Double, Double>(Constaints.GameEdges.LEFT_WALL, this.hitbox.getY()));
+        if (this.hitbox.getX() < Constants.GameEdges.LEFT_WALL) {
+            this.hitbox.setX(Constants.GameEdges.LEFT_WALL);
+            this.getEntity().setPosition(new Pair<Double, Double>(Constants.GameEdges.LEFT_WALL, this.hitbox.getY()));
         }
-        if (this.hitbox.getX() > Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth()) {
-            this.hitbox.setX(Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth());
+        if (this.hitbox.getX() > Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth()) {
+            this.hitbox.setX(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth());
             this.getEntity()
                 .setPosition(
-                    new Pair<Double, Double>(Constaints.GameEdges.RIGHT_WALL - this.hitbox.getWidth(), this.hitbox.getY()));
+                    new Pair<Double, Double>(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth(), this.hitbox.getY()));
         }
-        if (this.hitbox.getY() <= Constaints.GameEdges.DOWN_WALL) {
+        if (this.hitbox.getY() <= Constants.GameEdges.DOWN_WALL) {
             if (this.getEntity().getEntityType() == EntityType.BRICK) {
                 this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
             }
@@ -119,14 +119,14 @@ public class HitboxComponent extends AbstractComponent {
      * Checks for collisions with platforms and adjusts the position of the entity accordingly.
      */
     public void checkPlatformCollisions() {
-        if (this.hitbox.getY() > Constaints.Floors.FLOOR_1_Y && this.hitbox.getY() < Constaints.Floors.FLOOR_2_Y) {
-            this.hitbox.setY(Constaints.Floors.FLOOR_1_Y);
+        if (this.hitbox.getY() > Constants.Floors.FLOOR_1_Y && this.hitbox.getY() < Constants.Floors.FLOOR_2_Y) {
+            this.hitbox.setY(Constants.Floors.FLOOR_1_Y);
             this.getEntity().setPosition(new Pair<Double, Double>(this.hitbox.getX(), this.hitbox.getY()));
-        } else if (this.hitbox.getY() > Constaints.Floors.FLOOR_2_Y && this.hitbox.getY() < Constaints.Floors.FLOOR_3_Y) {
-            this.hitbox.setY(Constaints.Floors.FLOOR_2_Y);
+        } else if (this.hitbox.getY() > Constants.Floors.FLOOR_2_Y && this.hitbox.getY() < Constants.Floors.FLOOR_3_Y) {
+            this.hitbox.setY(Constants.Floors.FLOOR_2_Y);
             this.getEntity().setPosition(new Pair<Double, Double>(this.hitbox.getX(), this.hitbox.getY()));
-        } else if (this.hitbox.getY() > Constaints.Floors.FLOOR_3_Y) {
-            this.hitbox.setY(Constaints.Floors.FLOOR_3_Y);
+        } else if (this.hitbox.getY() > Constants.Floors.FLOOR_3_Y) {
+            this.hitbox.setY(Constants.Floors.FLOOR_3_Y);
             this.getEntity().setPosition(new Pair<Double, Double>(this.hitbox.getX(), this.hitbox.getY()));
         }
     }

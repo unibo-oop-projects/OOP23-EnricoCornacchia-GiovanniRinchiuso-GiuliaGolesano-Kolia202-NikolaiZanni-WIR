@@ -10,11 +10,11 @@ import javafx.scene.image.Image;
 /**
  * Class for the constaints used.
  */
-public final class Constaints {
+public final class Constants {
     /**
      * Private constructor.
      */
-    private Constaints() {
+    private Constants() {
     }
     /**
      * The name of the gamestate.
@@ -264,10 +264,6 @@ public final class Constaints {
      * Windows constains.
      */
     public static class Windows {
-        /**
-         * Number of floors of windows in the first level.
-         */
-        public static final int NUM_FLOORS = 3;
         /**
          * Number of broken windows in the first level.
          */

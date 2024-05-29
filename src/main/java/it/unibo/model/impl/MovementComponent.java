@@ -3,7 +3,7 @@ package it.unibo.model.impl;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 /**
  * Component that allows movement.
@@ -38,10 +38,10 @@ public class MovementComponent extends AbstractComponent {
     public boolean canMove(final double x, final double y, final Entity entity) {
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
-        return newX >= Constaints.GameEdges.LEFT_WALL
-                && newX <= Constaints.GameEdges.RIGHT_WALL
-                && newY >= Constaints.GameEdges.DOWN_WALL
-                && newY <= Constaints.GameEdges.UP_WALL_1;
+        return newX >= Constants.GameEdges.LEFT_WALL
+                && newX <= Constants.GameEdges.RIGHT_WALL
+                && newY >= Constants.GameEdges.DOWN_WALL
+                && newY <= Constants.GameEdges.UP_WALL_1;
     }
 
     /**

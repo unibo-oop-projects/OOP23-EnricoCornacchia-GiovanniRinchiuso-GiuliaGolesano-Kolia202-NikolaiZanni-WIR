@@ -7,7 +7,7 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constaints.Brick;
+import it.unibo.utilities.Constants.Brick;
 
 /**
  * Controller for the bricks.

@@ -12,7 +12,7 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.impl.BirdPositionComponent;
 
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 public class BirdPositionComponentTest {
 
@@ -27,19 +27,19 @@ public class BirdPositionComponentTest {
     public void testRandomPosition() {
         Pair<Double, Double> randomPos = birdComponent.randomPosition();
         assertNotNull(randomPos);
-        assertTrue(randomPos.getX() == Constaints.PowerUps.BIRD_MIN_x
-                || randomPos.getX() == Constaints.PowerUps.BIRD_MAX_X);
-        assertTrue(randomPos.getY() >= Constaints.PowerUps.BIRD_MIN_Y
-                && randomPos.getY() <= Constaints.PowerUps.BIRD_MAX_Y);
+        assertTrue(randomPos.getX() == Constants.PowerUps.BIRD_MIN_x
+                || randomPos.getX() == Constants.PowerUps.BIRD_MAX_X);
+        assertTrue(randomPos.getY() >= Constants.PowerUps.BIRD_MIN_Y
+                && randomPos.getY() <= Constants.PowerUps.BIRD_MAX_Y);
     }
 
     @Test
     public void testHasToMoveRight() {
         Pair<Double, Double> randomPos = birdComponent.randomPosition();
         assertNotNull(randomPos);
-        if (randomPos.getX() == Constaints.PowerUps.BIRD_MAX_X) {
+        if (randomPos.getX() == Constants.PowerUps.BIRD_MAX_X) {
             assertFalse(birdComponent.hasToMoveRight());
-        } else if (randomPos.getX() == Constaints.PowerUps.BIRD_MIN_x) {
+        } else if (randomPos.getX() == Constants.PowerUps.BIRD_MIN_x) {
             assertTrue(birdComponent.hasToMoveRight());
         }
     }

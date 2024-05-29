@@ -7,7 +7,7 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class BirdController {
             bird = entityFactoryImpl.createBird(null);
             gamePerformance.addEntity(bird);
             birds.add(bird);
-        }, Constaints.PowerUps.INITIAL_DELAY, Constaints.PowerUps.PERIOD, TimeUnit.SECONDS);
+        }, Constants.PowerUps.INITIAL_DELAY, Constants.PowerUps.PERIOD, TimeUnit.SECONDS);
     }
 
     public void moveBird() {

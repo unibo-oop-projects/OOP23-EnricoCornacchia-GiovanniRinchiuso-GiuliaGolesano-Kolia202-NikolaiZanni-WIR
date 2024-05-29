@@ -15,7 +15,7 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import it.unibo.utilities.EntityType;
 
 public class EntityFactoryImplTest {
@@ -35,11 +35,11 @@ public class EntityFactoryImplTest {
         Entity cake = entityFactoryImpl.createCake(null);
         assertNotNull(cake);
         assertEquals(EntityType.CAKE, cake.getEntityType());
-        assertTrue(cake.getPosition().getX() >= Constaints.PowerUps.CAKE_MIN_X
-                && cake.getPosition().getX() <= Constaints.PowerUps.CAKE_MAX_X);
-        assertTrue(cake.getPosition().getY() == Constaints.PowerUps.CAKE_FLOOR_1_Y
-                || cake.getPosition().getY() == Constaints.PowerUps.CAKE_FLOOR_2_Y
-                || cake.getPosition().getY() == Constaints.PowerUps.CAKE_FLOOR_3_Y);
+        assertTrue(cake.getPosition().getX() >= Constants.PowerUps.CAKE_MIN_X
+                && cake.getPosition().getX() <= Constants.PowerUps.CAKE_MAX_X);
+        assertTrue(cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_1_Y
+                || cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_2_Y
+                || cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_3_Y);
     }
 
     @Test
@@ -47,10 +47,10 @@ public class EntityFactoryImplTest {
         Entity bird = entityFactoryImpl.createBird(null);
         assertNotNull(bird);
         assertEquals(EntityType.BIRD, bird.getEntityType());
-        assertTrue(bird.getPosition().getX() == Constaints.PowerUps.BIRD_MIN_x
-                || bird.getPosition().getX() == Constaints.PowerUps.BIRD_MAX_X);
-        assertTrue(bird.getPosition().getY() >= Constaints.PowerUps.BIRD_MIN_Y
-                && bird.getPosition().getY() <= Constaints.PowerUps.BIRD_MAX_Y);
+        assertTrue(bird.getPosition().getX() == Constants.PowerUps.BIRD_MIN_x
+                || bird.getPosition().getX() == Constants.PowerUps.BIRD_MAX_X);
+        assertTrue(bird.getPosition().getY() >= Constants.PowerUps.BIRD_MIN_Y
+                && bird.getPosition().getY() <= Constants.PowerUps.BIRD_MAX_Y);
                 Set<Component> components = bird.getComponents();
                 assertNotNull(components);
                 assertTrue(components.stream().anyMatch(c -> c instanceof BirdPositionComponent));

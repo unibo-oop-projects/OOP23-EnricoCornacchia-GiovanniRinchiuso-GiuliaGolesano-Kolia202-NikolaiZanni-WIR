@@ -9,7 +9,7 @@ import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
-import it.unibo.utilities.Constaints.Felix;
+import it.unibo.utilities.Constants.Felix;
 import java.util.Optional;
 /**
  * Controller for the Felix character.

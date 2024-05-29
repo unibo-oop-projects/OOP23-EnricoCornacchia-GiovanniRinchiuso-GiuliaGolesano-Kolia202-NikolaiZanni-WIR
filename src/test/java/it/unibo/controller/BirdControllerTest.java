@@ -18,7 +18,7 @@ import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 class BirdControllerTest {
     private BirdController birdController;
@@ -43,7 +43,7 @@ class BirdControllerTest {
     @Test
     public void testBirdCreation() throws InterruptedException {
         birdController.scheduleBirdCreation();
-        TimeUnit.SECONDS.sleep(Constaints.PowerUps.INITIAL_DELAY + Constaints.PowerUps.PERIOD + 1); 
+        TimeUnit.SECONDS.sleep(Constants.PowerUps.INITIAL_DELAY + Constants.PowerUps.PERIOD + 1); 
         List<Entity> birds = birdController.getBirds();
         assertTrue(birds.size() > 0, "At least one bird should have been created");
         birdController.stopBirdCreation(); 

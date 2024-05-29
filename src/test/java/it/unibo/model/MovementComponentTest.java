@@ -12,7 +12,7 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 
 public class MovementComponentTest {
@@ -38,11 +38,11 @@ public class MovementComponentTest {
 
     @Test
     public void testMoveOutOfRightWall() {
-        entity.setPosition(new Pair<>(Constaints.GameEdges.RIGHT_WALL - 1, 0.0));
+        entity.setPosition(new Pair<>(Constants.GameEdges.RIGHT_WALL - 1, 0.0));
         double x = 2.0;
         double y = 0.0;
         component.move(x, y, entity);
-        assertEquals(new Pair<>(Constaints.GameEdges.RIGHT_WALL - 1, 0.0), entity.getPosition());
+        assertEquals(new Pair<>(Constants.GameEdges.RIGHT_WALL - 1, 0.0), entity.getPosition());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class MovementComponentTest {
 
     @Test
     public void testCanMoveFalseOutOfLeftWall() {
-        entity.setPosition(new Pair<>(Constaints.GameEdges.LEFT_WALL, 0.0));
+        entity.setPosition(new Pair<>(Constants.GameEdges.LEFT_WALL, 0.0));
         boolean canMove = component.canMove(-1.0, 0.0, entity);
         assertFalse(canMove);
     }

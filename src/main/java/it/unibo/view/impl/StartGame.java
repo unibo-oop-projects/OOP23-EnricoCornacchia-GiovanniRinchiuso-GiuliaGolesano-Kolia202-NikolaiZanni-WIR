@@ -22,7 +22,7 @@ public final class StartGame extends Application {
      */
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        Label message = new Label("Hello, StartGame!");
+        /*Label message = new Label("Hello, StartGame!");
         message.setFont(new Font(100));
         primaryStage.setScene(new Scene(new StackPane(message), 800, 600));
         primaryStage.setTitle("StartGame");
@@ -42,6 +42,12 @@ public final class StartGame extends Application {
                 e.printStackTrace();
             }
         });
-        delay.play();
+        delay.play();*/
+
+        try {
+            new WindowGame().start(primaryStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

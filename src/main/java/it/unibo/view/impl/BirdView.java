@@ -1,6 +1,6 @@
 package it.unibo.view.impl;
 
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import it.unibo.view.api.View;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -51,7 +51,7 @@ public class BirdView implements View {
 
     private Image getImage() {
         Pair<Double, Double> bird = this.bird.getPosition();
-        return bird.getX() == Constaints.PowerUps.BIRD_MIN_x ? this.birdRight : this.birdteLeft;
+        return bird.getX() == Constants.PowerUps.BIRD_MIN_x ? this.birdRight : this.birdteLeft;
     }
 
     @Override

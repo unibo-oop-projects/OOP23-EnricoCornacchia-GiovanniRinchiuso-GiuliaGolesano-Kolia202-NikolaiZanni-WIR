@@ -7,7 +7,7 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import java.util.Set;
 
 /**
@@ -24,7 +24,7 @@ public class RalphController {
     public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        ralph = entityFactoryImpl.createRalph(Constaints.Ralph.RALPH_START);
+        ralph = entityFactoryImpl.createRalph(Constants.Ralph.RALPH_START);
     }
     /**
      * Move Ralph.
@@ -41,7 +41,7 @@ public class RalphController {
     public void throwBrickLeftArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_LEFT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constants.Ralph.RALPH_LEFT_HAND);
             }
         }
     }
@@ -52,7 +52,7 @@ public class RalphController {
     public void throwBrickRightArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constaints.Ralph.RALPH_RIGHT_HAND);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constants.Ralph.RALPH_RIGHT_HAND);
             }
         }
     }

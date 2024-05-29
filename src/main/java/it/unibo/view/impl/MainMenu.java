@@ -1,6 +1,6 @@
 package it.unibo.view.impl;
 
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import it.unibo.utilities.GameState;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,8 +30,8 @@ public class MainMenu extends StackPane {
     public MainMenu(Stage gamStage) {
         this.gameStage = gamStage;
         pauseButton = new ImageView("pauseButton.png");
-        pauseButton.setFitWidth(Constaints.Button.WIDTH_PAUSE_BUTTON);
-        pauseButton.setFitHeight(Constaints.Button.HEIGHT_PAUSE_BUTTON);
+        pauseButton.setFitWidth(Constants.Button.WIDTH_PAUSE_BUTTON);
+        pauseButton.setFitHeight(Constants.Button.HEIGHT_PAUSE_BUTTON);
         pauseButton.setOnMouseClicked(this::handlePauseButtonClick);
         getChildren().add(pauseButton);
     }
@@ -81,13 +81,13 @@ public class MainMenu extends StackPane {
                     backgroundSize);
             root.setBackground(new Background(backgroundImage));
             final ImageView topImageView = new ImageView(topImage);
-            topImageView.setFitWidth(Constaints.Button.TOP_IMAGE_WIDTH);
-            topImageView.setFitHeight(Constaints.Button.TOP_IMAGE_HEIGHT);
+            topImageView.setFitWidth(Constants.Button.TOP_IMAGE_WIDTH);
+            topImageView.setFitHeight(Constants.Button.TOP_IMAGE_HEIGHT);
             StackPane.setAlignment(topImageView, Pos.TOP_CENTER);
             root.getChildren().add(topImageView);
             final ImageView underImageView = new ImageView(underImage);
-            underImageView.setFitHeight(Constaints.Button.UNDER_IMAGE_HEIGHT);
-            underImageView.setFitWidth(Constaints.Button.UNDER_IMAGE_WIDTH);
+            underImageView.setFitHeight(Constants.Button.UNDER_IMAGE_HEIGHT);
+            underImageView.setFitWidth(Constants.Button.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);
             root.getChildren().add(underImageView);
             final HBox pane = new HBox(20);

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 
 public class BirdPositionComponent extends AbstractComponent {
 
@@ -12,16 +12,16 @@ public class BirdPositionComponent extends AbstractComponent {
 
     public Pair<Double, Double> randomPosition() {
         Random rand = new Random();
-        double birdY = rand.nextDouble() * (Constaints.PowerUps.BIRD_MAX_Y - Constaints.PowerUps.BIRD_MIN_Y)
-                + Constaints.PowerUps.BIRD_MIN_Y;
+        double birdY = rand.nextDouble() * (Constants.PowerUps.BIRD_MAX_Y - Constants.PowerUps.BIRD_MIN_Y)
+                + Constants.PowerUps.BIRD_MIN_Y;
         double birdX;
         switch (rand.nextInt(2)) {
             case 0:
-                birdX = Constaints.PowerUps.BIRD_MAX_X;
+                birdX = Constants.PowerUps.BIRD_MAX_X;
                 this.moveRight = false;
                 break;
             default:
-                birdX = Constaints.PowerUps.BIRD_MIN_x;
+                birdX = Constants.PowerUps.BIRD_MIN_x;
                 this.moveRight = true;
                 break;
         }
