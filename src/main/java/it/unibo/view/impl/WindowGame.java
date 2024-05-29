@@ -1,6 +1,8 @@
 package it.unibo.view.impl;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 import it.unibo.common.Pair;
@@ -10,13 +12,14 @@ import it.unibo.controller.impl.WindowsController;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
-import it.unibo.utilities.Constaints;
+import it.unibo.utilities.Constants;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -109,21 +112,28 @@ public class WindowGame extends Application {
 
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("StartGame");
+        primaryStage.setTitle("Wreck-it Ralph");
         primaryStage.show();
 
         switch (this.gameController.getLevel()) {
-            case 1: addWindowsGrid(root, Constaints.Windows.BROKEN_1); 
+            case 1: addWindowsGrid(root, Constants.Windows.BROKEN_1); 
                 break;
-            case 2: addWindowsGrid(root, Constaints.Windows.BROKEN_2); 
+            case 2: addWindowsGrid(root, Constants.Windows.BROKEN_2); 
                 break;
-            case 3: addWindowsGrid(root, Constaints.Windows.BROKEN_3); 
+            case 3: addWindowsGrid(root, Constants.Windows.BROKEN_3); 
                 break;
-            case 4: addWindowsGrid(root, Constaints.Windows.BROKEN_4); 
+            case 4: addWindowsGrid(root, Constants.Windows.BROKEN_4); 
                 break;
             default:
                 break;
         }
+        /* 
+        Entity w = this.entityFactoryImpl.createWindows(new Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
+        System.out.println(w.getPosition());
+        WindowsView windowView = new WindowsView(w.getPosition());
+        FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+        if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
+        else root.getChildren().add(windowView.brokenWindow());*/
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -176,14 +186,15 @@ public class WindowGame extends Application {
      * @param root
      * @param broken the number of broken windows.
      */
+    
     private void addWindowsGrid(final AnchorPane root, final int broken) {
-        Set<Entity> windows = windowsController.windowsGrid(broken);
-        windows.forEach(window -> {
-            WindowsView windowView = new WindowsView();
-            windowView.getImageView().setLayoutX(window.getPosition().getX());
-            windowView.getImageView().setLayoutY(window.getPosition().getY());
-            FixedWindowsComponent fixComp = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-            if(fixComp.getFixed() == true) root.getChildren().add(windowView.fixedwindows());
+        Set<Entity> entities = new HashSet<>();
+        entities = this.gameController.getWindowsController().windowsGrid(broken);
+
+        entities.forEach(w -> {
+            WindowsView windowView = new WindowsView(w.getPosition());
+            FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+            if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
             else root.getChildren().add(windowView.brokenWindow());
         });   
     }

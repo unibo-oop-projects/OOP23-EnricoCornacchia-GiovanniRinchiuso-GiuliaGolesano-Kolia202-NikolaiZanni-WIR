@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import it.unibo.common.Pair;
 import it.unibo.view.api.View;
 import javafx.animation.Timeline;
 import javafx.animation.Animation;
@@ -11,7 +12,7 @@ import javafx.util.Duration;
 
 public class WindowsView implements View{
     private static final int FRAME_COUNT = 4;
-    private static final int FRAME_WIDTH = 45; 
+    private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
     private static final int ANIMATION_DURATION = 1000; 
     private ImageView imageView;
@@ -21,11 +22,13 @@ public class WindowsView implements View{
     /**
      * Constructor.
      */
-    public WindowsView() {
+    public WindowsView(Pair<Double, Double> pos) {
         spriteSheet = getSource("window");
         imageView = new ImageView();
         imageView.setFitHeight(FRAME_HEIGHT);
-        imageView.setFitWidth(FRAME_WIDTH);        
+        imageView.setFitWidth(FRAME_WIDTH);
+        this.imageView.setX(pos.getX());
+        this.imageView.setY(pos.getY());  
     }
     /**
      * {@inheritDoc}
@@ -74,13 +77,15 @@ public class WindowsView implements View{
      * @return
      */
     public ImageView fixedwindows() {
-        return new ImageView(getFrame(0));
+        this.imageView.setImage(getFrame(0));
+        return this.imageView;
     }
     /**
      * Static view of a broken window.
      * @return
      */
     public ImageView brokenWindow() {
-        return new ImageView(getFrame(FRAME_COUNT - 1));
+        this.imageView.setImage(getFrame(FRAME_COUNT - 1));
+        return this.imageView;
     }
 }

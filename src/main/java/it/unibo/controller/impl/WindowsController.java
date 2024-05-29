@@ -17,15 +17,13 @@ public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
     private Set<Entity> entities;
-    @SuppressWarnings("unused")
-    private int cont;
-    private int WINDOW_WIDTH = 80;
+    private int WINDOW_WIDTH = 53;
     private int WINDOW_HEIGHT = 80;
-    private int WINDOW_SPACING = 20;
+    private int WINDOW_SPACING = 0;
     private int GRID_ROWS = 3;
-    private int GRID_COLS = 3;
-    private int GRID_OFFSET_X = 50;
-    private int GRID_OFFSET_Y = 50;
+    private int GRID_COLS = 5;
+    private int GRID_OFFSET_X = 278;
+    private int GRID_OFFSET_Y = 310;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
