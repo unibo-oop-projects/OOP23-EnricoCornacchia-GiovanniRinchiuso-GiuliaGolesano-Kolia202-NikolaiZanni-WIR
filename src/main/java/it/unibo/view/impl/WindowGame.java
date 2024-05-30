@@ -127,6 +127,7 @@ public class WindowGame extends Application {
             default:
                 break;
         }
+        this.addFelixView(root);
         /* 
         Entity w = this.entityFactoryImpl.createWindows(new Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
         System.out.println(w.getPosition());
@@ -197,5 +198,14 @@ public class WindowGame extends Application {
             if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
             else root.getChildren().add(windowView.brokenWindow());
         });   
+    }
+    /**
+     * Method that adds Felix to the main pane.
+     * @param root
+     */
+    private void addFelixView(final AnchorPane root) {
+        Entity felix = this.gameController.getFelixController().getFelix();
+        FelixView felixView = new FelixView(felix);
+        root.getChildren().add(felixView.getStandingFelix());
     }
 }
