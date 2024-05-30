@@ -9,6 +9,8 @@ import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.LivesComponent;
+import it.unibo.utilities.Constants;
+import it.unibo.utilities.Movements;
 import it.unibo.utilities.Constants.Felix;
 import java.util.Optional;
 /**
@@ -50,7 +52,7 @@ public class FelixController {
      */
     public void moveDown() {
         ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
-                                       .move(0, -1, this.felix);
+                                       .move(0, this.getPlatform(Movements.DOWN), this.felix);
         //System.out.print("moved down\n");
     }
     /**
@@ -58,8 +60,26 @@ public class FelixController {
      */
     public void moveUp() {
         ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
-                                       .move(0, 1, this.felix);
+                                       .move(0, this.getPlatform(Movements.UP), this.felix);
         //System.out.print("moved up\n");
+    }
+    private double getPlatform(final Movements movement) {
+        switch (movement) {
+            case UP:
+                if (this.felix.getPosition().getY() < Constants.Floors.FLOOR_1_Y) {
+                    return 0;
+                } else {
+                    return -200;
+                }
+            case DOWN:
+                if (this.felix.getPosition().getY() > Constants.Floors.FLOOR_3_Y) {
+                    return 0;
+                } else {
+                    return 200;
+                }
+            default:
+                return 0;
+        }
     }
     /**
      * Check if the character is alive.
