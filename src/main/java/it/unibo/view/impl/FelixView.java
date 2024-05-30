@@ -80,6 +80,16 @@ public class FelixView implements View {
     }
 
     /**
+     * Returns the standing Felix image view.
+     *
+     * @return The standing Felix image view.
+     */
+    public ImageView getStandingFelix() {
+        this.imageView.setImage(getFrame(0));
+        return this.imageView;
+    }
+
+    /**
      * Returns the appropriate sprite based on the last input received.
      *
      * @return The sprite to be displayed.
