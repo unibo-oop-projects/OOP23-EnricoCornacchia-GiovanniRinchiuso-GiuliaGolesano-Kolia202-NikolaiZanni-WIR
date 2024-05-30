@@ -48,7 +48,7 @@ public final class Constants {
         /**
          * The position of starting Felix.
          */
-        public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 0.0);
+        public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 580.0);
         /**
          * The width of Felix.
          */
@@ -65,7 +65,7 @@ public final class Constants {
         /**
          * The position of starting Ralph of the first level.
          */
-        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 700.0);
+        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 80.0);
         /**
          * The difference between the position of Ralph and the position of his right
          * hand.
