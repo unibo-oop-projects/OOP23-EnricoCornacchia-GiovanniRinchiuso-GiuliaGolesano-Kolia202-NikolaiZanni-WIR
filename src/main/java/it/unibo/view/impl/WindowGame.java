@@ -127,7 +127,7 @@ public class WindowGame extends Application {
             default:
                 break;
         }
-        this.addFelixView(root);
+        FelixView felixView = this.addFelixView(root);
         /* 
         Entity w = this.entityFactoryImpl.createWindows(new Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
         System.out.println(w.getPosition());
@@ -140,15 +140,23 @@ public class WindowGame extends Application {
             switch (event.getCode()) {
                 case S:
                     gameController.moveFelixDown(event.getCode());
+                    felixView.animateFelix();
+                    felixView.getStandingFelix();
                     break;
                 case A:
                     gameController.moveFelixLeft(event.getCode());
+                    felixView.animateFelix();
+                    felixView.getStandingFelix();
                     break;
                 case D:
                     gameController.moveFelixRight(event.getCode());
+                    felixView.animateFelix();
+                    felixView.getStandingFelix();
                     break;
                 case W:
                     gameController.moveFelixUp(event.getCode());
+                    felixView.animateFelix();
+                    felixView.getStandingFelix();
                     break;
                 case Z:
                     zKeyPressed = true;
@@ -203,9 +211,10 @@ public class WindowGame extends Application {
      * Method that adds Felix to the main pane.
      * @param root
      */
-    private void addFelixView(final AnchorPane root) {
+    private FelixView addFelixView(final AnchorPane root) {
         Entity felix = this.gameController.getFelixController().getFelix();
         FelixView felixView = new FelixView(felix);
         root.getChildren().add(felixView.getStandingFelix());
+        return felixView;
     }
 }

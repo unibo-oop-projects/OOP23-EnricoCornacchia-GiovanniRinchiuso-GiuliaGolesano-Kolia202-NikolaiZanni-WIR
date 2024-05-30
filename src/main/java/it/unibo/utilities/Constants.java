@@ -48,15 +48,15 @@ public final class Constants {
         /**
          * The position of starting Felix.
          */
-        public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 580.0);
+        public static final Pair<Double, Double> FELIX_START = new Pair<>(400.0, 560.0);
         /**
          * The width of Felix.
          */
-        public static final double FELIX_WIDTH = 20.0;
+        public static final double FELIX_WIDTH = 30.0;
         /**
          * The height of Felix.
          */
-        public static final double FELIX_HEIGHT = 20.0;
+        public static final double FELIX_HEIGHT = 40.0;
     }
     /**
      * Ralph constaints.
@@ -65,7 +65,7 @@ public final class Constants {
         /**
          * The position of starting Ralph of the first level.
          */
-        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 80.0);
+        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 40.0);
         /**
          * The difference between the position of Ralph and the position of his right
          * hand.
@@ -79,11 +79,11 @@ public final class Constants {
         /**
          * The Ralph height.
          */
-        public static final double RALPH_HEIGHT = 0;
+        public static final double RALPH_HEIGHT = 60;
         /**
          * The Ralph width.
          */
-        public static final double RALPH_WIDTH = 0;
+        public static final double RALPH_WIDTH = 80;
     }
     /**
      * Brick constaints.

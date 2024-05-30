@@ -2,7 +2,9 @@ package it.unibo.view.impl;
 
 import java.util.List;
 
+import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.impl.HitboxComponent;
 import it.unibo.view.api.View;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -36,8 +38,13 @@ public class FelixView implements View {
     public FelixView(final Entity felix) {
         this.felix = felix;
         this.imageView = new ImageView();
-        this.spriteLeft = getSource("felix_movement_left.png");
-        this.spriteRight = getSource("felix_movement_right.png");
+        this.spriteLeft = getSource("felix_movement_left");
+        this.spriteRight = getSource("felix_movement_right");
+        this.sprite = this.spriteRight;
+        this.imageView.setFitHeight(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getHeight());
+        this.imageView.setFitWidth(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getWidth());
+        this.imageView.setX(this.felix.getPosition().getX());
+        this.imageView.setY(this.felix.getPosition().getY());
     }
 
     /**
