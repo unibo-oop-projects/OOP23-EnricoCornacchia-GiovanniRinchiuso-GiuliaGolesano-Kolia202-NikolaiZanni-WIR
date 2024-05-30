@@ -52,6 +52,8 @@ public class FelixView implements View {
      * If the animation is already running, the method returns without doing anything.
      */
     public void animateFelix() {
+        this.imageView.setX(this.felix.getPosition().getX());
+        this.imageView.setY(this.felix.getPosition().getY());
         if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
         this.currentFrame = 0;
         this.sprite = getImage();
@@ -59,7 +61,7 @@ public class FelixView implements View {
         this.imageView.setFitHeight(this.sprite.getHeight());
         this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
         this.timeline.setCycleCount(FRAME_COUNT);
-        this.timeline.setOnFinished(e -> imageView.setImage(getFrame(FRAME_COUNT - 1)));
+        this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
         this.timeline.play();
     }
 
@@ -103,6 +105,6 @@ public class FelixView implements View {
      */
     private Image getImage() {
         List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
-        return inputs.get(inputs.size() - 1) == KeyCode.RIGHT ? this.spriteRight : this.spriteLeft;
+        return inputs.get(inputs.size() - 1) == KeyCode.D ? this.spriteRight : this.spriteLeft;
     }
 }

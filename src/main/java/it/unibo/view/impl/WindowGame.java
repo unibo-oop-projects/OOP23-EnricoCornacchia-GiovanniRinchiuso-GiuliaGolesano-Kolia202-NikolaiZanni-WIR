@@ -141,22 +141,18 @@ public class WindowGame extends Application {
                 case S:
                     gameController.moveFelixDown(event.getCode());
                     felixView.animateFelix();
-                    felixView.getStandingFelix();
                     break;
                 case A:
                     gameController.moveFelixLeft(event.getCode());
                     felixView.animateFelix();
-                    felixView.getStandingFelix();
                     break;
                 case D:
                     gameController.moveFelixRight(event.getCode());
                     felixView.animateFelix();
-                    felixView.getStandingFelix();
                     break;
                 case W:
                     gameController.moveFelixUp(event.getCode());
                     felixView.animateFelix();
-                    felixView.getStandingFelix();
                     break;
                 case Z:
                     zKeyPressed = true;
