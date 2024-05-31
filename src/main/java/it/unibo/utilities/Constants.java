@@ -117,11 +117,11 @@ public final class Constants {
         /**
          * The width of the window.
          */
-        public static final double WINDOW_WIDTH = 0;
+        public static final double WINDOW_WIDTH = 40;
         /**
          * The height of the window.
          */
-        public static final double WINDOW_HEIGHT = 0;
+        public static final double WINDOW_HEIGHT = 40;
     }
     /**
      * Cake constaints.
