@@ -65,8 +65,10 @@ public class WindowsController {
                 Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
                 entities.add(window);
                 index++;
+                this.gamePerformance.addEntity(window);
             }
         }
+        
         return this.entities;
     }
 }
