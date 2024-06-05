@@ -18,7 +18,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Felix.
  */
-public class FelixView implements View {
+public final class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;
@@ -41,8 +41,10 @@ public class FelixView implements View {
         this.spriteLeft = getSource("felix_movement_left");
         this.spriteRight = getSource("felix_movement_right");
         this.sprite = this.spriteRight;
-        this.imageView.setFitHeight(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getHeight());
-        this.imageView.setFitWidth(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getWidth());
+        this.imageView.setFitHeight(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get())
+                                                                 .getHitbox().getHeight());
+        this.imageView.setFitWidth(((HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).get())
+                                                                 .getHitbox().getWidth());
         this.imageView.setX(this.felix.getPosition().getX());
         this.imageView.setY(this.felix.getPosition().getY());
     }
@@ -54,15 +56,16 @@ public class FelixView implements View {
     public void animateFelix() {
         this.imageView.setX(this.felix.getPosition().getX());
         this.imageView.setY(this.felix.getPosition().getY());
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
-        this.currentFrame = 0;
-        this.sprite = getImage();
-        this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
-        this.imageView.setFitHeight(this.sprite.getHeight());
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
-        this.timeline.setCycleCount(FRAME_COUNT);
-        this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
-        this.timeline.play();
+        if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
+            this.currentFrame = 0;
+            this.sprite = getImage();
+            this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
+            this.imageView.setFitHeight(this.sprite.getHeight());
+            this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
+            this.timeline.setCycleCount(FRAME_COUNT);
+            this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
+            this.timeline.play();
+        }
     }
 
     @Override
@@ -77,7 +80,7 @@ public class FelixView implements View {
     }
 
     @Override
-    public Image getFrame(int index) {
+    public Image getFrame(final int index) {
         return new WritableImage(this.sprite.getPixelReader(),
                                  index * ((int) this.sprite.getWidth()) / FRAME_COUNT, 0, 
                                  ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
