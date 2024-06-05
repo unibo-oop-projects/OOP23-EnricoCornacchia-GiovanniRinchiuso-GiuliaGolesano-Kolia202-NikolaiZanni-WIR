@@ -17,6 +17,7 @@ public class RalphController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final Entity ralph;
     private final GamePerformance gamePerformance;
+    private long lastThrowTime;
     /**
      * Constructor for the RalphController.
      * @param gamePerformance the game performance.
@@ -25,6 +26,7 @@ public class RalphController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         ralph = entityFactoryImpl.createRalph(Constants.Ralph.RALPH_START);
+        lastThrowTime = System.currentTimeMillis();
     }
     /**
      * Move Ralph.
@@ -64,15 +66,31 @@ public class RalphController {
         return ralph;
     }
     /**
+     * Getter for the time to wait.
+     * @return the time to wait.
+     */
+    private double getTimeToWait() {
+        return Constants.Ralph.THROW_TIME / gamePerformance.getLevel();
+    }
+    /**
      * Update Ralph position, and make him throwing bricks.
      * @param bricks the set of bricks.
      */
     public void update(final Set<Entity> bricks) {
-        final int cycle = this.gamePerformance.getLevel();
-        for (int i = 0; i < cycle; i++) {
-            this.throwBrickLeftArm(bricks);
-            this.throwBrickRightArm(bricks);
-            this.move();
-        }
+        this.move();
+
+        if(System.currentTimeMillis() - lastThrowTime < this.getTimeToWait()) return;
+        this.throwBricks(bricks);
+        lastThrowTime = System.currentTimeMillis();
+    }
+    /**
+     * Make Ralph throw bricks.
+     * @param bricks the set of bricks.
+     */
+    private void throwBricks(final Set<Entity> bricks) {
+       for(int i = 0; i < gamePerformance.getLevel(); i++) {
+           this.throwBrickLeftArm(bricks);
+           this.throwBrickRightArm(bricks);
+       }
     }
 }

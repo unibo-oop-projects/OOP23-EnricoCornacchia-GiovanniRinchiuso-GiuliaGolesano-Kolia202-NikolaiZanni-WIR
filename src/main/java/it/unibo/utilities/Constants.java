@@ -84,6 +84,10 @@ public final class Constants {
          * The Ralph width.
          */
         public static final double RALPH_WIDTH = 80;
+        /**
+         * The Ralph speed in throwing bricks.
+         */
+        public static long THROW_TIME = 1000;
     }
     /**
      * Brick constaints.
