@@ -17,12 +17,10 @@ public class CakeView implements View{
     private ImageView imageView;
     private Image cakeUpDown;
     private Image sprite;
-    private Entity cake;
     private Timeline timeline;
     private int currentFrame = 0;
 
     public CakeView(final Entity bird) {
-        this.cake = cake;
         this.imageView = new ImageView();
         this.cakeUpDown = getSource("cakeUpDown.png");
     }

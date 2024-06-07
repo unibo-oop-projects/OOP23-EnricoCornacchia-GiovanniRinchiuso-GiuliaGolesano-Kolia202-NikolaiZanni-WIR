@@ -4,8 +4,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.CakePositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 
 public class CakeController {
@@ -17,23 +19,33 @@ public class CakeController {
     public CakeController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.scheduler = createScheduler();
+    }
+
+    protected ScheduledExecutorService createScheduler() {
+        return Executors.newSingleThreadScheduledExecutor();
     }
 
     public void scheduleCakeCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             generateAndRemoveCake();
-        }, 5, 10, TimeUnit.SECONDS);
+        }, 0, 10, TimeUnit.SECONDS);
     }
 
     private void generateAndRemoveCake() {
-        cake = entityFactoryImpl.createCake(null);
+        CakePositionComponent cakePositionComponent = new CakePositionComponent();
+        Pair<Double, Double> cakePosition = cakePositionComponent.randomPosition();
+        cake = entityFactoryImpl.createCake(cakePosition);
+        this.gamePerformance.addEntity(cake);
         scheduleCakeRemoval(cake);
     }
 
     private void scheduleCakeRemoval(Entity cakeToRemove) {
         scheduler.schedule(() -> {
-            gamePerformance.removeEntity(cakeToRemove);
+            this.gamePerformance.removeEntity(cakeToRemove);
+            if (this.cake == cakeToRemove) {
+                this.cake = null;
+            }
         }, 5, TimeUnit.SECONDS);
     }
 
@@ -45,9 +57,6 @@ public class CakeController {
         scheduler.shutdown();
     }
 
-    /*
-     * This method implement the logic of the update of the game
-     */
     public void update() {
         scheduleCakeCreation();
     }
