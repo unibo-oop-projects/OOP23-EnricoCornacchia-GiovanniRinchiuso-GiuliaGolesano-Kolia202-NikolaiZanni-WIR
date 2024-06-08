@@ -37,6 +37,7 @@ public class EntityImpl implements Entity {
         this.type = type;
         this.components = new HashSet<>();
         this.position = position;
+        this.lastPosition = position;
         components.forEach(c -> ((AbstractComponent) c).setEntity(this));
         this.components.addAll(components);
         this.gamePerformance = gamePerformance;
@@ -87,7 +88,7 @@ public class EntityImpl implements Entity {
         return this.lastPosition;
     }
     @Override
-    public void setLastPosition(Pair<Double, Double> lastPosition) {
+    public void setLastPosition(final Pair<Double, Double> lastPosition) {
         this.lastPosition = lastPosition;
     }
     /**

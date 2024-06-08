@@ -23,7 +23,7 @@ public class MovementComponent extends AbstractComponent {
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
         if (canMove(x, y, entity)) {
-            this.getEntity().setLastPosition(entity.getPosition());
+            entity.setLastPosition(entity.getPosition());
             entity.setPosition(new Pair<>(newX, newY));
         }
     }

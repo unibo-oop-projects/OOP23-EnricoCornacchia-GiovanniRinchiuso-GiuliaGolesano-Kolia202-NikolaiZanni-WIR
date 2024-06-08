@@ -16,7 +16,7 @@ public abstract class AbstractComponent implements Component {
      *
      * @return the entity associated with this component.
      */
-    protected Entity getEntity() {
+    public Entity getEntity() {
         return this.entity;
     }
 
@@ -25,7 +25,7 @@ public abstract class AbstractComponent implements Component {
      *
      * @param entity the entity to set.
      */
-    protected void setEntity(final Entity entity) {
+    public void setEntity(final Entity entity) {
         this.entity = entity;
     }
 }
