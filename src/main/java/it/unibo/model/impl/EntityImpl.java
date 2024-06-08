@@ -22,6 +22,7 @@ public class EntityImpl implements Entity {
     private final Set<Component> components;
     private Pair<Double, Double> position;
     private final GamePerformance gamePerformance;
+    private Pair<Double, Double> lastPosition;
 
     /**
      * EntityImpl constructor.
@@ -81,6 +82,14 @@ public class EntityImpl implements Entity {
     public void setPosition(final Pair<Double, Double> position) {
         this.position = position;
     }
+    @Override
+    public Pair<Double, Double> getLastPosition() {
+        return this.lastPosition;
+    }
+    @Override
+    public void setLastPosition(Pair<Double, Double> lastPosition) {
+        this.lastPosition = lastPosition;
+    }
     /**
      * Getter method for the type.
      * @return the type of the entity.
@@ -96,4 +105,5 @@ public class EntityImpl implements Entity {
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
     }
+    
 }

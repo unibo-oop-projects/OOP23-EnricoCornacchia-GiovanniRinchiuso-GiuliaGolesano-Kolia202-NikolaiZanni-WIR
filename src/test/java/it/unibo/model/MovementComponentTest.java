@@ -23,7 +23,7 @@ public class MovementComponentTest {
 
     @BeforeEach
     public void setUp() {
-        MovementComponent component = new MovementComponent(new Pair<>(0.0, 0.0));
+        component = new MovementComponent();
         entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
         entity = entityFactoryImpl.createRalph(new Pair<>(0.0, 0.0));
     }

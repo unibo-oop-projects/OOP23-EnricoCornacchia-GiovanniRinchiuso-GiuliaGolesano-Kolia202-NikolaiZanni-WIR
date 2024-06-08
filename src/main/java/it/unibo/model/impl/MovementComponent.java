@@ -10,10 +10,7 @@ import it.unibo.utilities.Constants;
  */
 public class MovementComponent extends AbstractComponent {
 
-    private Pair<Double, Double> lastPosition;
-
-    public MovementComponent(final Pair<Double, Double> position) {
-        this.lastPosition = position;
+    public MovementComponent() {
     }
     /**
      * Move the entity.
@@ -26,7 +23,7 @@ public class MovementComponent extends AbstractComponent {
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
         if (canMove(x, y, entity)) {
-            this.lastPosition = entity.getPosition();
+            this.getEntity().setLastPosition(entity.getPosition());
             entity.setPosition(new Pair<>(newX, newY));
         }
     }
@@ -46,10 +43,6 @@ public class MovementComponent extends AbstractComponent {
                 && newX <= Constants.GameEdges.RIGHT_WALL
                 && newY >= Constants.GameEdges.DOWN_WALL
                 && newY <= Constants.GameEdges.UP_WALL_1;
-    }
-
-    public Pair<Double, Double> getLastPosition() {
-        return this.lastPosition;
     }
 
     /**

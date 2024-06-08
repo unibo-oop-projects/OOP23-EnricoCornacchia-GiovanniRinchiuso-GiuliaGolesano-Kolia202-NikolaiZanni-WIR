@@ -40,6 +40,20 @@ public interface Entity {
      * @param position the new position of the entity as a Pair of Doubles representing the x and y coordinates
      */
     void setPosition(Pair<Double, Double> position);
+
+    /**
+     * Returns the last position of the entity.
+     *
+     * @return a Pair object representing the last position of the entity, where the first element is the x-coordinate
+     *         and the second element is the y-coordinate.
+     */
+    Pair<Double, Double> getLastPosition();
+    /**
+     * Sets the last position of the entity.
+     *
+     * @param lastPosition the last position to set for the entity
+     */
+    void setLastPosition(Pair<Double, Double> lastPosition);
     /**
      * Get the type of an entity.
      * 

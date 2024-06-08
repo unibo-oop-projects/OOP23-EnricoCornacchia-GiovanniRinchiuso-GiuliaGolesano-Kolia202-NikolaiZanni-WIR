@@ -3,7 +3,6 @@ package it.unibo.view.impl;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
-import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Movements;
 import it.unibo.view.api.View;
 import javafx.animation.Animation;
@@ -105,8 +104,7 @@ public class RalphView implements View {
      * @return
      */
     private Image getImage() {
-        this.lastMovement = ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get())
-                                              .getLastPosition().getX() < this.ralph.getPosition().getX()
+        this.lastMovement = this.ralph.getLastPosition().getX() < this.ralph.getPosition().getX()
                                                ? Movements.RIGHT : Movements.LEFT;
         return this.lastMovement.equals(Movements.RIGHT) ? this.spriteRight : this.spriteLeft;
     }
