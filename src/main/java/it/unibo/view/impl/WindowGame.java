@@ -20,6 +20,7 @@ import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
+import it.unibo.utilities.Constants.Ralph;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -128,6 +129,7 @@ public class WindowGame extends Application {
                 break;
         }
         FelixView felixView = this.addFelixView(root);
+        RalphView ralphView = this.addRalphView(root);
         /* 
         Entity w = this.entityFactoryImpl.createWindows(new Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
         System.out.println(w.getPosition());
@@ -191,7 +193,6 @@ public class WindowGame extends Application {
      * @param root
      * @param broken the number of broken windows.
      */
-    
     private void addWindowsGrid(final AnchorPane root, final int broken) {
         Set<Entity> entities = new HashSet<>();
         entities = this.gameController.getWindowsController().windowsGrid(broken);
@@ -205,12 +206,26 @@ public class WindowGame extends Application {
     }
     /**
      * Method that adds Felix to the main pane.
-     * @param root
+     * 
+     * @param root the main pane.
+     * @return the FelixView.
      */
     private FelixView addFelixView(final AnchorPane root) {
         Entity felix = this.gameController.getFelixController().getFelix();
         FelixView felixView = new FelixView(felix);
         root.getChildren().add(felixView.getStandingFelix());
         return felixView;
+    }
+    /**
+     * Creates and adds a RalphView to the specified root pane.
+     *
+     * @param root The root pane to add the RalphView to.
+     * @return The created RalphView instance.
+     */
+    private RalphView addRalphView(final AnchorPane root) {
+        Entity ralph = this.gameController.getRalphController().getRalph();
+        RalphView ralphView = new RalphView(ralph);
+        root.getChildren().add(ralphView.getStandingRalph());
+        return ralphView;
     }
 }
