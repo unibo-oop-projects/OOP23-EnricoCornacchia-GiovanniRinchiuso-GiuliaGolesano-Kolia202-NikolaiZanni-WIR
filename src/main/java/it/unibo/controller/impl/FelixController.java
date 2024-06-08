@@ -69,13 +69,13 @@ public class FelixController {
                 if (this.felix.getPosition().getY() < Constants.Floors.FLOOR_1_Y) {
                     return 0;
                 } else {
-                    return -200;
+                    return -70;
                 }
             case DOWN:
                 if (this.felix.getPosition().getY() > Constants.Floors.FLOOR_3_Y) {
                     return 0;
                 } else {
-                    return 200;
+                    return 70;
                 }
             default:
                 return 0;

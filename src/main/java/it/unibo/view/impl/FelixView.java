@@ -59,8 +59,6 @@ public final class FelixView implements View {
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
             this.currentFrame = 0;
             this.sprite = getImage();
-            this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
-            this.imageView.setFitHeight(this.sprite.getHeight());
             this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
             this.timeline.setCycleCount(FRAME_COUNT);
             this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));

@@ -4,6 +4,7 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.MovementComponent;
+import it.unibo.utilities.Movements;
 import it.unibo.view.api.View;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -28,6 +29,7 @@ public class RalphView implements View {
     private Image sprite;
     private Timeline timeline;
     private int currentFrame = 0;
+    private Movements lastMovement = Movements.RIGHT;
 
     /**
      * Builder for the Ralph view.
@@ -54,11 +56,11 @@ public class RalphView implements View {
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
             this.currentFrame = 0;
             this.sprite = getImage();
-            this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT_DX);
-            this.imageView.setFitHeight(this.sprite.getHeight());
-            this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT_DX), e -> updateFrame()));
+            this.timeline = new Timeline(
+                            new KeyFrame(Duration.millis(ANIMATION_DURATION / (lastMovement.equals(Movements.RIGHT) ?
+                                                         FRAME_COUNT_DX : FRAME_COUNT_SX)), e -> updateFrame()));
             this.timeline.setCycleCount(FRAME_COUNT_DX);
-            this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
+            this.timeline.setOnFinished(e -> this.getStandingRalph());
             this.timeline.play();
         }
     }
@@ -77,8 +79,10 @@ public class RalphView implements View {
     @Override
     public Image getFrame(int index) {
         return new WritableImage(this.sprite.getPixelReader(),
-                                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT_DX, 0, 
-                                 ((int) this.sprite.getWidth()) / FRAME_COUNT_DX, (int) this.sprite.getHeight());
+                                 index * ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) ?
+                                 FRAME_COUNT_DX : FRAME_COUNT_SX), 0, 
+                                 ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) ? 
+                                 FRAME_COUNT_DX : FRAME_COUNT_SX), (int) this.sprite.getHeight());
     }
 
     @Override
@@ -101,8 +105,9 @@ public class RalphView implements View {
      * @return
      */
     private Image getImage() {
-        return ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get())
+        this.lastMovement = ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get())
                                               .getLastPosition().getX() < this.ralph.getPosition().getX()
-                                               ? this.spriteRight : this.spriteLeft;
+                                               ? Movements.RIGHT : Movements.LEFT;
+        return this.lastMovement.equals(Movements.RIGHT) ? this.spriteRight : this.spriteLeft;
     }
 }

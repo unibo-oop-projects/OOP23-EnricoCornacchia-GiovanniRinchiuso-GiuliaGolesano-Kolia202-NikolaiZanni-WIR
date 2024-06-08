@@ -65,7 +65,7 @@ public final class Constants {
         /**
          * The position of starting Ralph of the first level.
          */
-        public static final Pair<Double, Double> RALPH_START = new Pair<>(400.0, 40.0);
+        public static final Pair<Double, Double> RALPH_START = new Pair<>(370.0, 230.0);
         /**
          * The difference between the position of Ralph and the position of his right
          * hand.
@@ -96,11 +96,11 @@ public final class Constants {
         /**
          * The width of the brick.
          */
-        public static final double BRICK_WIDTH = 0;
+        public static final double BRICK_WIDTH = 20;
         /**
          * The height of the brick.
          */
-        public static final double BRICK_HEIGHT = 0;
+        public static final double BRICK_HEIGHT = 10;
         /**
          * The speed of the brick at level 1.
         */
@@ -134,11 +134,11 @@ public final class Constants {
         /**
          * The width of the cake.
          */
-        public static final double CAKE_WIDTH = 0;
+        public static final double CAKE_WIDTH = 20;
         /**
          * The height of the cake.
          */
-        public static final double CAKE_HEIGHT = 0;
+        public static final double CAKE_HEIGHT = 10;
     }
     /**
      * Bird constaints.
