@@ -18,7 +18,8 @@ import javafx.util.Duration;
  */
 public class RalphView implements View {
 
-    private static final int FRAME_COUNT = 4;
+    private static final int FRAME_COUNT_DX = 3;
+    private static final int FRAME_COUNT_SX = 2;
     private static final int ANIMATION_DURATION = 1000;
     private final Entity ralph;
     private final ImageView imageView;
@@ -53,10 +54,10 @@ public class RalphView implements View {
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
             this.currentFrame = 0;
             this.sprite = getImage();
-            this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT);
+            this.imageView.setFitWidth(this.sprite.getWidth() / FRAME_COUNT_DX);
             this.imageView.setFitHeight(this.sprite.getHeight());
-            this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
-            this.timeline.setCycleCount(FRAME_COUNT);
+            this.timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT_DX), e -> updateFrame()));
+            this.timeline.setCycleCount(FRAME_COUNT_DX);
             this.timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
             this.timeline.play();
         }
@@ -76,8 +77,8 @@ public class RalphView implements View {
     @Override
     public Image getFrame(int index) {
         return new WritableImage(this.sprite.getPixelReader(),
-                                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT, 0, 
-                                 ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
+                                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT_DX, 0, 
+                                 ((int) this.sprite.getWidth()) / FRAME_COUNT_DX, (int) this.sprite.getHeight());
     }
 
     @Override
