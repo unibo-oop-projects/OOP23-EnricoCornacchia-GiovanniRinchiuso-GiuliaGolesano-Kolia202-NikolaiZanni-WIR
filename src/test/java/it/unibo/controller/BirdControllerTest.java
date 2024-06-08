@@ -65,7 +65,7 @@ class BirdControllerTest {
     positionComponent.randomPosition();
     positionComponent.hasToMoveRight(); 
     bird.addComponent(positionComponent);
-    MovementComponent movementComponent = new MovementComponent();
+    MovementComponent movementComponent = new MovementComponent(new Pair<Double, Double>(0.0, 1.0));
     bird.addComponent(movementComponent);
     this.birdController.getBirds().add(bird);
     this.birdController.moveBird();
