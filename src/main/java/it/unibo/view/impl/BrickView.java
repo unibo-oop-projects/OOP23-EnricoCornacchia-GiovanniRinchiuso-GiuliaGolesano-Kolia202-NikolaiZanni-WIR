@@ -1,34 +1,28 @@
 package it.unibo.view.impl;
 
-import it.unibo.common.Pair;
+import it.unibo.model.api.Entity;
 import it.unibo.view.api.View;
-import javafx.animation.Timeline;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.util.Duration;
+
 
 public class BrickView implements View{
-    private static final int FRAME_COUNT = 1;
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
-    private static final int ANIMATION_DURATION = 1000; 
     private ImageView imageView;
     private Image spriteSheet;
-    private Timeline timeline;
-    private int currentFrame;
+    private final Entity brick;
     /**
      * Constructor.
      */
-    public BrickView(Pair<Double, Double> pos) {
+    public BrickView(Entity brick) {
         spriteSheet = getSource("brick");
+        this.brick = brick;
         imageView = new ImageView();
         imageView.setFitHeight(FRAME_HEIGHT);
         imageView.setFitWidth(FRAME_WIDTH);
-        this.imageView.setX(pos.getX());
-        this.imageView.setY(pos.getY());  
+        this.imageView.setX(brick.getPosition().getX());
+        this.imageView.setY(brick.getPosition().getY());  
     }
     /**
      * {@inheritDoc}
@@ -41,29 +35,24 @@ public class BrickView implements View{
      * Method to change the animation of the fixing window.
      * @return
      */
-    public void fixAnimation() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
-
-        currentFrame = 0;
-        timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
-        timeline.setCycleCount(FRAME_COUNT);
-        timeline.setOnFinished(e -> imageView.setImage(getFrame(FRAME_COUNT - 1)));
-        timeline.play();
+    public void animateBrick() {
+        this.imageView.setX(this.brick.getPosition().getX());
+        this.imageView.setY(this.brick.getPosition().getY());
     }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void updateFrame() {
-        imageView.setImage(getFrame(currentFrame));
-        currentFrame++;
+        return;
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Image getFrame(int index) {
-        return new WritableImage(spriteSheet.getPixelReader(), index * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        return this.spriteSheet;
     }
     /**
      * {@inheritDoc}
@@ -72,20 +61,5 @@ public class BrickView implements View{
     public ImageView getImageView() {
         return this.imageView;
     }
-    /**
-     * Static view of a fixed window.
-     * @return
-     */
-    public ImageView fixedwindows() {
-        this.imageView.setImage(getFrame(0));
-        return this.imageView;
-    }
-    /**
-     * Static view of a broken window.
-     * @return
-     */
-    public ImageView brokenWindow() {
-        this.imageView.setImage(getFrame(FRAME_COUNT - 1));
-        return this.imageView;
-    }
+    
 }

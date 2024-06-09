@@ -228,4 +228,19 @@ public class WindowGame extends Application {
         root.getChildren().add(ralphView.getStandingRalph());
         return ralphView;
     }
+
+    private BrickView addBrickView(final AnchorPane root, final Entity brick) {
+        BrickView brickView = new BrickView(brick);
+        root.getChildren().add(brickView.getImageView());
+        return brickView;
+    }
+
+    public void update(final AnchorPane root) {
+        Set<Entity> bricks = this.gameController.getBrickController().getBricks();
+        Set<BrickView> bricksToPrint = new HashSet<>();
+        bricks.forEach(b -> {
+            BrickView brickView = this.addBrickView(root, b);
+            bricksToPrint.add(brickView);
+        });
+    }
 }
