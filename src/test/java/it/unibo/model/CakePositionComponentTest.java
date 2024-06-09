@@ -27,9 +27,9 @@ public class CakePositionComponentTest {
         assertNotNull(randomPos);
         assertTrue(randomPos.getX() >= Constants.PowerUps.CAKE_MIN_X
                 && randomPos.getX() <= Constants.PowerUps.CAKE_MAX_X);
-        assertTrue(randomPos.getY() == Constants.PowerUps.CAKE_FLOOR_1_Y
-                || randomPos.getY() == Constants.PowerUps.CAKE_FLOOR_2_Y
-                || randomPos.getY() == Constants.PowerUps.CAKE_FLOOR_3_Y);
+        assertTrue(randomPos.getY() == Constants.Floors.FLOOR_1_Y
+                || randomPos.getY() == Constants.Floors.FLOOR_2_Y
+                || randomPos.getY() == Constants.Floors.FLOOR_3_Y);
     }
 
     @Test

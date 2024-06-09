@@ -15,13 +15,13 @@ public class CakePositionComponent extends AbstractComponent {
         double cakeY;
         switch (rand.nextInt(3)) {
             case 0:
-                cakeY = Constants.PowerUps.CAKE_FLOOR_1_Y;
+                cakeY = Constants.Floors.FLOOR_1_Y;
                 break;
             case 1:
-                cakeY = Constants.PowerUps.CAKE_FLOOR_2_Y;
+                cakeY = Constants.Floors.FLOOR_2_Y;
                 break;
             default:
-                cakeY = Constants.PowerUps.CAKE_FLOOR_3_Y;
+                cakeY = Constants.Floors.FLOOR_3_Y;
                 break;
         }
         final Pair<Double, Double> randomPos = new Pair<>(cakeX, cakeY);

@@ -1,8 +1,9 @@
 package it.unibo.view.impl;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 
 import it.unibo.common.Pair;
@@ -12,15 +13,14 @@ import it.unibo.controller.impl.WindowsController;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.EntityFactoryImpl;
-import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
-import it.unibo.utilities.Constants.Ralph;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -34,6 +34,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 /**
  * WindowGame represents the window of the game.
  * This class can be extended to customize the game window.
@@ -47,9 +49,13 @@ public class WindowGame extends Application {
     GameController gameController = new GameController();
     GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
     WindowsController windowsController = new WindowsController(gamePerformance);
+    private Map<Entity, CakeView> cakeViews = new HashMap<>();
+    private Map<Entity, BirdView> birdViews = new HashMap<>();
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        this.gameController.getCakeController().scheduleCakeCreation();
+        this.gameController.getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         this.birdController = new BirdController(gamePerformance);
@@ -79,9 +85,10 @@ public class WindowGame extends Application {
         // Immagine di sfondo 2 (building_top.png)
         Image buildingTopImage = new Image("building_top.png");
         ImageView buildingTopImageView = new ImageView(buildingTopImage);
-        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45);  // Imposta la larghezza doppia
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come la sua dimensione originale
-        AnchorPane.setTopAnchor(buildingTopImageView, 78.0);  // Sposta l'immagine verso il basso di 3/4 cm
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); // Imposta la larghezza doppia
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come
+                                                                               // la sua dimensione originale
+        AnchorPane.setTopAnchor(buildingTopImageView, 78.0); // Sposta l'immagine verso il basso di 3/4 cm
         AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
         AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
         buildingTopImageView.setTranslateX(243.5); // Sposta l'immagine di 100 unità lungo l'asse x
@@ -90,12 +97,13 @@ public class WindowGame extends Application {
         // Immagine di sfondo 3 (building_centre.png)
         Image newBackgroundImage = new Image("building_centre.png");
         ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
-        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45);  // Imposta la larghezza doppia
-        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45);  // Imposta l'altezza doppia
+        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45); // Imposta la larghezza doppia
+        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45); // Imposta l'altezza doppia
         buildingCentreImageView.setTranslateX(400); // Sposta l'immagine di 100 unità lungo l'asse x
         buildingCentreImageView.setTranslateY(100);
-        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0);  // Sposta l'immagine verso il basso di 3/4 cm
-        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;  // Centra l'immagine orizzontalmente
+        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0); // Sposta l'immagine verso il basso di 3/4 cm
+        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // Centra l'immagine
+                                                                                        // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
         // Aggiunta delle immagini all'AnchorPane
@@ -117,26 +125,72 @@ public class WindowGame extends Application {
         primaryStage.show();
 
         switch (this.gameController.getLevel()) {
-            case 1: addWindowsGrid(root, Constants.Windows.BROKEN_1); 
+            case 1:
+                addWindowsGrid(root, Constants.Windows.BROKEN_1);
                 break;
-            case 2: addWindowsGrid(root, Constants.Windows.BROKEN_2); 
+            case 2:
+                addWindowsGrid(root, Constants.Windows.BROKEN_2);
                 break;
-            case 3: addWindowsGrid(root, Constants.Windows.BROKEN_3); 
+            case 3:
+                addWindowsGrid(root, Constants.Windows.BROKEN_3);
                 break;
-            case 4: addWindowsGrid(root, Constants.Windows.BROKEN_4); 
+            case 4:
+                addWindowsGrid(root, Constants.Windows.BROKEN_4);
                 break;
             default:
                 break;
         }
         FelixView felixView = this.addFelixView(root);
         RalphView ralphView = this.addRalphView(root);
-        /* 
-        Entity w = this.entityFactoryImpl.createWindows(new Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
-        System.out.println(w.getPosition());
-        WindowsView windowView = new WindowsView(w.getPosition());
-        FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-        if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
-        else root.getChildren().add(windowView.brokenWindow());*/
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+            Entity currentCake = this.gameController.getCakeController().getCake();
+            cakeViews.entrySet().removeIf(entry -> {
+                Entity cake = entry.getKey();
+                CakeView cakeView = entry.getValue();
+                if (cake != currentCake) {
+                    root.getChildren().remove(cakeView.getImageView());
+                    return true;
+                }
+                return false;
+            });
+            if (currentCake != null && !cakeViews.containsKey(currentCake)) {
+                CakeView cakeView = new CakeView(currentCake);
+                cakeViews.put(currentCake, cakeView);
+                root.getChildren().add(cakeView.getStandingCake());
+            }
+            cakeViews.values().forEach(CakeView::animeteCake);
+
+            Entity currentBird = this.gameController.getBirdController().getBird();
+            birdViews.entrySet().removeIf(entry -> {
+                Entity bird = entry.getKey();
+                BirdView birdView = entry.getValue();
+                if (bird != currentBird) {
+                    root.getChildren().remove(birdView.getImageView());
+                    return true;
+                }
+                return false;
+            });
+            if (currentBird != null && !birdViews.containsKey(currentBird)) {
+                BirdView birdView = new BirdView(currentBird);
+                birdViews.put(currentBird, birdView);
+                root.getChildren().add(birdView.getStandingBird());
+            }
+            birdViews.values().forEach(BirdView::animateBird);
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        /*
+         * Entity w = this.entityFactoryImpl.createWindows(new
+         * Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
+         * System.out.println(w.getPosition());
+         * WindowsView windowView = new WindowsView(w.getPosition());
+         * FixedWindowsComponent fixComp = (FixedWindowsComponent)
+         * w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+         * if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
+         * else root.getChildren().add(windowView.brokenWindow());
+         */
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -163,11 +217,13 @@ public class WindowGame extends Application {
                             Thread.sleep(3000);
 
                             if (zKeyPressed) {
-                                HitboxComponent hitComp = (HitboxComponent) this.gameController.getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
+                                HitboxComponent hitComp = (HitboxComponent) this.gameController.getFelixController()
+                                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
                                 Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
                                 windowPosition.ifPresent(pos -> {
                                     gameController.getFelixController().fixWindow(windowPosition.get());
-                                    System.out.print("Key Z pressed for 3 seconds, window fixed at position: " + pos + "\n");
+                                    System.out.print(
+                                            "Key Z pressed for 3 seconds, window fixed at position: " + pos + "\n");
                                 });
                             }
                         } catch (InterruptedException e) {
@@ -188,8 +244,10 @@ public class WindowGame extends Application {
             }
         });
     }
+
     /**
      * Method that creates a windows grid on the main pane.
+     * 
      * @param root
      * @param broken the number of broken windows.
      */
@@ -200,10 +258,13 @@ public class WindowGame extends Application {
         entities.forEach(w -> {
             WindowsView windowView = new WindowsView(w.getPosition());
             FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-            if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
-            else root.getChildren().add(windowView.brokenWindow());
-        });   
+            if (fixComp.getFixed())
+                root.getChildren().add(windowView.fixedwindows());
+            else
+                root.getChildren().add(windowView.brokenWindow());
+        });
     }
+
     /**
      * Method that adds Felix to the main pane.
      * 
@@ -216,6 +277,7 @@ public class WindowGame extends Application {
         root.getChildren().add(felixView.getStandingFelix());
         return felixView;
     }
+
     /**
      * Creates and adds a RalphView to the specified root pane.
      *

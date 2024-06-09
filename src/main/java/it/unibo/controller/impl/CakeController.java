@@ -29,10 +29,15 @@ public class CakeController {
     public void scheduleCakeCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             generateAndRemoveCake();
-        }, 0, 10, TimeUnit.SECONDS);
+        }, 0, 20, TimeUnit.SECONDS);
     }
 
     private void generateAndRemoveCake() {
+        if (this.cake != null) {
+            this.gamePerformance.removeEntity(this.cake);
+            this.cake = null;
+        }
+
         CakePositionComponent cakePositionComponent = new CakePositionComponent();
         Pair<Double, Double> cakePosition = cakePositionComponent.randomPosition();
         cake = entityFactoryImpl.createCake(cakePosition);
@@ -46,7 +51,7 @@ public class CakeController {
             if (this.cake == cakeToRemove) {
                 this.cake = null;
             }
-        }, 5, TimeUnit.SECONDS);
+        }, 10, TimeUnit.SECONDS);
     }
 
     public Entity getCake() {
@@ -55,9 +60,5 @@ public class CakeController {
 
     public void stopCakeCreation() {
         scheduler.shutdown();
-    }
-
-    public void update() {
-        scheduleCakeCreation();
     }
 }

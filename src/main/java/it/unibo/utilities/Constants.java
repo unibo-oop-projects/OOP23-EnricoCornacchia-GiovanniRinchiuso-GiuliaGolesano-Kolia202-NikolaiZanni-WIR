@@ -219,25 +219,13 @@ public final class Constants {
          */
         public static final double BIRD_MAX_Y = 600.0;
         /**
-         * The position of the first floor cake y.
-         */
-        public static final double CAKE_FLOOR_1_Y = 200.0;
-        /**
-         * The position of the second floor cake y.
-         */
-        public static final double CAKE_FLOOR_2_Y = 400.0;
-        /**
-         * The position of the tird floor cake y.
-         */
-        public static final double CAKE_FLOOR_3_Y = 600.0;
-        /**
          * Maximum x of the cake.
          */
-        public static final double CAKE_MAX_X = 600.0;
+        public static final double CAKE_MAX_X = 500.0;
         /**
          * Minimum y of the cake.
          */
-        public static final double CAKE_MIN_X = 200.0;
+        public static final double CAKE_MIN_X = 300.0;
         /**
          * The initial delay of the power ups.
          */

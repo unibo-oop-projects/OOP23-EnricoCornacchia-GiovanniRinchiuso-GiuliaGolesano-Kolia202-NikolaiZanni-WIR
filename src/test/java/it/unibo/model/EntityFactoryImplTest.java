@@ -37,9 +37,9 @@ public class EntityFactoryImplTest {
         assertEquals(EntityType.CAKE, cake.getEntityType());
         assertTrue(cake.getPosition().getX() >= Constants.PowerUps.CAKE_MIN_X
                 && cake.getPosition().getX() <= Constants.PowerUps.CAKE_MAX_X);
-        assertTrue(cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_1_Y
-                || cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_2_Y
-                || cake.getPosition().getY() == Constants.PowerUps.CAKE_FLOOR_3_Y);
+        assertTrue(cake.getPosition().getY() == Constants.Floors.FLOOR_1_Y
+                || cake.getPosition().getY() == Constants.Floors.FLOOR_2_Y
+                || cake.getPosition().getY() == Constants.Floors.FLOOR_3_Y);
     }
 
     @Test

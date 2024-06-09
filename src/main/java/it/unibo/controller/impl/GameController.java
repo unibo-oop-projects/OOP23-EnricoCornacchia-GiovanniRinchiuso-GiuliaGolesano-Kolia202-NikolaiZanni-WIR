@@ -40,7 +40,6 @@ public class GameController {
     public void update() {
         this.brickController.fallBricks();
         this.ralphController.update(brickController.getBricks());
-        this.cakeController.update();
         this.birdController.update();
     }
     /**
