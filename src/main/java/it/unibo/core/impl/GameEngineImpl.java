@@ -3,6 +3,8 @@ package it.unibo.core.impl;
 import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
 import it.unibo.controller.impl.GameController;
+import it.unibo.view.impl.WindowGame;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * Implementation of the game engine.
@@ -13,13 +15,15 @@ public class GameEngineImpl implements GameEngine {
     private final int period;
     private final GameController gameController;
     private boolean hasChanged;
+    private WindowGame windowGame;
     /**
      * Constructor for the game engine.
      */
     public GameEngineImpl() {
-        period = 10;
-        gameController = new GameController();
-        hasChanged = true;
+        this.period = 10;
+        this.gameController = new GameController();
+        this.hasChanged = true;
+        this.windowGame = new WindowGame();
     }
     /**
      *Loop of the game.
@@ -49,7 +53,8 @@ public class GameEngineImpl implements GameEngine {
             while (hasChanged) {
                 switch(GameState.getGameState()) {
                     case HOME:
-                        //gameView.drawHome();
+                        //view.drawHome();
+                        System.out.println("AJNSUWDUINIDIUNEDUENDIUNWDIUENDWI");
                         hasChanged = false;
                         break;
                     case PLAYING:
@@ -75,14 +80,14 @@ public class GameEngineImpl implements GameEngine {
                         break;
                 }   
             } 
+            break;
         }
     }
     /**
      * Draw the game.
      */
     public void draw() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Draw'");
+       windowGame.update();
     }
     /**
      * Update the game.

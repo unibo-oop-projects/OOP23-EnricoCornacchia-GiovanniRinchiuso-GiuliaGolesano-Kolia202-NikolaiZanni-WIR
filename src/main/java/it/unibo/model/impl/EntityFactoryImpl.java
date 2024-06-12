@@ -45,8 +45,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
-                new ThrowBrickComponent(this.gamePerformance),
-                new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH)));
+                new ThrowBrickComponent(this.gamePerformance)));
         return new EntityImpl(EntityType.RALPH, pos, this.gamePerformance, components);
     }
 
@@ -55,7 +54,7 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createWindows(final Pair<Double, Double> pos, final boolean state) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent() /*la finestra si può muovere?*/,
                 new FixedWindowsComponent(state)));
         return new EntityImpl(EntityType.WINDOW, pos, this.gamePerformance, components);
     }
@@ -65,7 +64,8 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent()));
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(), 
+        new HitboxComponent(pos.getX(), pos.getY(), EntityType.BRICK)));
         return new EntityImpl(EntityType.BRICK, pos, this.gamePerformance, components);
     }
 
@@ -74,7 +74,7 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent() /* la torta si muove? */,
         new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.CAKE, pos, this.gamePerformance, components);
     }

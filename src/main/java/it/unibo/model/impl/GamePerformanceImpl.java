@@ -71,6 +71,7 @@ public class GamePerformanceImpl implements GamePerformance {
                                .filter(e -> e.getEntityType() == EntityType.BRICK && e.getPosition().equals(pos))
                                .findFirst()
                                .orElse(null));
+        gameController.getBrickController().removeBrick(pos);
     }
     /**
      * {@inheritDoc}

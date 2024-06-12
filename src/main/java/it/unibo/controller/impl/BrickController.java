@@ -2,12 +2,14 @@ package it.unibo.controller.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constants.Brick;
+import it.unibo.utilities.EntityType;
 
 /**
  * Controller for the bricks.
@@ -72,5 +74,15 @@ public class BrickController {
             default:
         }
         return 0;
+    }
+    /**
+     * Add a brick to the set of bricks.
+     * @param pos the position of the brick.
+     */
+    public void removeBrick(Pair<Double, Double> pos) {
+         bricks.remove(bricks.stream()
+                               .filter(e -> e.getPosition().equals(pos))
+                               .findFirst()
+                               .orElse(null));
     }
 }

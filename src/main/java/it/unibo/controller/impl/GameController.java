@@ -39,8 +39,11 @@ public class GameController {
      */
     public void update() {
         this.brickController.fallBricks();
+        this.collisionManager.check();
         this.ralphController.update(brickController.getBricks());
+        this.collisionManager.check();
         this.birdController.update();
+        this.collisionManager.check();
     }
     /**
      * Controls if the game is over.
