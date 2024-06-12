@@ -87,7 +87,7 @@ public class GameEngineImpl implements GameEngine {
      * Draw the game.
      */
     public void draw() {
-       windowGame.update();
+       //windowGame.update();
     }
     /**
      * Update the game.
