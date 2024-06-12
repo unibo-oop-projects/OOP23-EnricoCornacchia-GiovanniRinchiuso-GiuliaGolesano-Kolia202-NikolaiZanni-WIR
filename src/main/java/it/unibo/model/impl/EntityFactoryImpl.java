@@ -44,7 +44,8 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createRalph(final Pair<Double, Double> pos) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(), 
+                new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH),
                 new ThrowBrickComponent(this.gamePerformance)));
         return new EntityImpl(EntityType.RALPH, pos, this.gamePerformance, components);
     }
@@ -54,7 +55,8 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createWindows(final Pair<Double, Double> pos, final boolean state) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent() /*la finestra si può muovere?*/,
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent() /*la finestra si può muovere, deve avere la hitbox?*/,
+                new HitboxComponent(pos.getX(), pos.getY(), EntityType.WINDOW),
                 new FixedWindowsComponent(state)));
         return new EntityImpl(EntityType.WINDOW, pos, this.gamePerformance, components);
     }
@@ -65,6 +67,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(), 
+        new HitboxComponent(pos.getX(), pos.getY(), EntityType.BRICK),
         new HitboxComponent(pos.getX(), pos.getY(), EntityType.BRICK)));
         return new EntityImpl(EntityType.BRICK, pos, this.gamePerformance, components);
     }
