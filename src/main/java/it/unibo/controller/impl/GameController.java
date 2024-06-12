@@ -14,7 +14,6 @@ public class GameController {
     private final FelixController felixController;
     private final BrickController brickController;
     private final WindowsController windowsController;
-    @SuppressWarnings("unused")
     private final CollisionManager collisionManager;
     private final GamePerformance gamePerformance;
     private final BirdController birdController;
@@ -149,8 +148,8 @@ public class GameController {
     }
     /**
      * Method to fix a window calling the hiboxcomponent of felix to know the position.
-     * @param e
-     * @param pos
+     * @param e the KeyCode
+     * @param pos the position of the window to fix.
      */
     public void fixWindows(final KeyCode e, Pair<Double, Double> pos){
         FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();

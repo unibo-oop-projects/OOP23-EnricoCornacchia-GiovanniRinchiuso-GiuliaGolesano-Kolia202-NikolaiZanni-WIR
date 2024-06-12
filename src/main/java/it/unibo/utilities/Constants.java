@@ -27,11 +27,11 @@ public final class Constants {
         /**
          * The position of the left wall.
          */
-        public static final double LEFT_WALL = 0.0;
+        public static final double LEFT_WALL = 270.0;
         /**
          * The position of the right wall.
          */
-        public static final double RIGHT_WALL = 800.0;
+        public static final double RIGHT_WALL = 510.0;
         /**
          * The position of the down wall.
          */
