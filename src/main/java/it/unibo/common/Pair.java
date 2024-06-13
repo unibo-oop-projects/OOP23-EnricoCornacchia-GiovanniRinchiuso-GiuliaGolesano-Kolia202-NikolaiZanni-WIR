@@ -8,10 +8,8 @@ package it.unibo.common;
  * @param <Y> y axis
  */
 public class Pair<X, Y> {
-
     private final X x;
     private final Y y;
-
     /**
      * @param x coord
      * @param y coord
@@ -21,21 +19,18 @@ public class Pair<X, Y> {
         this.x = x;
         this.y = y;
     }
-
     /**
      * @return x value
      */
     public final X getX() {
         return x;
     }
-
     /**
      * @return y value
      */
     public final Y getY() {
         return y;
     }
-
     @Override
     public final int hashCode() {
         final int prime = 31;
@@ -44,7 +39,6 @@ public class Pair<X, Y> {
         result = prime * result + ((y == null) ? 0 : y.hashCode());
         return result;
     }
-
     @SuppressWarnings("rawtypes")
     @Override
     public final boolean equals(final Object obj) {
@@ -74,7 +68,6 @@ public class Pair<X, Y> {
         }
         return true;
     }
-
     @Override
     public final String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";

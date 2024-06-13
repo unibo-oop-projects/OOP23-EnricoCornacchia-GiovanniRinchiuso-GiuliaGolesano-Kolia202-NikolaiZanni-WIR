@@ -55,7 +55,7 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     @Override
     public Entity createWindows(final Pair<Double, Double> pos, final boolean state) {
-        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent() /*la finestra si può muovere, deve avere la hitbox?*/,
+        final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.WINDOW),
                 new FixedWindowsComponent(state)));
         return new EntityImpl(EntityType.WINDOW, pos, this.gamePerformance, components);

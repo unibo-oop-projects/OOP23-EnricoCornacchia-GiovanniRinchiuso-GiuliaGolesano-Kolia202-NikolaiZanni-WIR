@@ -12,7 +12,7 @@ public class FixedWindowsComponent extends AbstractComponent {
      * Constructor.
      * @param state
      */
-    public FixedWindowsComponent(final boolean state){
+    public FixedWindowsComponent(final boolean state) {
         this.isFixed = state;
     }
     @Override
@@ -22,14 +22,14 @@ public class FixedWindowsComponent extends AbstractComponent {
     /**
      * Set the boolean variable.
      */
-    public void setFixed(){
+    public void setFixed() {
         this.isFixed = true;
     }
     /**
      * Getter for the boolean that indicate if a window is fixed or not.
-     * @return
+     * @return isFixed variable.
      */
-    public boolean getFixed(){
+    public boolean getFixed() {
         return this.isFixed;
     }
 }

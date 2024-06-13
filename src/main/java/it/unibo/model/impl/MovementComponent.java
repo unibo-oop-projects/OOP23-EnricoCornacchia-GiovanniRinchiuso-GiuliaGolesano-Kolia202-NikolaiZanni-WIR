@@ -10,6 +10,9 @@ import it.unibo.utilities.Constants;
  */
 public class MovementComponent extends AbstractComponent {
 
+    /*
+     * Constructor empty.
+     */
     public MovementComponent() {
     }
     /**

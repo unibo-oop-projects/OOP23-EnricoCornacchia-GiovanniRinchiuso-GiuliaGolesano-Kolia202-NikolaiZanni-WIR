@@ -1,13 +1,7 @@
 package it.unibo.view.impl;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * StartGame represents the initial screen of the game.

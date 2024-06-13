@@ -4,7 +4,6 @@ import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
 import it.unibo.controller.impl.GameController;
 import it.unibo.view.impl.WindowGame;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * Implementation of the game engine.

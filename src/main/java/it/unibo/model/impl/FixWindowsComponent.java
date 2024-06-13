@@ -17,7 +17,8 @@ public class FixWindowsComponent extends AbstractComponent {
     }
     /**
      * Method to fix a windows.
-     * @param code
+     * @param windowPosition.
+     * @param gamePerformance.
      */
     public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance) {
         gamePerformance.getWindows().stream()

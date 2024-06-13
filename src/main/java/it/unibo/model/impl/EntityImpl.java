@@ -105,6 +105,5 @@ public class EntityImpl implements Entity {
     @Override
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
-    }
-    
+    }   
 }

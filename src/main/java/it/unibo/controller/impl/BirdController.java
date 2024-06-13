@@ -8,8 +8,6 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.Constants;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
