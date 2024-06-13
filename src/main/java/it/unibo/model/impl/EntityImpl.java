@@ -79,10 +79,18 @@ public class EntityImpl implements Entity {
     public void setPosition(final Pair<Double, Double> position) {
         this.position = position;
     }
+    /**
+     * Returns the last position of the entity.
+     * @return a Pair object representing the last position of the entity.
+     */
     @Override
     public Pair<Double, Double> getLastPosition() {
         return this.lastPosition;
     }
+    /**
+     * Sets the last position of the entity.
+     * @param lastPosition the last position to set for the entity.
+     */
     @Override
     public void setLastPosition(final Pair<Double, Double> lastPosition) {
         this.lastPosition = lastPosition;
@@ -101,5 +109,5 @@ public class EntityImpl implements Entity {
     @Override
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
-    }   
+    }
 }

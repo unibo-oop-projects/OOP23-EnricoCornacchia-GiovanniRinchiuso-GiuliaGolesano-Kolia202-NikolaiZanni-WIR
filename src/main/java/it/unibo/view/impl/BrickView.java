@@ -25,7 +25,7 @@ public class BrickView implements View {
         imageView.setFitHeight(FRAME_HEIGHT);
         imageView.setFitWidth(FRAME_WIDTH);
         this.imageView.setX(brick.getPosition().getX());
-        this.imageView.setY(brick.getPosition().getY());  
+        this.imageView.setY(brick.getPosition().getY());
     }
     /**
      * {@inheritDoc}
