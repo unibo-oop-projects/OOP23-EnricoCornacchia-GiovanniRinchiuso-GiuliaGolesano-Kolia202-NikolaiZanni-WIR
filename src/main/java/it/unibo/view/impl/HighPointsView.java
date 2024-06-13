@@ -10,8 +10,11 @@ import it.unibo.model.impl.PointsComponent;
  * This class can be extended to customize the high score display.
  */
 public class HighPointsView extends StackPane {
+    
+    final int PREWIDTH = 150;
+    final int PREHEIGH = 25;
+    final Double BOTTOM = 20.0;
     private final PointsComponent pointsComponent;
-
     /**
      * Constructs a HighPointsView with the given PointsComponent.
      *
@@ -21,7 +24,6 @@ public class HighPointsView extends StackPane {
         this.pointsComponent = pointsComponent;
         updatePointsLabel();
     }
-
     /**
      * Updates the high score label.
      */
@@ -34,13 +36,13 @@ public class HighPointsView extends StackPane {
         scoreValueLabel.setStyle(
                 "-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
 
-        scoreTitleLabel.setPrefWidth(150);
-        scoreValueLabel.setPrefWidth(150);
+        scoreTitleLabel.setPrefWidth(PREWIDTH);
+        scoreValueLabel.setPrefWidth(PREWIDTH);
 
-        scoreTitleLabel.setPrefHeight(25);
-        scoreValueLabel.setPrefHeight(25);
+        scoreTitleLabel.setPrefHeight(PREHEIGH);
+        scoreValueLabel.setPrefHeight(PREHEIGH);
 
-        AnchorPane.setBottomAnchor(scoreTitleLabel, 20.0);
+        AnchorPane.setBottomAnchor(scoreTitleLabel, BOTTOM);
         AnchorPane.setLeftAnchor(scoreTitleLabel, 0.0);
         AnchorPane.setBottomAnchor(scoreValueLabel, 0.0);
         AnchorPane.setLeftAnchor(scoreValueLabel, 0.0);

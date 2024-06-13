@@ -13,6 +13,9 @@ import javafx.stage.Stage;
  * HomeMenu, it represents the home menu of the game.
  */
 public class HomeMenu extends Application {
+    final int WIDTH = 800;
+    final int HEIGH = 600;
+    final int FONT = 100;
     /**
      * start, it starts the home menu.
      * 
@@ -25,7 +28,7 @@ public class HomeMenu extends Application {
         GameState.setGameState(GameState.HOME);
 
         Label message = new Label("Hello, HomeMenu!");
-        message.setFont(new Font(100));
+        message.setFont(new Font(FONT));
 
         // Create a Start button
         Button startButton = new Button("Start");
@@ -46,7 +49,7 @@ public class HomeMenu extends Application {
         // Add the Start button to the StackPane
         StackPane root = new StackPane(message, startButton);
 
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, WIDTH, HEIGH));
         primaryStage.setTitle("StartGame");
         primaryStage.show();
     }
