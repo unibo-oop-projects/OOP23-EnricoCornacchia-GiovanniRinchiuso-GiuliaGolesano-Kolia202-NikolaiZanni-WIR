@@ -32,20 +32,24 @@ public class LivesComponent extends AbstractComponent {
             }
         }
     }
-    /*
+    /**
      * Method to return the number of lifes.
+     * 
+     * @return the number of lifes.
      */
     public int getLives() {
         return this.lives;
     }
-    /*
+    /**
      * Method to set the immortality.
      */
     public void setImmortality() {
         this.immortality = true;
     }
-    /*
+    /**
      * Method to return the immortality variable.
+     * 
+     * @return the immortality variable.
      */
     public boolean isImmortality() {
         return this.immortality;
@@ -56,6 +60,11 @@ public class LivesComponent extends AbstractComponent {
     public void setStopImmortality() {
         this.immortality = false;
     }
+    /**
+     * Returns the component type of this LivesComponent.
+     *
+     * @return the component type of this LivesComponent
+     */
     @Override
     public ComponentType getComponent() {
         return ComponentType.LIFE;

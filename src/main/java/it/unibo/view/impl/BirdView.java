@@ -97,6 +97,6 @@ public class BirdView implements View {
      */
     private Image getImage() {
         Pair<Double, Double> bird = this.bird.getPosition();
-        return bird.getX() == Constants.PowerUps.BIRD_MIN_x ? this.spriteRight : this.spriteLeft;
+        return bird.getX() == Constants.PowerUps.BIRD_MIN_X ? this.spriteRight : this.spriteLeft;
     }
 }

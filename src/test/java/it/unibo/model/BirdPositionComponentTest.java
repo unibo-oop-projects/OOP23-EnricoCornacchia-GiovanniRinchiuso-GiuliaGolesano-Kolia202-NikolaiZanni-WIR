@@ -27,7 +27,7 @@ public class BirdPositionComponentTest {
     public void testRandomPosition() {
         Pair<Double, Double> randomPos = birdComponent.randomPosition();
         assertNotNull(randomPos);
-        assertTrue(randomPos.getX() == Constants.PowerUps.BIRD_MIN_x
+        assertTrue(randomPos.getX() == Constants.PowerUps.BIRD_MIN_X
                 || randomPos.getX() == Constants.PowerUps.BIRD_MAX_X);
         assertTrue(randomPos.getY() >= Constants.PowerUps.BIRD_MIN_Y
                 && randomPos.getY() <= Constants.PowerUps.BIRD_MAX_Y);
@@ -39,7 +39,7 @@ public class BirdPositionComponentTest {
         assertNotNull(randomPos);
         if (randomPos.getX() == Constants.PowerUps.BIRD_MAX_X) {
             assertFalse(birdComponent.hasToMoveRight());
-        } else if (randomPos.getX() == Constants.PowerUps.BIRD_MIN_x) {
+        } else if (randomPos.getX() == Constants.PowerUps.BIRD_MIN_X) {
             assertTrue(birdComponent.hasToMoveRight());
         }
     }

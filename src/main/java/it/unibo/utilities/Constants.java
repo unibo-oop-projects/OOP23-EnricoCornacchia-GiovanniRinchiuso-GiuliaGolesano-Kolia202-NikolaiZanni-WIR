@@ -1,10 +1,6 @@
 package it.unibo.utilities;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import it.unibo.common.Pair;
-import javafx.scene.image.Image;
 
 /**
  * Class for the constaints used.
@@ -86,7 +82,7 @@ public final class Constants {
         /**
          * The Ralph speed in throwing bricks.
          */
-        public static long THROW_TIME = 1000;
+        public static final long THROW_TIME = 1000;
     }
     /**
      * Brick constaints.
@@ -208,7 +204,7 @@ public final class Constants {
         /**
          * Strating x of the bird.
          */
-        public static final double BIRD_MIN_x = 0.0;
+        public static final double BIRD_MIN_X = 0.0;
         /**
          * Minimum y of the bird.
          */
@@ -237,7 +233,7 @@ public final class Constants {
     /**
      * Floors constains.
      */
-    public class Floors {
+    public static class Floors {
         /**
          * The position of the first floor.
          */
@@ -279,7 +275,7 @@ public final class Constants {
     /**
      * Animations constaints.
      */
-    public static class Animations{
+    public static class Animations {
         /**
          * Number of frames for Felix animation.
          */

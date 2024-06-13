@@ -47,7 +47,7 @@ public class EntityFactoryImplTest {
         Entity bird = entityFactoryImpl.createBird(null);
         assertNotNull(bird);
         assertEquals(EntityType.BIRD, bird.getEntityType());
-        assertTrue(bird.getPosition().getX() == Constants.PowerUps.BIRD_MIN_x
+        assertTrue(bird.getPosition().getX() == Constants.PowerUps.BIRD_MIN_X
                 || bird.getPosition().getX() == Constants.PowerUps.BIRD_MAX_X);
         assertTrue(bird.getPosition().getY() >= Constants.PowerUps.BIRD_MIN_Y
                 && bird.getPosition().getY() <= Constants.PowerUps.BIRD_MAX_Y);
