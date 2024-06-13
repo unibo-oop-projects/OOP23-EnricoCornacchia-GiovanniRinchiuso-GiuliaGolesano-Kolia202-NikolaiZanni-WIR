@@ -16,7 +16,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Ralph.
  */
-public class RalphView implements View {
+public final class RalphView implements View {
 
     private static final int FRAME_COUNT_DX = 3;
     private static final int FRAME_COUNT_SX = 2;
@@ -49,6 +49,10 @@ public class RalphView implements View {
         this.imageView.setY(this.ralph.getPosition().getY());
     }
 
+    /**
+     * Animates the Ralph character by updating its position and displaying the frames of the animation.
+     * If the animation is already running, it does nothing.
+     */
     void animateRalph() {
         this.imageView.setX(this.ralph.getPosition().getX());
         this.imageView.setY(this.ralph.getPosition().getY());
@@ -56,8 +60,8 @@ public class RalphView implements View {
             this.currentFrame = 0;
             this.sprite = getImage();
             this.timeline = new Timeline(
-                            new KeyFrame(Duration.millis(ANIMATION_DURATION / (lastMovement.equals(Movements.RIGHT) ?
-                                                         FRAME_COUNT_DX : FRAME_COUNT_SX)), e -> updateFrame()));
+                            new KeyFrame(Duration.millis(ANIMATION_DURATION / (lastMovement.equals(Movements.RIGHT) 
+                                                         ? FRAME_COUNT_DX : FRAME_COUNT_SX)), e -> updateFrame()));
             this.timeline.setCycleCount(FRAME_COUNT_DX);
             this.timeline.setOnFinished(e -> this.getStandingRalph());
             this.timeline.play();
@@ -65,7 +69,7 @@ public class RalphView implements View {
     }
 
     @Override
-    public Image getSource(String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -76,12 +80,12 @@ public class RalphView implements View {
     }
 
     @Override
-    public Image getFrame(int index) {
+    public Image getFrame(final int index) {
         return new WritableImage(this.sprite.getPixelReader(),
-                                 index * ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) ?
-                                 FRAME_COUNT_DX : FRAME_COUNT_SX), 0, 
-                                 ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) ? 
-                                 FRAME_COUNT_DX : FRAME_COUNT_SX), (int) this.sprite.getHeight());
+                                 index * ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) 
+                                 ? FRAME_COUNT_DX : FRAME_COUNT_SX), 0, 
+                                 ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) 
+                                 ? FRAME_COUNT_DX : FRAME_COUNT_SX), (int) this.sprite.getHeight());
     }
 
     @Override
@@ -99,9 +103,11 @@ public class RalphView implements View {
         this.imageView.setImage(getFrame(0));
         return this.imageView;
     }
-    
+ 
     /**
-     * @return
+     * Returns the image of the character based on the last movement.
+     * 
+     * @return the image of the character based on the last movement.
      */
     private Image getImage() {
         this.lastMovement = this.ralph.getLastPosition().getX() < this.ralph.getPosition().getX()
