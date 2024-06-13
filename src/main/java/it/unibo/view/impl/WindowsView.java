@@ -10,7 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.util.Duration;
 
-public class WindowsView implements View{
+/**
+ * Class to manage a view of a window.
+ */
+public class WindowsView implements View {
     private static final int FRAME_COUNT = 4;
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
@@ -21,10 +24,11 @@ public class WindowsView implements View{
     private int currentFrame;
     /**
      * Constructor.
+     * @param pos.
      */
-    public WindowsView(Pair<Double, Double> pos) {
-        spriteSheet = getSource("window");
-        imageView = new ImageView();
+    public WindowsView(final Pair<Double, Double> pos) {
+        spriteSheet=getSource("window");
+        imageView=new ImageView();
         imageView.setFitHeight(FRAME_HEIGHT);
         imageView.setFitWidth(FRAME_WIDTH);
         this.imageView.setX(pos.getX());
@@ -39,11 +43,11 @@ public class WindowsView implements View{
     }
     /**
      * Method to change the animation of the fixing window.
-     * @return
      */
     public void fixAnimation() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) return ;
-
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING){
+            return ;
+        }
         currentFrame = 0;
         timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
         timeline.setCycleCount(FRAME_COUNT);
@@ -62,7 +66,7 @@ public class WindowsView implements View{
      * {@inheritDoc}
      */
     @Override
-    public Image getFrame(int index) {
+    public Image getFrame(final int index) {
         return new WritableImage(spriteSheet.getPixelReader(), index * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT);
     }
     /**
@@ -74,7 +78,7 @@ public class WindowsView implements View{
     }
     /**
      * Static view of a fixed window.
-     * @return
+     * @return the image view of a fixed window.
      */
     public ImageView fixedwindows() {
         this.imageView.setImage(getFrame(0));
@@ -82,7 +86,7 @@ public class WindowsView implements View{
     }
     /**
      * Static view of a broken window.
-     * @return
+     * @return the image view of a broken window.
      */
     public ImageView brokenWindow() {
         this.imageView.setImage(getFrame(FRAME_COUNT - 1));
