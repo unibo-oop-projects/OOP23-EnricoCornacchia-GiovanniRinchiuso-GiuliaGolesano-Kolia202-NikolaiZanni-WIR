@@ -40,8 +40,8 @@ public class PointsView extends StackPane {
         scoreTitleLabel.setPrefWidth(PREWIDTH);
         scoreValueLabel.setPrefWidth(PREWIDTH);
 
-        scoreTitleLabel.setPrefHeight(PREWIDTH);
-        scoreValueLabel.setPrefHeight(PREWIDTH);
+        scoreTitleLabel.setPrefHeight(PREHEIGH);
+        scoreValueLabel.setPrefHeight(PREHEIGH);
 
         AnchorPane.setBottomAnchor(scoreTitleLabel, BOTTOM);
         AnchorPane.setLeftAnchor(scoreTitleLabel, 0.0);
