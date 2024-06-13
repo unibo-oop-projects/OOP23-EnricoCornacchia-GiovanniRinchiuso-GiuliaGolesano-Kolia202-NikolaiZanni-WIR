@@ -118,7 +118,7 @@ public class GameController {
      * Method to move the player after receiving keyboard input "down".
      * @param e the keyCode
      */
-    public void moveFelixDown(final KeyCode e){
+    public void moveFelixDown(final KeyCode e) {
         this.felixController.moveDown();
         this.gamePerformance.addKey(e);
     }
@@ -126,7 +126,7 @@ public class GameController {
      * Method to move the player after receiving keyboard input "left".
      * @param e the keyCode
      */
-    public void moveFelixLeft(final KeyCode e){
+    public void moveFelixLeft(final KeyCode e) {
         this.felixController.moveLeft();
         this.gamePerformance.addKey(e);
     }
@@ -134,7 +134,7 @@ public class GameController {
      * Method to move the player after receiving keyboard input "right".
      * @param e the KeyCode
      */
-    public void moveFelixRight(final KeyCode e){ 
+    public void moveFelixRight(final KeyCode e) { 
         this.felixController.moveRight();
         this.gamePerformance.addKey(e);
     }
@@ -142,7 +142,7 @@ public class GameController {
      * Method to move the player after receiving keyboard input "up".
      * @param e the KeyCode
      */
-    public void moveFelixUp(final KeyCode e){
+    public void moveFelixUp(final KeyCode e) {
         this.felixController.moveUp();
         this.gamePerformance.addKey(e);
     }
@@ -151,8 +151,10 @@ public class GameController {
      * @param e the KeyCode
      * @param pos the position of the window to fix.
      */
-    public void fixWindows(final KeyCode e, Pair<Double, Double> pos){
-        FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
+    public void fixWindows(final KeyCode e, final Pair<Double, Double> pos) {
+        FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix()
+                                                                                .getTheComponent(ComponentType.FIXWINDOWS)
+                                                                                .get();
         fixComp.fixing(pos, this.gamePerformance);
         this.gamePerformance.addKey(e);
     }

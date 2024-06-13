@@ -77,16 +77,17 @@ public class RalphController {
      */
     public void update(final Set<Entity> bricks) {
         this.move();
-        if(System.currentTimeMillis() - lastThrowTime < this.getTimeToWait()) return;
-        this.throwBricks(bricks);
-        lastThrowTime = System.currentTimeMillis();
+        if (System.currentTimeMillis() - lastThrowTime >= this.getTimeToWait()) {
+            this.throwBricks(bricks);
+            lastThrowTime = System.currentTimeMillis();
+        }
     }
     /**
      * Make Ralph throw bricks.
      * @param bricks the set of bricks.
      */
     private void throwBricks(final Set<Entity> bricks) {
-       for(int i = 0; i < gamePerformance.getLevel(); i++) {
+       for (int i = 0; i < gamePerformance.getLevel(); i++) {
            this.throwBrickLeftArm(bricks);
            this.throwBrickRightArm(bricks);
        }
