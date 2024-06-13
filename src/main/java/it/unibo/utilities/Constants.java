@@ -3,7 +3,6 @@ package it.unibo.utilities;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
 import it.unibo.common.Pair;
 import javafx.scene.image.Image;
 
@@ -304,16 +303,6 @@ public final class Constants {
         /**
          * Number of frames for Bird fly animation.
          */
-        public static final int NUM_FRAMES_BIRD = 2;
-        /**
-         * Map of index and image.
-         */
-        public static final Map<Integer, Image> playerMap = new HashMap<>();
-        /**
-         * Getter for the map.
-         */
-        public static Map<Integer, Image> getPlayerMap() {
-            return Collections.unmodifiableMap(playerMap);
-        }   
+        public static final int NUM_FRAMES_BIRD = 2; 
     }
 }

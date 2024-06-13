@@ -14,6 +14,7 @@ public class LivesComponent extends AbstractComponent {
 
     /**
      * Initialize lives to 3.
+     * @param gamePerformance.
      */
     public LivesComponent(final GamePerformance gamePerformance) {
         this.lives = 3;
@@ -31,23 +32,30 @@ public class LivesComponent extends AbstractComponent {
             }
         }
     }
-
+    /*
+     * Method to return the number of lifes.
+     */
     public int getLives() {
         return this.lives;
     }
-
+    /*
+     * Method to set the immortality.
+     */
     public void setImmortality() {
         this.immortality = true;
     }
-
+    /*
+     * Method to return the immortality variable.
+     */
     public boolean isImmortality() {
         return this.immortality;
     }
-
+    /**
+     * Method to stop the immortality.
+     */
     public void setStopImmortality() {
         this.immortality = false;
     }
-
     @Override
     public ComponentType getComponent() {
         return ComponentType.LIFE;

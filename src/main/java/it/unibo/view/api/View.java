@@ -4,18 +4,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Interface that manages a view of the game
+ * Interface that manages a view of the game.
  */
 public interface View {
     /**
      * Method that look for the image in the classhpath and return it.
      * @param name
-     * @return
+     * @return the source.
      */
     Image getSource(final String name);
     /**
      * Update the frame.
-     * @return 
+     * @return the frame updated.
      */
     void updateFrame();
     /** 
@@ -24,7 +24,7 @@ public interface View {
     Image getFrame(int index);
     /**
      * Get the image view.
-     * @return
+     * @return the image created.
      */
     ImageView getImageView();
 }

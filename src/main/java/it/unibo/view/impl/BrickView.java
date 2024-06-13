@@ -5,7 +5,9 @@ import it.unibo.view.api.View;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
+/**
+ * Class that implement the view of a brick.
+ */
 public class BrickView implements View{
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
@@ -39,7 +41,6 @@ public class BrickView implements View{
         this.imageView.setX(this.brick.getPosition().getX());
         this.imageView.setY(this.brick.getPosition().getY());
     }
-
     /**
      * {@inheritDoc}
      */

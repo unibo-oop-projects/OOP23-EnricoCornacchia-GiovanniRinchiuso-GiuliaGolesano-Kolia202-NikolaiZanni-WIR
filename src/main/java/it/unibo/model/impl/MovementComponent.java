@@ -9,7 +9,6 @@ import it.unibo.utilities.Constants;
  * Component that allows movement.
  */
 public class MovementComponent extends AbstractComponent {
-
     /*
      * Constructor empty.
      */
@@ -30,7 +29,6 @@ public class MovementComponent extends AbstractComponent {
             entity.setPosition(new Pair<>(newX, newY));
         }
     }
-
     /**
      * Check if the entity can move.
      * 
@@ -47,7 +45,6 @@ public class MovementComponent extends AbstractComponent {
                 && newY >= Constants.GameEdges.DOWN_WALL
                 && newY <= Constants.GameEdges.UP_WALL_1;
     }
-
     /**
      * Getter method for the component type.
      * 
