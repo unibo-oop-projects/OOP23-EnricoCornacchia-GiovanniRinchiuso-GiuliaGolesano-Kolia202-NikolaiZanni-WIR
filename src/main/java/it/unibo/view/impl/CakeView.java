@@ -54,21 +54,33 @@ public class CakeView implements View {
             this.timeline.play();
         }
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFrame() {
         imageView.setImage(getFrame(currentFrame));
         currentFrame = (currentFrame + 1) % FRAME_COUNT;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getFrame(final int index) {
         return new WritableImage(this.sprite.getPixelReader(),
                 index * ((int) this.sprite.getWidth()) / FRAME_COUNT, 0,
                 ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageView getImageView() {
         return this.imageView;
