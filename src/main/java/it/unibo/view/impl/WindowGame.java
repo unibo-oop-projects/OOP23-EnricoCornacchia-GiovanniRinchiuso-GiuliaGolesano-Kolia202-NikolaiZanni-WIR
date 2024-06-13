@@ -13,6 +13,7 @@ import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.HitboxComponent;
@@ -202,22 +203,29 @@ public class WindowGame extends Application {
                     felixView.animateFelix();
                     break;
                 case Z:
-                    zKeyPressed = true;
+                zKeyPressed = true;
                 Thread timerThread = new Thread(() -> {
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(Z_KEY_PRESS_DURATION_MS); // Usa la costante definita
+
                         if (zKeyPressed) {
-                            Component component = this.gameController.getFelixController()
-                                                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS).orElse(null);
-                            if (component instanceof HitboxComponent) {
-                                HitboxComponent hitComp = (HitboxComponent) component;
+                            Optional<Component> fixComponentOptional = this.gameController.getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                            Optional<Component> hitboxComponentOptional = this.gameController.getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
+
+                            if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
+                                fixComponentOptional.get() instanceof FixWindowsComponent &&
+                                hitboxComponentOptional.get() instanceof HitboxComponent) {
+
+                                System.err.println("entro nell'if");
+                                HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
                                 Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+                                
                                 windowPosition.ifPresent(pos -> {
                                     gameController.getFelixController().fixWindow(pos);
                                     System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
                                 });
                             } else {
-                                System.out.print("Il componente non è un HitboxComponent\n");
+                                System.out.print("I componenti FIXWINDOWS o HITBOX non sono presenti o non sono del tipo corretto\n");
                             }
                         }
                     } catch (InterruptedException e) {
@@ -227,6 +235,8 @@ public class WindowGame extends Application {
                     }
                 });
                 timerThread.start();
+
+                            
 
                     scene.setOnKeyReleased(releasedEvent -> {
                         if (releasedEvent.getCode() == KeyCode.Z) {
