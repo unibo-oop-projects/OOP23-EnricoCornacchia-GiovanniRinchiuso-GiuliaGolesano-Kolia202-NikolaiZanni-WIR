@@ -18,7 +18,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Felix.
  */
-public final class FelixView implements View {
+public class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;
@@ -66,17 +66,26 @@ public final class FelixView implements View {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFrame() {
         imageView.setImage(getFrame(currentFrame));
         currentFrame++;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getFrame(final int index) {
         return new WritableImage(this.sprite.getPixelReader(),
@@ -84,6 +93,9 @@ public final class FelixView implements View {
                                  ((int) this.sprite.getWidth()) / FRAME_COUNT, (int) this.sprite.getHeight());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageView getImageView() {
         return this.imageView;

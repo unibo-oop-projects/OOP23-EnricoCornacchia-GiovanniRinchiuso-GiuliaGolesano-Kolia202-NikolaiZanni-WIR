@@ -16,7 +16,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Ralph.
  */
-public final class RalphView implements View {
+public class RalphView implements View {
 
     private static final int FRAME_COUNT_DX = 3;
     private static final int FRAME_COUNT_SX = 2;
@@ -68,17 +68,26 @@ public final class RalphView implements View {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFrame() {
         imageView.setImage(getFrame(currentFrame));
         currentFrame++;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getFrame(final int index) {
         return new WritableImage(this.sprite.getPixelReader(),
@@ -88,6 +97,9 @@ public final class RalphView implements View {
                                  ? FRAME_COUNT_DX : FRAME_COUNT_SX), (int) this.sprite.getHeight());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageView getImageView() {
         return this.imageView;
