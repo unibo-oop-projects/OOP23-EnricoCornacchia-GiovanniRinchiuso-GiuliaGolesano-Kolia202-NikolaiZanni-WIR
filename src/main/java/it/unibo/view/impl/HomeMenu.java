@@ -13,9 +13,9 @@ import javafx.stage.Stage;
  * HomeMenu, it represents the home menu of the game.
  */
 public class HomeMenu extends Application {
-    final int WIDTH = 800;
-    final int HEIGH = 600;
-    final int FONT = 100;
+    private final int WIDTH = 800;
+    private final int HEIGH = 600;
+    private final int FONT = 100;
     /**
      * start, it starts the home menu.
      * 

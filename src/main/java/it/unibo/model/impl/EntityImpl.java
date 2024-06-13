@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
@@ -12,18 +11,15 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
 
-
 /**
  * EntityImpl.
  */
 public class EntityImpl implements Entity {
-
     private final EntityType type;
     private final Set<Component> components;
     private Pair<Double, Double> position;
     private final GamePerformance gamePerformance;
     private Pair<Double, Double> lastPosition;
-
     /**
      * EntityImpl constructor.
      *

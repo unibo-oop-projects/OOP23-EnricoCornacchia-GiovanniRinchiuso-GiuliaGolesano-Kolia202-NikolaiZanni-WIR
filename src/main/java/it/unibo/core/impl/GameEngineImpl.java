@@ -14,7 +14,6 @@ public class GameEngineImpl implements GameEngine {
     private final int period;
     private final GameController gameController;
     private boolean hasChanged;
-    private WindowGame windowGame;
     /**
      * Constructor for the game engine.
      */
@@ -22,7 +21,7 @@ public class GameEngineImpl implements GameEngine {
         this.period = 10;
         this.gameController = new GameController();
         this.hasChanged = true;
-        this.windowGame = new WindowGame();
+        new WindowGame();
     }
     /**
      *Loop of the game.
@@ -48,9 +47,9 @@ public class GameEngineImpl implements GameEngine {
      */
     @Override
     public void mainLoop() {
-        while(true) {
+        while (true) {
             while (hasChanged) {
-                switch(GameState.getGameState()) {
+                switch (GameState.getGameState()) {
                     case HOME:
                         //view.drawHome();
                         System.out.println("AJNSUWDUINIDIUNEDUENDIUNWDIUENDWI");

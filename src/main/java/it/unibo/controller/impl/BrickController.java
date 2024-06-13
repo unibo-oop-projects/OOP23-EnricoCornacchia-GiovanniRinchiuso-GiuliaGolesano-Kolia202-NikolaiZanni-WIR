@@ -78,7 +78,7 @@ public class BrickController {
      * Add a brick to the set of bricks.
      * @param pos the position of the brick.
      */
-    public void removeBrick(Pair<Double, Double> pos) {
+    public void removeBrick(final Pair<Double, Double> pos) {
          bricks.remove(bricks.stream()
                                .filter(e -> e.getPosition().equals(pos))
                                .findFirst()

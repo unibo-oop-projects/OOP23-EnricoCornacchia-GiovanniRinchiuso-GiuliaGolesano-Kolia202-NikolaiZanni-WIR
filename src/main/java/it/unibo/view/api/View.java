@@ -18,10 +18,12 @@ public interface View {
      * @return the frame updated.
      */
     void updateFrame();
-    /** 
-     * Get the right frame.
+    /**
+     * Method to return the frame.
+     * @param index
+     * @return the image.
      */
-    Image getFrame(int index);
+    Image getFrame(final int index);
     /**
      * Get the image view.
      * @return the image created.

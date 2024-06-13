@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 /**
  * Class that implement the view of a brick.
  */
-public class BrickView implements View{
+public class BrickView implements View {
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
     private ImageView imageView;
@@ -16,8 +16,9 @@ public class BrickView implements View{
     private final Entity brick;
     /**
      * Constructor.
+     * @param brick
      */
-    public BrickView(Entity brick) {
+    public BrickView(final Entity brick) {
         spriteSheet = getSource("brick");
         this.brick = brick;
         imageView = new ImageView();
@@ -52,7 +53,7 @@ public class BrickView implements View{
      * {@inheritDoc}
      */
     @Override
-    public Image getFrame(int index) {
+    public Image getFrame(final int index) {
         return this.spriteSheet;
     }
     /**
@@ -62,5 +63,4 @@ public class BrickView implements View{
     public ImageView getImageView() {
         return this.imageView;
     }
-    
 }

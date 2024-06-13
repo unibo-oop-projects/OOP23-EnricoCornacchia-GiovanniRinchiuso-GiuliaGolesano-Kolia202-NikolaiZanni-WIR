@@ -11,6 +11,9 @@ import it.unibo.model.impl.PointsComponent;
  */
 public class PointsView extends StackPane {
     private final PointsComponent pointsComponent;
+    private final int PREWIDTH = 150;
+    private final int PREHEIGH = 25;
+    private final Double BOTTOM = 20.0;
 
     /**
      * Constructs a PointsView with the given PointsComponent.
@@ -34,13 +37,13 @@ public class PointsView extends StackPane {
         scoreValueLabel.setStyle(
                 "-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
 
-        scoreTitleLabel.setPrefWidth(150);
-        scoreValueLabel.setPrefWidth(150);
+        scoreTitleLabel.setPrefWidth(PREWIDTH);
+        scoreValueLabel.setPrefWidth(PREWIDTH);
 
-        scoreTitleLabel.setPrefHeight(25);
-        scoreValueLabel.setPrefHeight(25);
+        scoreTitleLabel.setPrefHeight(PREWIDTH);
+        scoreValueLabel.setPrefHeight(PREWIDTH);
 
-        AnchorPane.setBottomAnchor(scoreTitleLabel, 20.0);
+        AnchorPane.setBottomAnchor(scoreTitleLabel, BOTTOM);
         AnchorPane.setLeftAnchor(scoreTitleLabel, 0.0);
         AnchorPane.setBottomAnchor(scoreValueLabel, 0.0);
         AnchorPane.setLeftAnchor(scoreValueLabel, 0.0);

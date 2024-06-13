@@ -13,7 +13,9 @@ import javafx.scene.layout.StackPane;
 public class LivesView extends StackPane {
     private final LivesComponent livesComponent;
     private final HBox livesContainer;
-
+    private final int WIDTH = 40;
+    private final int HEIGHT = 40;
+    private final int SPACING = 5;
     /**
      * Constructs a LivesView with the given LivesComponent.
      *
@@ -25,21 +27,18 @@ public class LivesView extends StackPane {
         this.getChildren().add(livesContainer);
         updateLivesLabel();
     }
-
     /**
      * Updates the lives label.
      */
     private void updateLivesLabel() {
         int actualLives = livesComponent.getLives();
         livesContainer.getChildren().clear();
-
         for (int i = 0; i < actualLives; i++) {
             ImageView lifeImage = new ImageView(new Image("life.png"));
-            lifeImage.setFitWidth(40);
-            lifeImage.setFitHeight(40);
+            lifeImage.setFitWidth(WIDTH);
+            lifeImage.setFitHeight(HEIGHT);
             livesContainer.getChildren().add(lifeImage);
         }
-
-        livesContainer.setSpacing(5);
+        livesContainer.setSpacing(SPACING);
     }
 }

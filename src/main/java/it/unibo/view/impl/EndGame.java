@@ -13,9 +13,9 @@ import javafx.stage.Stage;
  * This class provides a simple "Game Over" message.
  */
 public final class EndGame extends Application {
-    final int FONT_SIZE = 100;
-    final int HEIGH_SIZE = 600;
-    final int WIDTH_SIZE = 800;
+    final int FONT = 100;
+    final int HEIGH = 600;
+    final int WIDTH = 800;
     /**
      * Starts the end game screen.
      *
@@ -26,8 +26,8 @@ public final class EndGame extends Application {
     public void start(final Stage primaryStage) throws Exception {
         GameState.setGameState(GameState.GAMEOVER);
         Label message = new Label("Game Over, Start Game!");
-        message.setFont(new Font(FONT_SIZE));
-        primaryStage.setScene(new Scene(new StackPane(message), WIDTH_SIZE, HEIGH_SIZE));
+        message.setFont(new Font(FONT));
+        primaryStage.setScene(new Scene(new StackPane(message), WIDTH, HEIGH));
         primaryStage.setTitle("Start Game");
         primaryStage.show();
     }

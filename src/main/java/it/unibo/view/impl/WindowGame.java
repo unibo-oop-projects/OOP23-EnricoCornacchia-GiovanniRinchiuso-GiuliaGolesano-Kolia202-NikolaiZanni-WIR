@@ -9,7 +9,7 @@ import java.util.Set;
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.BirdController;
 import it.unibo.controller.impl.GameController;
-import it.unibo.controller.impl.WindowsController;
+import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
@@ -41,16 +41,32 @@ import javafx.util.Duration;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
-    @SuppressWarnings("unused")
     private Stage primaryStage;
     private boolean zKeyPressed = false;
-    @SuppressWarnings("unused")
-    private BirdController birdController;
-    GameController gameController = new GameController();
-    GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
-    WindowsController windowsController = new WindowsController(gamePerformance);
+    private GameController gameController = new GameController();
+    private GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
     private Map<Entity, CakeView> cakeViews = new HashMap<>();
     private Map<Entity, BirdView> birdViews = new HashMap<>();
+    private static final double WIDTH = 800.0;
+    private static final double HEIGHT = 600.0;
+    private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
+    private static final double BUILDING_TOP_WIDTH_SCALE = 1.45;
+    private static final double BUILDING_TOP_HEIGHT_SCALE = 1.45;
+    private static final double BUILDING_TOP_TOP_ANCHOR = 78.0;
+    private static final double BUILDING_TOP_TRANSLATE_X = 243.5;
+    private static final double BUILDING_TOP_TRANSLATE_Y = 9.0;
+    private static final double BUILDING_CENTRE_WIDTH_SCALE = 1.45;
+    private static final double BUILDING_CENTRE_HEIGHT_SCALE = 1.45;
+    private static final double BUILDING_CENTRE_TRANSLATE_X = 400.0;
+    private static final double BUILDING_CENTRE_BOTTOM_ANCHOR = 75.0;
+    private static final double POINTS_VIEW_LEFT_ANCHOR = 150.0;
+    private static final double MAIN_MENU_RIGHT_ANCHOR = 7.0;
+    private static final double MAIN_MENU_TOP_ANCHOR = 7.0;
+    private static final double HIGH_POINTS_VIEW_LEFT_ANCHOR = 0.0;
+    private static final double HIGH_POINTS_VIEW_TOP_ANCHOR = 0.0;
+    private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
+    private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
+    private static final int Z_KEY_PRESS_DURATION_MS = 3000;
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -58,21 +74,17 @@ public class WindowGame extends Application {
         this.gameController.getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
-        this.birdController = new BirdController(gamePerformance);
+        new BirdController(gamePerformance);
 
         Pane blackPane = new Pane();
         blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-
         PointsComponent pointsComponent = new PointsComponent();
         PointsView pointsView = new PointsView(pointsComponent);
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
-
         MainMenu mainMenu = new MainMenu(primaryStage);
-
         LivesComponent livesComponent = new LivesComponent(gamePerformance);
         LivesView livesView = new LivesView(livesComponent);
-
         AnchorPane root = new AnchorPane();
         // Immagine di sfondo 1 (TopLine.png)
         Image backgroundImage = new Image("TopLine.png");
@@ -81,19 +93,16 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
         AnchorPane.setRightAnchor(backgroundImageView, 0.0);
-
         // Immagine di sfondo 2 (building_top.png)
         Image buildingTopImage = new Image("building_top.png");
         ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); // Imposta la larghezza doppia
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come
-                                                                               // la sua dimensione originale
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come                                                                       // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, 78.0); // Sposta l'immagine verso il basso di 3/4 cm
         AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
         AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
         buildingTopImageView.setTranslateX(243.5); // Sposta l'immagine di 100 unità lungo l'asse x
         buildingTopImageView.setTranslateY(9); // Sposta l'immagine di 50 unità lungo l'asse y
-
         // Immagine di sfondo 3 (building_centre.png)
         Image newBackgroundImage = new Image("building_centre.png");
         ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
@@ -102,13 +111,10 @@ public class WindowGame extends Application {
         buildingCentreImageView.setTranslateX(400); // Sposta l'immagine di 100 unità lungo l'asse x
         buildingCentreImageView.setTranslateY(100);
         AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0); // Sposta l'immagine verso il basso di 3/4 cm
-        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // Centra l'immagine
-                                                                                        // orizzontalmente
+        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // Centra l'immagine                                                                              // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
-
         // Aggiunta delle immagini all'AnchorPane
         root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
-
         AnchorPane.setRightAnchor(mainMenu, 7.0);
         AnchorPane.setTopAnchor(mainMenu, 7.0);
         AnchorPane.setLeftAnchor(pointsView, 150.0);
@@ -118,12 +124,10 @@ public class WindowGame extends Application {
         AnchorPane.setRightAnchor(livesView, 70.0);
         AnchorPane.setTopAnchor(livesView, 7.0);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
-
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Wreck-it Ralph");
         primaryStage.show();
-
         switch (this.gameController.getLevel()) {
             case 1:
                 addWindowsGrid(root, Constants.Windows.BROKEN_1);
@@ -142,7 +146,6 @@ public class WindowGame extends Application {
         }
         FelixView felixView = this.addFelixView(root);
         RalphView ralphView = this.addRalphView(root);
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
             Entity currentCake = this.gameController.getCakeController().getCake();
             cakeViews.entrySet().removeIf(entry -> {
@@ -180,18 +183,6 @@ public class WindowGame extends Application {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-        /*
-         * Entity w = this.entityFactoryImpl.createWindows(new
-         * Pair<Double,Double>(100.0, 100.0), new Random().nextBoolean());
-         * System.out.println(w.getPosition());
-         * WindowsView windowView = new WindowsView(w.getPosition());
-         * FixedWindowsComponent fixComp = (FixedWindowsComponent)
-         * w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-         * if(fixComp.getFixed()) root.getChildren().add(windowView.fixedwindows());
-         * else root.getChildren().add(windowView.brokenWindow());
-         */
-
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case S:
@@ -212,27 +203,31 @@ public class WindowGame extends Application {
                     break;
                 case Z:
                     zKeyPressed = true;
-                    Thread timerThread = new Thread(() -> {
-                        try {
-                            Thread.sleep(3000);
-
-                            if (zKeyPressed) {
-                                HitboxComponent hitComp = (HitboxComponent) this.gameController.getFelixController()
-                                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS).get();
+                Thread timerThread = new Thread(() -> {
+                    try {
+                        Thread.sleep(3000);
+                        if (zKeyPressed) {
+                            Component component = this.gameController.getFelixController()
+                                                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS).orElse(null);
+                            if (component instanceof HitboxComponent) {
+                                HitboxComponent hitComp = (HitboxComponent) component;
                                 Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
                                 windowPosition.ifPresent(pos -> {
-                                    gameController.getFelixController().fixWindow(windowPosition.get());
-                                    System.out.print(
-                                            "Key Z pressed for 3 seconds, window fixed at position: " + pos + "\n");
+                                    gameController.getFelixController().fixWindow(pos);
+                                    System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
                                 });
+                            } else {
+                                System.out.print("Il componente non è un HitboxComponent\n");
                             }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } finally {
-                            zKeyPressed = false;
                         }
-                    });
-                    timerThread.start();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        zKeyPressed = false;
+                    }
+                });
+                timerThread.start();
+
                     scene.setOnKeyReleased(releasedEvent -> {
                         if (releasedEvent.getCode() == KeyCode.Z) {
                             zKeyPressed = false;
@@ -244,7 +239,6 @@ public class WindowGame extends Application {
             }
         });
     }
-
     /**
      * Method that creates a windows grid on the main pane.
      * 
@@ -258,13 +252,12 @@ public class WindowGame extends Application {
         entities.forEach(w -> {
             WindowsView windowView = new WindowsView(w.getPosition());
             FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-            if (fixComp.getFixed())
+            if (fixComp.getFixed()) {
                 root.getChildren().add(windowView.fixedwindows());
-            else
+            }else
                 root.getChildren().add(windowView.brokenWindow());
         });
     }
-
     /**
      * Method that adds Felix to the main pane.
      * 
@@ -277,7 +270,6 @@ public class WindowGame extends Application {
         root.getChildren().add(felixView.getStandingFelix());
         return felixView;
     }
-
     /**
      * Creates and adds a RalphView to the specified root pane.
      *
@@ -290,13 +282,11 @@ public class WindowGame extends Application {
         root.getChildren().add(ralphView.getStandingRalph());
         return ralphView;
     }
-
     private BrickView addBrickView(final AnchorPane root, final Entity brick) {
         BrickView brickView = new BrickView(brick);
         root.getChildren().add(brickView.getImageView());
         return brickView;
     }
-
     public void update(final AnchorPane root) {
         Set<Entity> bricks = this.gameController.getBrickController().getBricks();
         Set<BrickView> bricksToPrint = new HashSet<>();

@@ -26,9 +26,10 @@ public class MainMenu extends StackPane {
 
     /**
      * Constructs a MainMenu.
+     * @param gameState.
      */
-    public MainMenu(Stage gamStage) {
-        this.gameStage = gamStage;
+    public MainMenu(final Stage gameStage) {
+        this.gameStage = gameStage;
         pauseButton = new ImageView("pauseButton.png");
         pauseButton.setFitWidth(Constants.Button.WIDTH_PAUSE_BUTTON);
         pauseButton.setFitHeight(Constants.Button.HEIGHT_PAUSE_BUTTON);
@@ -64,8 +65,9 @@ public class MainMenu extends StackPane {
 
         /**
          * Constructs an AnotherStage.
+         * @param gameState
          */
-        public AnotherStage(Stage gameStage) {
+        public AnotherStage(final Stage gameStage) {
             this.gameStage = gameStage;
             initStyle(StageStyle.UNDECORATED);
             final Image backgroundMainMenu = new Image(BACKGROUND);

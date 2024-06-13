@@ -17,13 +17,13 @@ public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
     private Set<Entity> entities;
-    private int WINDOW_WIDTH = 53;
-    private int WINDOW_HEIGHT = 80;
-    private int WINDOW_SPACING = -1;
-    private int GRID_ROWS = 3;
-    private int GRID_COLS = 5;
-    private int GRID_OFFSET_X = 280;
-    private int GRID_OFFSET_Y = 317;
+    private final int WIDTH = 53;
+    private final int HEIGHT = 80;
+    private final int SPACING = -1;
+    private final int ROWS = 3;
+    private final int COLS = 5;
+    private final int OFFSET_X = 280;
+    private final int OFFSET_Y = 317;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
@@ -44,23 +44,23 @@ public class WindowsController {
     }
     /**
      * Method that create the map according to the level.
-     * @param level
-     * @return
+     * @param broken
+     * @return the set of entities.
      */
     public Set<Entity> windowsGrid(final int broken) {
         this.entities = new HashSet<>();
-        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(GRID_ROWS * GRID_COLS, false));
+        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(ROWS * COLS, false));
         for (int i = 0; i < broken; i++) {
             windowStates.set(i, true);
         }
         Collections.shuffle(windowStates);
 
         int index = 0;
-        for (int row = 0; row < GRID_ROWS; row++) {
-            for (int col = 0; col < GRID_COLS; col++) {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
                 if (index >= windowStates.size()) break;
-                double x = GRID_OFFSET_X + col * (WINDOW_WIDTH + WINDOW_SPACING);
-                double y = GRID_OFFSET_Y + row * (WINDOW_HEIGHT + WINDOW_SPACING);
+                double x = OFFSET_X + col * (WIDTH + SPACING);
+                double y = OFFSET_Y + row * (HEIGHT + SPACING);
                 boolean state = windowStates.get(index);
                 Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
                 entities.add(window);

@@ -21,6 +21,7 @@ public class FelixController {
     private final EntityFactoryImpl entityFactoryImpl;
     private Entity felix;
     private final GamePerformance gamePerformance;
+    private final int FLOOR_Y = 70;
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
@@ -69,13 +70,13 @@ public class FelixController {
                 if (this.felix.getPosition().getY() < Constants.Floors.FLOOR_1_Y) {
                     return 0;
                 } else {
-                    return -70;
+                    return -FLOOR_Y;
                 }
             case DOWN:
                 if (this.felix.getPosition().getY() > Constants.Floors.FLOOR_3_Y) {
                     return 0;
                 } else {
-                    return 70;
+                    return FLOOR_Y;
                 }
             default:
                 return 0;

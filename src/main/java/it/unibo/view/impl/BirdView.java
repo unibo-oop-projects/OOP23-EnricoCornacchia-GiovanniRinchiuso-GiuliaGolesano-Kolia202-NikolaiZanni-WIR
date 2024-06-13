@@ -29,6 +29,7 @@ public class BirdView implements View {
     private int currentFrame;
     /**
      * Constructor.
+     * @param bird
      */
     public BirdView(final Entity bird) {
         this.bird = bird;
@@ -62,7 +63,7 @@ public class BirdView implements View {
         }
     }
     @Override
-    public Image getSource(String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     @Override
