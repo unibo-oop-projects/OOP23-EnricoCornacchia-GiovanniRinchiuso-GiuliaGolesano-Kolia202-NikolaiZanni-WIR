@@ -29,6 +29,8 @@ public class BirdView implements View {
     private int currentFrame;
     /**
      * Constructor.
+     * 
+     * @param bird the bird entity.
      */
     public BirdView(final Entity bird) {
         this.bird = bird;
@@ -61,16 +63,25 @@ public class BirdView implements View {
             this.timeline.play();
         }
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Image getSource(String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFrame() {
         currentFrame = currentFrame % FRAME_COUNT; // Ensure frame index is within bounds
         imageView.setImage(getFrame(currentFrame));
         currentFrame++;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getFrame(final int index) {
         int frameWidth = (int) this.sprite.getWidth() / FRAME_COUNT;
@@ -78,6 +89,9 @@ public class BirdView implements View {
                 index * frameWidth, 0,
                 frameWidth, (int) this.sprite.getHeight());
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageView getImageView() {
         return this.imageView;
