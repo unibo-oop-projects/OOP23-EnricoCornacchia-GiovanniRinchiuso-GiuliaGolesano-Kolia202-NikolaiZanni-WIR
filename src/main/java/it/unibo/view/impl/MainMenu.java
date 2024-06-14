@@ -120,7 +120,7 @@ public class MainMenu extends StackPane {
                 gameStage.close(); 
                 close(); 
                 try {
-                    new HomeMenu().start(new Stage());
+                    new StartGame().start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

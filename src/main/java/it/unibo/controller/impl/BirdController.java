@@ -8,6 +8,8 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
+import it.unibo.utilities.GameState;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +25,7 @@ public class BirdController {
 
     /**
      * Constructor.
+     * 
      * @param gamePerformance
      */
     public BirdController(final GamePerformance gamePerformance) {
@@ -30,13 +33,16 @@ public class BirdController {
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.scheduler = createScheduler();
     }
+
     /**
      * Thread executor method.
+     * 
      * @return
      */
     protected ScheduledExecutorService createScheduler() {
         return Executors.newSingleThreadScheduledExecutor();
     }
+
     /**
      * Method to manage a bird creation.
      */
@@ -45,6 +51,7 @@ public class BirdController {
             generateAndRemoveBird();
         }, 0, 10, TimeUnit.SECONDS);
     }
+
     /**
      * Method to remove a bird.
      */
@@ -59,15 +66,18 @@ public class BirdController {
         this.gamePerformance.addEntity(bird);
         scheduleBirdMovement(bird);
     }
+
     /**
      * Method to manage the movements.
+     * 
      * @param bird
      */
     private void scheduleBirdMovement(Entity bird) {
         scheduler.scheduleAtFixedRate(() -> {
             moveBird();
-        }, 0, 1, TimeUnit.SECONDS);
+        }, 0, 10, TimeUnit.SECONDS);
     }
+
     /**
      * Method to move the bird.
      */
@@ -92,23 +102,32 @@ public class BirdController {
             }
         }
     }
+
     /**
      * Getter of the bird.
+     * 
      * @return the bird
      */
     public Entity getBird() {
         return this.bird;
     }
+
     /**
      * Method to stop the creation.
      */
     public void stopBirdCreation() {
         scheduler.shutdown();
     }
+
     /**
      * Method to update the position.
      */
     public void update() {
-        moveBird();
+        if (GameState.getGameState() == GameState.PLAYING) {
+            scheduleBirdCreation();
+            moveBird();
+        } else if (GameState.getGameState() != GameState.PLAYING) {
+            stopBirdCreation();
+        }
     }
 }
