@@ -10,12 +10,12 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constants.Brick;
 
+
 /**
  * Controller for the bricks.
  */
 public class BrickController {
 
-    private final Set<Entity> bricks;
     private final GamePerformance gamePerformance;
 
     /**
@@ -23,7 +23,6 @@ public class BrickController {
      * @param gamePerformance the game performance, where every entity is stored.
      */
     public BrickController(final GamePerformance gamePerformance) {
-        bricks = new HashSet<>();
         this.gamePerformance = gamePerformance;
     }
     /**
@@ -31,14 +30,14 @@ public class BrickController {
      * @return the set of bricks.
      */
     public Set<Entity> getBricks() {
-        return this.bricks;
+        return this.gamePerformance.getBricks();
     }
     /**
      * make the bricks fall.
      */
     public void fallBricks() {
         this.checkBricks();
-        for (final Entity brick : this.bricks) {
+        for (final Entity brick : this.gamePerformance.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
                     ((MovementComponent) component).move(0.0, -this.getBrickSpeedByLevel(), brick);
@@ -51,11 +50,11 @@ public class BrickController {
      * If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
      */
     private void checkBricks() {
-        for (final Entity brick : this.bricks) {
+        for (final Entity brick : this.gamePerformance.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
                 && !((MovementComponent) component).canMove(0.0, -this.getBrickSpeedByLevel(), brick)) {
-                    this.bricks.remove(brick);
+                    System.out.println("Brick removed");
                     this.gamePerformance.removeEntity(brick);
                 }
             }
@@ -74,14 +73,6 @@ public class BrickController {
         }
         return 0;
     }
-    /**
-     * Add a brick to the set of bricks.
-     * @param pos the position of the brick.
-     */
-    public void removeBrick(final Pair<Double, Double> pos) {
-         bricks.remove(bricks.stream()
-                               .filter(e -> e.getPosition().equals(pos))
-                               .findFirst()
-                               .orElse(null));
-    }
+   
+    
 }

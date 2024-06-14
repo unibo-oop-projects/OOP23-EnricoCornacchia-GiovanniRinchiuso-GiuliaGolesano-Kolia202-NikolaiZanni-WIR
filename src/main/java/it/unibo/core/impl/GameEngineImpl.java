@@ -13,25 +13,25 @@ public class GameEngineImpl implements GameEngine {
 
     private final int period;
     private final GameController gameController;
-    private boolean hasChanged;
     /**
      * Constructor for the game engine.
      */
     public GameEngineImpl() {
-        this.period = 10;
+        this.period = 20;
         this.gameController = new GameController();
-        this.hasChanged = true;
-        new WindowGame();
     }
     /**
      *Loop of the game.
      */
-    private void gameLoop() {
+    @Override
+    public void gameLoop(final WindowGame windowGame) {
+        System.out.println("Game loop started");
         long current = System.currentTimeMillis();
-        while (gameController.gameIsNotOver() && gameController.isWin()) {
+        while (gameController.gameIsNotOver() && !gameController.isWin()) {
             if (System.currentTimeMillis() - current > this.period) {
+                System.out.println("Inside if");
                 this.update();
-                this.draw();
+                this.draw(windowGame);
                 current = System.currentTimeMillis();
             }
         }
@@ -40,52 +40,12 @@ public class GameEngineImpl implements GameEngine {
         } else {
         GameState.setGameState(GameState.GAMEOVER);
         }
-        this.hasChanged = true;
-    }
-    /**
-     * Main loop, it delegates the drawing to the view based on the game state.
-     */
-    @Override
-    public void mainLoop() {
-        while (true) {
-            while (hasChanged) {
-                switch (GameState.getGameState()) {
-                    case HOME:
-                        //view.drawHome();
-                        System.out.println("AJNSUWDUINIDIUNEDUENDIUNWDIUENDWI");
-                        hasChanged = false;
-                        break;
-                    case PLAYING:
-                        gameLoop();
-                        break;
-                    case WIN:
-                        //gameView.drawWin();
-                        hasChanged = false;
-                        break;
-                    case GAMEOVER:
-                        //gameView.drawGameOver();
-                        hasChanged = false;
-                        break;
-                    case SETTINGS:
-                        //gameView.drawSettings();
-                        hasChanged = false;
-                        break;
-                    case PAUSED:
-                        //gameView.drawPaused();
-                        hasChanged = false;
-                        break;
-                    default:
-                        break;
-                }   
-            } 
-            break;
-        }
     }
     /**
      * Draw the game.
      */
-    public void draw() {
-       //windowGame.update();
+    public void draw(WindowGame windowGame) {
+       windowGame.update();
     }
     /**
      * Update the game.
@@ -95,23 +55,10 @@ public class GameEngineImpl implements GameEngine {
         gameController.update();
     }
     /*
-     * Setter true for hasChanged.
-     */
-    public void setHasChangedTrue() {
-        this.hasChanged = true;
-    }
-    /*
      * Getter of the GameController.
      * @return the GameController.
      */
     public GameController getGameController() {
        return this.gameController;
-    }
-    /*
-     * Getter of the hasChanged.
-     * @return true if the GameState has been changed, false otherwise.
-     */
-    public boolean hasChanged() {
-        return this.hasChanged;
     }
 }

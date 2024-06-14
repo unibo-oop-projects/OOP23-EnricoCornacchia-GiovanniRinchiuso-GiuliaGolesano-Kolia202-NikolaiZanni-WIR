@@ -9,6 +9,7 @@ import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
 import it.unibo.utilities.Constants;
 import java.util.Set;
+import it.unibo.common.Pair;
 
 /**
  * Controller for Ralph.
@@ -42,7 +43,11 @@ public class RalphController {
     public void throwBrickLeftArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constants.Ralph.RALPH_LEFT_HAND);
+                final double x = Constants.Ralph.RALPH_LEFT_HAND.getX() + ralph.getPosition().getX();
+                final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
+                final Pair position = new Pair<>(x, y);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
+                System.out.println("Brick thrown");
             }
         }
     }
@@ -53,7 +58,11 @@ public class RalphController {
     public void throwBrickRightArm(final Set<Entity> bricks) {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, Constants.Ralph.RALPH_RIGHT_HAND);
+                final double x = Constants.Ralph.RALPH_RIGHT_HAND.getX() + ralph.getPosition().getX();
+                final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
+                final Pair position = new Pair<>(x, y);
+                ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
+                System.out.println("Brick thrown");
             }
         }
     }

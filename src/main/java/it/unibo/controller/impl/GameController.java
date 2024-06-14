@@ -40,6 +40,8 @@ public class GameController {
         this.brickController.fallBricks();
         this.collisionManager.check();
         this.ralphController.update(brickController.getBricks());
+        System.out.println("Ralph updated\n" + ralphController.getRalph().getPosition());
+        System.out.println("Bricks updated\n" + brickController.getBricks());
         this.collisionManager.check();
         this.birdController.update();
         this.collisionManager.check();

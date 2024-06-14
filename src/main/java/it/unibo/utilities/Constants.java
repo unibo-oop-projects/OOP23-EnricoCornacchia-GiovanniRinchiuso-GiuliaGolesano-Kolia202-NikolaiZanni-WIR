@@ -65,12 +65,12 @@ public final class Constants {
          * The difference between the position of Ralph and the position of his right
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(8.0, -2.0);
+        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(65.0 , -25.0);
         /**
          * The difference between the position of Ralph and the position of his left
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(-8.0, -2.0);
+        public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(0.0, -25.0);
         /**
          * The Ralph height.
          */

@@ -10,6 +10,7 @@ import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
+import java.util.stream.Collectors;
 /**
  * Class that manages the game performance of the play.
  */
@@ -71,7 +72,6 @@ public class GamePerformanceImpl implements GamePerformance {
                                .filter(e -> e.getEntityType() == EntityType.BRICK && e.getPosition().equals(pos))
                                .findFirst()
                                .orElse(null));
-        gameController.getBrickController().removeBrick(pos);
     }
     /**
      * {@inheritDoc}
@@ -111,5 +111,14 @@ public class GamePerformanceImpl implements GamePerformance {
     @Override
     public int getLevel() {
         return this.gameController.getLevel();
+    }
+    /**
+     * Getter for the bricks.
+     * @return the set of bricks.
+     */
+    @Override
+    public Set<Entity> getBricks() {
+        return this.entities.stream()
+                            .filter(entity -> entity.getEntityType() == EntityType.BRICK).collect(Collectors.toSet());
     }
 }

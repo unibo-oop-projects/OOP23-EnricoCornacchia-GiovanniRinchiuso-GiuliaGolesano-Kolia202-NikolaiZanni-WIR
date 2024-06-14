@@ -73,4 +73,7 @@ public interface GamePerformance {
      * @return the game controller.
      */
     int getLevel();
+    
+
+    Set<Entity> getBricks();
 }
