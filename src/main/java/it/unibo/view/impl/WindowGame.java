@@ -198,38 +198,51 @@ public class WindowGame extends Application {
                     felixView.animateFelix();
                     break;
                 case Z:
-                zKeyPressed = true;
-                Thread timerThread = new Thread(() -> {
-                    try {
-                        Thread.sleep(3000);
 
-                        if (zKeyPressed) {
-                            Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                            Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
+                    Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
 
-                            if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
-                                fixComponentOptional.get() instanceof FixWindowsComponent &&
-                                hitboxComponentOptional.get() instanceof HitboxComponent) {
+                    System.err.println("entro nell'if");
+                    HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
+                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+                    
+                    windowPosition.ifPresent(pos -> {
+                        this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
+                        System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
+                    });
 
-                                System.err.println("entro nell'if");
-                                HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                                Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
-                                
-                                windowPosition.ifPresent(pos -> {
-                                    this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                                    System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
-                                });
-                            } else {
-                                System.out.print("I componenti FIXWINDOWS o HITBOX non sono presenti o non sono del tipo corretto\n");
+                    /* 
+                    Thread timerThread = new Thread(() -> {
+                        try {
+                            Thread.sleep(3000);
+
+                            if (zKeyPressed) {
+                                Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                                Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
+
+                                if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
+                                    fixComponentOptional.get() instanceof FixWindowsComponent &&
+                                    hitboxComponentOptional.get() instanceof HitboxComponent) {
+
+                                    System.err.println("entro nell'if");
+                                    HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
+                                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+                                    
+                                    windowPosition.ifPresent(pos -> {
+                                        this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
+                                        System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
+                                    });
+                                } else {
+                                    System.out.print("I componenti FIXWINDOWS o HITBOX non sono presenti o non sono del tipo corretto\n");
+                                }
                             }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            zKeyPressed = false;
                         }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } finally {
-                        zKeyPressed = false;
-                    }
-                });
-                timerThread.start();
+                    });
+                    timerThread.start();
 
                             
 
@@ -237,13 +250,13 @@ public class WindowGame extends Application {
                         if (releasedEvent.getCode() == KeyCode.Z) {
                             zKeyPressed = false;
                         }
-                    });
+                    });*/
                     break;
                 default:
                     break;
             }
         });
-        this.gameEngine.gameLoop(this);
+        //sthis.gameEngine.gameLoop(this);
     }
     /**
      * Method that creates a windows grid on the main pane.
