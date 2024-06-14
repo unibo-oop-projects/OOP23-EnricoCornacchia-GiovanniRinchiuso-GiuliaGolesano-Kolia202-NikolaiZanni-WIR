@@ -10,9 +10,11 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
+import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
 import javafx.application.Application;
@@ -66,11 +68,10 @@ public class WindowGame extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        //this.gameController.getCakeController().scheduleCakeCreation();
-       // this.gameController.getBirdController().scheduleBirdCreation();
+        this.gameEngine.getGameController().getCakeController().scheduleCakeCreation();
+        this.gameEngine.getGameController().getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
-       // new BirdController(gamePerformance);
 
         Pane blackPane = new Pane();
         blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
@@ -79,9 +80,8 @@ public class WindowGame extends Application {
         PointsView pointsView = new PointsView(pointsComponent);
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
         MainMenu mainMenu = new MainMenu(primaryStage);
-        //LivesComponent livesComponent = new LivesComponent(gamePerformance);
-        //LivesView livesView = new LivesView(livesComponent);
-        // Immagine di sfondo 1 (TopLine.png)
+        LivesComponent livesComponent = new LivesComponent(gameEngine.getGameController().getGamePerformance());
+        LivesView livesView = new LivesView(livesComponent);
         Image backgroundImage = new Image("TopLine.png");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
@@ -116,9 +116,9 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(pointsView, 0.0);
         AnchorPane.setLeftAnchor(highPointsView, 0.0);
         AnchorPane.setTopAnchor(highPointsView, 0.0);
-     //   AnchorPane.setRightAnchor(livesView, 70.0);
-     //   AnchorPane.setTopAnchor(livesView, 7.0);
-     //   root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
+        AnchorPane.setRightAnchor(livesView, 70.0);
+        AnchorPane.setTopAnchor(livesView, 7.0);
+        root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Wreck-it Ralph");
@@ -132,9 +132,6 @@ public class WindowGame extends Application {
                 break;
             case 3:
                 addWindowsGrid(Constants.Windows.BROKEN_3);
-                break;
-            case 4:
-                addWindowsGrid(Constants.Windows.BROKEN_4);
                 break;
             default:
                 break;
@@ -256,7 +253,7 @@ public class WindowGame extends Application {
                     break;
             }
         });
-        //sthis.gameEngine.gameLoop(this);
+        //this.gameEngine.gameLoop(this);
     }
     /**
      * Method that creates a windows grid on the main pane.

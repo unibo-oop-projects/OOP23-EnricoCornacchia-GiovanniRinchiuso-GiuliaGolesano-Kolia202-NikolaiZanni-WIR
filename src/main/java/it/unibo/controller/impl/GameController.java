@@ -103,6 +103,13 @@ public class GameController {
         return this.level;
     }
     /**
+     * Getter for the level.
+     * @return the level.
+     */
+    public GamePerformance getGamePerformance() {
+        return this.gamePerformance;
+    }
+    /**
      * Setter for the level.
      * @param level the new level.
      */
