@@ -196,16 +196,18 @@ public class WindowGame extends Application {
                     break;
                 case Z:
 
-                    Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
-
-                    System.err.println("entro nell'if");
+                    Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                    .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                    .getFelix().getTheComponent(ComponentType.HITBOX);
                     HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
                     Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
-                    
+                
+                    System.err.println("the position of the windows hitten is "+ windowPosition);
+                
                     windowPosition.ifPresent(pos -> {
-                        this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                        System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
+                        gameEngine.getGameController().getFelixController().fixWindow(pos);
+                        System.out.print("Tasto Z premuto, finestra riparata alla posizione: " + pos + "\n");
                     });
 
                     /* 
