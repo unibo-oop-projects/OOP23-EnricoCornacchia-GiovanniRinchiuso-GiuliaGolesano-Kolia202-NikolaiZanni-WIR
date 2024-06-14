@@ -3,7 +3,6 @@ package it.unibo.model.impl;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;

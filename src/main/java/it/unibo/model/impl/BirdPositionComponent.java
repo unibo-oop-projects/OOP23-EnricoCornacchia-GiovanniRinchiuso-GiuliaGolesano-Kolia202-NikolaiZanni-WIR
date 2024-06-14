@@ -1,7 +1,6 @@
 package it.unibo.model.impl;
 
 import java.util.Random;
-
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.utilities.Constants;

@@ -1,8 +1,6 @@
 package it.unibo.core.api;
 
-import it.unibo.utilities.Constants.Window;
 import it.unibo.view.impl.WindowGame;
-
 
 /**
  * Interface for the game engine.

@@ -7,21 +7,14 @@ import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.common.Pair;
-import it.unibo.controller.impl.BirdController;
-import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
-import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
-import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.HitboxComponent;
-import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -35,8 +28,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import it.unibo.core.api.GameEngine;
 import it.unibo.core.impl.GameEngineImpl;
 
 /**
@@ -47,10 +38,12 @@ public class WindowGame extends Application {
     private Stage primaryStage;
     private boolean zKeyPressed = false;
     private GameEngineImpl gameEngine = new GameEngineImpl();
+    @SuppressWarnings("unused")
     private Map<Entity, CakeView> cakeViews = new HashMap<>();
+    @SuppressWarnings("unused")
     private Map<Entity, BirdView> birdViews = new HashMap<>();
     private AnchorPane root = new AnchorPane();
-    private static final double WIDTH = 800.0;
+    /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
     private static final double BUILDING_TOP_WIDTH_SCALE = 1.45;
@@ -69,7 +62,7 @@ public class WindowGame extends Application {
     private static final double HIGH_POINTS_VIEW_TOP_ANCHOR = 0.0;
     private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
     private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
-    private static final int Z_KEY_PRESS_DURATION_MS = 3000;
+    private static final int Z_KEY_PRESS_DURATION_MS = 3000;*/
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -86,8 +79,8 @@ public class WindowGame extends Application {
         PointsView pointsView = new PointsView(pointsComponent);
         HighPointsView highPointsView = new HighPointsView(pointsComponent);
         MainMenu mainMenu = new MainMenu(primaryStage);
-      //  LivesComponent livesComponent = new LivesComponent(gamePerformance);
-      //  LivesView livesView = new LivesView(livesComponent);
+        //LivesComponent livesComponent = new LivesComponent(gamePerformance);
+        //LivesView livesView = new LivesView(livesComponent);
         // Immagine di sfondo 1 (TopLine.png)
         Image backgroundImage = new Image("TopLine.png");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -147,6 +140,7 @@ public class WindowGame extends Application {
                 break;
         }
         FelixView felixView = this.addFelixView();
+        @SuppressWarnings("unused")
         RalphView ralphView = this.addRalphView();
       /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
           //  Entity currentCake = this.gameController.getCakeController().getCake();
@@ -207,7 +201,7 @@ public class WindowGame extends Application {
                 zKeyPressed = true;
                 Thread timerThread = new Thread(() -> {
                     try {
-                        Thread.sleep(Z_KEY_PRESS_DURATION_MS); // Usa la costante definita
+                        Thread.sleep(3000);
 
                         if (zKeyPressed) {
                             Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);

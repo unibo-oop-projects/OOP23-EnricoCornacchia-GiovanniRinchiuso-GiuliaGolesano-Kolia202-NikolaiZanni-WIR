@@ -1,8 +1,6 @@
 package it.unibo.controller.impl;
-import java.util.HashSet;
 import java.util.Set;
 
-import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
