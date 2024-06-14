@@ -152,7 +152,7 @@ public class GameController {
      * @param pos the position of the window to fix.
      */
     public void fixWindows(final KeyCode e, final Pair<Double, Double> pos) {
-        FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix()
+        final FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix()
                                                                                 .getTheComponent(ComponentType.FIXWINDOWS)
                                                                                 .get();
         fixComp.fixing(pos, this.gamePerformance);

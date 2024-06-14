@@ -19,9 +19,9 @@ import java.util.Optional;
 public class FelixController {
 
     private final EntityFactoryImpl entityFactoryImpl;
-    private Entity felix;
+    private final Entity felix;
     private final GamePerformance gamePerformance;
-    private final int FLOOR_Y = 70;
+    private static final int FLOOR_Y = 70;
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
@@ -102,7 +102,7 @@ public class FelixController {
      * @param windowPosition the position of the window to fix.
      */
     public void fixWindow(final Pair<Double, Double> windowPosition) {
-        FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
+        final FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
         fixComp.fixing(windowPosition, this.gamePerformance);
     }
     /**
@@ -110,7 +110,7 @@ public class FelixController {
      * @return the position of the window to fix.
      */
     public Optional<Pair<Double, Double>> checkWindowsCollisions() {
-        HitboxComponent hitboxComponent = (HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).orElseThrow(
+        final HitboxComponent hitboxComponent = (HitboxComponent) this.felix.getTheComponent(ComponentType.HITBOX).orElseThrow(
             () -> new IllegalStateException("Felix does not have a HitboxComponent")
         );
         return hitboxComponent.checkWindowsCollisions();

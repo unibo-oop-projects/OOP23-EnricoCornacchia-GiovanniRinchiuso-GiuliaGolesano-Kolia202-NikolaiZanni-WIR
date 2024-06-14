@@ -25,15 +25,17 @@ public class MovementComponentTest {
     public void setUp() {
         component = new MovementComponent();
         entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
-        entity = entityFactoryImpl.createRalph(new Pair<>(0.0, 0.0));
+        entity = entityFactoryImpl.createRalph(new Pair<>(300.0, 200.0));
     }
 
     @Test
     public void testMoveWithinBounds() {
         double x = 5.0;
         double y = 5.0;
+        double initialX = entity.getPosition().getX();
+        double initialY = entity.getPosition().getY();
         component.move(x, y, entity);
-        assertEquals(new Pair<>(5.0, 5.0), entity.getPosition());
+        assertEquals(new Pair<>(initialX+5.0, initialY+5.0), entity.getPosition());
     }
 
     @Test
@@ -47,7 +49,7 @@ public class MovementComponentTest {
 
     @Test
     public void testCanMoveFalseWhenStopped() {
-        boolean canMove = component.canMove(-10.0, -10.0, entity);
+        boolean canMove = component.canMove(-1000.0, -1000.0, entity);
         assertFalse(canMove);
     }
 

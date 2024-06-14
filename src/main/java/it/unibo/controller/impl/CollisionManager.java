@@ -13,7 +13,7 @@ import it.unibo.model.impl.HitboxComponent;
  */
 public class CollisionManager {
 
-    private Set<HitboxComponent> hitboxes;
+    private final Set<HitboxComponent> hitboxes;
 
     /**
      * Constructor for the CollisionManager.
