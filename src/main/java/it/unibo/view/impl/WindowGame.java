@@ -72,6 +72,7 @@ public class WindowGame extends Application {
         this.gameEngine.getGameController().getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
+        
 
         Pane blackPane = new Pane();
         blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra

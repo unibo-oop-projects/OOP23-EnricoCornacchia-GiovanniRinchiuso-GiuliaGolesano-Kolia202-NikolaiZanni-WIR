@@ -14,16 +14,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import it.unibo.controller.impl.GameController;
 import javafx.animation.Interpolator;
 
 public final class StartGame extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         primaryStage.setTitle("StartGame");
-
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
-
 
         Image imageA = new Image("fix-it_felix_title.png");
         ImageView imageViewA = new ImageView(imageA);
@@ -57,13 +56,13 @@ public final class StartGame extends Application {
 
         // Create buttons with text
         Button level1Button = createStyledButton("EASY");
-        level1Button.setOnAction(e -> startWindowGame(primaryStage));
+        level1Button.setOnAction(e -> startWindowGame(primaryStage, 1));
 
         Button level2Button = createStyledButton("MEDIUM");
-        level2Button.setOnAction(e -> startWindowGame(primaryStage));
+        level2Button.setOnAction(e -> startWindowGame(primaryStage, 2));
 
         Button level3Button = createStyledButton("HARD");
-        level3Button.setOnAction(e -> startWindowGame(primaryStage));
+        level3Button.setOnAction(e -> startWindowGame(primaryStage, 3));
 
         HBox levelButtons = new HBox(20);
         levelButtons.getChildren().addAll(level1Button, level2Button, level3Button);
@@ -169,10 +168,16 @@ public final class StartGame extends Application {
         transitionRightToLeft.play();
     }
 
-    private void startWindowGame(Stage primaryStage) {
+    private void startWindowGame(Stage primaryStage, int level) {
         try {
             WindowGame windowGame = new WindowGame();
+            GameController gameController = new GameController();
+
+            System.out.println("Livello passato: " + level);
+            gameController.setLevel(level);
+            System.out.println("Livello impostato: " + gameController.getLevel());
             windowGame.start(primaryStage);
+            System.out.println("Livello nel controller: " + gameController.getLevel());
         } catch (Exception e) {
             e.printStackTrace();
         }
