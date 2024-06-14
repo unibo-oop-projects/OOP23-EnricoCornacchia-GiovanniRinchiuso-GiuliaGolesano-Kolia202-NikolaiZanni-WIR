@@ -13,22 +13,19 @@
 
 \section{Requisiti}
 
-Il progetto, a noi commissionato dall'università di Bologna, si pone l'obbiettivo di ricreare un videogioco basato sul classico e celebre arcade Ralph Spaccatutto, che rientra nella categoria dei giochi platformer, ossia dei giochi in cui la meccanica di gioco implica l'attraversamento di uno o piu livelli, ognuno dei quali composto da piattaforme solitamente situate su più piani.
+Il progetto si pone l'obbiettivo di ricreare un videogioco basato sul classico e celebre arcade Ralph Spaccatutto, che rientra nella categoria dei giochi platformer, ossia dei giochi in cui la meccanica di gioco implica l'attraversamento di uno o piu livelli, ognuno dei quali è composto da piattaforme solitamente situate su più piani.
 
 \subsection{Requisiti funzionali}
 
 \begin{itemize}
 
-
-	//SPIEGA MEGLIO COME FUNZIONA IL GIOCO
-	\item Felix, il protagonista del gioco, avrà l'obiettivo di aggiustare tutte le finestra del condominio rotte dall'antagonista Ralph. 
+	\item Felix, il protagonista del gioco, avrà l'obiettivo di aggiustare tutte le finestra del condominio, rotte dall'antagonista Ralph. 
 	\item Per arrivare a tale scopo, potrà muoversi a destra e a sinistra lungo ogni piattaforma, che rappresenta un piano del condominio, per poi salire o scendere agli altri piani.
-	\item Una complicazione che incontrerà il protagonista sono i mattoni che durante tutta la partita Ralph lancerà dalla sua piattaforma in cima al condominio, che Felix quindi dovrà schivare per non perdere le sue 3 vite a dispozione.
+	\item Una complicazione che incontrerà il protagonista sono i mattoni che, durante tutta la partita, Ralph lancerà dalla sua piattaforma in cima al condominio.
+ \item Felix  dovrà schivare i mattoni per non perdere le sue 3 vite a disposizione.
 	\item Degli aiuti che potrà ottenere sono invece i power ups che gli potranno garantire invincibilità per qualche secondo.
-	\item I nostri requisiti funzionali prevedono, oltre al corretto funziamento del gioco, un menù iniziale da cui selezionare l'avvio, la pausa o l'arresto del gioco, tramite appositi tasti e la gestione delle condizioni di vittoria e sconfitta.
-	LIVELLI ??
+	\item I nostri requisiti funzionali prevedono, oltre al corretto funziamento del gioco, un menù iniziale da cui selezionare l'avvio, la pausa o l'arresto del gioco, tramite appositi tasti.
 \end{itemize}
-
 
 \subsubsection{Requisiti non funzionali}
 \begin{itemize}
@@ -36,11 +33,10 @@ Il progetto, a noi commissionato dall'università di Bologna, si pone l'obbietti
 \end{itemize}
 
 \section{Analisi e modelli del dominio}
-//AGGIUNGERE SCALE
-La schermata di gioco è composta da una facciata di condominio, simile ad una griglia, in cui si trovano, in base alla difficoltà del livello, un numero variabile di file di finestre, per ognuno dei piani del condominio.
-Come anticipatamente spiegato, il player Felix dovrà aggiustare tutte le finestre schivando i mattoni lanciati da Ralph, per vincere la partita.
-Per farlo, dovrà fermarsi, davanti alla finestra che desidera aggiustare, e tenere premuto il BACKSPACE per 1.5 secondi. 
-Per muoversi tra i piani avrà a disposizione le 4 direzioni UP, DOWN, LEFT e RIGHT, ognuna svolta dall'apposita freccina della tastiera. 
+La schermata di gioco è composta da una facciata di condominio, simile ad una griglia, in cui si trovano alcune file di finestre, alcune intere e alcune rotte, in base alla difficoltà del livello.
+Come anticipatamente spiegato, il player Felix dovrà aggiustare tutte le finestre, schivando i mattoni lanciati da Ralph, per vincere la partita.
+Per farlo, dovrà fermarsi, davanti alla finestra che desidera aggiustare, e tenere premuto il Z per 1.5 secondi. 
+Per muoversi tra i piani avrà a disposizione le 4 direzioni UP, DOWN, LEFT e RIGHT, ognuna svolta dalle lettere W,S,A e D.
 Felix avrà un numero limitato di vite, che di default sarà 3, che potrà perdere se colpito da uno dei mattoni lanciati da Ralph, con successivo ritorno alla piattaforma di partenza, senza che si annullino i progressi della partita.
 Durante il gioco saranno possibili power ups che permetteranno a Felix di ricevere aiuti extra.
 
@@ -176,7 +172,7 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 
 \subsection{Golesano Giulia}
 
-\subsubsection{Gestione della schermata di gioco}
+\subsubsection{Gestione della schermata di gioco }
 
 \begin{figure}[H]
 \centering{}
@@ -185,15 +181,16 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 \end{figure}
 
 \paragraph{Problema:}
-Gestione della schermata di gioco: delle entità presenti, delle loro posizioni, dei loro possibili movimenti, delle vite, dei punteggi e dei funzionamenti pratici del gioco.
+Gestione della schermata di gioco: inserimento, eliminazione e controllo di ogni entità presente sul campo di gioco, con successiva rappresentazione grafica di esse.
+Implementazione di classi View per ogni entità, cosi da realizzare animazioni e aggiungere gli elementi grafici del gioco.
 
 \paragraph{Soluzione:}
-Ho creato un'interfaccia GamePerformance che ha lo scopo di gestire tutti i funzionamenti pratici della partita, con relative implementazioni nella classe GamePerformanceImpl.
-Per quanto riguarda gli sprites delle entità, i cui indici devono essere aggiornati ciclicamente per realizzare una animazione, già caricate nella cartella Resources; ho creato un'interfaccia View che ha lo scopo di disegnare una view, tramite apposito metodo draw, e gestire gli input da tastiera e da mouse, che ne determinano i cambiamenti, tramite apposito metodo update.
-Tale metodo richiede al GameController di aggiornare gli indici .
-La view quando viene creata instanzia un oggetto LevelImpl che crea il livello da giocare, `e stato inserito nella view dato che utilizzo librerie grafiche per caricare la mappa, mi avvalgo di una immagine pixel per pixel dove in base all’indice RGB, nel nostro caso rosso, ci permette di ottenere la posizione e il tipo di blocco presente. Tramite getLevelMap() si restituiscono solo i valori interi sia delle posizioni che dei blocchi, per poterli poi passare al gameplay al momento della creazione e inizializzare correttamente le entit`a del livello (per esempio blocco).
+Ho creato un'interfaccia GamePerformance e una implementazione GamePerformanceImpl.
+Queste classi sono importanti perché fanno un "resoconto" di tutti gli elementi che si riconducono al Model del progetto, cosi da permettere alle classi di View e Controller di accedervi da li.
+Ho realizzato un'interfaccia View, che per ogni entità, cerchi l'immagine tra le risorse, realizzi l'animazione o estrapoli il frame desiderato del png.
+Ogni componente del gruppo successivamente, per realizzare la grafica dei propri elementi, si è appoggiato a tale interfaccia per mantenere un ordine di implementazione simile.
 
-\subsubsection{Gestione listener generici di input da tastiera e mouse}
+\subsubsection{Gestione degli input }
 
 \begin{figure}[H]
 \centering{}
@@ -202,10 +199,11 @@ La view quando viene creata instanzia un oggetto LevelImpl che crea il livello d
 \end{figure}
 
 \paragraph{Problema:}
-Per giocare è necessario far muovere il giocatore sulla schermata di gioco, così da poter vincere e superare i livelli.
+Per giocare è necessario far muovere il giocatore sulla schermata di gioco, cliccare sui pulsanti e premere i tasti giusti per aggiustare le finestre.
 
 \paragraph{Soluzione:}
-Rispettando il più possibile il pattern architetturale MVC, ho gestito gli input da tastiera tramite un apposito EventHandler nel pannello di View con maggior priorità. Il KeyCode registrato dall'evento l'ho poi passato alla classe principale di Controller che, a sua volta, lo ha delegato al Controller specifico del personaggio in grado di muoversi, e ha fatto si che la classe generale di Model registrasse il dato nella sua lista di input.
+La classe principale che si occupa di tale compito è WindowGame, che contiene la scena principale del gioco, alla quale si appoggiano gli input, grazie al metodo di Javafx setOnKeyPressed e setOnKeyRealeased.
+Tale input, una volta riconosciuto, passa attraverso il controller generico per raggiungere quello desiderato, che compierà l'azione richiesta dallo specifico tasto.
 
 \subsubsection{Creazione delle finestre}
 
@@ -216,13 +214,16 @@ Rispettando il più possibile il pattern architetturale MVC, ho gestito gli inpu
 \end{figure}
 
 \paragraph{Problema:}
-Il gioco obbligatoriamente deve gestire le varie collisioni tra entit`a o con i bordi del livello.
+Il campo di gioco si compone principalmente da una griglia di 3x5 finestre, ognuna delle quali è un'entità a se stante, con la caratteristica di essere integra o rotta, a inizio partita.
 
 \paragraph{Soluzione:}
-Studiando il problema mi sono reso conto che un’ottima soluzione per il controllo delle collisioni fosse predisporre ogni Entit`a di una hitbox, un oggetto Rectangle che possiede un metodo che mi permette di sapere quando due di essi collidono. Utilizzo il Template Method Pattern, eredito update() da AbstractComponent, che ad ogni richiamo controlla se la relativa entit`a `e in collisione con un’altra gestendone le conseguenze.
 
-
-
+Ho realizzato le classi WindowsController, FixWindowsComponent, FixedWindowsComponent e WindowsView per la gestione di questo problema. 
+I component  si occupano di conferire alle entità la capacità di aggiustare finestre e la capacità di essere aggiustate.
+FixWindowsComponent, associato all'entità Felix, si occupa di ricercare la finestra che sta entrando in collisione con Felix, e tramite la sua posizione, impostare il suo campo booleano a True.
+FixedWindowsComponent, associato ad ogni finestra in maniera indipendente, si occupa della gestione di questo booleano.
+La classe principale che si occupa della schermata di gioco WindowGame, dopo controllato il livello, richiama WindowsController, che ha il compito di creare la griglia di finestre e controllare le condizioni di vittoria.
+Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni WindowsView.
 
 
 
@@ -278,9 +279,45 @@ Studiando il problema mi sono reso conto che un’ottima soluzione per il contro
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
+
 \section{Metodologie di lavoro}
+Per sviluppare questo progetto, dopo alcuni incontri di gruppo, abbiamo clonato il repository git ognuno in locale, cosi da poterci lavorare individualmente.
+Ci siamo confrontati per ogni dubbio e, ogni qualvolta fosse necessario, abbiamo realizzato i commit con le nostre aggiunte al progetto principale, tramite comandi pull e push.
+
+\subsubsection{Golesano Giulia}
+\begin{itemize}
+    \item Mi sono occupata autonomamente di:
+    \item Inserimento png e risorse per il gioco.
+    \item Creazione dell'interfaccia di View.
+    \item Creazione di interfaccia e implementazione di GamePerformance.
+    \item Gestione degli input da tastiera
+    \item Creazione dello sfondo di gioco
+    \item Creazione dell'entità finestra, della griglia e dei componenti a esse connessi.
+    \item Creazione dei Test relativi alle classi sopra elencate.
+\end{itemize}
+
 \section{Note di sviluppo}
+\subsubsection{Golesano Giulia}
+\begin{itemize}
+\item Utilizzo di Optional
+    \item Utilizzo di Stream e Lambda expressions
+
+\chapter{Commenti Finali}
+\subsubsection{Golesano Giulia}
+Quando ho iniziato a lavorare al progetto mi sentivo molto spaesata e incapace, rispetto ad una reale applicazione di ciò che avevo studiato.
+Man mano che i mesi andavano avanti, la possibilità di lavorarci con calma, durante le lezioni, senza la fretta della sessione di esami, mi ha reso sempre più consapevole di come le cose funzionavano e come potevo realizzare le mie idee.
+Sento inoltre che mi è servito tanto il lavoro di gruppo con i miei compagni, perché ho appreso elasticità rispetto alle velocità e tecniche di lavoro degli altri.
+In conclusione, penso che tutto il gruppo abbia fatto un discreto lavoro.
 
 \chapter{Guida Utente}
-
+L'obiettivo del gioco è aggiustare tutte le finestre, schivando i mattoni lanciati da Ralph e cercando di raggiungere tutti i power ups disponibili.
+I comandi di gioco sono:
+\item A: Movimento verso sinistra.
+\item W: Movimento verso l'alto.
+\item S: Movimento verso il basso.
+\item D: Movimento verso destra.
+\item Z: Se premuto per 1.5 secondi aggiusta la finestra in cui si trova Felix.
+I power ups sono:
+\item Cake:
+\item Bird:
 
