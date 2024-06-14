@@ -8,6 +8,7 @@ import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.CakePositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
+import it.unibo.utilities.GameState;
 
 /**
  * Class to manage a cake power up.
@@ -17,8 +18,10 @@ public class CakeController {
     private final GamePerformance gamePerformance;
     private Entity cake;
     private final ScheduledExecutorService scheduler;
+
     /**
      * Constructor.
+     * 
      * @param gamePerformance
      */
     public CakeController(final GamePerformance gamePerformance) {
@@ -26,21 +29,25 @@ public class CakeController {
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.scheduler = createScheduler();
     }
+
     /**
      * Method to execute a thread.
+     * 
      * @return
      */
     protected ScheduledExecutorService createScheduler() {
         return Executors.newSingleThreadScheduledExecutor();
     }
+
     /**
      * Method to manage the creation.
      */
     public void scheduleCakeCreation() {
         scheduler.scheduleAtFixedRate(() -> {
             generateAndRemoveCake();
-        }, 0, 20, TimeUnit.SECONDS);
+        }, 0, 10, TimeUnit.SECONDS);
     }
+
     /**
      * Method to create and remove a cake.
      */
@@ -55,8 +62,10 @@ public class CakeController {
         this.gamePerformance.addEntity(cake);
         scheduleCakeRemoval(cake);
     }
+
     /**
      * Method to remove a cake.
+     * 
      * @param cakeToRemove
      */
     private void scheduleCakeRemoval(Entity cakeToRemove) {
@@ -67,17 +76,28 @@ public class CakeController {
             }
         }, 10, TimeUnit.SECONDS);
     }
+
     /**
      * Getter of the cake.
+     * 
      * @return
      */
     public Entity getCake() {
         return this.cake;
     }
+
     /**
      * Stop the creation.
      */
     public void stopCakeCreation() {
         scheduler.shutdown();
+    }
+
+    public void update() {
+        if (GameState.getGameState() == GameState.PLAYING) {
+            scheduleCakeCreation();
+        } else if (GameState.getGameState() != GameState.PLAYING) {
+            stopCakeCreation();
+        }
     }
 }
