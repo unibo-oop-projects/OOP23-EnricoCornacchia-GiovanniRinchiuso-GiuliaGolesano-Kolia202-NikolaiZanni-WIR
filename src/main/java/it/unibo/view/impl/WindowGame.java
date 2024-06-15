@@ -47,6 +47,7 @@ public class WindowGame extends Application {
     @SuppressWarnings("unused")
     private Map<Entity, BirdView> birdViews = new HashMap<>();
     private RalphView ralphView;
+    private FelixView felixView;
     private AnchorPane root = new AnchorPane();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
@@ -140,7 +141,7 @@ public class WindowGame extends Application {
             default:
                 break;
         }
-        FelixView felixView = this.addFelixView();
+        this.felixView = this.addFelixView();
         this.ralphView = this.addRalphView();
       /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
           //  Entity currentCake = this.gameController.getCakeController().getCake();
@@ -210,8 +211,9 @@ public class WindowGame extends Application {
                 
                     windowPosition.ifPresent(pos -> {
                         gameEngine.getGameController().getFelixController().fixWindow(pos);
-                        fixedAnimation(pos, felixView);
+                        fixedAnimation(pos);
                         System.out.print("Tasto Z premuto, finestra riparata alla posizione: " + pos + "\n");
+                        this.felixView = this.addFelixView();
                     });
 
                     /* 
@@ -286,7 +288,7 @@ public class WindowGame extends Application {
     /**
      * Method for the animation of a window being fixed.
      */
-    private void fixedAnimation(final Pair<Double, Double> windowPosition, FelixView felixView) {
+    private void fixedAnimation(final Pair<Double, Double> windowPosition) {
         List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
 
         windows.stream()
@@ -296,8 +298,7 @@ public class WindowGame extends Application {
                     WindowsView windowView = new WindowsView(window.getPosition());
                     windowView.fixAnimation();
                     FixedWindowsComponent fixComp = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-                    root.getChildren().add(windowView.fixedwindows());     
-                    felixView.animateFelix();
+                    root.getChildren().add(windowView.fixedwindows());
             });
     }
 
