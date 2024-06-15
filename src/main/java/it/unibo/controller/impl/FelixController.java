@@ -24,6 +24,9 @@ public class FelixController {
     private static final Double FLOOR_Y = 79.0;
     private static final Double MOVE_RIGHT = 3.0;
     private static final Double MOVE_LEFT = -3.0;
+    private static final Double LOWEST_PLATFORM = 535.0;
+    private static final Double SECOND_PLATFORM = 396.0;
+
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
@@ -72,12 +75,18 @@ public class FelixController {
                 if (this.felix.getPosition().getY() < Constants.Floors.FLOOR_1_Y) {
                     return 0;
                 } else {
+                    if (this.felix.getPosition().getY() > LOWEST_PLATFORM) {
+                        return LOWEST_PLATFORM - Constants.Felix.FELIX_START.getY() - Constants.Felix.FELIX_HEIGHT;
+                    }
                     return -FLOOR_Y;
                 }
             case DOWN:
                 if (this.felix.getPosition().getY() > Constants.Floors.FLOOR_3_Y) {
                     return 0;
                 } else {
+                    if (this.felix.getPosition().getY() <= LOWEST_PLATFORM - Constants.Felix.FELIX_HEIGHT && this.felix.getPosition().getY() > SECOND_PLATFORM + Constants.Window.WINDOW_HEIGHT) {
+                        return Constants.Felix.FELIX_START.getY() - this.felix.getPosition().getY();
+                    }
                     return FLOOR_Y;
                 }
             default:
