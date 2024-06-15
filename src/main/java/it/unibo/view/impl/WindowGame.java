@@ -18,6 +18,7 @@ import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
+import it.unibo.utilities.Constants.Ralph;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -45,6 +46,7 @@ public class WindowGame extends Application {
     private Map<Entity, CakeView> cakeViews = new HashMap<>();
     @SuppressWarnings("unused")
     private Map<Entity, BirdView> birdViews = new HashMap<>();
+    private RalphView ralphView;
     private AnchorPane root = new AnchorPane();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
@@ -139,8 +141,7 @@ public class WindowGame extends Application {
                 break;
         }
         FelixView felixView = this.addFelixView();
-        @SuppressWarnings("unused")
-        RalphView ralphView = this.addRalphView();
+        this.ralphView = this.addRalphView();
       /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
           //  Entity currentCake = this.gameController.getCakeController().getCake();
             cakeViews.entrySet().removeIf(entry -> {
@@ -258,7 +259,11 @@ public class WindowGame extends Application {
                     break;
             }
         });
-        //this.gameEngine.gameLoop(this);
+        Thread gameLoopThread = new Thread(() -> {
+            this.gameEngine.gameLoop(this);
+        });
+        gameLoopThread.setDaemon(true); // Imposta il thread come daemon in modo che si chiuda quando l'applicazione termina
+        gameLoopThread.start();
     }
     /**
      * Method that creates a windows grid on the main pane.
@@ -326,12 +331,14 @@ public class WindowGame extends Application {
         return brickView;
     }
     public void update() {
+        this.ralphView.animateRalph();
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
         Set<BrickView> bricksToPrint = new HashSet<>();
         bricks.forEach(b -> {
             BrickView brickView = this.addBrickView(b);
             bricksToPrint.add(brickView);
         });
+        bricksToPrint.forEach(BrickView::animateBrick);
     }
     
 }
