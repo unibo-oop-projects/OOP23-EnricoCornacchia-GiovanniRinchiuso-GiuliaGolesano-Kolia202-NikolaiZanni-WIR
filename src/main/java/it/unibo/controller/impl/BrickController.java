@@ -52,8 +52,9 @@ public class BrickController {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
                 && !((MovementComponent) component).canMove(0.0, this.getBrickSpeedByLevel(), brick)) {
-                    System.out.println("Brick removed");
+                    System.out.println(this.gamePerformance.getBricks().size());
                     this.gamePerformance.removeEntity(brick);
+                    System.out.println("Brick removed");
                 }
             }
         }

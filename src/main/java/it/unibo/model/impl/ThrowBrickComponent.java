@@ -31,7 +31,7 @@ public class ThrowBrickComponent extends AbstractComponent {
          */
         public void addBrickToThrow(final Set<Entity> bricks, final Pair<Double, Double> position) {
             if (!blocked) {
-                bricks.add(entityFactoryImpl.createBrick(position));
+                gamePerformance.addEntity(entityFactoryImpl.createBrick(position));
             }
         }
         /**

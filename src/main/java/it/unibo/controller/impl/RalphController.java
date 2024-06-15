@@ -87,6 +87,7 @@ public class RalphController {
     public void update(final Set<Entity> bricks) {
         this.move();
         if (System.currentTimeMillis() - lastThrowTime >= this.getTimeToWait()) {
+            System.out.println("Throwing bricks");
             this.throwBricks(bricks);
             lastThrowTime = System.currentTimeMillis();
         }
