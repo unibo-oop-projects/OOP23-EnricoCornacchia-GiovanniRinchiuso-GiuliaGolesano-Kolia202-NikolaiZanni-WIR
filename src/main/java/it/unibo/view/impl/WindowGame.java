@@ -18,8 +18,8 @@ import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
-import it.unibo.utilities.Constants.Ralph;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -46,7 +46,6 @@ public class WindowGame extends Application {
     private Map<Entity, CakeView> cakeViews = new HashMap<>();
     @SuppressWarnings("unused")
     private Map<Entity, BirdView> birdViews = new HashMap<>();
-    private RalphView ralphView;
     private AnchorPane root = new AnchorPane();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
@@ -92,26 +91,30 @@ public class WindowGame extends Application {
         AnchorPane.setTopAnchor(backgroundImageView, 53.0);
         AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
         AnchorPane.setRightAnchor(backgroundImageView, 0.0);
+
         // Immagine di sfondo 2 (building_top.png)
         Image buildingTopImage = new Image("building_top.png");
         ImageView buildingTopImageView = new ImageView(buildingTopImage);
-        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); // Imposta la larghezza doppia
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);// Imposta l'altezza dell'immagine come                                                                       // la sua dimensione originale
-        AnchorPane.setTopAnchor(buildingTopImageView, 78.0); // Sposta l'immagine verso il basso di 3/4 cm
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); 
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);                                                                      // la sua dimensione originale
+        AnchorPane.setTopAnchor(buildingTopImageView, 78.0);
         AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
         AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
-        buildingTopImageView.setTranslateX(243.5); // Sposta l'immagine di 100 unità lungo l'asse x
-        buildingTopImageView.setTranslateY(9); // Sposta l'immagine di 50 unità lungo l'asse y
+        buildingTopImageView.setTranslateX(243.5);
+        buildingTopImageView.setTranslateY(9);
+
         // Immagine di sfondo 3 (building_centre.png)
         Image newBackgroundImage = new Image("building_centre.png");
         ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
-        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45); // Imposta la larghezza doppia
-        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45); // Imposta l'altezza doppia
-        buildingCentreImageView.setTranslateX(400); // Sposta l'immagine di 100 unità lungo l'asse x
+        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45);
+        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45);
+        buildingCentreImageView.setTranslateX(400);
         buildingCentreImageView.setTranslateY(100);
-        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0); // Sposta l'immagine verso il basso di 3/4 cm
-        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // Centra l'immagine                                                                              // orizzontalmente
+
+        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0);
+        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;                                                                              // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
+
         // Aggiunta delle immagini all'AnchorPane
         root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
         AnchorPane.setRightAnchor(mainMenu, 7.0);
@@ -123,10 +126,12 @@ public class WindowGame extends Application {
         AnchorPane.setRightAnchor(livesView, 70.0);
         AnchorPane.setTopAnchor(livesView, 7.0);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
+
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Wreck-it Ralph");
         primaryStage.show();
+
         switch (this.gameEngine.getGameController().getLevel()) {
             case 1:
                 addWindowsGrid(Constants.Windows.BROKEN_1);
@@ -140,8 +145,10 @@ public class WindowGame extends Application {
             default:
                 break;
         }
+
         FelixView felixView = this.addFelixView();
-        this.ralphView = this.addRalphView();
+        RalphView ralphView = this.addRalphView();
+
       /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
           //  Entity currentCake = this.gameController.getCakeController().getCake();
             cakeViews.entrySet().removeIf(entry -> {
@@ -179,6 +186,7 @@ public class WindowGame extends Application {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play(); */
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case S:
@@ -198,45 +206,30 @@ public class WindowGame extends Application {
                     felixView.animateFelix();
                     break;
                 case Z:
-
+                    zKeyPressed=true;
+                    gameEngine.getGameController().getGamePerformance().addKey(KeyCode.Z);
                     Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController()
                                     .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
                     Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
                                     .getFelix().getTheComponent(ComponentType.HITBOX);
                     HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
-                
-                    System.err.println("the position of the windows hitten is "+ windowPosition);
-                
-                    windowPosition.ifPresent(pos -> {
-                        gameEngine.getGameController().getFelixController().fixWindow(pos);
-                        fixedAnimation(pos, felixView);
-                        System.out.print("Tasto Z premuto, finestra riparata alla posizione: " + pos + "\n");
-                    });
+                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions(); 
 
-                    /* 
                     Thread timerThread = new Thread(() -> {
                         try {
-                            Thread.sleep(3000);
+                            Thread.sleep(1500);
 
                             if (zKeyPressed) {
-                                Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                                Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
-
                                 if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
                                     fixComponentOptional.get() instanceof FixWindowsComponent &&
                                     hitboxComponentOptional.get() instanceof HitboxComponent) {
-
-                                    System.err.println("entro nell'if");
-                                    HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
                                     
                                     windowPosition.ifPresent(pos -> {
-                                        this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                                        System.out.print("Tasto Z premuto per 3 secondi, finestra riparata alla posizione: " + pos + "\n");
+                                        Platform.runLater(() -> {
+                                            this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
+                                            fixedAnimation(pos, felixView);
+                                        });
                                     });
-                                } else {
-                                    System.out.print("I componenti FIXWINDOWS o HITBOX non sono presenti o non sono del tipo corretto\n");
                                 }
                             }
                         } catch (InterruptedException e) {
@@ -247,23 +240,18 @@ public class WindowGame extends Application {
                     });
                     timerThread.start();
 
-                            
 
                     scene.setOnKeyReleased(releasedEvent -> {
                         if (releasedEvent.getCode() == KeyCode.Z) {
                             zKeyPressed = false;
                         }
-                    });*/
+                    });
                     break;
                 default:
                     break;
             }
         });
-        Thread gameLoopThread = new Thread(() -> {
-            this.gameEngine.gameLoop(this);
-        });
-        gameLoopThread.setDaemon(true); // Imposta il thread come daemon in modo che si chiuda quando l'applicazione termina
-        gameLoopThread.start();
+        //this.gameEngine.gameLoop(this);
     }
     /**
      * Method that creates a windows grid on the main pane.
@@ -331,14 +319,12 @@ public class WindowGame extends Application {
         return brickView;
     }
     public void update() {
-        this.ralphView.animateRalph();
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
         Set<BrickView> bricksToPrint = new HashSet<>();
         bricks.forEach(b -> {
             BrickView brickView = this.addBrickView(b);
             bricksToPrint.add(brickView);
         });
-        bricksToPrint.forEach(BrickView::animateBrick);
     }
     
 }

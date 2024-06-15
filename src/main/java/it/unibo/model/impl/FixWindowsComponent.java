@@ -3,7 +3,6 @@ package it.unibo.model.impl;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.view.impl.WindowsView;
 /**
  * FixWindowsComponent, Felix fixes the windows.
  */

@@ -258,17 +258,13 @@ public final class Constants {
         /**
          * Number of broken windows in the second level.
          */
-        public static final int BROKEN_2 = 8;
+        public static final int BROKEN_2 = 10;
         /**
          * Number of broken windows in the third level.
          */
-        public static final int BROKEN_3 = 10;
+        public static final int BROKEN_3 = 12;
         /**
-         * Number of broken windows in the fourth level.
-         */
-        public static final int BROKEN_4 = 13;
-        /**
-         * Number of broken windows in the fourth level.
+         * Number of total windows.
          */
         public static final int NUM_WINDOWS = 15;
     }

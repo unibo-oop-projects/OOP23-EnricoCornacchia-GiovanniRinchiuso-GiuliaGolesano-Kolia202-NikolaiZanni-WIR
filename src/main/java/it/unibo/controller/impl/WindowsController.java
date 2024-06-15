@@ -48,12 +48,14 @@ public class WindowsController {
      * @return the set of entities.
      */
     public Set<Entity> windowsGrid(final int broken) {
+        System.err.println("numero di finestre rotte: "+broken+" nel livello "+ gamePerformance.getLevel());
         this.entities = new HashSet<>();
-        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(ROWS * COLS, false));
+        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(ROWS * COLS, true));
         for (int i = 0; i < broken; i++) {
-            windowStates.set(i, true);
+            windowStates.set(i, false);
         }
         Collections.shuffle(windowStates);
+        System.err.println(windowStates);
 
         int index = 0;
         for (int row = 0; row < ROWS; row++) {
