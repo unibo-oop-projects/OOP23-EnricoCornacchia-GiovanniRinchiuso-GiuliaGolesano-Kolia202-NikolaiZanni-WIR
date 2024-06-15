@@ -21,7 +21,7 @@ public class FelixController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final Entity felix;
     private final GamePerformance gamePerformance;
-    private static final Double FLOOR_Y = 70.0;
+    private static final Double FLOOR_Y = 79.0;
     private static final Double MOVE_RIGHT = 3.0;
     private static final Double MOVE_LEFT = -3.0;
     /**

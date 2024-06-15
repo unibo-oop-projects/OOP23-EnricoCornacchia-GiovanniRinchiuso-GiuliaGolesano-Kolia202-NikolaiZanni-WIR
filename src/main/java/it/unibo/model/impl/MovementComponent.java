@@ -1,6 +1,7 @@
 package it.unibo.model.impl;
 
 import it.unibo.common.Pair;
+import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constants;
@@ -26,6 +27,8 @@ public class MovementComponent extends AbstractComponent {
         final double newY = entity.getPosition().getY() + y;
         if (canMove(x, y, entity)) {
             entity.setLastPosition(entity.getPosition());
+            HitboxComponent hitbox = (HitboxComponent) entity.getTheComponent(ComponentType.HITBOX).get();
+            hitbox.setHitbox(new Rectangle(newX, newY, hitbox.getHitbox().getWidth(), hitbox.getHitbox().getHeight()));
             entity.setPosition(new Pair<>(newX, newY));
         }
     }

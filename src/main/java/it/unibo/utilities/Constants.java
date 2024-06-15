@@ -116,11 +116,11 @@ public final class Constants {
         /**
          * The width of the window.
          */
-        public static final double WINDOW_WIDTH = 40;
+        public static final double WINDOW_WIDTH = 39;
         /**
          * The height of the window.
          */
-        public static final double WINDOW_HEIGHT = 40;
+        public static final double WINDOW_HEIGHT = 60;
     }
     /**
      * Cake constaints.
@@ -237,7 +237,7 @@ public final class Constants {
         /**
          * The position of the first floor.
          */
-        public static final double FLOOR_1_Y = 200.0;
+        public static final double FLOOR_1_Y = 390.0;
         /**
          * The position of the second floor.
          */

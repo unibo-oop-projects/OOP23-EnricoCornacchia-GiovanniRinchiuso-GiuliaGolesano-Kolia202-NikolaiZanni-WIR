@@ -168,13 +168,9 @@ public class HitboxComponent extends AbstractComponent {
      * or an empty Optional if no collisions occurred.
      */
     public Optional<Pair<Double, Double>> checkWindowsCollisions() {
-        System.out.println("felix: " + this.getEntity().getPosition() + "punto a destra: " + (this.getEntity().getPosition().getX() + Constants.Felix.FELIX_WIDTH) + (this.getEntity().getPosition().getY()) + "punto in basso: " + (this.getEntity().getPosition().getX()) + (this.getEntity().getPosition().getY() + Constants.Felix.FELIX_HEIGHT));
         for (Entity e : this.getEntity().getGamePerformance().getWindows()) {
-            System.out.println("collisione " + e.getPosition() + "punto a destra: " + (e.getPosition().getX() + Constants.Window.WINDOW_WIDTH) + (e.getPosition().getY()) + "punto in basso: " + (e.getPosition().getX()) + (e.getPosition().getY() + Constants.Window.WINDOW_HEIGHT));
             if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get())) {
-                System.out.println("collisione INSIDE " + e.getPosition());
                 if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.WINDOW)) {
-                    System.out.println("posizione finestra: " + e.getPosition());
                     return Optional.of(e.getPosition());
                 }
             }

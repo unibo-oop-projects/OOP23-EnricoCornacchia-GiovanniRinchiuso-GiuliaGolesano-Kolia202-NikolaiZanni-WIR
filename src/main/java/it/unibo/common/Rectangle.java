@@ -85,7 +85,9 @@ public class Rectangle {
      * @return true if the rectangles intersect, false otherwise
      */
     public boolean intersects(final Rectangle other) {
-        return this.getX() < other.getX() + other.getWidth() && this.getX() + this.getWidth() > other.getX() 
-               && this.getY() < other.getY() + other.getHeight() && this.getY() + this.getHeight() > other.getY();
+        return (this.getX() <= other.getX() + other.getWidth() 
+               && this.getX() + this.getWidth() >= other.getX() 
+               && this.getY() <= other.getY() + other.getHeight() 
+               && this.getY() + this.getHeight() >= other.getY());
     }
 }

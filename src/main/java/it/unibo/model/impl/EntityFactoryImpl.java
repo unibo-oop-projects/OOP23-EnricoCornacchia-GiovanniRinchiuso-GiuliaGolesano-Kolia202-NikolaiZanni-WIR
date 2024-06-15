@@ -66,7 +66,6 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBrick(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(), 
-        new HitboxComponent(pos.getX(), pos.getY(), EntityType.BRICK),
         new HitboxComponent(pos.getX(), pos.getY(), EntityType.BRICK)));
         return new EntityImpl(EntityType.BRICK, pos, this.gamePerformance, components);
     }
