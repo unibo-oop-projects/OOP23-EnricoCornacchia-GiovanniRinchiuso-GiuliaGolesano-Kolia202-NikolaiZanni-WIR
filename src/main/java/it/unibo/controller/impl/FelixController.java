@@ -21,7 +21,9 @@ public class FelixController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final Entity felix;
     private final GamePerformance gamePerformance;
-    private static final int FLOOR_Y = 70;
+    private static final Double FLOOR_Y = 70.0;
+    private static final Double MOVE_RIGHT = 3.0;
+    private static final Double MOVE_LEFT = -3.0;
     /**
      * Constructs a new FelixController object.
      * Initializes the felix instance using the provided entityFactoryImpl.
@@ -37,7 +39,7 @@ public class FelixController {
      */
     public void moveRight() {
         ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
-                                       .move(1, 0, this.felix);
+                                       .move(MOVE_RIGHT, 0, this.felix);
         //System.out.print("moved right\n");
     }
     /**
@@ -45,7 +47,7 @@ public class FelixController {
      */
     public void moveLeft() {
         ((MovementComponent) this.felix.getTheComponent(ComponentType.MOVEMENT).get())
-                                       .move(-1, 0, this.felix);
+                                       .move(MOVE_LEFT, 0, this.felix);
         //System.out.print("moved left\n");
     }
     /**
