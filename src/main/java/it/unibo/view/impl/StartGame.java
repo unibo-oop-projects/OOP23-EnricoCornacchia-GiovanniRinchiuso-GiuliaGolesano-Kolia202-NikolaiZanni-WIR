@@ -171,13 +171,12 @@ public final class StartGame extends Application {
     private void startWindowGame(Stage primaryStage, int level) {
         try {
             WindowGame windowGame = new WindowGame();
-            GameController gameController = new GameController();
 
             System.out.println("Livello passato: " + level);
-            gameController.setLevel(level);
-            System.out.println("Livello impostato: " + gameController.getLevel());
+            windowGame.getGameEngine().getGameController().setLevel(level);
+            System.out.println("Livello impostato: " + windowGame.getGameEngine().getGameController().getLevel());
             windowGame.start(primaryStage);
-            System.out.println("Livello nel controller: " + gameController.getLevel());
+            System.out.println("Livello nel controller: " + windowGame.getGameEngine().getGameController().getLevel());
         } catch (Exception e) {
             e.printStackTrace();
         }

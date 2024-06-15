@@ -323,5 +323,9 @@ public class WindowGame extends Application {
             bricksToPrint.add(brickView);
         });
     }
+
+    public GameEngineImpl getGameEngine() {
+        return this.gameEngine;
+    }
     
 }
