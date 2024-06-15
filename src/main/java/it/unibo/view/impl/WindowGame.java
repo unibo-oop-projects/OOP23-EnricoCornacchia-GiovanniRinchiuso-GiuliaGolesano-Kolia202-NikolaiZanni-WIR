@@ -227,6 +227,7 @@ public class WindowGame extends Application {
                                         Platform.runLater(() -> {
                                             this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
                                             fixedAnimation(pos);
+                                            this.felixView = this.addFelixView();
                                         });
                                     });
                                 }
