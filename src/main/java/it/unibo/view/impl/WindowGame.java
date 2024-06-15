@@ -214,6 +214,7 @@ public class WindowGame extends Application {
                     HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
                     Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions(); 
 
+
                     Thread timerThread = new Thread(() -> {
                         try {
                             Thread.sleep(1500);
@@ -276,16 +277,43 @@ public class WindowGame extends Application {
      */
     private void fixedAnimation(final Pair<Double, Double> windowPosition) {
         List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
-
+    
         windows.stream()
-        .filter(w -> w.getPosition().equals(windowPosition))
-        .findFirst()
-        .ifPresent(window -> {
-                    WindowsView windowView = new WindowsView(window.getPosition());
-                    windowView.fixAnimation();
-                    root.getChildren().add(windowView.fixedwindows());
+            .filter(w -> {
+                boolean positionMatches = w.getPosition().equals(windowPosition);
+                if (positionMatches) {
+                    System.out.println("Position matches for window: " + windowPosition);
+                }
+                return positionMatches;
+            })
+            .map(w -> w.getTheComponent(ComponentType.FIXEDWINDOWS))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .filter(c -> {
+                boolean isFixedWindowsComponent = c instanceof FixedWindowsComponent;
+                if (!isFixedWindowsComponent) {
+                    System.out.println("Component is not an instance of FixedWindowsComponent");
+                }
+                return isFixedWindowsComponent;
+            })
+            .map(c -> (FixedWindowsComponent) c)
+            .filter(fixedWindowsComponent -> {
+                boolean isNotFixed = !fixedWindowsComponent.getFixed();
+                if (!isNotFixed) {
+                    System.out.println("Window is already fixed " + fixedWindowsComponent.getFixed());
+                }
+                return isNotFixed;
+            })
+            .findFirst()
+            .ifPresent(windowComponent -> {
+                System.out.println("Fixing window at position: " + windowPosition);
+                WindowsView windowView = new WindowsView(windowPosition);
+                windowView.fixAnimation();
+                Platform.runLater(() -> root.getChildren().add(windowView.fixedwindows())); // Ensure this runs on the JavaFX application thread
             });
     }
+    
+    
 
     /**
      * Method that adds Felix to the main pane.
