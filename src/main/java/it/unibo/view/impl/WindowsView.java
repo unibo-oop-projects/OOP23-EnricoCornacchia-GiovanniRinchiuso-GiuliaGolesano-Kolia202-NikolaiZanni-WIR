@@ -5,6 +5,7 @@ import it.unibo.view.api.View;
 import javafx.animation.Timeline;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -22,18 +23,22 @@ public class WindowsView implements View {
     private Image spriteSheet;
     private Timeline timeline;
     private int currentFrame;
+    private boolean isFixed;
+
     /**
      * Constructor.
      * @param pos.
      */
     public WindowsView(final Pair<Double, Double> pos) {
-        spriteSheet=getSource("window");
-        imageView=new ImageView();
+        spriteSheet = getSource("window");
+        imageView = new ImageView();
         imageView.setFitHeight(FRAME_HEIGHT);
         imageView.setFitWidth(FRAME_WIDTH);
         this.imageView.setX(pos.getX());
-        this.imageView.setY(pos.getY());  
+        this.imageView.setY(pos.getY());
+        this.isFixed = false; // Initially, the window is broken
     }
+
     /**
      * {@inheritDoc}
      */
@@ -41,27 +46,44 @@ public class WindowsView implements View {
     public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
+
     /**
      * Method to change the animation of the fixing window.
      */
     public void fixAnimation() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING){
-            return ;
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
+            return;
         }
-        currentFrame = 0;
+
+        if (isFixed) {
+            return; 
+        }
+        
+        currentFrame = FRAME_COUNT - 1;
+        Platform.runLater(() -> imageView.setImage(getFrame(currentFrame))); 
+
         timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
         timeline.setCycleCount(FRAME_COUNT);
-        timeline.setOnFinished(e -> imageView.setImage(getFrame(FRAME_COUNT - 1)));
+        timeline.setOnFinished(e -> {
+            Platform.runLater(() -> imageView.setImage(getFrame(0)));
+            isFixed = true;
+        });
         timeline.play();
     }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void updateFrame() {
-        imageView.setImage(getFrame(currentFrame));
-        currentFrame++;
+        if (currentFrame >= 0) {
+            Platform.runLater(() -> {
+                imageView.setImage(getFrame(currentFrame));
+                currentFrame--;
+            });
+        }
     }
+
     /**
      * {@inheritDoc}
      */
@@ -69,6 +91,7 @@ public class WindowsView implements View {
     public Image getFrame(final int index) {
         return new WritableImage(spriteSheet.getPixelReader(), index * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT);
     }
+
     /**
      * {@inheritDoc}
      */
@@ -76,20 +99,24 @@ public class WindowsView implements View {
     public ImageView getImageView() {
         return this.imageView;
     }
+
     /**
      * Static view of a fixed window.
      * @return the image view of a fixed window.
      */
     public ImageView fixedwindows() {
         this.imageView.setImage(getFrame(0));
+        isFixed = true; // Mark the window as fixed
         return this.imageView;
     }
+
     /**
      * Static view of a broken window.
      * @return the image view of a broken window.
      */
     public ImageView brokenWindow() {
         this.imageView.setImage(getFrame(FRAME_COUNT - 1));
+        isFixed = false; // Mark the window as broken
         return this.imageView;
     }
 }

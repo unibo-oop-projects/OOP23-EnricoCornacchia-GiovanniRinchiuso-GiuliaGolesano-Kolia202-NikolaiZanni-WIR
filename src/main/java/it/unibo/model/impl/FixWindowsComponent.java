@@ -20,14 +20,15 @@ public class FixWindowsComponent extends AbstractComponent {
      * @param windowPosition.
      * @param gamePerformance.
      */
-    public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance) {
+    public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance ) {
+        System.err.println("fixWindowComponent called");
         gamePerformance.getWindows().stream()
         .filter(w -> w.getPosition().equals(windowPosition))
         .findFirst()
         .ifPresent(window -> {
             window.getTheComponent(ComponentType.FIXEDWINDOWS)
-                  .map(c -> (FixedWindowsComponent) c)
-                  .ifPresent(FixedWindowsComponent::setFixed);
-        });
+                    .map(c -> (FixedWindowsComponent) c)
+                    .ifPresent(FixedWindowsComponent::setFixed);
+            });
     }
 }

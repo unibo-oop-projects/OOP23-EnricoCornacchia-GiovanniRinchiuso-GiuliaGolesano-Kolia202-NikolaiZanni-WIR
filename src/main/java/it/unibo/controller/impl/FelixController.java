@@ -104,6 +104,7 @@ public class FelixController {
      * @param windowPosition the position of the window to fix.
      */
     public void fixWindow(final Pair<Double, Double> windowPosition) {
+        System.err.println("FelixController called");
         final FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
         fixComp.fixing(windowPosition, this.gamePerformance);
     }
