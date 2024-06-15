@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import it.unibo.model.api.ComponentType;
+import it.unibo.view.impl.HighPointsView;
+import it.unibo.view.impl.PointsView;
 
 /**
  * PointsComponent represents the points acquired by an entity.
@@ -15,7 +17,9 @@ import it.unibo.model.api.ComponentType;
 public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
-    private final String filename = "src/main/java/it/unibo/model/impl/scores.txt";
+    private final static String filename = "src/main/java/it/unibo/model/impl/scores.txt";
+    private PointsView pointsView;
+    private HighPointsView highPointsView;
 
     /**
      * Constructor for PointsComponent.
@@ -23,7 +27,20 @@ public class PointsComponent extends AbstractComponent {
     public PointsComponent() {
         this.points = 0;
         this.highScore = 0;
-        writeToFile(0);
+        readFromFile();
+    }
+
+    /**
+     * Resets the high score to zero and writes it to the file on first launch.
+     */
+    public static void resetHighScoreOnFirstLaunch() {
+        try (FileWriter fileWriter = new FileWriter(filename);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.write(Integer.toString(0));
+            bufferedWriter.newLine();
+        } catch (IOException ex) {
+            System.out.println("Error writing file: " + filename);
+        }
     }
 
     /**
@@ -75,6 +92,26 @@ public class PointsComponent extends AbstractComponent {
             highScore = this.points;
             writeToFile(highScore);
         }
+
+        if (pointsView != null) {
+            pointsView.updatePointsLabel();
+        }
+
+        if (highPointsView != null) {
+            highPointsView.updateHighPointsLabel();
+        }
+    }
+
+    /**
+     * Sets the current points.
+     * 
+     * @param points the points to set
+     */
+    public void setPoints(final int points) {
+        this.points = points;
+        if (pointsView != null) {
+            pointsView.updatePointsLabel();
+        }
     }
 
     /**
@@ -100,5 +137,23 @@ public class PointsComponent extends AbstractComponent {
     @Override
     public ComponentType getComponent() {
         return ComponentType.POINTS;
+    }
+
+    /**
+     * Sets the PointsView associated with this PointsComponent.
+     *
+     * @param pointsView the PointsView to set
+     */
+    public void setPointsView(PointsView pointsView) {
+        this.pointsView = pointsView;
+    }
+
+    /**
+     * Sets the HighPointsView associated with this PointsComponent.
+     *
+     * @param highPointsView the HighPointsView to set
+     */
+    public void setHighPointsView(HighPointsView highPointsView) {
+        this.highPointsView = highPointsView;
     }
 }

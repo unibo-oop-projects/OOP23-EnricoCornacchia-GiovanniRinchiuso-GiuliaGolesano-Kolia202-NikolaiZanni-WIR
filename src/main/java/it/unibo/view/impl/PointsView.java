@@ -14,6 +14,7 @@ public class PointsView extends StackPane {
     private final int PREWIDTH = 150;
     private final int PREHEIGH = 25;
     private final Double BOTTOM = 20.0;
+    private Label scoreValueLabel;
 
     /**
      * Constructs a PointsView with the given PointsComponent.
@@ -28,9 +29,11 @@ public class PointsView extends StackPane {
     /**
      * Updates the score label.
      */
-    private void updatePointsLabel() {
+    public void updatePointsLabel() {
+        getChildren().clear(); // Clear existing labels before updating
+
         Label scoreTitleLabel = new Label("SCORE:");
-        Label scoreValueLabel = new Label("" + pointsComponent.getPoints());
+        scoreValueLabel = new Label("" + pointsComponent.getPoints());
 
         scoreTitleLabel.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: red; -fx-background-color: transparent;");

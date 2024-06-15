@@ -16,18 +16,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.Interpolator;
+import it.unibo.model.impl.PointsComponent;
 
 public final class StartGameView extends Application {
     private Button level1Button;
     private Button level2Button;
     private Button level3Button;
     private Button infoButton;
+    private static boolean firstLaunch = true;
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
         primaryStage.setTitle("StartGame");
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
+
+        if (firstLaunch) {
+            PointsComponent.resetHighScoreOnFirstLaunch();
+            firstLaunch = false;
+        }
 
         Image imageA = new Image("fix-it_felix_title.png");
         ImageView imageViewA = new ImageView(imageA);

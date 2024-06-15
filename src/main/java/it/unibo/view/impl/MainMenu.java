@@ -32,6 +32,7 @@ public class MainMenu extends StackPane {
 
     /**
      * Constructs a MainMenu.
+     * 
      * @param gameState.
      */
     public MainMenu(final Stage gameStage) {
@@ -69,8 +70,10 @@ public class MainMenu extends StackPane {
         @SuppressWarnings("unused")
         private final Stage gameStage;
 
+
         /**
          * Constructs an AnotherStage.
+         * 
          * @param gameState
          */
         public AnotherStage(final Stage gameStage) {
@@ -93,8 +96,7 @@ public class MainMenu extends StackPane {
                     Color.RED,
                     BorderStrokeStyle.SOLID,
                     CornerRadii.EMPTY,
-                    new BorderWidths(5)
-            )));
+                    new BorderWidths(5))));
 
             final ImageView topImageView = new ImageView(topImage);
             topImageView.setFitWidth(Constants.Button.TOP_IMAGE_WIDTH);
@@ -131,8 +133,8 @@ public class MainMenu extends StackPane {
                 }
             });
             homeButton.setOnMouseClicked(event -> {
-                gameStage.close(); 
-                close(); 
+                gameStage.close();
+                close();
                 try {
                     new StartGameView().start(new Stage());
                 } catch (Exception e) {

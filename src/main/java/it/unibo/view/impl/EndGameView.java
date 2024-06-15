@@ -22,6 +22,8 @@ import it.unibo.model.impl.PointsComponent;
  * This class provides a simple "Game Over" message.
  */
 public final class EndGameView extends Application {
+    private PointsComponent pointsComponent;
+    private HighPointsView highPointsView;
 
     /**
      * Starts the end game screen.
@@ -32,6 +34,11 @@ public final class EndGameView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         GameState.setGameState(GameState.GAMEOVER);
+
+        pointsComponent = new PointsComponent();
+
+        highPointsView = new HighPointsView(pointsComponent);
+        pointsComponent.setHighPointsView(highPointsView);
 
         ImageView background = new ImageView(new Image("losegame1.png"));
         background.setFitWidth(700);
@@ -79,16 +86,19 @@ public final class EndGameView extends Application {
      * @param primaryStage the primary stage of the application
      */
     private void showButtonsAndPoints(StackPane root, Stage primaryStage) {
-        PointsComponent pointsComponent = new PointsComponent();
-        PointsView pointsView = new PointsView(pointsComponent);
-        HighPointsView highPointsView = new HighPointsView(pointsComponent);
 
-        pointsView.setStyle(
-                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
+        pointsComponent = new PointsComponent();
+
+        highPointsView = new HighPointsView(pointsComponent);
+        pointsComponent.setHighPointsView(highPointsView);
+
         highPointsView.setStyle(
                 "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
 
-        HBox pointsBox = new HBox(20, pointsView, highPointsView);
+        // Update the high points label
+        highPointsView.updateHighPointsLabel();
+
+        HBox pointsBox = new HBox(20, highPointsView);
         pointsBox.setAlignment(Pos.CENTER);
 
         AnchorPane pointsPane = new AnchorPane();
