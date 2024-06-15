@@ -3,6 +3,7 @@ package it.unibo.view.impl;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -208,6 +209,7 @@ public class WindowGame extends Application {
                 
                     windowPosition.ifPresent(pos -> {
                         gameEngine.getGameController().getFelixController().fixWindow(pos);
+                        fixedAnimation(pos, felixView);
                         System.out.print("Tasto Z premuto, finestra riparata alla posizione: " + pos + "\n");
                     });
 
@@ -261,7 +263,6 @@ public class WindowGame extends Application {
     /**
      * Method that creates a windows grid on the main pane.
      * 
-     * @param root
      * @param broken the number of broken windows.
      */
     private void addWindowsGrid(final int broken) {
@@ -277,6 +278,24 @@ public class WindowGame extends Application {
                 root.getChildren().add(windowView.brokenWindow());
         });
     }
+    /**
+     * Method for the animation of a window being fixed.
+     */
+    private void fixedAnimation(final Pair<Double, Double> windowPosition, FelixView felixView) {
+        List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
+
+        windows.stream()
+        .filter(w -> w.getPosition().equals(windowPosition))
+        .findFirst()
+        .ifPresent(window -> {
+                    WindowsView windowView = new WindowsView(window.getPosition());
+                    windowView.fixAnimation();
+                    FixedWindowsComponent fixComp = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+                    root.getChildren().add(windowView.fixedwindows());     
+                    felixView.animateFelix();
+            });
+    }
+
     /**
      * Method that adds Felix to the main pane.
      * 

@@ -45,13 +45,16 @@ public class WindowsView implements View {
      * Method to change the animation of the fixing window.
      */
     public void fixAnimation() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING){
-            return ;
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
+            return;
         }
-        currentFrame = 0;
+        
+        currentFrame = FRAME_COUNT - 1;
+        imageView.setImage(getFrame(currentFrame)); 
+
         timeline = new Timeline(new KeyFrame(Duration.millis(ANIMATION_DURATION / FRAME_COUNT), e -> updateFrame()));
         timeline.setCycleCount(FRAME_COUNT);
-        timeline.setOnFinished(e -> imageView.setImage(getFrame(FRAME_COUNT - 1)));
+        timeline.setOnFinished(e -> imageView.setImage(getFrame(0)));
         timeline.play();
     }
     /**
@@ -59,8 +62,10 @@ public class WindowsView implements View {
      */
     @Override
     public void updateFrame() {
-        imageView.setImage(getFrame(currentFrame));
-        currentFrame++;
+        if (currentFrame >= 0) {
+            imageView.setImage(getFrame(currentFrame));
+            currentFrame--;
+        }
     }
     /**
      * {@inheritDoc}
