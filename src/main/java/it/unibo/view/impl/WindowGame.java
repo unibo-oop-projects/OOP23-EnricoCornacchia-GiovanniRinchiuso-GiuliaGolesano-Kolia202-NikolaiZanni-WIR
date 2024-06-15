@@ -76,7 +76,6 @@ public class WindowGame extends Application {
         this.gameEngine.getGameController().getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
-        
 
         Pane blackPane = new Pane();
         blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
@@ -227,7 +226,7 @@ public class WindowGame extends Application {
                                     windowPosition.ifPresent(pos -> {
                                         Platform.runLater(() -> {
                                             this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                                            fixedAnimation(pos, felixView);
+                                            fixedAnimation(pos);
                                         });
                                     });
                                 }
@@ -283,7 +282,6 @@ public class WindowGame extends Application {
         .ifPresent(window -> {
                     WindowsView windowView = new WindowsView(window.getPosition());
                     windowView.fixAnimation();
-                    FixedWindowsComponent fixComp = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
                     root.getChildren().add(windowView.fixedwindows());
             });
     }
