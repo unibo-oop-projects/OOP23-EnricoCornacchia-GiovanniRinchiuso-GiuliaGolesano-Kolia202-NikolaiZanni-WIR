@@ -38,7 +38,7 @@ public class BrickController {
         for (final Entity brick : this.gamePerformance.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
-                    ((MovementComponent) component).move(0.0, -this.getBrickSpeedByLevel(), brick);
+                    ((MovementComponent) component).move(0.0, this.getBrickSpeedByLevel(), brick);
                 }
             }
         }
@@ -51,7 +51,7 @@ public class BrickController {
         for (final Entity brick : this.gamePerformance.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
-                && !((MovementComponent) component).canMove(0.0, -this.getBrickSpeedByLevel(), brick)) {
+                && !((MovementComponent) component).canMove(0.0, this.getBrickSpeedByLevel(), brick)) {
                     System.out.println("Brick removed");
                     this.gamePerformance.removeEntity(brick);
                 }
