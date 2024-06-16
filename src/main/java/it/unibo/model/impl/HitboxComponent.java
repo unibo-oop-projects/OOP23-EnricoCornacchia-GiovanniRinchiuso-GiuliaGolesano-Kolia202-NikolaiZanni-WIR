@@ -21,6 +21,7 @@ import it.unibo.utilities.Constants.Window;
 public class HitboxComponent extends AbstractComponent {
 
     private Rectangle hitbox;
+    private boolean removeEntity = false;
     @SuppressWarnings("unused")
     private final double x, y;
 
@@ -70,25 +71,25 @@ public class HitboxComponent extends AbstractComponent {
             this.checkEdgesCollisions();
             this.checkOtherEntitiesCollisions();
             //this.checkPlatformCollisions();
-            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                                        Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
+            //this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
+                                        //Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
         } else if (type == EntityType.BRICK) {
             this.checkEdgesCollisions();
             this.checkOtherEntitiesCollisions();
-            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                                        Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
+            //this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
+                                        //Brick.BRICK_WIDTH, Brick.BRICK_HEIGHT);
         } else if (type == EntityType.WINDOW) {
             this.checkOtherEntitiesCollisions();
-            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                                        Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
+            //this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
+                                        //Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         } else if (type == EntityType.CAKE) {
             this.checkOtherEntitiesCollisions();
-            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                                        Cake.CAKE_WIDTH, Cake.CAKE_HEIGHT);
+            //this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
+                                        //Cake.CAKE_WIDTH, Cake.CAKE_HEIGHT);
         } else if (type == EntityType.BIRD) {
             this.checkOtherEntitiesCollisions();
-            this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                                        Bird.BIRD_WIDTH, Bird.BIRD_HEIGHT);
+            //this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
+                                        //Bird.BIRD_WIDTH, Bird.BIRD_HEIGHT);
         }
     }
 
@@ -135,28 +136,25 @@ public class HitboxComponent extends AbstractComponent {
      * Checks for collisions with other entities.
      */
     public void checkOtherEntitiesCollisions() {
-        for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
-            if (!e.equals(this.getEntity())) {
-                if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get())) {
-                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)) {
-                        this.getEntity().getGamePerformance().removeBrick(e.getPosition());
-                        ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
-                    }
-                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE)) {
-                        this.getEntity().getGamePerformance().removeEntity(e);
-                        ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
-                                                   .setImmortality(((LivesComponent) this.getEntity()
-                                                   .getTheComponent(ComponentType.LIFE).get()));
-                    }
-                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD)) {
-                        this.getEntity().getGamePerformance().removeEntity(e);
-                        ((StopRalphComponent) this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
-                                                 .setStopRalph(((ThrowBrickComponent) this.getEntity()
-                                                 .getTheComponent(ComponentType.THROWBRICK).get()));
-                    }
-                }
+        this.getEntity().getGamePerformance().getEntity().stream()
+            .filter(e -> !e.equals(this.getEntity()))
+            .filter(e -> this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()))
+            .forEach(e -> {
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK) && !this.removeEntity) {
+                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
             }
-        }
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE) && !this.removeEntity) {
+                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
+                .setImmortality(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()));
+            }
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD) && !this.removeEntity) {
+                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                ((StopRalphComponent) this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
+                .setStopRalph(((ThrowBrickComponent) this.getEntity().getTheComponent(ComponentType.THROWBRICK).get()));
+            }
+            });
     }
 
     /**
@@ -204,6 +202,15 @@ public class HitboxComponent extends AbstractComponent {
      */
     public boolean collidesWith(final HitboxComponent other) {
         return this.hitbox.intersects(other.getHitbox());
+    }
+
+    /**
+     * Checks if the entity should be removed from the game.
+     *
+     * @return true if the entity should be removed from the game, false otherwise.
+     */
+    public boolean shouldRemoveEntity() {
+        return this.removeEntity;
     }
 
     /**

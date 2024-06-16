@@ -1,6 +1,9 @@
 package it.unibo.controller.impl;
 
+import java.util.Iterator;
+
 import it.unibo.model.api.ComponentType;
+import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.HitboxComponent;
 
@@ -31,7 +34,14 @@ public class CollisionManager {
      * Check if there is a collision.
      */
     public void check() {
-        this.gamePerformance.getEntity().stream().forEach(e -> ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).update());
+        Iterator<Entity> iterator = this.gamePerformance.getEntity().iterator();
+        while (iterator.hasNext()) {
+            Entity e = iterator.next();
+            HitboxComponent hitboxComponent = (HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get();
+            hitboxComponent.update();
+            if (hitboxComponent.shouldRemoveEntity()) {
+                iterator.remove();
+            }
+        }
     }
-
 }
