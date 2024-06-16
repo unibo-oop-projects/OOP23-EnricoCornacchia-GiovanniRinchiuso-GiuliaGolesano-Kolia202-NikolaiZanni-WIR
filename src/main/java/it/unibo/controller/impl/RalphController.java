@@ -19,6 +19,8 @@ public class RalphController {
     private final Entity ralph;
     private final GamePerformance gamePerformance;
     private long lastThrowTime;
+    private double lastMov;
+    private int count = 0;
     /**
      * Constructor for the RalphController.
      * @param gamePerformance the game performance.
@@ -33,8 +35,11 @@ public class RalphController {
      * Move Ralph.
      */
     public void move() {
-        final double random = Math.random() > 0.5 ? 1 : -1;
-        ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get()).move(random, 0, ralph);
+        if (count % 10 == 0) {
+            lastMov = Math.random() > 0.5 ? 1 : -1;
+        }
+        count++;
+        ((MovementComponent) this.ralph.getTheComponent(ComponentType.MOVEMENT).get()).move(lastMov, 0, ralph);
     }
     /**
      * Throw a brick with the left arm.

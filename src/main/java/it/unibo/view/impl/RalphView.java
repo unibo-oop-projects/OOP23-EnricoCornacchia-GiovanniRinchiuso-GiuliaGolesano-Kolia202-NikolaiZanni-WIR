@@ -59,11 +59,13 @@ public class RalphView implements View {
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
             this.currentFrame = 0;
             this.sprite = getImage();
+            lastMovement = this.ralph.getLastPosition().getX() < this.ralph.getPosition().getX()
+                          ? Movements.RIGHT : Movements.LEFT;
+            final int frameCount = (lastMovement.equals(Movements.RIGHT) ? FRAME_COUNT_DX : FRAME_COUNT_SX);
             this.timeline = new Timeline(
-                            new KeyFrame(Duration.millis(ANIMATION_DURATION / (lastMovement.equals(Movements.RIGHT) 
-                                                         ? FRAME_COUNT_DX : FRAME_COUNT_SX)), e -> updateFrame()));
-            this.timeline.setCycleCount(FRAME_COUNT_DX);
-            this.timeline.setOnFinished(e -> this.getStandingRalph());
+                            new KeyFrame(Duration.millis(ANIMATION_DURATION / frameCount), e -> updateFrame()));
+            this.timeline.setCycleCount(frameCount);
+            this.timeline.setOnFinished(e -> this.imageView.setImage(getFrame(0)));
             this.timeline.play();
         }
     }
@@ -90,11 +92,10 @@ public class RalphView implements View {
      */
     @Override
     public Image getFrame(final int index) {
+        final int frameCount = lastMovement.equals(Movements.RIGHT) ? FRAME_COUNT_DX : FRAME_COUNT_SX;
         return new WritableImage(this.sprite.getPixelReader(),
-                                 index * ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) 
-                                 ? FRAME_COUNT_DX : FRAME_COUNT_SX), 0, 
-                                 ((int) this.sprite.getWidth()) / (lastMovement.equals(Movements.RIGHT) 
-                                 ? FRAME_COUNT_DX : FRAME_COUNT_SX), (int) this.sprite.getHeight());
+                                 index * ((int) this.sprite.getWidth()) / frameCount, 0, 
+                                 ((int) this.sprite.getWidth()) / frameCount, (int) this.sprite.getHeight());
     }
 
     /**
