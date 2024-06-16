@@ -61,7 +61,6 @@ public class PointsComponent extends AbstractComponent {
             System.out.println("Error reading file: " + filename);
         }
     }
-
     /**
      * Gets the current points.
      * 
@@ -70,7 +69,6 @@ public class PointsComponent extends AbstractComponent {
     public int getPoints() {
         return this.points;
     }
-
     /**
      * Gets the high score.
      * 
@@ -79,7 +77,6 @@ public class PointsComponent extends AbstractComponent {
     public int getHighScore() {
         return this.highScore;
     }
-
     /**
      * Adds points to the current total.
      * 
@@ -87,7 +84,6 @@ public class PointsComponent extends AbstractComponent {
      */
     public void addPoints(final int pointsToAdd) {
         this.points += pointsToAdd;
-
         if (this.points > highScore) {
             highScore = this.points;
             writeToFile(highScore);
@@ -128,7 +124,6 @@ public class PointsComponent extends AbstractComponent {
             System.out.println("Error writing file: " + filename);
         }
     }
-
     /**
      * Gets the component type associated with points.
      * 
@@ -138,6 +133,7 @@ public class PointsComponent extends AbstractComponent {
     public ComponentType getComponent() {
         return ComponentType.POINTS;
     }
+
 
     /**
      * Sets the PointsView associated with this PointsComponent.
