@@ -17,6 +17,7 @@ import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -274,7 +275,12 @@ public class WindowGame extends Application {
                     break;
             }
         });
-        // this.gameEngine.gameLoop(this);
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                gameEngine.gameLoop(WindowGame.this);
+            }
+        }.start();
     }
 
     /**
@@ -351,6 +357,7 @@ public class WindowGame extends Application {
             BrickView brickView = this.addBrickView(b);
             bricksToPrint.add(brickView);
         });
+        ralphView.animateRalph();
     }
 
     public GameEngineImpl getGameEngine() {

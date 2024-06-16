@@ -11,13 +11,11 @@ import it.unibo.view.impl.WindowGame;
 
 public class GameEngineImpl implements GameEngine {
 
-    private final int period;
     private final GameController gameController;
     /**
      * Constructor for the game engine.
      */
     public GameEngineImpl() {
-        this.period = 20;
         this.gameController = new GameController();
     }
     /**
@@ -26,19 +24,15 @@ public class GameEngineImpl implements GameEngine {
     @Override
     public void gameLoop(final WindowGame windowGame) {
         System.out.println("Game loop started");
-        long current = System.currentTimeMillis();
-        while (gameController.gameIsNotOver() && !gameController.isWin()) {
-            if (System.currentTimeMillis() - current > this.period) {
-                System.out.println("Inside if");
-                this.update();
-                this.draw(windowGame);
-                current = System.currentTimeMillis();
-            }
+        if (gameController.gameIsNotOver() && !gameController.isWin()) {
+            System.out.println("Inside if");
+            this.update();
+            this.draw(windowGame);
         }
         if (!gameController.gameIsNotOver()) {
             GameState.setGameState(GameState.WIN);
         } else {
-        GameState.setGameState(GameState.GAMEOVER);
+            GameState.setGameState(GameState.GAMEOVER);
         }
     }
     /**
