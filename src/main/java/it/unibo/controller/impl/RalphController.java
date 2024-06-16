@@ -52,7 +52,7 @@ public class RalphController {
                 final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
                 ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
-                System.out.println("Brick thrown");
+                //System.out.println("Brick thrown");
             }
         }
     }
@@ -67,7 +67,7 @@ public class RalphController {
                 final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
                 ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
-                System.out.println("Brick thrown");
+                //System.out.println("Brick thrown");
             }
         }
     }
@@ -92,7 +92,7 @@ public class RalphController {
     public void update(final Set<Entity> bricks) {
         this.move();
         if (System.currentTimeMillis() - lastThrowTime >= this.getTimeToWait()) {
-            System.out.println("Throwing bricks");
+            //System.out.println("Throwing bricks");
             this.throwBricks(bricks);
             lastThrowTime = System.currentTimeMillis();
         }
