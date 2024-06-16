@@ -38,9 +38,6 @@ import it.unibo.core.impl.GameEngineImpl;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
-    private PointsComponent pointsComponent;
-    private PointsView pointsView;
-    private HighPointsView highPointsView;
     private Stage primaryStage;
     private boolean zKeyPressed = false;
     private GameEngineImpl gameEngine = new GameEngineImpl();
@@ -51,28 +48,26 @@ public class WindowGame extends Application {
     private RalphView ralphView;
     private FelixView felixView;
     private AnchorPane root = new AnchorPane();
-    /*
-     * private static final double WIDTH = 800.0;
-     * private static final double HEIGHT = 600.0;
-     * private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
-     * private static final double BUILDING_TOP_WIDTH_SCALE = 1.45;
-     * private static final double BUILDING_TOP_HEIGHT_SCALE = 1.45;
-     * private static final double BUILDING_TOP_TOP_ANCHOR = 78.0;
-     * private static final double BUILDING_TOP_TRANSLATE_X = 243.5;
-     * private static final double BUILDING_TOP_TRANSLATE_Y = 9.0;
-     * private static final double BUILDING_CENTRE_WIDTH_SCALE = 1.45;
-     * private static final double BUILDING_CENTRE_HEIGHT_SCALE = 1.45;
-     * private static final double BUILDING_CENTRE_TRANSLATE_X = 400.0;
-     * private static final double BUILDING_CENTRE_BOTTOM_ANCHOR = 75.0;
-     * private static final double POINTS_VIEW_LEFT_ANCHOR = 150.0;
-     * private static final double MAIN_MENU_RIGHT_ANCHOR = 7.0;
-     * private static final double MAIN_MENU_TOP_ANCHOR = 7.0;
-     * private static final double HIGH_POINTS_VIEW_LEFT_ANCHOR = 0.0;
-     * private static final double HIGH_POINTS_VIEW_TOP_ANCHOR = 0.0;
-     * private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
-     * private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
-     * private static final int Z_KEY_PRESS_DURATION_MS = 3000;
-     */
+    /*private static final double WIDTH = 800.0;
+    private static final double HEIGHT = 600.0;
+    private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
+    private static final double BUILDING_TOP_WIDTH_SCALE = 1.45;
+    private static final double BUILDING_TOP_HEIGHT_SCALE = 1.45;
+    private static final double BUILDING_TOP_TOP_ANCHOR = 78.0;
+    private static final double BUILDING_TOP_TRANSLATE_X = 243.5;
+    private static final double BUILDING_TOP_TRANSLATE_Y = 9.0;
+    private static final double BUILDING_CENTRE_WIDTH_SCALE = 1.45;
+    private static final double BUILDING_CENTRE_HEIGHT_SCALE = 1.45;
+    private static final double BUILDING_CENTRE_TRANSLATE_X = 400.0;
+    private static final double BUILDING_CENTRE_BOTTOM_ANCHOR = 75.0;
+    private static final double POINTS_VIEW_LEFT_ANCHOR = 150.0;
+    private static final double MAIN_MENU_RIGHT_ANCHOR = 7.0;
+    private static final double MAIN_MENU_TOP_ANCHOR = 7.0;
+    private static final double HIGH_POINTS_VIEW_LEFT_ANCHOR = 0.0;
+    private static final double HIGH_POINTS_VIEW_TOP_ANCHOR = 0.0;
+    private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
+    private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
+    private static final int Z_KEY_PRESS_DURATION_MS = 3000;*/
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -84,13 +79,9 @@ public class WindowGame extends Application {
         Pane blackPane = new Pane();
         blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-
-        pointsComponent = new PointsComponent();
-        pointsView = new PointsView(pointsComponent);
-        pointsComponent.setPointsView(pointsView);
-        
-        highPointsView = new HighPointsView(pointsComponent); 
-        pointsComponent.setHighPointsView(highPointsView);
+        PointsComponent pointsComponent = new PointsComponent();
+        PointsView pointsView = new PointsView(pointsComponent);
+        HighPointsView highPointsView = new HighPointsView(pointsComponent);
         MainMenu mainMenu = new MainMenu(primaryStage);
         LivesComponent livesComponent = new LivesComponent(gameEngine.getGameController().getGamePerformance());
         LivesView livesView = new LivesView(livesComponent);
@@ -104,8 +95,8 @@ public class WindowGame extends Application {
         // Immagine di sfondo 2 (building_top.png)
         Image buildingTopImage = new Image("building_top.png");
         ImageView buildingTopImageView = new ImageView(buildingTopImage);
-        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45);
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45); // la sua dimensione originale
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); 
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);                                                                      // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, 78.0);
         AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
         AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
@@ -121,7 +112,7 @@ public class WindowGame extends Application {
         buildingCentreImageView.setTranslateY(100);
 
         AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0);
-        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
+        double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;                                                                              // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
         // Aggiunta delle immagini all'AnchorPane
@@ -156,46 +147,43 @@ public class WindowGame extends Application {
         }
         this.felixView = this.addFelixView();
         this.ralphView = this.addRalphView();
-        /*
-         * Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event ->
-         * {
-         * // Entity currentCake = this.gameController.getCakeController().getCake();
-         * cakeViews.entrySet().removeIf(entry -> {
-         * Entity cake = entry.getKey();
-         * CakeView cakeView = entry.getValue();
-         * if (cake != currentCake) {
-         * root.getChildren().remove(cakeView.getImageView());
-         * return true;
-         * }
-         * return false;
-         * });
-         * if (currentCake != null && !cakeViews.containsKey(currentCake)) {
-         * CakeView cakeView = new CakeView(currentCake);
-         * cakeViews.put(currentCake, cakeView);
-         * root.getChildren().add(cakeView.getStandingCake());
-         * }
-         * cakeViews.values().forEach(CakeView::animeteCake);
-         * 
-         * Entity currentBird = this.gameController.getBirdController().getBird();
-         * birdViews.entrySet().removeIf(entry -> {
-         * Entity bird = entry.getKey();
-         * BirdView birdView = entry.getValue();
-         * if (bird != currentBird) {
-         * root.getChildren().remove(birdView.getImageView());
-         * return true;
-         * }
-         * return false;
-         * });
-         * if (currentBird != null && !birdViews.containsKey(currentBird)) {
-         * BirdView birdView = new BirdView(currentBird);
-         * birdViews.put(currentBird, birdView);
-         * root.getChildren().add(birdView.getStandingBird());
-         * }
-         * birdViews.values().forEach(BirdView::animateBird);
-         * }));
-         * timeline.setCycleCount(Timeline.INDEFINITE);
-         * timeline.play();
-         */
+      /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+          //  Entity currentCake = this.gameController.getCakeController().getCake();
+            cakeViews.entrySet().removeIf(entry -> {
+                Entity cake = entry.getKey();
+                CakeView cakeView = entry.getValue();
+                if (cake != currentCake) {
+                    root.getChildren().remove(cakeView.getImageView());
+                    return true;
+                }
+                return false;
+            }); 
+            if (currentCake != null && !cakeViews.containsKey(currentCake)) {
+                CakeView cakeView = new CakeView(currentCake);
+                cakeViews.put(currentCake, cakeView);
+                root.getChildren().add(cakeView.getStandingCake());
+            }
+            cakeViews.values().forEach(CakeView::animeteCake);
+
+            Entity currentBird = this.gameController.getBirdController().getBird();
+            birdViews.entrySet().removeIf(entry -> {
+                Entity bird = entry.getKey();
+                BirdView birdView = entry.getValue();
+                if (bird != currentBird) {
+                    root.getChildren().remove(birdView.getImageView());
+                    return true;
+                }
+                return false;
+            });
+            if (currentBird != null && !birdViews.containsKey(currentBird)) {
+                BirdView birdView = new BirdView(currentBird);
+                birdViews.put(currentBird, birdView);
+                root.getChildren().add(birdView.getStandingBird());
+            }
+            birdViews.values().forEach(BirdView::animateBird);
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play(); */
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -215,55 +203,49 @@ public class WindowGame extends Application {
                     gameEngine.getGameController().moveFelixUp(event.getCode());
                     felixView.animateFelix();
                     break;
-                case Z:
+                case Z:                    
                     Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController()
-                            .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                    Optional<Component> pointsComponentOptional = this.gameEngine.getGameController()
-                            .getFelixController()
-                            .getFelix().getTheComponent(ComponentType.POINTS);
-                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController()
-                            .getFelixController()
-                            .getFelix().getTheComponent(ComponentType.HITBOX);
+                                    .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                    Optional<Component> pointsComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                    .getFelix().getTheComponent(ComponentType.POINTS);
+                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                    .getFelix().getTheComponent(ComponentType.HITBOX);
                     HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
-                    zKeyPressed = true;
+                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions(); 
+                    zKeyPressed=true;
                     gameEngine.getGameController().getGamePerformance().addKey(KeyCode.Z);
                     this.gameEngine.getGameController().fixWindows(event.getCode(), windowPosition.get());
                     fixedAnimation(windowPosition.get());
                     pointsComponent.addPoints(50);
-                    if (this.felixView != null) {
-                        root.getChildren().remove(this.felixView.getImageView());
-                    }
                     this.felixView = this.addFelixView();
 
-                    /*
-                     * Thread timerThread = new Thread(() -> {
-                     * try {
-                     * Thread.sleep(1500);
-                     * 
-                     * if (zKeyPressed) {
-                     * if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent()
-                     * &&
-                     * fixComponentOptional.get() instanceof FixWindowsComponent &&
-                     * hitboxComponentOptional.get() instanceof HitboxComponent) {
-                     * 
-                     * windowPosition.ifPresent(pos -> {
-                     * Platform.runLater(() -> {
-                     * this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                     * fixedAnimation(pos);
-                     * this.felixView = this.addFelixView();
-                     * });
-                     * });
-                     * }
-                     * }
-                     * } catch (InterruptedException e) {
-                     * e.printStackTrace();
-                     * } finally {
-                     * zKeyPressed = false;
-                     * }
-                     * });
-                     * timerThread.start();
-                     */
+                    /* 
+                    Thread timerThread = new Thread(() -> {
+                        try {
+                            Thread.sleep(1500);
+
+                            if (zKeyPressed) {
+                                if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
+                                    fixComponentOptional.get() instanceof FixWindowsComponent &&
+                                    hitboxComponentOptional.get() instanceof HitboxComponent) {
+                                    
+                                    windowPosition.ifPresent(pos -> {
+                                        Platform.runLater(() -> {
+                                            this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
+                                            fixedAnimation(pos);
+                                            this.felixView = this.addFelixView();
+                                        });
+                                    });
+                                }
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            zKeyPressed = false;
+                        }
+                    });
+                    timerThread.start();
+                    */
                     scene.setOnKeyReleased(releasedEvent -> {
                         if (releasedEvent.getCode() == KeyCode.Z) {
                             zKeyPressed = false;
@@ -274,9 +256,8 @@ public class WindowGame extends Application {
                     break;
             }
         });
-        // this.gameEngine.gameLoop(this);
+        //this.gameEngine.gameLoop(this);
     }
-
     /**
      * Method that creates a windows grid on the main pane.
      * 
@@ -291,11 +272,10 @@ public class WindowGame extends Application {
             FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
             if (fixComp.getFixed()) {
                 root.getChildren().add(windowView.fixedwindows());
-            } else
+            }else
                 root.getChildren().add(windowView.brokenWindow());
         });
     }
-
     /**
      * Method for the animation of a window being fixed.
      */
@@ -303,13 +283,13 @@ public class WindowGame extends Application {
         List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
 
         windows.stream()
-                .filter(w -> w.getPosition().equals(windowPosition))
-                .findFirst()
-                .ifPresent(window -> {
+        .filter(w -> w.getPosition().equals(windowPosition))
+        .findFirst()
+        .ifPresent(window -> {
                     WindowsView windowView = new WindowsView(window.getPosition());
                     windowView.fixAnimation();
                     root.getChildren().add(windowView.fixedwindows());
-                });
+            });
     }
 
     /**
@@ -324,7 +304,6 @@ public class WindowGame extends Application {
         root.getChildren().add(felixView.getStandingFelix());
         return felixView;
     }
-
     /**
      * Creates and adds a RalphView to the specified root pane.
      *
@@ -337,13 +316,11 @@ public class WindowGame extends Application {
         root.getChildren().add(ralphView.getStandingRalph());
         return ralphView;
     }
-
     private BrickView addBrickView(final Entity brick) {
         BrickView brickView = new BrickView(brick);
         root.getChildren().add(brickView.getImageView());
         return brickView;
     }
-
     public void update() {
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
         Set<BrickView> bricksToPrint = new HashSet<>();
@@ -356,5 +333,5 @@ public class WindowGame extends Application {
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
-
+    
 }
