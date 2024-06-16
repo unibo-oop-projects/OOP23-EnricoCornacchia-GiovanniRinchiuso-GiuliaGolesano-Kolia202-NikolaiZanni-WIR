@@ -204,24 +204,38 @@ public class WindowGame extends Application {
                     gameEngine.getGameController().moveFelixUp(event.getCode());
                     felixView.animateFelix();
                     break;
-                case Z:                    
+                case Z:     
+                    zKeyPressed=true;  
+
                     Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController()
-                                    .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                    Optional<Component> pointsComponentOptional = this.gameEngine.getGameController().getFelixController()
-                                    .getFelix().getTheComponent(ComponentType.POINTS);
-                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
-                                    .getFelix().getTheComponent(ComponentType.HITBOX);
-                    HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions(); 
-                    zKeyPressed=true;
-                    gameEngine.getGameController().getGamePerformance().addKey(KeyCode.Z);
-                    this.gameEngine.getGameController().fixWindows(event.getCode(), windowPosition.get());
-                    fixedAnimation(windowPosition.get());
-                    pointsComponent.addPoints(50);
-                    if (this.felixView != null) {
-                        root.getChildren().remove(this.felixView.getImageView());
+                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
+                Optional<Component> pointsComponentOptional = this.gameEngine.getGameController().getFelixController()
+                        .getFelix().getTheComponent(ComponentType.POINTS);
+                Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
+                        .getFelix().getTheComponent(ComponentType.HITBOX);
+                HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
+                Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+
+                if (windowPosition.isPresent()) {
+                    Optional<Entity> windowEntity = this.gameEngine.getGameController().getGamePerformance().getWindows().stream()
+                            .filter(w -> w.getPosition().equals(windowPosition.get()))
+                            .findFirst();
+
+                    if (windowEntity.isPresent()) {
+                        FixedWindowsComponent fixedComponent = (FixedWindowsComponent) windowEntity.get().getTheComponent(ComponentType.FIXEDWINDOWS).get();
+
+                        if (!fixedComponent.getFixed()) {
+                            this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
+                            fixedAnimation(windowPosition.get());
+                            pointsComponent.addPoints(50);
+
+                            if (this.felixView != null) {
+                                root.getChildren().remove(this.felixView.getImageView());
+                            }
+                            this.felixView = this.addFelixView();
+                        }
                     }
-                    this.felixView = this.addFelixView();
+                }
 
                     /* 
                     Thread timerThread = new Thread(() -> {
