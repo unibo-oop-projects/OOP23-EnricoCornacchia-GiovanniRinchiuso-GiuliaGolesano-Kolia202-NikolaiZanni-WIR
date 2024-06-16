@@ -84,7 +84,7 @@ public class RalphController {
      * @return the time to wait.
      */
     private double getTimeToWait() {
-        return Constants.Ralph.THROW_TIME / gamePerformance.getLevel();
+        return Constants.Ralph.THROW_TIME / (gamePerformance.getLevel() / 1.5);
     }
     /**
      * Update Ralph position, and make him throwing bricks.

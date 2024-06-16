@@ -60,12 +60,12 @@ public final class Constants {
         /**
          * The position of starting Ralph of the first level.
          */
-        public static final Pair<Double, Double> RALPH_START = new Pair<>(370.0, 230.0);
+        public static final Pair<Double, Double> RALPH_START = new Pair<>(370.0, 210.0);
         /**
          * The difference between the position of Ralph and the position of his right
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(50.0 , 35.0);
+        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(70.0 , 35.0);
         /**
          * The difference between the position of Ralph and the position of his left
          * hand.
@@ -74,15 +74,15 @@ public final class Constants {
         /**
          * The Ralph height.
          */
-        public static final double RALPH_HEIGHT = 60;
+        public static final double RALPH_HEIGHT = 80;
         /**
          * The Ralph width.
          */
-        public static final double RALPH_WIDTH = 65;
+        public static final double RALPH_WIDTH = 80;
         /**
          * The Ralph speed in throwing bricks.
          */
-        public static final long THROW_TIME = 1000;
+        public static final long THROW_TIME = 4000;
     }
     /**
      * Brick constaints.
@@ -103,11 +103,11 @@ public final class Constants {
         /**
          * The speed of the brick at level 2.
         */
-        public static final double BRICK_SPEED_LEVEL_2 = 2;
+        public static final double BRICK_SPEED_LEVEL_2 = 1.5;
         /**
          * The speed of the brick at level 3.
         */
-        public static final double BRICK_SPEED_LEVEL_3 = 3;
+        public static final double BRICK_SPEED_LEVEL_3 = 1.8;
     }
     /**
      * Window constaints.
