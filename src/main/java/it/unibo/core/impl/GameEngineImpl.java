@@ -3,7 +3,10 @@ package it.unibo.core.impl;
 import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
 import it.unibo.controller.impl.GameController;
+import it.unibo.view.impl.EndGameView;
+import it.unibo.view.impl.WinGameView;
 import it.unibo.view.impl.WindowGame;
+import javafx.stage.Stage;
 
 /**
  * Implementation of the game engine.
@@ -31,8 +34,18 @@ public class GameEngineImpl implements GameEngine {
         }
         if (!gameController.gameIsNotOver()) {
             GameState.setGameState(GameState.WIN);
+            /*try {
+                    new WinGameView().start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }*/
         } else {
             GameState.setGameState(GameState.GAMEOVER);
+            /*try {
+                new EndGameView().start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
         }
     }
     /**
