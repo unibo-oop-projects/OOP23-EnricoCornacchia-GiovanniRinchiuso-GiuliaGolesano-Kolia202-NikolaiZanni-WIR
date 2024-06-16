@@ -43,10 +43,11 @@ public class MovementComponent extends AbstractComponent {
     public boolean canMove(final double x, final double y, final Entity entity) {
         final double newX = entity.getPosition().getX() + x;
         final double newY = entity.getPosition().getY() + y;
+        HitboxComponent hitbox = (HitboxComponent) entity.getTheComponent(ComponentType.HITBOX).get();
         return newX >= Constants.GameEdges.LEFT_WALL
-                && newX <= Constants.GameEdges.RIGHT_WALL
+                && newX + hitbox.getHitbox().getWidth() <= Constants.GameEdges.RIGHT_WALL
                 && newY >= Constants.GameEdges.DOWN_WALL
-                && newY <= Constants.GameEdges.UP_WALL_1;
+                && newY + hitbox.getHitbox().getHeight() <= Constants.GameEdges.UP_WALL_1;
     }
     /**
      * Getter method for the component type.
