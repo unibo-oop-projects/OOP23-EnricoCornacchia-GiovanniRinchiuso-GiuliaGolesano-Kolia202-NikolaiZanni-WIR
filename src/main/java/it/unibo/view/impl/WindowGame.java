@@ -205,56 +205,42 @@ public class WindowGame extends Application {
                     felixView.animateFelix();
                     break;
                 case Z:     
-                    zKeyPressed=true;  
+                    zKeyPressed = true;
 
-                    Optional<Component> fixComponentOptional = this.gameEngine.getGameController().getFelixController()
-                        .getFelix().getTheComponent(ComponentType.FIXWINDOWS);
-                Optional<Component> pointsComponentOptional = this.gameEngine.getGameController().getFelixController()
-                        .getFelix().getTheComponent(ComponentType.POINTS);
-                Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
-                        .getFelix().getTheComponent(ComponentType.HITBOX);
-                HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
-
-                if (windowPosition.isPresent()) {
-                    Optional<Entity> windowEntity = this.gameEngine.getGameController().getGamePerformance().getWindows().stream()
-                            .filter(w -> w.getPosition().equals(windowPosition.get()))
-                            .findFirst();
-
-                    if (windowEntity.isPresent()) {
-                        FixedWindowsComponent fixedComponent = (FixedWindowsComponent) windowEntity.get().getTheComponent(ComponentType.FIXEDWINDOWS).get();
-
-                        if (!fixedComponent.getFixed()) {
-                            this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
-                            fixedAnimation(windowPosition.get());
-                            pointsComponent.addPoints(50);
-
-                            if (this.felixView != null) {
-                                root.getChildren().remove(this.felixView.getImageView());
-                            }
-                            this.felixView = this.addFelixView();
-                        }
-                    }
-                }
-
-                    /* 
                     Thread timerThread = new Thread(() -> {
                         try {
                             Thread.sleep(1500);
 
                             if (zKeyPressed) {
-                                if (fixComponentOptional.isPresent() && hitboxComponentOptional.isPresent() &&
-                                    fixComponentOptional.get() instanceof FixWindowsComponent &&
-                                    hitboxComponentOptional.get() instanceof HitboxComponent) {
-                                    
-                                    windowPosition.ifPresent(pos -> {
-                                        Platform.runLater(() -> {
-                                            this.gameEngine.getGameController().fixWindows(event.getCode(), pos);
-                                            fixedAnimation(pos);
-                                            this.felixView = this.addFelixView();
-                                        });
-                                    });
-                                }
+                                Platform.runLater(() -> {
+                                    Optional<Component> pointsComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                            .getFelix().getTheComponent(ComponentType.POINTS);
+                                    Optional<Component> hitboxComponentOptional = this.gameEngine.getGameController().getFelixController()
+                                            .getFelix().getTheComponent(ComponentType.HITBOX);
+                                    HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
+                                    Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+
+                                    if (windowPosition.isPresent()) {
+                                        Optional<Entity> windowEntity = this.gameEngine.getGameController().getGamePerformance().getWindows().stream()
+                                                .filter(w -> w.getPosition().equals(windowPosition.get()))
+                                                .findFirst();
+
+                                        if (windowEntity.isPresent()) {
+                                            FixedWindowsComponent fixedComponent = (FixedWindowsComponent) windowEntity.get().getTheComponent(ComponentType.FIXEDWINDOWS).get();
+
+                                            if (!fixedComponent.getFixed()) {
+                                                this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
+                                                fixedAnimation(windowPosition.get());
+                                                pointsComponentOptional.ifPresent(c -> ((PointsComponent) c).addPoints(50));
+
+                                                if (this.felixView != null) {
+                                                    root.getChildren().remove(this.felixView.getImageView());
+                                                }
+                                                this.felixView = this.addFelixView();
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -263,17 +249,18 @@ public class WindowGame extends Application {
                         }
                     });
                     timerThread.start();
-                    */
-                    scene.setOnKeyReleased(releasedEvent -> {
-                        if (releasedEvent.getCode() == KeyCode.Z) {
-                            zKeyPressed = false;
-                        }
-                    });
-                    break;
-                default:
-                    break;
-            }
+                    
+                        scene.setOnKeyReleased(releasedEvent -> {
+                            if (releasedEvent.getCode() == KeyCode.Z) {
+                                zKeyPressed = false;
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
         });
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -281,6 +268,7 @@ public class WindowGame extends Application {
             }
         }.start();
     }
+
     /**
      * Method that creates a windows grid on the main pane.
      * 
