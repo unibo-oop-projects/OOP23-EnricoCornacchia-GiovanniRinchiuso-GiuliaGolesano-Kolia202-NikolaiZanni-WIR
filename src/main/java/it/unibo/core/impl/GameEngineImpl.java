@@ -23,9 +23,9 @@ public class GameEngineImpl implements GameEngine {
      */
     @Override
     public void gameLoop(final WindowGame windowGame) {
-        System.out.println("Game loop started");
+        //System.out.println("Game loop started");
         if (gameController.gameIsNotOver() && !gameController.isWin()) {
-            System.out.println("Inside if");
+            //System.out.println("Inside if");
             this.update();
             this.draw(windowGame);
         }
