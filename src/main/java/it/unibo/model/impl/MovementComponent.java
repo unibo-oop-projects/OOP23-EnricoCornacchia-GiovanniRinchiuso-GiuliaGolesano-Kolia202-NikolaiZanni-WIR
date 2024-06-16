@@ -46,8 +46,8 @@ public class MovementComponent extends AbstractComponent {
         HitboxComponent hitbox = (HitboxComponent) entity.getTheComponent(ComponentType.HITBOX).get();
         return newX >= Constants.GameEdges.LEFT_WALL
                 && newX + hitbox.getHitbox().getWidth() <= Constants.GameEdges.RIGHT_WALL
-                && newY >= Constants.GameEdges.DOWN_WALL
-                && newY + hitbox.getHitbox().getHeight() <= Constants.GameEdges.UP_WALL_1;
+                && newY >= Constants.GameEdges.UP_WALL
+                && newY + hitbox.getHitbox().getHeight() <= Constants.GameEdges.DOWN_WALL_1;
     }
     /**
      * Getter method for the component type.

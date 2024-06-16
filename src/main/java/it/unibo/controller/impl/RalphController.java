@@ -64,7 +64,7 @@ public class RalphController {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
                 final double x = Constants.Ralph.RALPH_RIGHT_HAND.getX() + ralph.getPosition().getX();
-                final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
+                final double y = ralph.getPosition().getY() + Constants.Ralph.RALPH_RIGHT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
                 ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
                 //System.out.println("Brick thrown");

@@ -108,7 +108,7 @@ public class HitboxComponent extends AbstractComponent {
                 .setPosition(
                     new Pair<Double, Double>(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth(), this.hitbox.getY()));
         }
-        if (this.hitbox.getY() <= Constants.GameEdges.DOWN_WALL) {
+        if (this.hitbox.getY() <= Constants.GameEdges.UP_WALL) {
             if (this.getEntity().getEntityType() == EntityType.BRICK) {
                 this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
             }
@@ -139,6 +139,7 @@ public class HitboxComponent extends AbstractComponent {
             if (!e.equals(this.getEntity())) {
                 if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get())) {
                     if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
+                        System.out.println("Felix hit brick");
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
                         ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
                     }

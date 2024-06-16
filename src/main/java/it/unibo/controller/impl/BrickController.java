@@ -72,6 +72,13 @@ public class BrickController {
         }
         return 0;
     }
+    /*
+     * Add a brick to the game.
+     * Used for testing purposes.
+     */
+    public void addBrick(final Entity brick) {
+        this.gamePerformance.addEntity(brick);
+    }
    
     
 }

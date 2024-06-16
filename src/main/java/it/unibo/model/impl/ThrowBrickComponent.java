@@ -3,6 +3,7 @@ package it.unibo.model.impl;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.utilities.Constants;
 
 import java.util.Set;
 import it.unibo.common.Pair;
@@ -31,7 +32,13 @@ public class ThrowBrickComponent extends AbstractComponent {
          */
         public void addBrickToThrow(final Set<Entity> bricks, final Pair<Double, Double> position) {
             if (!blocked) {
-                gamePerformance.addEntity(entityFactoryImpl.createBrick(position));
+                if(position.getY() < Constants.GameEdges.DOWN_WALL_1 
+                && position.getY() > Constants.GameEdges.UP_WALL 
+                && position.getX() < Constants.GameEdges.RIGHT_WALL 
+                && position.getX() > Constants.GameEdges.LEFT_WALL) {
+                    gamePerformance.addEntity(entityFactoryImpl.createBrick(position));
+                }
+                
             }
         }
         /**

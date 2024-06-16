@@ -349,21 +349,47 @@ public class WindowGame extends Application {
      * Update brick view.
      */
     public void update() {
-        // Rimuovi le BrickView precedenti dalla scena
-        //bricksToPrint.forEach(brickView -> root.getChildren().remove(brickView.getImageView()));
-        //bricksToPrint.clear(); // Pulisci la lista per le nuove BrickView
-    
-        // Ottieni i nuovi mattoni e aggiungili alla scena
+        // Ottieni i nuovi mattoni
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
-        bricks.forEach(b -> {
-            BrickView brickView = this.addBrickView(b);
-            bricksToPrint.add(brickView); // Aggiungi le nuove BrickView alla lista
+        
+        // Itera attraverso i mattoni e aggiorna le loro BrickView
+        bricks.forEach(brick -> {
+            // Cerca se c'è già una BrickView per questo mattone
+            BrickView existingBrickView = bricksToPrint.stream()
+                    .filter(view -> view.getBrick().equals(brick))
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingBrickView == null) {
+                // Se non esiste, crea una nuova BrickView e aggiungila al pane
+                BrickView newBrickView = new BrickView(brick);
+                root.getChildren().add(newBrickView.getImageView());
+                bricksToPrint.add(newBrickView);
+            } else {
+                // Se esiste, aggiorna la posizione del BrickView esistente
+                existingBrickView.animateBrick();
+            }
         });
-    
-        // Anima Ralph e i mattoni
+
+        // Rimuovi i BrickView non più presenti
+        bricksToPrint.removeIf(brickView -> {
+            if (!bricks.contains(brickView.getBrick())) {
+                root.getChildren().remove(brickView.getImageView());
+                return true;
+            }
+            return false;
+        });
+
+        // Anima Ralph
         ralphView.animateRalph();
+
+        // Anima i mattoni
         bricksToPrint.forEach(BrickView::animateBrick);
     }
+
+    // Altri metodi e classi, incluso il controller e il modello del gioco
+
+
     /**
      * Getter for the gameEngine.
      * @return

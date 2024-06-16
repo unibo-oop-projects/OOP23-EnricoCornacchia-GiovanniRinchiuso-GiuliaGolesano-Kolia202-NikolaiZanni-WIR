@@ -26,15 +26,15 @@ public final class Constants {
         /**
          * The position of the right wall.
          */
-        public static final double RIGHT_WALL = 510.0;
+        public static final double RIGHT_WALL = 540.0;
         /**
          * The position of the down wall.
          */
-        public static final double DOWN_WALL = 0.0;
+        public static final double UP_WALL = 0.0;
         /**
          * The position of the up wall.
          */
-        public static final double UP_WALL_1 = 600.0;
+        public static final double DOWN_WALL_1 = 600.0;
     }
     /**
      * Felix constaints.
@@ -65,12 +65,12 @@ public final class Constants {
          * The difference between the position of Ralph and the position of his right
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(65.0 , -25.0);
+        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(50.0 , 35.0);
         /**
          * The difference between the position of Ralph and the position of his left
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(0.0, -25.0);
+        public static final Pair<Double, Double> RALPH_LEFT_HAND = new Pair<>(0.0, 35.0);
         /**
          * The Ralph height.
          */
@@ -99,15 +99,15 @@ public final class Constants {
         /**
          * The speed of the brick at level 1.
         */
-        public static final double BRICK_SPEED_LEVEL_1 = 2;
+        public static final double BRICK_SPEED_LEVEL_1 = 1;
         /**
          * The speed of the brick at level 2.
         */
-        public static final double BRICK_SPEED_LEVEL_2 = 3;
+        public static final double BRICK_SPEED_LEVEL_2 = 2;
         /**
          * The speed of the brick at level 3.
         */
-        public static final double BRICK_SPEED_LEVEL_3 = 5;
+        public static final double BRICK_SPEED_LEVEL_3 = 3;
     }
     /**
      * Window constaints.
