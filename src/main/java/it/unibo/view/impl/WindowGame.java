@@ -11,6 +11,8 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.EntityFactory;
+import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
@@ -47,8 +49,11 @@ public class WindowGame extends Application {
     @SuppressWarnings("unused")
     private Map<Entity, BirdView> birdViews = new HashMap<>();
     private RalphView ralphView;
+    private EntityFactory entityFactory = new EntityFactoryImpl(gameEngine.getGameController().getGamePerformance());
     private FelixView felixView;
     private AnchorPane root = new AnchorPane();
+    private BrickView brickView;
+    Set<BrickView> bricksToPrint = new HashSet<>();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
@@ -344,13 +349,20 @@ public class WindowGame extends Application {
      * Update brick view.
      */
     public void update() {
+        // Rimuovi le BrickView precedenti dalla scena
+        //bricksToPrint.forEach(brickView -> root.getChildren().remove(brickView.getImageView()));
+        //bricksToPrint.clear(); // Pulisci la lista per le nuove BrickView
+    
+        // Ottieni i nuovi mattoni e aggiungili alla scena
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
-        Set<BrickView> bricksToPrint = new HashSet<>();
         bricks.forEach(b -> {
             BrickView brickView = this.addBrickView(b);
-            bricksToPrint.add(brickView);
+            bricksToPrint.add(brickView); // Aggiungi le nuove BrickView alla lista
         });
+    
+        // Anima Ralph e i mattoni
         ralphView.animateRalph();
+        bricksToPrint.forEach(BrickView::animateBrick);
     }
     /**
      * Getter for the gameEngine.

@@ -95,19 +95,19 @@ public final class Constants {
         /**
          * The height of the brick.
          */
-        public static final double BRICK_HEIGHT = 10;
+        public static final double BRICK_HEIGHT = 20;
         /**
          * The speed of the brick at level 1.
         */
-        public static final double BRICK_SPEED_LEVEL_1 = 1;
+        public static final double BRICK_SPEED_LEVEL_1 = 2;
         /**
          * The speed of the brick at level 2.
         */
-        public static final double BRICK_SPEED_LEVEL_2 = 2;
+        public static final double BRICK_SPEED_LEVEL_2 = 3;
         /**
          * The speed of the brick at level 3.
         */
-        public static final double BRICK_SPEED_LEVEL_3 = 3;
+        public static final double BRICK_SPEED_LEVEL_3 = 5;
     }
     /**
      * Window constaints.
