@@ -28,9 +28,9 @@ public class GameController {
         this.felixController = new FelixController(this.gamePerformance);
         this.brickController = new BrickController(this.gamePerformance);
         this.windowsController = new WindowsController(gamePerformance);
-        this.collisionManager = new CollisionManager(this.gamePerformance.getEntity());
         this.birdController = new BirdController(gamePerformance);
         this.cakeController = new CakeController(gamePerformance);
+        this.collisionManager = new CollisionManager(this.gamePerformance);
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
@@ -38,7 +38,6 @@ public class GameController {
      */
     public void update() {
         this.brickController.fallBricks();
-        this.collisionManager.check();
         this.ralphController.update(brickController.getBricks());
         //System.out.println("Ralph updated\n" + ralphController.getRalph().getPosition());
         //System.out.println("Bricks updated\n" + brickController.getBricks());

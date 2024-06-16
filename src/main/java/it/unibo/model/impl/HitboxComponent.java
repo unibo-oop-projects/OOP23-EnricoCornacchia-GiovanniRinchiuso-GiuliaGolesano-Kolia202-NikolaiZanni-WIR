@@ -69,7 +69,7 @@ public class HitboxComponent extends AbstractComponent {
         if (type == EntityType.FELIX) {
             this.checkEdgesCollisions();
             this.checkOtherEntitiesCollisions();
-            this.checkPlatformCollisions();
+            //this.checkPlatformCollisions();
             this.hitbox = new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
                                         Felix.FELIX_WIDTH, Felix.FELIX_HEIGHT);
         } else if (type == EntityType.BRICK) {
@@ -138,18 +138,17 @@ public class HitboxComponent extends AbstractComponent {
         for (Entity e : this.getEntity().getGamePerformance().getEntity()) {
             if (!e.equals(this.getEntity())) {
                 if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get())) {
-                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BRICK) {
-                        System.out.println("Felix hit brick");
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)) {
                         this.getEntity().getGamePerformance().removeBrick(e.getPosition());
                         ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
                     }
-                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.CAKE) {
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE)) {
                         this.getEntity().getGamePerformance().removeEntity(e);
                         ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
                                                    .setImmortality(((LivesComponent) this.getEntity()
                                                    .getTheComponent(ComponentType.LIFE).get()));
                     }
-                    if (this.getEntity().getEntityType() == EntityType.FELIX && e.getEntityType() == EntityType.BIRD) {
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD)) {
                         this.getEntity().getGamePerformance().removeEntity(e);
                         ((StopRalphComponent) this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
                                                  .setStopRalph(((ThrowBrickComponent) this.getEntity()

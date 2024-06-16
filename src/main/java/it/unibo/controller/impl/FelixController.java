@@ -36,6 +36,7 @@ public class FelixController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         this.felix = entityFactoryImpl.createFelix(Felix.FELIX_START);
+        gamePerformance.addEntity(felix);
     }
     /**
      * Move the character to the right.

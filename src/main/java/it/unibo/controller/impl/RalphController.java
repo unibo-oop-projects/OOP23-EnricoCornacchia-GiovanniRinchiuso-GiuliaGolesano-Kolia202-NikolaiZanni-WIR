@@ -29,6 +29,7 @@ public class RalphController {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
         ralph = entityFactoryImpl.createRalph(Constants.Ralph.RALPH_START);
+        gamePerformance.addEntity(ralph);
         lastThrowTime = System.currentTimeMillis();
     }
     /**
