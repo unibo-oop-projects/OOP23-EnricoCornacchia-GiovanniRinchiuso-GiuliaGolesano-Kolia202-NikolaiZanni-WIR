@@ -92,14 +92,6 @@ public class GamePerformanceImpl implements GamePerformance {
      * {@inheritDoc}
      */
     @Override
-    public List<Entity> getBrickPresent() {
-        return this.entities.stream()
-                                .filter(entity -> entity.getEntityType() == EntityType.BRICK).toList();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<Entity> getWindows() {
         return this.entities.stream()
                                 .filter(entity -> entity.getEntityType() == EntityType.WINDOW).toList();
@@ -112,8 +104,7 @@ public class GamePerformanceImpl implements GamePerformance {
         return this.gameController.getLevel();
     }
     /**
-     * Getter for the bricks.
-     * @return the set of bricks.
+     * {@inheritDoc}
      */
     @Override
     public Set<Entity> getBricks() {

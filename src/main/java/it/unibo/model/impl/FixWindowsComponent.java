@@ -8,8 +8,13 @@ import it.unibo.model.api.GamePerformance;
  */
 public class FixWindowsComponent extends AbstractComponent {
     /**
-     * getter of the type of the class.
-     * @return the type of the class.
+     * Constructor empty.
+     * @param state
+     */
+    public FixWindowsComponent() {
+    }
+    /**
+     * {@inheritDoc}
      */
     @Override
     public ComponentType getComponent() {

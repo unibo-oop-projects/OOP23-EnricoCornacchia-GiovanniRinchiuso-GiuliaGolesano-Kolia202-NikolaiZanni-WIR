@@ -24,7 +24,6 @@ public class WindowsView implements View {
     private Timeline timeline;
     private int currentFrame;
     private boolean isFixed;
-
     /**
      * Constructor.
      * @param pos.
@@ -36,9 +35,8 @@ public class WindowsView implements View {
         imageView.setFitWidth(FRAME_WIDTH);
         this.imageView.setX(pos.getX());
         this.imageView.setY(pos.getY());
-        this.isFixed = false; // Initially, the window is broken
+        this.isFixed = false;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -54,11 +52,9 @@ public class WindowsView implements View {
         if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
             return;
         }
-
         if (isFixed) {
             return; 
         }
-        
         currentFrame = FRAME_COUNT - 1;
         Platform.runLater(() -> imageView.setImage(getFrame(currentFrame))); 
 
@@ -106,7 +102,7 @@ public class WindowsView implements View {
      */
     public ImageView fixedwindows() {
         this.imageView.setImage(getFrame(0));
-        isFixed = true; // Mark the window as fixed
+        isFixed = true;
         return this.imageView;
     }
 
@@ -116,7 +112,7 @@ public class WindowsView implements View {
      */
     public ImageView brokenWindow() {
         this.imageView.setImage(getFrame(FRAME_COUNT - 1));
-        isFixed = false; // Mark the window as broken
+        isFixed = false;
         return this.imageView;
     }
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import it.unibo.common.Pair;
 import javafx.scene.input.KeyCode;
-
 /**
  * Interface that manages the game performance with all actions and elements present in the game play. 
  */
@@ -56,12 +55,6 @@ public interface GamePerformance {
      */
     List<Entity> getPowerUpsPresent();
     /**
-     * Get all the brick currently present in the game.
-     * 
-     * @return the list of bricks.
-     */
-    List<Entity> getBrickPresent();
-    /**
      * Get all the windows in the entities list.
      * 
      * @return the list of windows.
@@ -73,7 +66,10 @@ public interface GamePerformance {
      * @return the game controller.
      */
     int getLevel();
-    
-
+    /**
+     * Get all the brick currently present in the game.
+     * 
+     * @return the list of bricks.
+     */
     Set<Entity> getBricks();
 }

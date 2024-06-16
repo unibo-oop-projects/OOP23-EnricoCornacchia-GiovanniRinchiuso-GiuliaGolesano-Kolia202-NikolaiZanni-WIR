@@ -1,12 +1,10 @@
 package it.unibo.model.impl;
 
 import it.unibo.model.api.ComponentType;
-
 /**
  * Component of the windows.
  */
 public class FixedWindowsComponent extends AbstractComponent {
-
     private boolean isFixed;
     /**
      * Constructor.
@@ -15,6 +13,9 @@ public class FixedWindowsComponent extends AbstractComponent {
     public FixedWindowsComponent(final boolean state) {
         this.isFixed = state;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentType getComponent() {
         return ComponentType.FIXEDWINDOWS;

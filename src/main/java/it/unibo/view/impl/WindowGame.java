@@ -69,7 +69,9 @@ public class WindowGame extends Application {
     private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
     private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
     private static final int Z_KEY_PRESS_DURATION_MS = 3000;*/
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(final Stage primaryStage) throws Exception {
         this.gameEngine.getGameController().getCakeController().scheduleCakeCreation();
@@ -327,11 +329,20 @@ public class WindowGame extends Application {
         root.getChildren().add(ralphView.getStandingRalph());
         return ralphView;
     }
+    /**
+     * Method to add the brick view in the primary root.
+     * 
+     * @param brick
+     * @return the view.
+     */
     private BrickView addBrickView(final Entity brick) {
         BrickView brickView = new BrickView(brick);
         root.getChildren().add(brickView.getImageView());
         return brickView;
     }
+    /**
+     * Update brick view.
+     */
     public void update() {
         Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
         Set<BrickView> bricksToPrint = new HashSet<>();
@@ -341,9 +352,11 @@ public class WindowGame extends Application {
         });
         ralphView.animateRalph();
     }
-
+    /**
+     * Getter for the gameEngine.
+     * @return
+     */
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
-    
 }
