@@ -218,6 +218,9 @@ public class WindowGame extends Application {
                     this.gameEngine.getGameController().fixWindows(event.getCode(), windowPosition.get());
                     fixedAnimation(windowPosition.get());
                     pointsComponent.addPoints(50);
+                    if (this.felixView != null) {
+                        root.getChildren().remove(this.felixView.getImageView());
+                    }
                     this.felixView = this.addFelixView();
 
                     /* 
