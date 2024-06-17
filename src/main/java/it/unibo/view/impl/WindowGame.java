@@ -45,16 +45,16 @@ public class WindowGame extends Application {
     private Stage primaryStage;
     private boolean zKeyPressed = false;
     private GameEngineImpl gameEngine = new GameEngineImpl();
-    @SuppressWarnings("unused")
-    private Map<Entity, CakeView> cakeViews = new HashMap<>();
-    @SuppressWarnings("unused")
-    private Map<Entity, BirdView> birdViews = new HashMap<>();
     private RalphView ralphView;
     private EntityFactory entityFactory = new EntityFactoryImpl(gameEngine.getGameController().getGamePerformance());
     private FelixView felixView;
     private AnchorPane root = new AnchorPane();
     private BrickView brickView;
     Set<BrickView> bricksToPrint = new HashSet<>();
+    private BirdView birdView;
+    private CakeView cakeView;
+    Set<BirdView> birdsToPrint = new HashSet<>();
+    Set<CakeView> cakesToPrint = new HashSet<>();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
@@ -154,44 +154,7 @@ public class WindowGame extends Application {
         }
         this.felixView = this.addFelixView();
         this.ralphView = this.addRalphView();
-      /*   Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
-          //  Entity currentCake = this.gameController.getCakeController().getCake();
-            cakeViews.entrySet().removeIf(entry -> {
-                Entity cake = entry.getKey();
-                CakeView cakeView = entry.getValue();
-                if (cake != currentCake) {
-                    root.getChildren().remove(cakeView.getImageView());
-                    return true;
-                }
-                return false;
-            }); 
-            if (currentCake != null && !cakeViews.containsKey(currentCake)) {
-                CakeView cakeView = new CakeView(currentCake);
-                cakeViews.put(currentCake, cakeView);
-                root.getChildren().add(cakeView.getStandingCake());
-            }
-            cakeViews.values().forEach(CakeView::animeteCake);
-
-            Entity currentBird = this.gameController.getBirdController().getBird();
-            birdViews.entrySet().removeIf(entry -> {
-                Entity bird = entry.getKey();
-                BirdView birdView = entry.getValue();
-                if (bird != currentBird) {
-                    root.getChildren().remove(birdView.getImageView());
-                    return true;
-                }
-                return false;
-            });
-            if (currentBird != null && !birdViews.containsKey(currentBird)) {
-                BirdView birdView = new BirdView(currentBird);
-                birdViews.put(currentBird, birdView);
-                root.getChildren().add(birdView.getStandingBird());
-            }
-            birdViews.values().forEach(BirdView::animateBird);
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play(); */
-
+     
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case S:
@@ -346,6 +309,71 @@ public class WindowGame extends Application {
         root.getChildren().add(brickView.getImageView());
         return brickView;
     }
+
+    public void updateBird() {
+        Set<Entity> birds = this.gameEngine.getGameController().getBirdController().getBirds();
+    
+        birds.forEach(bird -> {
+            BirdView existingBirdView = birdsToPrint.stream()
+                    .filter(view -> view.getBird().equals(bird))
+                    .findFirst()
+                    .orElse(null);
+    
+            if (existingBirdView == null) {
+                BirdView newBirdView = new BirdView(bird);
+                root.getChildren().add(newBirdView.getImageView());
+                birdsToPrint.add(newBirdView);
+            } else {
+                existingBirdView.animateBird();
+            }
+        });
+    
+        birdsToPrint.removeIf(birdview -> {
+            if (birdview == null) {
+                return false;
+            }
+            if (!birds.contains(birdview.getBird())) {
+                root.getChildren().remove(birdview.getImageView());
+                return true;
+            }
+            return false;
+        });
+    
+        birdsToPrint.forEach(BirdView::animateBird);
+    }
+
+    public void updateCake() {
+        Set<Entity> cakes = this.gameEngine.getGameController().getCakeController().getCakes();
+    
+        cakes.forEach(cake -> {
+            CakeView existCakeView = cakesToPrint.stream()
+                    .filter(view -> view.getCake().equals(cake))
+                    .findFirst()
+                    .orElse(null);
+    
+            if (existCakeView == null) {
+                CakeView newCakeView = new CakeView(cake);
+                root.getChildren().add(newCakeView.getImageView());
+                cakesToPrint.add(newCakeView);
+            } else {
+                existCakeView.animateCake();
+            }
+        });
+
+        cakesToPrint.removeIf(cakeView -> {
+            if (cakeView == null) {
+                return false;
+            }
+            if (!cakes.contains(cakeView.getCake())) {
+                root.getChildren().remove(cakeView.getImageView());
+                return true;
+            }
+            return false;
+        });
+
+        cakesToPrint.forEach(CakeView::animateCake);
+    }
+
     /**
      * Update brick view.
      */

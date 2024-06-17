@@ -6,14 +6,6 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 
 class BirdControllerTest {
-    @SuppressWarnings("unused")
-    private BirdController birdController;
-    @SuppressWarnings("unused")
-    private GamePerformance gamePerformance;
-    @SuppressWarnings("unused")
-    private GameController gameController;
-    @SuppressWarnings("unused")
-    private EntityFactoryImpl entityFactory;
-
+    
   
 }

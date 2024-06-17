@@ -42,6 +42,7 @@ public class GameController {
         //System.out.println("Ralph updated\n" + ralphController.getRalph().getPosition());
         //System.out.println("Bricks updated\n" + brickController.getBricks());
         this.birdController.update();
+        this.cakeController.update();
         this.collisionManager.check();
     }
     /**

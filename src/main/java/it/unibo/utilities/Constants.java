@@ -137,7 +137,7 @@ public final class Constants {
         /**
          * The height of the cake.
          */
-        public static final double CAKE_HEIGHT = 10;
+        public static final double CAKE_HEIGHT = 20;
     }
     /**
      * Bird constaints.
@@ -146,11 +146,11 @@ public final class Constants {
         /**
          * The width of the bird.
          */
-        public static final double BIRD_WIDTH = 100;
+        public static final double BIRD_WIDTH = 25;
         /**
          * The height of the bird.
          */
-        public static final double BIRD_HEIGHT = 100;
+        public static final double BIRD_HEIGHT =25;
     }
     /**
      * Buttons constaints.

@@ -9,26 +9,24 @@ import it.unibo.utilities.Constants;
  * Component to randomly position the bird.
  */
 public class BirdPositionComponent extends AbstractComponent {
-    private boolean moveRight;
+
+    private final Random rand = new Random();
 
     public Pair<Double, Double> randomPosition() {
-        Random rand = new Random();
-        double birdY = rand.nextDouble() 
-                       * (Constants.PowerUps.BIRD_MAX_Y - Constants.PowerUps.BIRD_MIN_Y)
-                       + Constants.PowerUps.BIRD_MIN_Y;
-        double birdX;
-        if (rand.nextBoolean()) {
-            birdX = Constants.GameEdges.RIGHT_WALL;
-            this.moveRight = false; 
-        } else {
-            birdX = Constants.GameEdges.LEFT_WALL;
-            this.moveRight = true; 
+        double birdX = Constants.GameEdges.LEFT_WALL;
+        double birdY;
+        switch (rand.nextInt(3)) {
+            case 0:
+                birdY = Constants.Floors.FLOOR_1_Y +30;
+                break;
+            case 1:
+                birdY = Constants.Floors.FLOOR_2_Y +30;
+                break;
+            default:
+                birdY = Constants.Floors.FLOOR_3_Y +30;
+                break;
         }
         return new Pair<>(birdX, birdY);
-    }
-
-    public boolean hasToMoveRight() {
-        return this.moveRight;
     }
 
     @Override

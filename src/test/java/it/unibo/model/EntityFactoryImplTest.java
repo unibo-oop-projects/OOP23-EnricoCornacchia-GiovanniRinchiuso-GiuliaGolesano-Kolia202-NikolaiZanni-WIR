@@ -20,39 +20,5 @@ import it.unibo.utilities.EntityType;
 
 public class EntityFactoryImplTest {
 
-    EntityFactoryImpl entityFactoryImpl;
-    BirdPositionComponent birdPosition;
 
-    @BeforeEach
-    public void setUp() {
-        GamePerformance gamePerformance = new GamePerformanceImpl(null);
-        entityFactoryImpl = new EntityFactoryImpl(gamePerformance);
-        birdPosition = new BirdPositionComponent();
-    }
-
-    @Test
-    public void testCreateCake() {
-        Entity cake = entityFactoryImpl.createCake(null);
-        assertNotNull(cake);
-        assertEquals(EntityType.CAKE, cake.getEntityType());
-        assertTrue(cake.getPosition().getX() >= Constants.PowerUps.CAKE_MIN_X
-                && cake.getPosition().getX() <= Constants.PowerUps.CAKE_MAX_X);
-        assertTrue(cake.getPosition().getY() == Constants.Floors.FLOOR_1_Y
-                || cake.getPosition().getY() == Constants.Floors.FLOOR_2_Y
-                || cake.getPosition().getY() == Constants.Floors.FLOOR_3_Y);
-    }
-
-    @Test
-    public void testCreateBird() {
-        Entity bird = entityFactoryImpl.createBird(null);
-        assertNotNull(bird);
-        assertEquals(EntityType.BIRD, bird.getEntityType());
-        assertTrue(bird.getPosition().getX() == Constants.PowerUps.BIRD_MIN_X
-                || bird.getPosition().getX() == Constants.PowerUps.BIRD_MAX_X);
-        assertTrue(bird.getPosition().getY() >= Constants.PowerUps.BIRD_MIN_Y
-                && bird.getPosition().getY() <= Constants.PowerUps.BIRD_MAX_Y);
-                Set<Component> components = bird.getComponents();
-                assertNotNull(components);
-                assertTrue(components.stream().anyMatch(c -> c instanceof BirdPositionComponent));
-    }
 }

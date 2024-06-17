@@ -59,6 +59,8 @@ public class GameEngineImpl implements GameEngine {
     */
     public void draw(final WindowGame windowGame) {
          windowGame.update();
+         windowGame.updateBird();
+         windowGame.updateCake();
     }
     /**
      * @InheritDoc

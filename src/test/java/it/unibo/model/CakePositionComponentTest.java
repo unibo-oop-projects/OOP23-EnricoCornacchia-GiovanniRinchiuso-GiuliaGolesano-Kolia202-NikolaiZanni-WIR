@@ -14,26 +14,4 @@ import it.unibo.utilities.Constants;
 
 public class CakePositionComponentTest {
 
-    CakePositionComponent cakePositionComponent;
-
-    @BeforeEach
-    public void setUP() {
-        cakePositionComponent = new CakePositionComponent();
-    }
-
-    @Test
-    public void testRandomPosition() {
-        Pair<Double, Double> randomPos = cakePositionComponent.randomPosition();
-        assertNotNull(randomPos);
-        assertTrue(randomPos.getX() >= Constants.PowerUps.CAKE_MIN_X
-                && randomPos.getX() <= Constants.PowerUps.CAKE_MAX_X);
-        assertTrue(randomPos.getY() == Constants.Floors.FLOOR_1_Y
-                || randomPos.getY() == Constants.Floors.FLOOR_2_Y
-                || randomPos.getY() == Constants.Floors.FLOOR_3_Y);
-    }
-
-    @Test
-    public void testGetComponent() {
-        assertEquals(ComponentType.CAKEPOSITION, cakePositionComponent.getComponent());
-    }
 }

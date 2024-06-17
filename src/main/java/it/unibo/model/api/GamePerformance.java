@@ -77,5 +77,12 @@ public interface GamePerformance {
      * 
      * @return the list of birds.
      */
-    List<Entity> getBirds();
+
+    Set<Entity> getBirds();
+    
+    void removeBirds(Pair<Double, Double> pos);
+
+    Set<Entity> getCakes();
+    
+    void removeCakes(Pair<Double, Double> pos);
 }
