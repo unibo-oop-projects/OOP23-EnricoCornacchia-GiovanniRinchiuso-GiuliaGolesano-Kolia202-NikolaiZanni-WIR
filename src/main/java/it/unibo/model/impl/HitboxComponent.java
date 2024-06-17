@@ -140,16 +140,20 @@ public class HitboxComponent extends AbstractComponent {
             .filter(e -> !e.equals(this.getEntity()))
             .filter(e -> this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()))
             .forEach(e -> {
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK) && !this.removeEntity) {
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)/*devo guardare se è invincibile felix*/ 
+                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)
+                && !(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).isImmortality())) {
                 ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
                 ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
             }
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE) && !this.removeEntity) {
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE)
+                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
                 ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
                 ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
                 .setImmortality(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()));
             }
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD) && !this.removeEntity) {
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD)
+                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
                 ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
                 ((StopRalphComponent) this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
                 .setStopRalph(((ThrowBrickComponent) this.getEntity().getTheComponent(ComponentType.THROWBRICK).get()));
