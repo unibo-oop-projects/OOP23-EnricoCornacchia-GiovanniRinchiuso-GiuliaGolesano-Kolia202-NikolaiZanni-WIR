@@ -28,7 +28,7 @@ public class GameEngineImpl implements GameEngine {
     public void gameLoop(final WindowGame windowGame) {
         //System.out.println("Game loop started");
         if (gameController.gameIsNotOver() && !gameController.isWin()) {
-            if(GameState.getGameState() == GameState.PLAYING) {
+            if(GameState.getGameState().equals(GameState.PLAYING)) {
                 this.update();
                 this.draw(windowGame);
             }  

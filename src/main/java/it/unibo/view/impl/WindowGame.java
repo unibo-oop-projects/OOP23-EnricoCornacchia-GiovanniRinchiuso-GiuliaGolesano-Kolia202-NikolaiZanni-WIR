@@ -19,6 +19,7 @@ import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.Constants;
+import it.unibo.utilities.GameState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -269,7 +270,9 @@ public class WindowGame extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                gameEngine.gameLoop(WindowGame.this);
+                if (!GameState.getGameState().equals(GameState.PAUSED)) {
+                    gameEngine.gameLoop(WindowGame.this);
+                }
             }
         }.start();
     }
