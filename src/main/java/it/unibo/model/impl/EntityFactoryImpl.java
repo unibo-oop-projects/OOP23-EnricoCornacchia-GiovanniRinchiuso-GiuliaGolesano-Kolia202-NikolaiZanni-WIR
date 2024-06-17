@@ -46,6 +46,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public Entity createRalph(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(), 
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.RALPH),
+                new StopRalphComponent(),
                 new ThrowBrickComponent(this.gamePerformance)));
         return new EntityImpl(EntityType.RALPH, pos, this.gamePerformance, components);
     }

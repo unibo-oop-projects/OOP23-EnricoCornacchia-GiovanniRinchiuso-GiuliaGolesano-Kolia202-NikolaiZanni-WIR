@@ -7,6 +7,8 @@ import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.ImmortalityComponent;
 import it.unibo.model.impl.LivesComponent;
+import it.unibo.model.impl.StopRalphComponent;
+import it.unibo.model.impl.ThrowBrickComponent;
 import javafx.scene.input.KeyCode;
 /**
  * Main controller of the game.
@@ -47,6 +49,10 @@ public class GameController {
                                     .getTheComponent(ComponentType.IMMORTALITY).get())
                                     .chekStopImmortality((LivesComponent) this.felixController.getFelix()
                                                          .getTheComponent(ComponentType.LIFE).get());
+        ((StopRalphComponent) this.ralphController.getRalph()
+                                    .getTheComponent(ComponentType.STOPRALPH).get())
+                                    .checkUnlockRalph((ThrowBrickComponent) this.ralphController.getRalph()
+                                                        .getTheComponent(ComponentType.THROWBRICK).get());
         this.collisionManager.check();
     }
     /**

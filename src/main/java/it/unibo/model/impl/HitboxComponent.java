@@ -140,7 +140,7 @@ public class HitboxComponent extends AbstractComponent {
             .filter(e -> !e.equals(this.getEntity()))
             .filter(e -> this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()))
             .forEach(e -> {
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)/*devo guardare se è invincibile felix*/ 
+            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)
                 && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)
                 && !(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).isImmortality())) {
                 ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
@@ -155,8 +155,10 @@ public class HitboxComponent extends AbstractComponent {
             if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD)
                 && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
                 ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
-                ((StopRalphComponent) this.getEntity().getTheComponent(ComponentType.STOPRALPH).get())
-                .setStopRalph(((ThrowBrickComponent) this.getEntity().getTheComponent(ComponentType.THROWBRICK).get()));
+                Entity ralph = this.getEntity().getGamePerformance().getEntity().stream()
+                    .filter(r -> r.getEntityType().equals(EntityType.RALPH)).findFirst().get();
+                ((StopRalphComponent) ralph.getTheComponent(ComponentType.STOPRALPH).get())
+                    .setStopRalph(((ThrowBrickComponent) ralph.getTheComponent(ComponentType.THROWBRICK).get()));
             }
             });
     }
