@@ -1,4 +1,16 @@
-\title{''Raplh Spaccatutto''}
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{alltt, fancyvrb, url}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{hyperref}
+
+\usepackage[italian]{babel}
+
+\usepackage[italian]{cleveref}
+
+\title{''Ralph Spaccatutto''}
 
 \author{Enrico Cornacchia \\ Giulia Golesano \\ Giovanni Rinchiuso \\ Nikolai Zanni}
 \date{10 giugno 2024}
@@ -121,6 +133,19 @@ Nella schermata di pausa `e possibile ritornare al gioco menu, mentre in quella 
 \paragraph{Soluzione:}
 Il pulsante per il Menu funziona come per le altre schermate, in questo caso durante lo sviluppo mi sono reso conto che le schermate erano praticamente tutte identiche, di conseguenza ho deciso di controllare lo stato in cui mi trovo all’interno del draw() in modo da visualizzare solo gli elementi grafici corrispondenti. Il metodo startGame() viene utilizzato quando ci si trova nella schermata di fine, mentre in quella di pausa si procede semplicemente riprendendo la partita in corso. Quando ci si trova nella schermata di pausa sono presenti le stesse impostazioni audio della schermata Settings, semplicmente in questa schermata potremo scegliere tra due musiche di gioco diverse da quelle di menù.
 
+\subsubsection{Gestione dei power ups}
+
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/power_ups.png}
+\caption{Rappresentazione UML della gestione dei power ups.}
+\end{figure}
+
+\paragraph{Problema:}
+Il giocatore deve poter usufruire di eventuali powerup sparsi per la mappa i quali forniscono potenziamenti. Anche i barili possono avere powerup, come il danno doppio.
+
+\paragraph{Soluzione:}
+Ho deciso di creare un component per ogni powerup, in modo da ottenere una gestione semplice, efficace e facilmente estendibile, ognuno di essi eredita update() da AbstractComponent sfruttando il Template MethodPattern. Ognuno di essi ha un metodo set e get: tramite il primo impostiamo lo stato del power up, il secondo ci ritorna lo stato stesso. Si nota che tra i power up presenti c’`e anche SlowComponent, il quale per`o non viene mai effettivamente utilizzato, questo perch`e `e stato inserito in vista futura. In ogni caso per poterlo utilizzare basterebbe semplicemente aggiungerlo ad un entità.
 
 
 \subsection{Cornacchia Enrico}
@@ -134,10 +159,10 @@ Il pulsante per il Menu funziona come per le altre schermate, in questo caso dur
 \end{figure}
 
 \paragraph{Problema:}
-Le entità sono una parte fondamentale se non il cuore del gioco, di conseguenza ne `e opportuna una gestione ottimale, soprattutto considerando il possibile e non raro caso in cui diverse entit`a possano avere un comportamento uguale o simile.
+Le entità sono una parte fondamentale se non il cuore del gioco, di conseguenza ne è opportuna una gestione ottimale, soprattutto considerando il possibile e non raro caso in cui diverse entità possano avere un comportamento uguale o simile.
 
 \paragraph{Soluzione:}
-Per ovviare al problema della ripetizione di codice data da possibili comportamenti simili o uguali, `e stato utilizzato il Component Pattern. Ogni entit`a `e un egual guscio vuoto, al quale possiamo aggiungere component specifici o meno durante la creazione. Questo permette un’efficace gestione delle implementazioni delle entit`a rendendo modifiche, ulteriori implementazioni ed estensioni facilmente apportabili e riutilizzabili.
+Per ovviare al problema della ripetizione di codice data da possibili comportamenti simili o uguali, è stato utilizzato il Component Pattern. Ogni entità è un egual guscio vuoto, al quale possiamo aggiungere component specifici o meno durante la creazione. Questo permette un'efficace gestione delle implementazioni delle entità rendendo modifiche, ulteriori implementazioni ed estensioni facilmente apportabili e riutilizzabili.
 
 \subsubsection{Gestione della creazione delle entità}
 
@@ -152,20 +177,6 @@ Sia all’inizio del gioco che durante, `e necessario creare diverse entità con
 
 \paragraph{Soluzione:}
 Il Factory Pattern ci fornisce un metodo centralizzato per la creazione di nuove istanze di entit`a, diverse e con component diversi in modo semplice e veloce. Questo ci offre diversi vantaggi, separa la logica di creazione delle entit`a dal resto dell’applicazione, rendendo il codice pi`u modulare e in caso futuro, di modificare la creazione, i parametri o i component di una o pi`u entit`a molto pi`u semplicemente. La factory pu`o prendere in ingresso parametri per la creazione di queste entit`a come per esempio la posizione.
-
-\subsubsection{Gestione dei power ups}
-
-\begin{figure}[H]
-\centering{}
-\includegraphics[width=\textwidth]{img/power_ups.png}
-\caption{Rappresentazione UML della gestione dei power ups.}
-\end{figure}
-
-\paragraph{Problema:}
-Il giocatore deve poter usufruire di eventuali powerup sparsi per la mappa i quali forniscono potenziamenti. Anche i barili possono avere powerup, come il danno doppio.
-
-\paragraph{Soluzione:}
-Ho deciso di creare un component per ogni powerup, in modo da ottenere una gestione semplice, efficace e facilmente estendibile, ognuno di essi eredita update() da AbstractComponent sfruttando il Template MethodPattern. Ognuno di essi ha un metodo set e get: tramite il primo impostiamo lo stato del power up, il secondo ci ritorna lo stato stesso. Si nota che tra i power up presenti c’`e anche SlowComponent, il quale per`o non viene mai effettivamente utilizzato, questo perch`e `e stato inserito in vista futura. In ogni caso per poterlo utilizzare basterebbe semplicemente aggiungerlo ad un entità.
 
 
 
@@ -308,6 +319,8 @@ Quando ho iniziato a lavorare al progetto mi sentivo molto spaesata e incapace, 
 Man mano che i mesi andavano avanti, la possibilità di lavorarci con calma, durante le lezioni, senza la fretta della sessione di esami, mi ha reso sempre più consapevole di come le cose funzionavano e come potevo realizzare le mie idee.
 Sento inoltre che mi è servito tanto il lavoro di gruppo con i miei compagni, perché ho appreso elasticità rispetto alle velocità e tecniche di lavoro degli altri.
 In conclusione, penso che tutto il gruppo abbia fatto un discreto lavoro.
+\subsection{Cornacchia Enrico}
+
 
 \chapter{Guida Utente}
 L'obiettivo del gioco è aggiustare tutte le finestre, schivando i mattoni lanciati da Ralph e cercando di raggiungere tutti i power ups disponibili.
@@ -320,4 +333,4 @@ I comandi di gioco sono:
 I power ups sono:
 \item Cake:
 \item Bird:
-
+\end{document}
