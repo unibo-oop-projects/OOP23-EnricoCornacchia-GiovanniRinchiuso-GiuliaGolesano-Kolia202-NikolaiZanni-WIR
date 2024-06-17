@@ -150,7 +150,7 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 
 \subsection{Cornacchia Enrico}
 
-\subsubsection{Gestione delle entità}
+\subsubsection{Gestione di entità}
 
 \begin{figure}[H]
 \centering{}
@@ -159,12 +159,12 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 \end{figure}
 
 \paragraph{Problema:}
-Le entità sono una parte fondamentale se non il cuore del gioco, di conseguenza ne è opportuna una gestione ottimale, soprattutto considerando il possibile e non raro caso in cui diverse entità possano avere un comportamento uguale o simile.
+Nel contesto di un gioco, le entità sono elementi centrali e la loro gestione deve essere efficiente. In particolare, è comune che diverse entità condividano comportamenti simili o identici, il che può portare a duplicazione di codice. 
 
 \paragraph{Soluzione:}
-Per ovviare al problema della ripetizione di codice data da possibili comportamenti simili o uguali, è stato utilizzato il Component Pattern. Ogni entità è un egual guscio vuoto, al quale possiamo aggiungere component specifici o meno durante la creazione. Questo permette un'efficace gestione delle implementazioni delle entità rendendo modifiche, ulteriori implementazioni ed estensioni facilmente apportabili e riutilizzabili.
+Per affrontare il problema della duplicazione di codice e gestire in modo efficiente le entità, ho adottato il Composite Pattern. In questo approccio, ogni entità è rappresentata da una singola classe, con enumeratore che ne identifica la tipologia. Questa classe può essere vista come un contenitore vuoto che può essere arricchito con vari componenti durante la sua creazione. Questi componenti, che rappresentano comportamenti o caratteristiche specifiche, possono essere combinati in vari modi per creare entità diverse. Questo rende il codice più modulare, facilita le modifiche e le estensioni, e promuove il riutilizzo del codice. 
 
-\subsubsection{Gestione della creazione delle entità}
+\subsubsection{Gestione della produzione di nuove entità}
 
 \begin{figure}[H]
 \centering{}
@@ -173,11 +173,10 @@ Per ovviare al problema della ripetizione di codice data da possibili comportame
 \end{figure}
 
 \paragraph{Problema:}
-Sia all’inizio del gioco che durante, `e necessario creare diverse entità con diversi component in base ai comportamenti.
+Sia in fase di avvio del gioco che nel corso dello stesso, è indispensabile generare varie entità, ciascuna con diversi componenti, a seconda dei comportamenti definiti per ciascuna.
 
 \paragraph{Soluzione:}
-Il Factory Pattern ci fornisce un metodo centralizzato per la creazione di nuove istanze di entit`a, diverse e con component diversi in modo semplice e veloce. Questo ci offre diversi vantaggi, separa la logica di creazione delle entit`a dal resto dell’applicazione, rendendo il codice pi`u modulare e in caso futuro, di modificare la creazione, i parametri o i component di una o pi`u entit`a molto pi`u semplicemente. La factory pu`o prendere in ingresso parametri per la creazione di queste entit`a come per esempio la posizione.
-
+Ho usato il Factory Pattern visto che permette di generare nuove istanze di entità in maniera centralizzata, ognuna diversa e con componenti vari, in modo relativamente veloce e semplice. Ciò comporta numerosi benefici, tra cui la separazione della logica di creazione delle entità dal resto dell'applicazione, rendendo il codice più modulare. Inoltre, in futuro, se fosse necessario modificare la creazione, i parametri o i componenti di una o più entità, ciò potrebbe essere fatto con maggiore facilità. La factory può accettare parametri in ingresso per la creazione di queste entità, come ad esempio la posizione o lo stato iniziale.
 
 
 
