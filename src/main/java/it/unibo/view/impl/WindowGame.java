@@ -1,7 +1,5 @@
 package it.unibo.view.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +11,6 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.impl.EntityFactoryImpl;
-import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
@@ -53,8 +50,8 @@ public class WindowGame extends Application {
     Set<BrickView> bricksToPrint = new HashSet<>();
     private BirdView birdView;
     private CakeView cakeView;
-    Set<BirdView> birdsToPrint = new HashSet<>();
-    Set<CakeView> cakesToPrint = new HashSet<>();
+    private Set<BirdView> birdsToPrint = new HashSet<>();
+    private  Set<CakeView> cakesToPrint = new HashSet<>();
     /*private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
