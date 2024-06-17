@@ -5,6 +5,8 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
+import it.unibo.model.impl.ImmortalityComponent;
+import it.unibo.model.impl.LivesComponent;
 import javafx.scene.input.KeyCode;
 /**
  * Main controller of the game.
@@ -39,10 +41,12 @@ public class GameController {
     public void update() {
         this.brickController.fallBricks();
         this.ralphController.update(brickController.getBricks());
-        //System.out.println("Ralph updated\n" + ralphController.getRalph().getPosition());
-        //System.out.println("Bricks updated\n" + brickController.getBricks());
         this.birdController.update();
         this.cakeController.update();
+        ((ImmortalityComponent) this.felixController.getFelix()
+                                    .getTheComponent(ComponentType.IMMORTALITY).get())
+                                    .chekStopImmortality((LivesComponent) this.felixController.getFelix()
+                                                         .getTheComponent(ComponentType.LIFE).get());
         this.collisionManager.check();
     }
     /**
