@@ -19,8 +19,8 @@ public class WinGameView extends Application {
 
     private final int width = 700;
     private final int height = 500;
-    private final int image_width = 200;
-    private final int image_height = 25;
+    private final int imageWidth = 200;
+    private final int imageHeight = 25;
     private final double animationDurationFirst = 0.25;
     private final double animationDurationSecond = 0.5;
     private final double animationDurationThird = 0.75;
@@ -44,8 +44,7 @@ public class WinGameView extends Application {
         ImageView imageView2 = new ImageView(image2);
         ImageView imageView3 = new ImageView(image3);
 
-        double imageWidth = image_width;
-        double imageHeight = image_height;
+
 
         imageView1.setFitWidth(imageWidth);
         imageView1.setFitHeight(imageHeight);
