@@ -72,4 +72,6 @@ public interface GamePerformance {
      * @return the list of bricks.
      */
     Set<Entity> getBricks();
+
+    List<Entity> getBirds();
 }

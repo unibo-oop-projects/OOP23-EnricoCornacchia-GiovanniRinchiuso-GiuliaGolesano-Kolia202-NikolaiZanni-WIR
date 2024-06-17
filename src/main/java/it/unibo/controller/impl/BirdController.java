@@ -1,5 +1,6 @@
 package it.unibo.controller.impl;
 
+import java.util.List;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
@@ -8,126 +9,62 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.BirdPositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
-import it.unibo.utilities.GameState;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Class to manage a bird power up.
  */
 public class BirdController {
-    private final EntityFactoryImpl entityFactoryImpl;
-    private Entity bird;
-    private final GamePerformance gamePerformance;
-    private final ScheduledExecutorService scheduler;
+    private static final long CREATION_INTERVAL = 10000;
+    private long lastCreationTime = 0;
 
-    /**
-     * Constructor.
-     * 
-     * @param gamePerformance
-     */
+    private final GamePerformance gamePerformance;
+
     public BirdController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
-        this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        this.scheduler = createScheduler();
     }
 
-    /**
-     * Thread executor method.
-     * 
-     * @return
-     */
-    protected ScheduledExecutorService createScheduler() {
-        return Executors.newSingleThreadScheduledExecutor();
+    private boolean isBirdPresent() {
+        return !this.gamePerformance.getBirds().isEmpty();
     }
 
-    /**
-     * Method to manage a bird creation.
-     */
-    public void scheduleBirdCreation() {
-        scheduler.scheduleAtFixedRate(() -> {
-            generateAndRemoveBird();
-        }, 0, 10, TimeUnit.SECONDS);
+    public List<Entity> getBirds() {
+        return this.gamePerformance.getBirds();
     }
 
-    /**
-     * Method to remove a bird.
-     */
-    private void generateAndRemoveBird() {
-        if (this.bird != null) {
-            this.gamePerformance.removeEntity(this.bird);
-            this.bird = null;
-        }
+    private void createBird() {
         BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
-        Pair<Double, Double> birdPosition = birdPositionComponent.randomPosition();
-        bird = entityFactoryImpl.createBird(birdPosition);
-        this.gamePerformance.addEntity(bird);
-        scheduleBirdMovement(bird);
+        Pair<Double, Double> position = birdPositionComponent.randomPosition();
+        Entity bird = new EntityFactoryImpl(this.gamePerformance).createBird(position);
+        addBird(bird);
     }
 
-    /**
-     * Method to manage the movements.
-     * 
-     * @param bird
-     */
-    private void scheduleBirdMovement(Entity bird) {
-        scheduler.scheduleAtFixedRate(() -> {
-            moveBird();
-        }, 0, 10, TimeUnit.SECONDS);
-    }
-
-    /**
-     * Method to move the bird.
-     */
-    private void moveBird() {
-        if (this.bird != null) {
-            for (final Component component : bird.getComponents()) {
-                if (component.getComponent() == ComponentType.BIRDPOSITION
-                        && ((BirdPositionComponent) component).hasToMoveRight()) {
-                    if (component.getComponent() == ComponentType.MOVEMENT
-                            && ((MovementComponent) component).canMove(1.0, 0, bird)) {
-                        ((MovementComponent) component).move(1.0, 0.0, bird);
-                    }
-                } else if (component.getComponent() == ComponentType.BIRDPOSITION
-                        && !((BirdPositionComponent) component).hasToMoveRight()) {
-                    if (component.getComponent() == ComponentType.MOVEMENT
-                            && ((MovementComponent) component).canMove(-1.0, 0, bird)) {
-                        ((MovementComponent) component).move(-1.0, 0.0, bird);
+    public void moveBird() {
+        for (final Entity bird : this.gamePerformance.getBirds()) {
+            bird.getTheComponent(ComponentType.BIRDPOSITION).ifPresent(component -> {
+                BirdPositionComponent birdPositionComponent = (BirdPositionComponent) component;
+                double X = birdPositionComponent.hasToMoveRight() ? 1.0 : -1.0;
+                bird.getTheComponent(ComponentType.MOVEMENT).ifPresent(moveComponent -> {
+                    MovementComponent movementComponent = (MovementComponent) moveComponent;
+                    if (movementComponent.canMove(X, 0.0, bird)) {
+                        movementComponent.move(X, 0.0, bird);
                     } else {
                         this.gamePerformance.removeEntity(bird);
                     }
-                }
-            }
+                });
+            });
         }
     }
 
-    /**
-     * Getter of the bird.
-     * 
-     * @return the bird
-     */
-    public Entity getBird() {
-        return this.bird;
+    public void addBird(final Entity bird) {
+        this.gamePerformance.addEntity(bird);
     }
 
-    /**
-     * Method to stop the creation.
-     */
-    public void stopBirdCreation() {
-        scheduler.shutdown();
-    }
-
-    /**
-     * Method to update the position.
-     */
     public void update() {
-        if (GameState.getGameState() == GameState.PLAYING) {
-            scheduleBirdCreation();
-            moveBird();
-        } else if (GameState.getGameState() != GameState.PLAYING) {
-            stopBirdCreation();
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastCreationTime >= CREATION_INTERVAL && !isBirdPresent()) {
+            createBird();
+            lastCreationTime = currentTime;
         }
+        moveBird();
     }
 }

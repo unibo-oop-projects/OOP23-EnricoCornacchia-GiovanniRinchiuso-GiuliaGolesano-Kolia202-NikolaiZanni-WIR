@@ -87,6 +87,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createBird(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
+        new BirdPositionComponent(),
         new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.BIRD, pos, this.gamePerformance, components);
     }

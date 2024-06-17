@@ -79,8 +79,6 @@ public class WindowGame extends Application {
      */
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        this.gameEngine.getGameController().getCakeController().scheduleCakeCreation();
-        this.gameEngine.getGameController().getBirdController().scheduleBirdCreation();
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
 
