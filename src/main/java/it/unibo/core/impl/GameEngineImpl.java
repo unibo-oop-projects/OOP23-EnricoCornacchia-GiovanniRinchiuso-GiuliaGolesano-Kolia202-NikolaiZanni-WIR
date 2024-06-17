@@ -28,19 +28,21 @@ public class GameEngineImpl implements GameEngine {
     public void gameLoop(final WindowGame windowGame) {
         //System.out.println("Game loop started");
         if (gameController.gameIsNotOver() && !gameController.isWin()) {
-            //System.out.println("Inside if");
-            this.update();
-            this.draw(windowGame);
+            if(GameState.getGameState() == GameState.PLAYING) {
+                this.update();
+                this.draw(windowGame);
+            }  
         }
         if (!gameController.gameIsNotOver()) {
-            GameState.setGameState(GameState.WIN);
+            GameState.setGameState(GameState.GAMEOVER);
             /*try {
                     new WinGameView().start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }*/
-        } else {
-            GameState.setGameState(GameState.GAMEOVER);
+        } 
+        if(gameController.isWin()) {
+            GameState.setGameState(GameState.WIN);
             /*try {
                 new EndGameView().start(new Stage());
             } catch (Exception e) {

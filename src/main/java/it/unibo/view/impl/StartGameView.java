@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.Interpolator;
 import it.unibo.model.impl.PointsComponent;
+import it.unibo.utilities.GameState;
 
 public final class StartGameView extends Application {
     private Button level1Button;
@@ -249,6 +250,7 @@ public final class StartGameView extends Application {
             WindowGame windowGame = new WindowGame();
             windowGame.getGameEngine().getGameController().setLevel(level);
             windowGame.start(primaryStage);
+            GameState.setGameState(GameState.PLAYING);
         } catch (Exception e) {
             e.printStackTrace();
         }
