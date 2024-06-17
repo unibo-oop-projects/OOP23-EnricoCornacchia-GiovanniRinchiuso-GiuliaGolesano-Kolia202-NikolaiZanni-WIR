@@ -50,7 +50,7 @@ public class RalphController {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
                 final double x = Constants.Ralph.RALPH_LEFT_HAND.getX() + ralph.getPosition().getX();
-                final double y = ralph.getPosition().getY()+ Constants.Ralph.RALPH_LEFT_HAND.getY();
+                final double y = ralph.getPosition().getY() + Constants.Ralph.RALPH_LEFT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
                 ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
                 //System.out.println("Brick thrown");
@@ -84,7 +84,7 @@ public class RalphController {
      * @return the time to wait.
      */
     private double getTimeToWait() {
-        return Constants.Ralph.THROW_TIME / (gamePerformance.getLevel() / 1.5);
+        return Constants.Ralph.THROW_TIME / (gamePerformance.getLevel() / Constants.Ralph.LEVEL_DIVIDER);
     }
     /**
      * Update Ralph position, and make him throwing bricks.

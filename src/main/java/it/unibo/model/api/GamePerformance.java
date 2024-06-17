@@ -72,6 +72,10 @@ public interface GamePerformance {
      * @return the list of bricks.
      */
     Set<Entity> getBricks();
-
+    /**
+     * Get all the birds currently present in the game.
+     * 
+     * @return the list of birds.
+     */
     List<Entity> getBirds();
 }

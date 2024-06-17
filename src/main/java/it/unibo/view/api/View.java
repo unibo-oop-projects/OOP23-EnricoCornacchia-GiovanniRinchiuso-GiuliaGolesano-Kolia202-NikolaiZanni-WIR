@@ -12,10 +12,9 @@ public interface View {
      * @param name
      * @return the source.
      */
-    Image getSource(final String name);
+    Image getSource(String name);
     /**
      * Update the frame.
-     * @return the frame updated.
      */
     void updateFrame();
     /**
@@ -23,7 +22,7 @@ public interface View {
      * @param index
      * @return the image.
      */
-    Image getFrame(final int index);
+    Image getFrame(int index);
     /**
      * Get the image view.
      * @return the image created.

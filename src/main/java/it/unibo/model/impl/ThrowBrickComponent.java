@@ -32,13 +32,12 @@ public class ThrowBrickComponent extends AbstractComponent {
          */
         public void addBrickToThrow(final Set<Entity> bricks, final Pair<Double, Double> position) {
             if (!blocked) {
-                if(position.getY() < Constants.GameEdges.DOWN_WALL_1 
+                if (position.getY() < Constants.GameEdges.DOWN_WALL_1 
                 && position.getY() > Constants.GameEdges.UP_WALL 
                 && position.getX() < Constants.GameEdges.RIGHT_WALL 
                 && position.getX() > Constants.GameEdges.LEFT_WALL) {
                     gamePerformance.addEntity(entityFactoryImpl.createBrick(position));
                 }
-                
             }
         }
         /**

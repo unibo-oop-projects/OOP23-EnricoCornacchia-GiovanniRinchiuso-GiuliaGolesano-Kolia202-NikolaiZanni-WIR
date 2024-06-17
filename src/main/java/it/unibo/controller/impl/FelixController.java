@@ -81,7 +81,8 @@ public class FelixController {
                 if (this.felix.getPosition().getY() > Constants.Floors.FLOOR_3_Y) {
                     return 0;
                 } else {
-                    if (this.felix.getPosition().getY() <= LOWEST_PLATFORM - Constants.Felix.FELIX_HEIGHT && this.felix.getPosition().getY() > SECOND_PLATFORM + Constants.Window.WINDOW_HEIGHT) {
+                    if (this.felix.getPosition().getY() <= LOWEST_PLATFORM - Constants.Felix.FELIX_HEIGHT 
+                    && this.felix.getPosition().getY() > SECOND_PLATFORM + Constants.Window.WINDOW_HEIGHT) {
                         return Constants.Felix.FELIX_START.getY() - this.felix.getPosition().getY();
                     }
                     return FLOOR_Y;

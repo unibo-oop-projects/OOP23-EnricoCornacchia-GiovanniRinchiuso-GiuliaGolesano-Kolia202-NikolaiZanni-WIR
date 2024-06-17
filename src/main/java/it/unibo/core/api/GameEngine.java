@@ -8,6 +8,7 @@ import it.unibo.view.impl.WindowGame;
 public interface GameEngine {
     /**
      * Loop of the game.
+     * @param windowGame the main window of the game.
      */
     void gameLoop(WindowGame windowGame);
     /**
@@ -16,6 +17,7 @@ public interface GameEngine {
     void update();
     /**
      * Draw the game.
+     * @param windowGame the main window of the game.
      */
     void draw(WindowGame windowGame);
 }

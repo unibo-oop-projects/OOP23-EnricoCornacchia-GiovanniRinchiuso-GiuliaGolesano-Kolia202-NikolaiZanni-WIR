@@ -30,7 +30,7 @@ public class GameEngineImpl implements GameEngine {
     public void gameLoop(final WindowGame windowGame) {
         //System.out.println("Game loop started");
         if (gameController.gameIsNotOver() && !gameController.isWin()) {
-            if(GameState.getGameState().equals(GameState.PLAYING)) {
+            if (GameState.getGameState().equals(GameState.PLAYING)) {
                 this.update();
                 this.draw(windowGame);
             }  
@@ -44,7 +44,7 @@ public class GameEngineImpl implements GameEngine {
                     e.printStackTrace();
                 }
         } 
-        if(gameController.isWin() && !isWinShown) {
+        if (gameController.isWin() && !isWinShown) {
             GameState.setGameState(GameState.WIN);
             try {
                 new WinGameView().start(new Stage());
@@ -54,20 +54,20 @@ public class GameEngineImpl implements GameEngine {
             }
         }
     }
-    /**
-     * Draw the game.
-     */
-    public void draw(WindowGame windowGame) {
+   /**
+    * @InheritDoc
+    */
+    public void draw(final WindowGame windowGame) {
          windowGame.update();
     }
     /**
-     * Update the game.
+     * @InheritDoc
      */
     @Override
     public void update() {
         gameController.update();
     }
-    /*
+    /**
      * Getter of the GameController.
      * @return the GameController.
      */

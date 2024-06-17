@@ -16,7 +16,7 @@ public class CollisionManager {
 
     /**
      * Constructor for the CollisionManager.
-     * @param entities the set of entities.
+     * @param gamePerformance the game performance, where every entity is stored.
      */
     public CollisionManager(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;

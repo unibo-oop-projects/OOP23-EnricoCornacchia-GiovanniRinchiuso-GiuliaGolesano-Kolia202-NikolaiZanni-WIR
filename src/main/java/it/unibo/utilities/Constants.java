@@ -65,7 +65,7 @@ public final class Constants {
          * The difference between the position of Ralph and the position of his right
          * hand.
          */
-        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(70.0 , 35.0);
+        public static final Pair<Double, Double> RALPH_RIGHT_HAND = new Pair<>(70.0, 35.0);
         /**
          * The difference between the position of Ralph and the position of his left
          * hand.
@@ -83,6 +83,10 @@ public final class Constants {
          * The Ralph speed in throwing bricks.
          */
         public static final long THROW_TIME = 4000;
+        /**
+         * The divider for the level.
+         */
+        public static final double LEVEL_DIVIDER = 1.5;
     }
     /**
      * Brick constaints.

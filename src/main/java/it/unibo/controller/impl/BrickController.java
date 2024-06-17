@@ -72,13 +72,11 @@ public class BrickController {
         }
         return 0;
     }
-    /*
-     * Add a brick to the game.
-     * Used for testing purposes.
+    /**
+     * Add a brick to the game, used for testing.
+     * @param brick the brick to add.
      */
     public void addBrick(final Entity brick) {
         this.gamePerformance.addEntity(brick);
     }
-   
-    
 }

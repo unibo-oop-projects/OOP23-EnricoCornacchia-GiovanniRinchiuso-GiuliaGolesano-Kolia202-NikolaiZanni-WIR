@@ -10,7 +10,7 @@ import it.unibo.utilities.Constants;
  * Component that allows movement.
  */
 public class MovementComponent extends AbstractComponent {
-    /*
+    /**
      * Constructor empty.
      */
     public MovementComponent() {

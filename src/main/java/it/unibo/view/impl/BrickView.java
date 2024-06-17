@@ -2,7 +2,6 @@ package it.unibo.view.impl;
 
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constants;
-import it.unibo.utilities.Movements;
 import it.unibo.view.api.View;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -46,34 +45,20 @@ public class BrickView implements View {
     return image;
     }
     /**
-     * Method to change the animation of the fixing window.
-     * @return
+     * Method to animate the brick.
      */
     public void animateBrick() {
-        // Update the brick's position
         this.imageView.setX(this.brick.getPosition().getX());
         this.imageView.setY(this.brick.getPosition().getY());
-    
-        
-        // Check if the timeline is null or not running
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
-            // Initialize a new timeline with a single keyframe
             this.timeline = new Timeline(
                     new KeyFrame(Duration.millis(ANIMATION_DURATION), e -> {
-                        // Perform any necessary updates here
                     }));
-            
-            // Set the cycle count to 1 since the brick does not animate through frames
             this.timeline.setCycleCount(1);
-            
-            // Stop the timeline when the animation is finished
             this.timeline.setOnFinished(e -> this.imageView.setImage(this.spriteSheet));
-            
-            // Start the animation
             this.timeline.play();
         }
     }
-    
     /**
      * {@inheritDoc}
      */
@@ -97,11 +82,16 @@ public class BrickView implements View {
     public ImageView getImageView() {
         return this.imageView;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public Image getImage() {
         return this.spriteSheet;
     }
-
+    /**
+     * Getter for the brick.
+     * @return the brick.
+     */
     public Entity getBrick() {
         return this.brick;
     }
