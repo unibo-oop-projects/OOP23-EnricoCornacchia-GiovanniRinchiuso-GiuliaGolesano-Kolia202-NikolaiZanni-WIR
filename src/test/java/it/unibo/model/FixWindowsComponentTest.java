@@ -19,20 +19,24 @@ import it.unibo.model.impl.GamePerformanceImpl;
  */
 public class FixWindowsComponentTest {
 
-    FixWindowsComponent fixWindowsComponent;
-    FixedWindowsComponent fixedWindowsComponent;
-
+    private FixWindowsComponent fixWindowsComponent;
+    private FixedWindowsComponent fixedWindowsComponent;
+    /**
+     * Set the variables.
+     */
     @BeforeEach
-    public void setUp() {
+    public final void setUp() {
         fixWindowsComponent = new FixWindowsComponent();
         fixedWindowsComponent = new FixedWindowsComponent(false);
     }
-
+    /**
+     * Test for the method that fix a window.
+     */
     @Test
     public void testFixing() {
         Pair<Double, Double> windowPosition = new Pair<>(0.0, 0.0);
         EntityFactoryImpl entityFactory = new EntityFactoryImpl(new GamePerformanceImpl(new GameController()));
-        Entity window = entityFactory.createWindows(windowPosition, false); // Finestra non ancora fissata
+        Entity window = entityFactory.createWindows(windowPosition, false);
 
         GameController gameController = new GameController();
         GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
@@ -41,11 +45,13 @@ public class FixWindowsComponentTest {
         FixWindowsComponent fixWindowsComponent = new FixWindowsComponent();
         fixWindowsComponent.fixing(windowPosition, gamePerformance);
 
-        FixedWindowsComponent fixedWindowsComponent = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+        FixedWindowsComponent fixedWindowsComponent = (FixedWindowsComponent) window
+                                                    .getTheComponent(ComponentType.FIXEDWINDOWS).get();
         assertEquals(true, fixedWindowsComponent.isFixed());
     }
-
-
+    /**
+     * Test for the method that get the right component.
+     */
     @Test
     public void testGetComponent() {
         assertEquals(ComponentType.FIXWINDOWS, fixWindowsComponent.getComponent());

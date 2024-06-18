@@ -9,16 +9,22 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.impl.LivesComponent;
-
+/**
+ * Test for the Lives Component.
+ */
 public class LivesComponentTest {
 
     LivesComponent livesComponent;
-
+    /**
+     * Set the variable.
+     */
     @BeforeEach
-    void setUp() {
+    public final void setUp() {
         livesComponent = new LivesComponent();
     }
-
+    /**
+     * Test for the method stealLives.
+     */
     @Test
     public void testStealLives() {
         livesComponent.stealLives();
@@ -28,25 +34,33 @@ public class LivesComponentTest {
         livesComponent.stealLives();
         assertEquals(0, livesComponent.getLives());
     }
-
+    /**
+     * Test for the method that get the lives.
+     */
     @Test
     public void testGetLives() {
         assertEquals(3, livesComponent.getLives());
     }
-
+    /**
+     * Test for the method that set the immortality.
+     */
     @Test
     public void testSetImmortality() {
         livesComponent.setImmortality();
         assertTrue(livesComponent.isImmortality());
     }
-
+    /**
+     * Test for the method that look if the player is immortal or not.
+     */
     @Test
     public void testIsimmortality() {
         assertFalse(livesComponent.isImmortality());
         livesComponent.setImmortality();
         assertTrue(livesComponent.isImmortality());
     }
-
+    /**
+     * Test for the method that stop the immortality.
+     */
     @Test
     public void testSetStopImmortality() {
         livesComponent.setImmortality();
@@ -54,7 +68,9 @@ public class LivesComponentTest {
         livesComponent.setStopImmortality();
         assertFalse(livesComponent.isImmortality());
     }
-
+    /**
+     * Test for the method that get the right component.
+     */
     @Test
     public void testGetComponent() {
         assertEquals(ComponentType.LIFE, livesComponent.getComponent());
