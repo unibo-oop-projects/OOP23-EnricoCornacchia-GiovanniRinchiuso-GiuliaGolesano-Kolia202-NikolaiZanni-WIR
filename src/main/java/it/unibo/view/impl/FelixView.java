@@ -22,13 +22,13 @@ public class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;
-    private ImageView imageView;
-    private Image spriteLeft;
-    private Image spriteRight;
+    private final ImageView imageView;
+    private final Image spriteLeft;
+    private final Image spriteRight;
     private Image sprite;
-    private Entity felix;
+    private final Entity felix;
     private Timeline timeline;
-    private int currentFrame = 0;
+    private int currentFrame;
 
     /**
      * Builder for the Felix view.
@@ -70,7 +70,7 @@ public class FelixView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
+    public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -117,7 +117,7 @@ public class FelixView implements View {
      * @return The sprite to be displayed.
      */
     private Image getImage() {
-        List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
+        final List<KeyCode> inputs = this.felix.getGamePerformance().getInputs();
         return inputs.get(inputs.size() - 1) == KeyCode.D ? this.spriteRight : this.spriteLeft;
     }
 }
