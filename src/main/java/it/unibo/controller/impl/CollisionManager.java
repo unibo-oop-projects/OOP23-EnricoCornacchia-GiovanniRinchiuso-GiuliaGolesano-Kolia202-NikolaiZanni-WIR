@@ -34,10 +34,10 @@ public class CollisionManager {
      * Check if there is a collision.
      */
     public void check() {
-        Iterator<Entity> iterator = this.gamePerformance.getEntity().iterator();
+        final Iterator<Entity> iterator = this.gamePerformance.getEntity().iterator();
         while (iterator.hasNext()) {
-            Entity e = iterator.next();
-            HitboxComponent hitboxComponent = (HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get();
+            final Entity e = iterator.next();
+            final HitboxComponent hitboxComponent = (HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get();
             hitboxComponent.update();
             if (hitboxComponent.shouldRemoveEntity()) {
                 iterator.remove();

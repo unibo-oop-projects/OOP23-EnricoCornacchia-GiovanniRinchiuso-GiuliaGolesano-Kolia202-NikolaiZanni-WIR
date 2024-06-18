@@ -3,6 +3,7 @@ package it.unibo.controller.impl;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixWindowsComponent;
@@ -18,7 +19,6 @@ import java.util.Optional;
  */
 public class FelixController {
 
-    private final EntityFactoryImpl entityFactoryImpl;
     private final Entity felix;
     private final GamePerformance gamePerformance;
     private static final Double FLOOR_Y = 79.0;
@@ -34,8 +34,8 @@ public class FelixController {
      */
     public FelixController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
-        this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        this.felix = entityFactoryImpl.createFelix(Felix.FELIX_START);
+        final EntityFactory entityFactory = new EntityFactoryImpl(this.gamePerformance);
+        this.felix = entityFactory.createFelix(Felix.FELIX_START);
         gamePerformance.addEntity(felix);
     }
     /**
@@ -111,7 +111,6 @@ public class FelixController {
      * @param windowPosition the position of the window to fix.
      */
     public void fixWindow(final Pair<Double, Double> windowPosition) {
-        System.err.println("FelixController called");
         final FixWindowsComponent fixComp = (FixWindowsComponent) this.felix.getTheComponent(ComponentType.FIXWINDOWS).get();
         fixComp.fixing(windowPosition, this.gamePerformance);
     }

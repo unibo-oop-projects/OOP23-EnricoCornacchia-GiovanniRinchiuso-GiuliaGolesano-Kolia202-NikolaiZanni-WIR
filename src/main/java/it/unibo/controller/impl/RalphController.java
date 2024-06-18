@@ -3,6 +3,7 @@ package it.unibo.controller.impl;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
@@ -15,20 +16,19 @@ import it.unibo.common.Pair;
  * Controller for Ralph.
  */
 public class RalphController {
-    private final EntityFactoryImpl entityFactoryImpl;
     private final Entity ralph;
     private final GamePerformance gamePerformance;
     private long lastThrowTime;
     private double lastMov;
-    private int count = 0;
+    private int count;
     /**
      * Constructor for the RalphController.
      * @param gamePerformance the game performance.
      */
     public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
-        this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);
-        ralph = entityFactoryImpl.createRalph(Constants.Ralph.RALPH_START);
+        final EntityFactory entityFactory = new EntityFactoryImpl(this.gamePerformance);
+        ralph = entityFactory.createRalph(Constants.Ralph.RALPH_START);
         gamePerformance.addEntity(ralph);
         lastThrowTime = System.currentTimeMillis();
     }
