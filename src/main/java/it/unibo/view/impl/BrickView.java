@@ -16,8 +16,8 @@ import javafx.util.Duration;
  */
 public class BrickView implements View {
     private static final int ANIMATION_DURATION = 16; 
-    private ImageView imageView;
-    private Image spriteSheet;
+    private final ImageView imageView;
+    private final Image spriteSheet;
     private final Entity brick;
     private Timeline timeline;
     /**
@@ -37,8 +37,8 @@ public class BrickView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
-        Image image = new Image(getClass().getResourceAsStream("/" + name + ".png"));
+    public final Image getSource(final String name) {
+        final Image image = new Image(getClass().getResourceAsStream("/" + name + ".png"));
         if (image.isError()) {
             System.out.println("Error loading image: " + name);
         }
@@ -64,7 +64,6 @@ public class BrickView implements View {
      */
     @Override
     public void updateFrame() {
-        return;
     }
     /**
      * {@inheritDoc}
@@ -73,7 +72,7 @@ public class BrickView implements View {
     public Image getFrame(final int index) {
         return new WritableImage(this.spriteSheet.getPixelReader(),
                                  index * ((int) this.spriteSheet.getWidth()), 0, 
-                                 ((int) this.spriteSheet.getWidth()), (int) this.spriteSheet.getHeight());
+                                 (int) this.spriteSheet.getWidth(), (int) this.spriteSheet.getHeight());
     }
     /**
      * {@inheritDoc}

@@ -18,10 +18,10 @@ import it.unibo.model.impl.HitboxComponent;
 public class BirdView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
-    private ImageView imageView;
-    private Image sprite;
-    private Entity bird;
-    private Timeline timeline;
+    private final ImageView imageView;
+    private final Image sprite;
+    private final Entity bird;
+    private final Timeline timeline;
     private int currentFrame;
 
     /**
@@ -62,7 +62,7 @@ public class BirdView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
+    public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -80,9 +80,9 @@ public class BirdView implements View {
      */
     @Override
     public Image getFrame(final int index) {
-        int frameWidth = (int) this.sprite.getWidth() / FRAME_COUNT;
-        int frameHeight = (int) this.sprite.getHeight();
-        int x = index * frameWidth;
+        final int frameWidth = (int) this.sprite.getWidth() / FRAME_COUNT;
+        final int frameHeight = (int) this.sprite.getHeight();
+        final int x = index * frameWidth;
         return new WritableImage(this.sprite.getPixelReader(), x, 0, frameWidth, frameHeight);
     }
 

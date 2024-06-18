@@ -61,7 +61,7 @@ public class CakeView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
+    public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -79,9 +79,9 @@ public class CakeView implements View {
      */
     @Override
     public Image getFrame(final int index) {
-        int frameWidth = (int) this.sprite.getWidth() / FRAME_COUNT;
-        int frameHeight = (int) this.sprite.getHeight();
-        int x = index * frameWidth;
+        final int frameWidth = (int) this.sprite.getWidth() / FRAME_COUNT;
+        final int frameHeight = (int) this.sprite.getHeight();
+        final int x = index * frameWidth;
         return new WritableImage(this.sprite.getPixelReader(), x, 0, frameWidth, frameHeight);
     }
 

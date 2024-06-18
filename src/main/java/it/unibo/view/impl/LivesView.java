@@ -31,10 +31,10 @@ public class LivesView extends StackPane {
      * Updates the lives label.
      */
     private void updateLivesLabel() {
-        int actualLives = livesComponent.getLives();
+        final int actualLives = livesComponent.getLives();
         livesContainer.getChildren().clear();
         for (int i = 0; i < actualLives; i++) {
-            ImageView lifeImage = new ImageView(new Image("life.png"));
+            final ImageView lifeImage = new ImageView(new Image("life.png"));
             lifeImage.setFitWidth(WIDTH);
             lifeImage.setFitHeight(HEIGHT);
             livesContainer.getChildren().add(lifeImage);

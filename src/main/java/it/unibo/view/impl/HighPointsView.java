@@ -14,7 +14,6 @@ public class HighPointsView extends StackPane {
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;
     private static final Double BOTTOM = 20.0;
-    private Label scoreValueLabel;
 
     /**
      * Constructs a HighPointsView with the given PointsComponent.
@@ -32,8 +31,8 @@ public class HighPointsView extends StackPane {
     public void updateHighPointsLabel() {
         getChildren().clear(); // Clear existing labels before updating
 
-        Label scoreTitleLabel = new Label("HIGHSCORE:");
-        scoreValueLabel = new Label("" + pointsComponent.getHighScore());
+        final Label scoreTitleLabel = new Label("HIGHSCORE:");
+        final Label scoreValueLabel = new Label(" " + pointsComponent.getHighScore());
 
         scoreTitleLabel.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: red; -fx-background-color: transparent;");
@@ -51,7 +50,7 @@ public class HighPointsView extends StackPane {
         AnchorPane.setBottomAnchor(scoreValueLabel, 0.0);
         AnchorPane.setLeftAnchor(scoreValueLabel, 0.0);
 
-        AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
+        final AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
         getChildren().add(pointsContainer);
     }
 }
