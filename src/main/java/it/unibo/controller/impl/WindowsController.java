@@ -19,7 +19,6 @@ import it.unibo.model.impl.FixedWindowsComponent;
 public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
-    private Set<Entity> entities;
     private static final int WIDTH = 53;
     private static final int HEIGHT = 80;
     private static final int SPACING = -1;
@@ -51,8 +50,8 @@ public class WindowsController {
      * @return the set of entities.
      */
     public Set<Entity> windowsGrid(final int broken) {
-        this.entities = new HashSet<>();
-        List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(ROWS * COLS, true));
+        final Set<Entity> entities = new HashSet<>();
+        final List<Boolean> windowStates = new ArrayList<>(Collections.nCopies(ROWS * COLS, true));
         for (int i = 0; i < broken; i++) {
             windowStates.set(i, false);
         }
@@ -62,16 +61,16 @@ public class WindowsController {
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 if (index >= windowStates.size()) break;
-                double x = OFFSET_X + col * (WIDTH + SPACING);
-                double y = OFFSET_Y + row * (HEIGHT + SPACING);
-                boolean state = windowStates.get(index);
-                Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
+                final double x = OFFSET_X + col * (WIDTH + SPACING);
+                final double y = OFFSET_Y + row * (HEIGHT + SPACING);
+                final boolean state = windowStates.get(index);
+                final Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
                 entities.add(window);
                 index++;
                 this.gamePerformance.addEntity(window);
             }
         }
 
-        return this.entities;
+        return entities;
     }
 }
