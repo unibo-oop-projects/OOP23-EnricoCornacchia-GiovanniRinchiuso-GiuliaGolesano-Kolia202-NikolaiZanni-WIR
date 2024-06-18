@@ -26,6 +26,11 @@ public class WinGameView extends Application {
     private final double animationDurationThird = 0.75;
     private final int translateY = 100;
 
+    /**
+     * This method is used to show the view of the game when the player wins.
+     * @param primaryStage the stage of the game.
+     * @throws Exception if an error occurs.
+     */
     @Override
     public void start(final Stage primaryStage) throws Exception {
         GameState.setGameState(GameState.WIN);
