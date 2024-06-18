@@ -12,10 +12,10 @@ L'obiettivo del gioco è aggiustare tutte le finestre nel minor tempo possibile,
 
 I comandi di gioco sono i seguenti:
 - **ENTER** (Invio): mette in pausa durante il gioco.
-- **W** o **↑**: Salto al piano superiore.
-- **A** o **←**: Movimento verso sinistra.
-- **S** o **↓**: Discesa al piano inferiore.
-- **D** o **→**: Movimento verso destra.
+- **W**: Salto al piano superiore.
+- **A**: Movimento verso sinistra.
+- **S**: Discesa al piano inferiore.
+- **D**: Movimento verso destra.
 - **Z**: Aggiustamento finestra. 
 
 I power-ups sono i seguenti:
