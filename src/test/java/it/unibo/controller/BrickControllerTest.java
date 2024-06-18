@@ -15,7 +15,17 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 
+/**
+ * Test Class for the BrickController.
+ */
 class BrickControllerTest {
+    private static final double INITIAL_X_POSITION = 300.0;
+    private static final double INITIAL_Y_POSITION = 300.0;
+    private static final double SECOND_LEVEL_Y_POSITION = 301.0;
+    private static final double THIRD_LEVEL_Y_POSITION = 303.0;
+    private static final double HIGH_X_POSITION = 10000.0;
+    private static final double HIGH_Y_POSITION = 300.0;
+
     private BrickController brickController;
     private GamePerformance gamePerformance;
     private GameController gameController;
@@ -34,23 +44,22 @@ class BrickControllerTest {
     }
     @Test
     void testFallBricks() {
-        Entity brick = entityFactory.createBrick(new Pair<>(300.0, 300.0));
+        Entity brick = entityFactory.createBrick(new Pair<>(INITIAL_X_POSITION, INITIAL_Y_POSITION));
         this.brickController.addBrick(brick);
         this.brickController.fallBricks();
-        assertEquals(300.0, brick.getPosition().getX(), "The brick should not have moved horizontally");
-        assertEquals(301.0, brick.getPosition().getY(), "The brick should have moved vertically");
+        assertEquals(INITIAL_X_POSITION, brick.getPosition().getX(), "The brick should not have moved horizontally");
+        assertEquals(SECOND_LEVEL_Y_POSITION, brick.getPosition().getY(), "The brick should have moved vertically");
         this.gameController.setLevel(2);
         this.brickController.fallBricks();
-        assertEquals(300.0, brick.getPosition().getX(), "The brick should not have moved horizontally");
-        assertEquals(303.0, brick.getPosition().getY(), "The brick should have moved vertically");
+        assertEquals(INITIAL_X_POSITION, brick.getPosition().getX(), "The brick should not have moved horizontally");
+        assertEquals(THIRD_LEVEL_Y_POSITION, brick.getPosition().getY(), "The brick should have moved vertically");
     }
-
     @Test
     void testRemoveBrick() {
-        Entity brick = entityFactory.createBrick(new Pair<>(10000.0, 300.0));
+        Entity brick = entityFactory.createBrick(new Pair<>(HIGH_X_POSITION, HIGH_Y_POSITION));
         this.brickController.addBrick(brick);
         assertEquals(1, this.brickController.getBricks().size(), "The set of bricks should contain one brick");
-        for(int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             this.brickController.fallBricks();
         }
         assertEquals(0, this.brickController.getBricks().size(), "The set of bricks should be empty");

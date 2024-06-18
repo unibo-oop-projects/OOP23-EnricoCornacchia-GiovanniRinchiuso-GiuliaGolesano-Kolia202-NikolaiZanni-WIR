@@ -1,5 +1,6 @@
 package it.unibo.controller;
-
-class CakeControllerTest {
-   
+/**
+ * Test for the CakeController.
+ */
+class CakeControllerTest {  
 }
