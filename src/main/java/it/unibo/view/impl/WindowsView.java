@@ -26,7 +26,7 @@ public class WindowsView implements View {
     private boolean isFixed;
     /**
      * Constructor.
-     * @param pos.
+     * @param pos the position of the window.
      */
     public WindowsView(final Pair<Double, Double> pos) {
         spriteSheet = getSource("window");

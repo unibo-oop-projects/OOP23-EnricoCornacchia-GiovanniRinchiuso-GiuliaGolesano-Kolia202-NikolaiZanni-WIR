@@ -12,17 +12,34 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * This class is used to show the view of the game when the player wins.
+ */
 public class WinGameView extends Application {
 
+    private final int width = 700;
+    private final int height = 500;
+    private final int imageWidth = 200;
+    private final int imageHeight = 25;
+    private final double animationDurationFirst = 0.25;
+    private final double animationDurationSecond = 0.5;
+    private final double animationDurationThird = 0.75;
+    private final int translateY = 100;
+
+    /**
+     * This method is used to show the view of the game when the player wins.
+     * @param primaryStage the stage of the game.
+     * @throws Exception if an error occurs.
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         GameState.setGameState(GameState.WIN);
         StackPane root = new StackPane();
 
         Image newBackgroundImage = new Image("winEndview.png");
         ImageView newBackgroundImageView = new ImageView(newBackgroundImage);
-        newBackgroundImageView.setFitWidth(700);
-        newBackgroundImageView.setFitHeight(500);
+        newBackgroundImageView.setFitWidth(width);
+        newBackgroundImageView.setFitHeight(height);
 
         Image image1 = new Image("fix.png");
         Image image2 = new Image("fix2.png");
@@ -32,8 +49,7 @@ public class WinGameView extends Application {
         ImageView imageView2 = new ImageView(image2);
         ImageView imageView3 = new ImageView(image3);
 
-        double imageWidth = 200;
-        double imageHeight = 25;
+
 
         imageView1.setFitWidth(imageWidth);
         imageView1.setFitHeight(imageHeight);
@@ -52,22 +68,21 @@ public class WinGameView extends Application {
         VBox topLayout = new VBox();
         topLayout.getChildren().add(imagesStack);
         topLayout.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        topLayout.setTranslateY(50);  // Adjust this value to position the images lower
-
+        topLayout.setTranslateY(translateY);
         root.getChildren().addAll(newBackgroundImageView, topLayout);
 
         Timeline timeline = new Timeline(
-            new KeyFrame(Duration.seconds(0.25), event -> {
+            new KeyFrame(Duration.seconds(animationDurationFirst), event -> {
                 imageView1.setVisible(true);
                 imageView2.setVisible(false);
                 imageView3.setVisible(false);
             }),
-            new KeyFrame(Duration.seconds(0.5), event -> {
+            new KeyFrame(Duration.seconds(animationDurationSecond), event -> {
                 imageView1.setVisible(false);
                 imageView2.setVisible(true);
                 imageView3.setVisible(false);
             }),
-            new KeyFrame(Duration.seconds(0.75), event -> {
+            new KeyFrame(Duration.seconds(animationDurationThird), event -> {
                 imageView1.setVisible(false);
                 imageView2.setVisible(false);
                 imageView3.setVisible(true);
@@ -89,7 +104,7 @@ public class WinGameView extends Application {
 
         timeline.play();
 
-        Scene scene = new Scene(root, 700, 500);
+        Scene scene = new Scene(root, width, height);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("WinGame");

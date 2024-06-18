@@ -52,6 +52,7 @@ public final class Constants {
          * The height of Felix.
          */
         public static final double FELIX_HEIGHT = 40.0;
+        public static final int FIXED_WINDOW_POINTS = 50;
     }
     /**
      * Ralph constaints.

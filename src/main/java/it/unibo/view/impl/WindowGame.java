@@ -1,7 +1,5 @@
 package it.unibo.view.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +11,6 @@ import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
 import it.unibo.model.impl.EntityFactoryImpl;
-import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
@@ -53,11 +50,15 @@ public class WindowGame extends Application {
     Set<BrickView> bricksToPrint = new HashSet<>();
     private BirdView birdView;
     private CakeView cakeView;
-    Set<BirdView> birdsToPrint = new HashSet<>();
-    Set<CakeView> cakesToPrint = new HashSet<>();
-    /*private static final double WIDTH = 800.0;
+    private Set<BirdView> birdsToPrint = new HashSet<>();
+    private  Set<CakeView> cakesToPrint = new HashSet<>();
+    private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
+    private static final double BACKGROUND_IMAGE_WIDTH = 800.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
+    private static final double BACKGROUND_IMAGE_TOP_ANCHOR = 53.0;
+    private static final double BACKGROUND_IMAGE_LEFT_ANCHOR = 0.0;
+    private static final double BACKGROUND_IMAGE_RIGHT_ANCHOR = 0.0;
     private static final double BUILDING_TOP_WIDTH_SCALE = 1.45;
     private static final double BUILDING_TOP_HEIGHT_SCALE = 1.45;
     private static final double BUILDING_TOP_TOP_ANCHOR = 78.0;
@@ -66,6 +67,7 @@ public class WindowGame extends Application {
     private static final double BUILDING_CENTRE_WIDTH_SCALE = 1.45;
     private static final double BUILDING_CENTRE_HEIGHT_SCALE = 1.45;
     private static final double BUILDING_CENTRE_TRANSLATE_X = 400.0;
+    private static final double BUILDING_CENTRE_TRANSLATE_Y = 100.0;
     private static final double BUILDING_CENTRE_BOTTOM_ANCHOR = 75.0;
     private static final double POINTS_VIEW_LEFT_ANCHOR = 150.0;
     private static final double MAIN_MENU_RIGHT_ANCHOR = 7.0;
@@ -74,7 +76,8 @@ public class WindowGame extends Application {
     private static final double HIGH_POINTS_VIEW_TOP_ANCHOR = 0.0;
     private static final double LIVES_VIEW_RIGHT_ANCHOR = 70.0;
     private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
-    private static final int Z_KEY_PRESS_DURATION_MS = 3000;*/
+    private static final double POINTS_VIEW_TOP_ANCHOR = 0.0;
+    private static final int Z_KEY_PRESS_DURATION_MS = 3000;
     /**
      * {@inheritDoc}
      */
@@ -84,7 +87,7 @@ public class WindowGame extends Application {
         this.primaryStage.setResizable(false);
 
         Pane blackPane = new Pane();
-        blackPane.setPrefSize(800, 600); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
+        blackPane.setPrefSize(WIDTH, HEIGHT); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         PointsComponent pointsComponent = new PointsComponent();
         PointsView pointsView = new PointsView(pointsComponent);
@@ -95,46 +98,46 @@ public class WindowGame extends Application {
         Image backgroundImage = new Image("TopLine.png");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(25);
-        AnchorPane.setTopAnchor(backgroundImageView, 53.0);
-        AnchorPane.setLeftAnchor(backgroundImageView, 0.0);
-        AnchorPane.setRightAnchor(backgroundImageView, 0.0);
+        AnchorPane.setTopAnchor(backgroundImageView, BACKGROUND_IMAGE_TOP_ANCHOR);
+        AnchorPane.setLeftAnchor(backgroundImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
+        AnchorPane.setRightAnchor(backgroundImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
 
         // Immagine di sfondo 2 (building_top.png)
         Image buildingTopImage = new Image("building_top.png");
         ImageView buildingTopImageView = new ImageView(buildingTopImage);
-        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * 1.45); 
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * 1.45);                                                                      // la sua dimensione originale
-        AnchorPane.setTopAnchor(buildingTopImageView, 78.0);
-        AnchorPane.setLeftAnchor(buildingTopImageView, 0.0);
-        AnchorPane.setRightAnchor(buildingTopImageView, 0.0);
-        buildingTopImageView.setTranslateX(243.5);
-        buildingTopImageView.setTranslateY(9);
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE); 
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * BUILDING_TOP_HEIGHT_SCALE);                                                                      // la sua dimensione originale
+        AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
+        AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
+        AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
+        buildingTopImageView.setTranslateX(BUILDING_TOP_TRANSLATE_X);
+        buildingTopImageView.setTranslateY(BUILDING_TOP_TRANSLATE_Y);
 
         // Immagine di sfondo 3 (building_centre.png)
         Image newBackgroundImage = new Image("building_centre.png");
         ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
-        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * 1.45);
-        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * 1.45);
-        buildingCentreImageView.setTranslateX(400);
-        buildingCentreImageView.setTranslateY(100);
+        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * BUILDING_CENTRE_WIDTH_SCALE);
+        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * BUILDING_CENTRE_HEIGHT_SCALE);
+        buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X);                                                                                          // verticalmente
+        buildingCentreImageView.setTranslateY(BUILDING_CENTRE_TRANSLATE_Y);
 
-        AnchorPane.setBottomAnchor(buildingCentreImageView, 75.0);
+        AnchorPane.setBottomAnchor(buildingCentreImageView, BUILDING_CENTRE_BOTTOM_ANCHOR);
         double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;                                                                              // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
         // Aggiunta delle immagini all'AnchorPane
         root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
-        AnchorPane.setRightAnchor(mainMenu, 7.0);
-        AnchorPane.setTopAnchor(mainMenu, 7.0);
-        AnchorPane.setLeftAnchor(pointsView, 150.0);
-        AnchorPane.setTopAnchor(pointsView, 0.0);
-        AnchorPane.setLeftAnchor(highPointsView, 0.0);
-        AnchorPane.setTopAnchor(highPointsView, 0.0);
-        AnchorPane.setRightAnchor(livesView, 70.0);
-        AnchorPane.setTopAnchor(livesView, 7.0);
+        AnchorPane.setRightAnchor(mainMenu, MAIN_MENU_RIGHT_ANCHOR);
+        AnchorPane.setTopAnchor(mainMenu, MAIN_MENU_TOP_ANCHOR);
+        AnchorPane.setLeftAnchor(pointsView, POINTS_VIEW_LEFT_ANCHOR);
+        AnchorPane.setTopAnchor(pointsView, POINTS_VIEW_TOP_ANCHOR);
+        AnchorPane.setLeftAnchor(highPointsView, HIGH_POINTS_VIEW_LEFT_ANCHOR);
+        AnchorPane.setTopAnchor(highPointsView, HIGH_POINTS_VIEW_TOP_ANCHOR);
+        AnchorPane.setRightAnchor(livesView, LIVES_VIEW_RIGHT_ANCHOR);
+        AnchorPane.setTopAnchor(livesView, LIVES_VIEW_TOP_ANCHOR);
         root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Wreck-it Ralph");
         primaryStage.show();
@@ -200,7 +203,7 @@ public class WindowGame extends Application {
                                             if (!fixedComponent.getFixed()) {
                                                 this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
                                                 fixedAnimation(windowPosition.get());
-                                                pointsComponentOptional.ifPresent(c -> ((PointsComponent) c).addPoints(50));
+                                                pointsComponentOptional.ifPresent(c -> ((PointsComponent) c).addPoints(Constants.Felix.FIXED_WINDOW_POINTS));
 
                                                 if (this.felixView != null) {
                                                     root.getChildren().remove(this.felixView.getImageView());
