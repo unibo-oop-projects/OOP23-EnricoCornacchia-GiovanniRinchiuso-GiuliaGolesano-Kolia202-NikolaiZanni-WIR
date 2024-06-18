@@ -29,7 +29,7 @@ public class PointsView extends StackPane {
      * Updates the score label.
      */
     public final void updatePointsLabel() {
-        getChildren().clear(); // Clear existing labels before updating
+        getChildren().clear();
 
         final Label scoreTitleLabel = new Label("SCORE:");
         final Label scoreValueLabel = new Label(" " + pointsComponent.getPoints());

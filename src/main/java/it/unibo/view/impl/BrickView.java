@@ -38,11 +38,7 @@ public class BrickView implements View {
      */
     @Override
     public final Image getSource(final String name) {
-        final Image image = new Image(getClass().getResourceAsStream("/" + name + ".png"));
-        if (image.isError()) {
-            System.out.println("Error loading image: " + name);
-        }
-    return image;
+        return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     /**
      * Method to animate the brick.

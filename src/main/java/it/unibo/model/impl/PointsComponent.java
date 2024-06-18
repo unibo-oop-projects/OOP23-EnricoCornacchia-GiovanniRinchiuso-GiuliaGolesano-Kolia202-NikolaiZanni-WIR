@@ -2,10 +2,14 @@ package it.unibo.model.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import it.unibo.core.impl.GameEngineImpl;
 import it.unibo.model.api.ComponentType;
 import it.unibo.view.impl.HighPointsView;
 import it.unibo.view.impl.PointsView;
@@ -20,6 +24,7 @@ public class PointsComponent extends AbstractComponent {
     private static final String FILENAME = "src/main/java/it/unibo/model/impl/scores.txt";
     private PointsView pointsView;
     private HighPointsView highPointsView;
+    private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
 
     /**
      * Constructor for PointsComponent.
@@ -38,8 +43,8 @@ public class PointsComponent extends AbstractComponent {
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
-        } catch (IOException ex) {
-            System.out.println("Error writing file: " + FILENAME);
+        } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "An error occurred", e);
         }
     }
 
@@ -54,11 +59,11 @@ public class PointsComponent extends AbstractComponent {
                 try {
                     highScore = Integer.parseInt(line.trim());
                 } catch (NumberFormatException e) {
-                    System.out.println("Error parsing high score from file");
+                    LOGGER.log(Level.SEVERE, "An error occurred", e);
                 }
             }
-        } catch (IOException ex) {
-            System.out.println("Error reading file: " + FILENAME);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "An error occurred", e);
         }
     }
     /**
@@ -121,7 +126,7 @@ public class PointsComponent extends AbstractComponent {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
         } catch (IOException ex) {
-            System.out.println("Error writing file: " + FILENAME);
+            LOGGER.log(Level.SEVERE, "An error occurred", ex);
         }
     }
     /**
@@ -133,7 +138,6 @@ public class PointsComponent extends AbstractComponent {
     public ComponentType getComponent() {
         return ComponentType.POINTS;
     }
-
 
     /**
      * Sets the PointsView associated with this PointsComponent.
