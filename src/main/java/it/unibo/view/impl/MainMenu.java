@@ -29,11 +29,20 @@ import javafx.scene.paint.Color;
 public class MainMenu extends StackPane {
     private final ImageView pauseButton;
     private final Stage gameStage;
+    private static final int BORDER_WIDTH = 5;
+    private static final int  SPACING_HBOX = 20;
+    private static final int CONTINUE_BUTTON_WIDTH = 125;
+    private static final int CONTINUE_BUTTON_HEIGHT = 50;
+    private static final int QUIT_BUTTON_WIDTH = 125;
+    private static final int QUIT_BUTTON_HEIGHT = 50;
+    private static final int HOME_BUTTON_WIDTH = 125;
+    private static final int HOME_BUTTON_HEIGHT = 50;
+
 
     /**
      * Constructs a MainMenu.
      * 
-     * @param gameState.
+     * @param gameStage the stage of the game
      */
     public MainMenu(final Stage gameStage) {
         this.gameStage = gameStage;
@@ -74,7 +83,7 @@ public class MainMenu extends StackPane {
         /**
          * Constructs an AnotherStage.
          * 
-         * @param gameState
+         * @param gameStage the stage of the game
          */
         public AnotherStage(final Stage gameStage) {
             this.gameStage = gameStage;
@@ -96,7 +105,7 @@ public class MainMenu extends StackPane {
                     Color.RED,
                     BorderStrokeStyle.SOLID,
                     CornerRadii.EMPTY,
-                    new BorderWidths(5))));
+                    new BorderWidths(BORDER_WIDTH))));
 
             final ImageView topImageView = new ImageView(topImage);
             topImageView.setFitWidth(Constants.Button.TOP_IMAGE_WIDTH);
@@ -108,17 +117,17 @@ public class MainMenu extends StackPane {
             underImageView.setFitWidth(Constants.Button.UNDER_IMAGE_WIDTH);
             StackPane.setAlignment(underImageView, Pos.BOTTOM_CENTER);
             root.getChildren().add(underImageView);
-            final HBox pane = new HBox(20);
+            final HBox pane = new HBox(SPACING_HBOX);
             pane.setAlignment(Pos.CENTER);
             final ImageView continueButton = new ImageView(new Image("resumeB.png"));
             final ImageView quitButton = new ImageView(new Image("quitB.png"));
             final ImageView homeButton = new ImageView(new Image("homeB.png"));
-            continueButton.setFitHeight(50);
-            continueButton.setFitWidth(125);
-            quitButton.setFitHeight(50);
-            quitButton.setFitWidth(125);
-            homeButton.setFitHeight(50);
-            homeButton.setFitWidth(125);
+            continueButton.setFitHeight(CONTINUE_BUTTON_HEIGHT);
+            continueButton.setFitWidth(CONTINUE_BUTTON_WIDTH);
+            quitButton.setFitHeight(QUIT_BUTTON_HEIGHT);
+            quitButton.setFitWidth(QUIT_BUTTON_WIDTH);
+            homeButton.setFitHeight(HOME_BUTTON_HEIGHT);
+            homeButton.setFitWidth(HOME_BUTTON_WIDTH);
             continueButton.setOnMouseClicked(event -> {
                 GameState.setGameState(GameState.PLAYING);
                 close();
