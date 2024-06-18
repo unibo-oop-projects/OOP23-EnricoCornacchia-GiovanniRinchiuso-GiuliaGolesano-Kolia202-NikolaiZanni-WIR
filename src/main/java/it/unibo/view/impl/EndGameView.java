@@ -15,6 +15,9 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
+
+import java.io.IOException;
+
 import it.unibo.model.impl.PointsComponent;
 
 /**
@@ -49,7 +52,7 @@ public final class EndGameView extends Application {
      * @throws Exception if an error occurs during startup
      */
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws IOException {
         GameState.setGameState(GameState.GAMEOVER);
 
         pointsComponent = new PointsComponent();

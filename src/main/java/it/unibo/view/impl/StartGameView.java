@@ -16,6 +16,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.Interpolator;
+
+import java.io.IOException;
+
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.GameState;
 
@@ -62,7 +65,7 @@ public final class StartGameView extends Application {
 
 
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws IOException {
         primaryStage.setTitle("StartGame");
         final StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");

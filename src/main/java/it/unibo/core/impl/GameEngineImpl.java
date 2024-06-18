@@ -2,6 +2,11 @@ package it.unibo.core.impl;
 
 import it.unibo.core.api.GameEngine;
 import it.unibo.utilities.GameState;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import it.unibo.controller.impl.GameController;
 import it.unibo.view.impl.EndGameView;
 import it.unibo.view.impl.WinGameView;
@@ -16,6 +21,7 @@ public class GameEngineImpl implements GameEngine {
     private final GameController gameController;
     private boolean isEndShown;
     private boolean isWinShown;
+    private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
     /**
      * Constructor for the game engine.
      */
@@ -37,17 +43,17 @@ public class GameEngineImpl implements GameEngine {
             try {
                 new EndGameView().start(new Stage());
                 isEndShown = true;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "An error occurred", e);
+            }
         } 
         if (gameController.isWin() && !isWinShown) {
             GameState.setGameState(GameState.WIN);
             try {
                 new WinGameView().start(new Stage());
                 isWinShown = true;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
         }
     }

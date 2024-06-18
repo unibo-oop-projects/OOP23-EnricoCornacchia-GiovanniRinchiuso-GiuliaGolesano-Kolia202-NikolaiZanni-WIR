@@ -1,5 +1,7 @@
 package it.unibo.view.impl;
 
+import java.io.IOException;
+
 import it.unibo.utilities.GameState;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -32,7 +34,7 @@ public class WinGameView extends Application {
      * @throws Exception if an error occurs.
      */
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws IOException {
         GameState.setGameState(GameState.WIN);
         final StackPane root = new StackPane();
 
