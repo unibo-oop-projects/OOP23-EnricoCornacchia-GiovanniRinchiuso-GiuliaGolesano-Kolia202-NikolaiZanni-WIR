@@ -55,6 +55,7 @@ public final class StartGameView extends Application {
     private static final int CAR2_SI_TRANSLATE_Y = 210;
     private static final int PADDING = 20;
     private static final int MOVE = 5;
+    private static final String STYLE = "-fx-text-fill: white; -fx-font-size: 18px";
 
 
 
@@ -77,7 +78,7 @@ public final class StartGameView extends Application {
 
         final Image startImage1 = new Image("press_start.png");
         final Image startImage2 = new Image("press_start2.png");
-        ImageView startButtonImageView = new ImageView(startImage1);
+        final ImageView startButtonImageView = new ImageView(startImage1);
         startButtonImageView.setFitWidth(BUTTON_WIDTH);
         startButtonImageView.setFitHeight(BUTTON_HEIGHT);
 
@@ -168,22 +169,22 @@ public final class StartGameView extends Application {
         instructionsTitle.setStyle("-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Arial Black';");
 
         final Label instructionsText = new Label("FIX ALL BROKEN WINDOWS ON EACH FLOOR TO WIN");
-        instructionsText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+        instructionsText.setStyle(STYLE);
 
         final VBox movementBox = new VBox(MOVE);
         movementBox.setStyle("-fx-alignment: center-left;");
 
         final Label moveText = new Label("MOVE: W-D-S-A");
-        moveText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+        moveText.setStyle(STYLE);
 
         final Label fixText = new Label("FIX: Z");
-        fixText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+        fixText.setStyle(STYLE);
 
         final Label avoidText = new Label("AVOID: BRICK");
-        avoidText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+        avoidText.setStyle(STYLE);
 
         final Label collectText = new Label("COLLECT: CAKE & BIRD");
-        collectText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+        collectText.setStyle(STYLE);
 
         movementBox.getChildren().addAll(moveText, fixText, avoidText, collectText);
 

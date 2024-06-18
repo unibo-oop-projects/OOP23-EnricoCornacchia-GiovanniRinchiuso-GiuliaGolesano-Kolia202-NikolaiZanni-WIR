@@ -27,7 +27,7 @@ public class RalphView implements View {
     private final Image spriteRight;
     private Image sprite;
     private Timeline timeline;
-    private int currentFrame = 0;
+    private int currentFrame;
     private Movements lastMovement = Movements.RIGHT;
 
     /**
@@ -61,7 +61,7 @@ public class RalphView implements View {
             this.sprite = getImage();
             lastMovement = this.ralph.getLastPosition().getX() < this.ralph.getPosition().getX()
                           ? Movements.RIGHT : Movements.LEFT;
-            final int frameCount = (lastMovement.equals(Movements.RIGHT) ? FRAME_COUNT_DX : FRAME_COUNT_SX);
+            final int frameCount = lastMovement.equals(Movements.RIGHT) ? FRAME_COUNT_DX : FRAME_COUNT_SX;
             this.timeline = new Timeline(
                             new KeyFrame(Duration.millis(ANIMATION_DURATION / frameCount), e -> updateFrame()));
             this.timeline.setCycleCount(frameCount);
@@ -74,7 +74,7 @@ public class RalphView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
+    public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
