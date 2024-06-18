@@ -20,6 +20,7 @@ import it.unibo.model.impl.GamePerformanceImpl;
 public class FixWindowsComponentTest {
 
     private FixWindowsComponent fixWindowsComponent;
+    @SuppressWarnings("unused")
     private FixedWindowsComponent fixedWindowsComponent;
     /**
      * Set the variables.

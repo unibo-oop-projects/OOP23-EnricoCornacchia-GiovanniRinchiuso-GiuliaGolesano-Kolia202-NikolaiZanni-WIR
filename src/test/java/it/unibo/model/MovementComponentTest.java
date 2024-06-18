@@ -37,7 +37,7 @@ public class MovementComponentTest {
     public final void setUp() {
         component = new MovementComponent();
         entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
-        entity = entityFactoryImpl.createRalph(new Pair<>(300.0, 200.0));
+        entity = entityFactoryImpl.createRalph(new Pair<>(INITIAL_X, INITIAL_Y));
     }
     /**
      * Test moving the entity within bounds.
