@@ -50,7 +50,7 @@ public class PointsComponent extends AbstractComponent {
     /**
      * Reads high score from file.
      */
-    public void readFromFile() {
+    public final void readFromFile() {
         try (FileReader fileReader = new FileReader(FILENAME);
                 BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             final String line = bufferedReader.readLine();

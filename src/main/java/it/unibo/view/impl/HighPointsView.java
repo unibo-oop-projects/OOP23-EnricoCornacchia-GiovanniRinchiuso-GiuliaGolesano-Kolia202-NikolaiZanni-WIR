@@ -28,8 +28,8 @@ public class HighPointsView extends StackPane {
     /**
      * Updates the high score label.
      */
-    public void updateHighPointsLabel() {
-        getChildren().clear(); // Clear existing labels before updating
+    public final void updateHighPointsLabel() {
+        getChildren().clear();
 
         final Label scoreTitleLabel = new Label("HIGHSCORE:");
         final Label scoreValueLabel = new Label(" " + pointsComponent.getHighScore());
