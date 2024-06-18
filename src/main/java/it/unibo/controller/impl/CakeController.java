@@ -64,12 +64,12 @@ public class CakeController {
             lastCreationTime = currentTime;
         }
         final Set<Entity> cakesToRemove = new HashSet<>();
-        for (Pair<Entity, Long> pair : cakesCreationTimes) {
+        for (final Pair<Entity, Long> pair : cakesCreationTimes) {
             if (currentTime - pair.getY() >= ACTIVE_DURATION) {
                 cakesToRemove.add(pair.getX());
             }
         }
-        for (Entity cake : cakesToRemove) {
+        for (final Entity cake : cakesToRemove) {
             removeCake(cake);
         }
     }
