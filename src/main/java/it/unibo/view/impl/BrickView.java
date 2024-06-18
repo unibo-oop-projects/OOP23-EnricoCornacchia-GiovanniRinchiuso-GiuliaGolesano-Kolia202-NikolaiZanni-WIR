@@ -73,7 +73,7 @@ public class BrickView implements View {
     public Image getFrame(final int index) {
         return new WritableImage(this.spriteSheet.getPixelReader(),
                                  index * ((int) this.spriteSheet.getWidth()), 0, 
-                                 ((int) this.spriteSheet.getWidth()) , (int) this.spriteSheet.getHeight());
+                                 ((int) this.spriteSheet.getWidth()), (int) this.spriteSheet.getHeight());
     }
     /**
      * {@inheritDoc}

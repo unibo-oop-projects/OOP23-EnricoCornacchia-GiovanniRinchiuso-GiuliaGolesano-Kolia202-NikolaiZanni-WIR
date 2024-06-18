@@ -13,9 +13,9 @@ import javafx.scene.layout.StackPane;
 public class LivesView extends StackPane {
     private final LivesComponent livesComponent;
     private final HBox livesContainer;
-    private final int WIDTH = 40;
-    private final int HEIGHT = 40;
-    private final int SPACING = 5;
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 40;
+    private static final int SPACING = 5;
     /**
      * Constructs a LivesView with the given LivesComponent.
      *

@@ -95,6 +95,11 @@ public class BirdView implements View {
     }
 
 
+    /**
+     * Returns the bird entity.
+     *
+     * @return the bird entity
+     */
     public Entity getBird() {
         return this.bird;
     }
