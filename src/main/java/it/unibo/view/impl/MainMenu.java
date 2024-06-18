@@ -1,5 +1,7 @@
 package it.unibo.view.impl;
 
+import java.io.IOException;
+
 import it.unibo.utilities.Constants;
 import it.unibo.utilities.GameState;
 import javafx.geometry.Pos;
@@ -27,7 +29,6 @@ import javafx.scene.paint.Color;
  * MainMenu represents the main menu of the game.
  */
 public class MainMenu extends StackPane {
-    private final ImageView pauseButton;
     private final Stage gameStage;
     private static final int BORDER_WIDTH = 5;
     private static final int  SPACING_HBOX = 20;
@@ -45,6 +46,7 @@ public class MainMenu extends StackPane {
      * @param gameStage the stage of the game
      */
     public MainMenu(final Stage gameStage) {
+        ImageView pauseButton;
         this.gameStage = gameStage;
         pauseButton = new ImageView("pauseButton.png");
         pauseButton.setFitWidth(Constants.Button.WIDTH_PAUSE_BUTTON);
@@ -137,7 +139,7 @@ public class MainMenu extends StackPane {
                 close();
                 try {
                     new EndGameView().start(new Stage());
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
@@ -146,7 +148,7 @@ public class MainMenu extends StackPane {
                 close();
                 try {
                     new StartGameView().start(new Stage());
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
