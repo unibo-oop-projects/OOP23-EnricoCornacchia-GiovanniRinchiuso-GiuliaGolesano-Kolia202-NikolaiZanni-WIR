@@ -63,41 +63,41 @@ public final class StartGameView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         primaryStage.setTitle("StartGame");
-        StackPane root = new StackPane();
+        final StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
 
         if (firstLaunch) {
             PointsComponent.resetHighScoreOnFirstLaunch();
             firstLaunch = false;
         }
-        Image imageA = new Image("fix-it_felix_title.png");
-        ImageView imageViewA = new ImageView(imageA);
+        final Image imageA = new Image("fix-it_felix_title.png");
+        final ImageView imageViewA = new ImageView(imageA);
         imageViewA.setFitWidth(IMAGE1_WIDTH);
         imageViewA.setFitHeight(IMAGE1_HEIGHT);
 
-        Image startImage1 = new Image("press_start.png");
-        Image startImage2 = new Image("press_start2.png");
+        final Image startImage1 = new Image("press_start.png");
+        final Image startImage2 = new Image("press_start2.png");
         ImageView startButtonImageView = new ImageView(startImage1);
         startButtonImageView.setFitWidth(BUTTON_WIDTH);
         startButtonImageView.setFitHeight(BUTTON_HEIGHT);
 
-        Button startButton = new Button("", startButtonImageView);
+        final Button startButton = new Button("", startButtonImageView);
         startButton.setStyle("-fx-background-color: transparent;");
 
-        Image imageB = new Image("tobikomi.png");
-        ImageView imageViewB = new ImageView(imageB);
+        final Image imageB = new Image("tobikomi.png");
+        final ImageView imageViewB = new ImageView(imageB);
         imageViewB.setFitWidth(IMAGE2_WIDTH);
         imageViewB.setFitHeight(IMAGE2_HEIGHT);
 
-        VBox imageBox = new VBox(V_BOX);
+        final VBox imageBox = new VBox(V_BOX);
         imageBox.getChildren().addAll(imageViewA, startButton, imageViewB);
         imageBox.setStyle("-fx-alignment: center;");
         root.getChildren().add(imageBox);
 
-        VBox vbox = new VBox(BUTTONS_SPACING);
+        final VBox vbox = new VBox(BUTTONS_SPACING);
         vbox.setStyle("-fx-alignment: center;");
 
-        Label selectLevelLabel = new Label("SELECT LEVEL TO START GAME");
+        final Label selectLevelLabel = new Label("SELECT LEVEL TO START GAME");
         selectLevelLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-family: 'Arial Black';");
 
         // Create buttons with text
@@ -113,13 +113,13 @@ public final class StartGameView extends Application {
         infoButton = createStyledButton("INFO");
         infoButton.setOnAction(e -> showInfoStage());
 
-        HBox levelButtons = new HBox(BUTTONS_SPACING);
+        final HBox levelButtons = new HBox(BUTTONS_SPACING);
         levelButtons.getChildren().addAll(level1Button, level2Button, level3Button);
         levelButtons.setStyle("-fx-alignment: center;");
 
         vbox.getChildren().addAll(selectLevelLabel, levelButtons, infoButton);
 
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        final Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -130,7 +130,7 @@ public final class StartGameView extends Application {
             animateClouds(root);
         });
 
-        Timeline timeline = new Timeline(
+        final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(DURATION_FIRST), e -> startButtonImageView.setImage(startImage1)),
                 new KeyFrame(Duration.seconds(DURATION_SECOND), e -> startButtonImageView.setImage(startImage2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -138,7 +138,7 @@ public final class StartGameView extends Application {
     }
 
     private Button createStyledButton(final String text) {
-        Button button = new Button(text);
+        final Button button = new Button(text);
         button.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"
                 + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;");
         button.setOnMouseEntered(e -> button.setStyle(
@@ -151,7 +151,7 @@ public final class StartGameView extends Application {
     }
 
     private void showInfoStage() {
-        Stage infoStage = new Stage();
+        final Stage infoStage = new Stage();
         infoStage.setTitle("Instructions");
 
         // Disabilita i pulsanti dei livelli
@@ -160,34 +160,34 @@ public final class StartGameView extends Application {
         level3Button.setDisable(true);
         infoButton.setDisable(true);
 
-        VBox instructionsBox = new VBox(V_BOX_SPACING);
+        final VBox instructionsBox = new VBox(V_BOX_SPACING);
         instructionsBox.setStyle("-fx-alignment: center-left;");
         instructionsBox.setPadding(new javafx.geometry.Insets(PADDING));
 
-        Label instructionsTitle = new Label("INSTRUCTIONS");
+        final Label instructionsTitle = new Label("INSTRUCTIONS");
         instructionsTitle.setStyle("-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Arial Black';");
 
-        Label instructionsText = new Label("FIX ALL BROKEN WINDOWS ON EACH FLOOR TO WIN");
+        final Label instructionsText = new Label("FIX ALL BROKEN WINDOWS ON EACH FLOOR TO WIN");
         instructionsText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
 
-        VBox movementBox = new VBox(MOVE);
+        final VBox movementBox = new VBox(MOVE);
         movementBox.setStyle("-fx-alignment: center-left;");
 
-        Label moveText = new Label("MOVE: W-D-S-A");
+        final Label moveText = new Label("MOVE: W-D-S-A");
         moveText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
 
-        Label fixText = new Label("FIX: Z");
+        final Label fixText = new Label("FIX: Z");
         fixText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
 
-        Label avoidText = new Label("AVOID: BRICK");
+        final Label avoidText = new Label("AVOID: BRICK");
         avoidText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
 
-        Label collectText = new Label("COLLECT: CAKE & BIRD");
+        final Label collectText = new Label("COLLECT: CAKE & BIRD");
         collectText.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
 
         movementBox.getChildren().addAll(moveText, fixText, avoidText, collectText);
 
-        Button backButton = createStyledButton("BACK");
+        final Button backButton = createStyledButton("BACK");
         backButton.setOnAction(e -> {
             infoStage.close();
             // Abilita i pulsanti dei livelli
@@ -199,11 +199,11 @@ public final class StartGameView extends Application {
 
         instructionsBox.getChildren().addAll(instructionsTitle, instructionsText, movementBox, backButton);
 
-        StackPane root = new StackPane();
+        final StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
         root.getChildren().add(instructionsBox);
 
-        Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+        final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
         infoStage.setScene(scene);
         infoStage.initModality(Modality.APPLICATION_MODAL); // Imposta la finestra come modale
         infoStage.setResizable(false); // Impedisce il ridimensionamento
@@ -212,8 +212,8 @@ public final class StartGameView extends Application {
     }
 
     private void animateCarSequence(final StackPane root) {
-        ImageView car1De = new ImageView(new Image("car1De.png"));
-        ImageView car2Si = new ImageView(new Image("car2Si.png"));
+        final ImageView car1De = new ImageView(new Image("car1De.png"));
+        final ImageView car2Si = new ImageView(new Image("car2Si.png"));
 
         car1De.setFitWidth(CAR1_DE_WIDTH);
         car1De.setFitHeight(CAR1_DE_HEIGHT);
@@ -236,7 +236,7 @@ public final class StartGameView extends Application {
 
     private void animateCarRightToLeft(final ImageView car, final Runnable onFinished) {
         car.setTranslateX(TRANSLATE_X);
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(MOVE), car);
+        final TranslateTransition transition = new TranslateTransition(Duration.seconds(MOVE), car);
         transition.setFromX(TRANSLATE_X);
         transition.setToX(-TRANSLATE_X);
         transition.setInterpolator(Interpolator.LINEAR);
@@ -246,7 +246,7 @@ public final class StartGameView extends Application {
 
     private void animateCarLeftToRight(final ImageView car, final Runnable onFinished) {
         car.setTranslateX(-TRANSLATE_X);
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(MOVE), car);
+        final TranslateTransition transition = new TranslateTransition(Duration.seconds(MOVE), car);
         transition.setFromX(-TRANSLATE_X);
         transition.setToX(TRANSLATE_X);
         transition.setInterpolator(Interpolator.LINEAR);
@@ -255,19 +255,19 @@ public final class StartGameView extends Application {
     }
 
     private void animateClouds(final StackPane root) {
-        ImageView cloudImageView = new ImageView(new Image("clouds.png"));
+        final ImageView cloudImageView = new ImageView(new Image("clouds.png"));
         cloudImageView.setFitWidth(FIT_WIDTH);
         cloudImageView.setFitHeight(FIT_HEIGHT);
         cloudImageView.setTranslateY(-TRANSLATE_Y);
 
         root.getChildren().add(cloudImageView);
 
-        TranslateTransition transitionRightToLeft = new TranslateTransition(Duration.seconds(10), cloudImageView);
+        final TranslateTransition transitionRightToLeft = new TranslateTransition(Duration.seconds(10), cloudImageView);
         transitionRightToLeft.setFromX(TRANSLATE_X);
         transitionRightToLeft.setToX(-TRANSLATE_X);
         transitionRightToLeft.setInterpolator(Interpolator.LINEAR);
         transitionRightToLeft.setOnFinished(e -> {
-            TranslateTransition transitionLeftToRight = new TranslateTransition(Duration.seconds(10), cloudImageView);
+            final TranslateTransition transitionLeftToRight = new TranslateTransition(Duration.seconds(10), cloudImageView);
             transitionLeftToRight.setFromX(-TRANSLATE_X);
             transitionLeftToRight.setToX(TRANSLATE_X);
             transitionLeftToRight.setInterpolator(Interpolator.LINEAR);
@@ -282,7 +282,7 @@ public final class StartGameView extends Application {
 
     private void startWindowGame(final Stage primaryStage, final int level) {
         try {
-            WindowGame windowGame = new WindowGame();
+            final WindowGame windowGame = new WindowGame();
             windowGame.getGameEngine().getGameController().setLevel(level);
             windowGame.start(primaryStage);
             GameState.setGameState(GameState.PLAYING);
