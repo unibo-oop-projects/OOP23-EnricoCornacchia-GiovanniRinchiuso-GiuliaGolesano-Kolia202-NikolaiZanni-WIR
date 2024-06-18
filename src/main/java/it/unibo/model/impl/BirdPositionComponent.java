@@ -11,7 +11,7 @@ import it.unibo.utilities.Constants;
 public class BirdPositionComponent extends AbstractComponent {
 
     private final Random rand = new Random();
-    private final double posY = 30;
+    private static final double POS_Y = 30;
 
     /**
      * Generates a random position for a bird.
@@ -22,17 +22,17 @@ public class BirdPositionComponent extends AbstractComponent {
      * is the X coordinate and the second element is the Y coordinate.
      */
     public Pair<Double, Double> randomPosition() {
-        double birdX = Constants.GameEdges.LEFT_WALL;
+        final double birdX = Constants.GameEdges.LEFT_WALL;
         double birdY;
         switch (rand.nextInt(3)) {
             case 0:
-                birdY = Constants.Floors.FLOOR_1_Y + posY;
+                birdY = Constants.Floors.FLOOR_1_Y + POS_Y;
                 break;
             case 1:
-                birdY = Constants.Floors.FLOOR_2_Y + posY;
+                birdY = Constants.Floors.FLOOR_2_Y + POS_Y;
                 break;
             default:
-                birdY = Constants.Floors.FLOOR_3_Y + posY;
+                birdY = Constants.Floors.FLOOR_3_Y + POS_Y;
                 break;
         }
         return new Pair<>(birdX, birdY);

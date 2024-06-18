@@ -193,7 +193,8 @@ public class WindowGame extends Application {
                                                 .filter(w -> w.getPosition().equals(windowPosition.get()))
                                                 .findFirst();
                                         if (windowEntity.isPresent()) {
-                                            final FixedWindowsComponent fixedComponent = (FixedWindowsComponent) windowEntity.get()
+                                            final FixedWindowsComponent fixedComponent = 
+                                                (FixedWindowsComponent) windowEntity.get()
                                                 .getTheComponent(ComponentType.FIXEDWINDOWS).get();
 
                                             if (!fixedComponent.getFixed()) {

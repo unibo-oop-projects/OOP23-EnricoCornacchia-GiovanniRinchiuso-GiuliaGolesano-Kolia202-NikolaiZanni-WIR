@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 public class GameEngineImpl implements GameEngine {
 
     private final GameController gameController;
-    private boolean isEndShown = false;
-    private boolean isWinShown = false;
+    private boolean isEndShown;
+    private boolean isWinShown;
     /**
      * Constructor for the game engine.
      */
@@ -28,11 +28,9 @@ public class GameEngineImpl implements GameEngine {
      */
     @Override
     public void gameLoop(final WindowGame windowGame) {
-        if (gameController.gameIsNotOver() && !gameController.isWin()) {
-            if (GameState.getGameState().equals(GameState.PLAYING)) {
-                this.update();
-                this.draw(windowGame);
-            }
+        if (gameController.gameIsNotOver() && !gameController.isWin() && GameState.getGameState().equals(GameState.PLAYING)) {
+            this.update();
+            this.draw(windowGame);
         }
         if (!gameController.gameIsNotOver() && !isEndShown) {
             GameState.setGameState(GameState.GAMEOVER);
