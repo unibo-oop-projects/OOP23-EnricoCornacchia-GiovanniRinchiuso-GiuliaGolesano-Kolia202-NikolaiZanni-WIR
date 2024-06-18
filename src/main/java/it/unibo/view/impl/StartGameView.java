@@ -139,8 +139,7 @@ public final class StartGameView extends Application {
 
     private Button createStyledButton(final String text) {
         Button button = new Button(text);
-        button.setStyle(
-                "-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"  
+        button.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"  
                 + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;");
         button.setOnMouseEntered(e -> button.setStyle(
                 "-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;" 

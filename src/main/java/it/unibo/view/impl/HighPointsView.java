@@ -11,9 +11,9 @@ import it.unibo.model.impl.PointsComponent;
  */
 public class HighPointsView extends StackPane {
     private final PointsComponent pointsComponent;
-    private final int PREWIDTH = 150;
-    private final int PREHEIGH = 25;
-    private final Double BOTTOM = 20.0;
+    private static final int PREWIDTH = 150;
+    private static final int PREHEIGH = 25;
+    private static final Double BOTTOM = 20.0;
     private Label scoreValueLabel;
 
     /**
