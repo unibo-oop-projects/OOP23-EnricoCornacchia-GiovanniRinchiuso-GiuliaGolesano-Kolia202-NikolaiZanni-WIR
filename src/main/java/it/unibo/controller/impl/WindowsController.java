@@ -20,13 +20,13 @@ public class WindowsController {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
     private Set<Entity> entities;
-    private final int WIDTH = 53;
-    private final int HEIGHT = 80;
-    private final int SPACING = -1;
-    private final int ROWS = 3;
-    private final int COLS = 5;
-    private final int OFFSET_X = 280;
-    private final int OFFSET_Y = 317;
+    private static final int WIDTH = 53;
+    private static final int HEIGHT = 80;
+    private static final int SPACING = -1;
+    private static final int ROWS = 3;
+    private static final int COLS = 5;
+    private static final int OFFSET_X = 280;
+    private static final int OFFSET_Y = 317;
     /**
      * Constructor.
      * @param gamePerformance the game performance.
@@ -71,7 +71,7 @@ public class WindowsController {
                 this.gamePerformance.addEntity(window);
             }
         }
-        
+
         return this.entities;
     }
 }

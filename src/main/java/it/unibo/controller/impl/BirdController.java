@@ -21,10 +21,21 @@ public class BirdController {
 
     private final GamePerformance gamePerformance;
 
+    /**
+     * The BirdController class represents a controller for the bird in the game.
+     * It is responsible for controlling the bird's movements and interactions with the game environment.
+     * 
+     * @param gamePerformance the game performance.
+     */
     public BirdController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }
 
+    /**
+     * Retrieves the set of birds in the game.
+     *
+     * @return the set of birds in the game
+     */
     public Set<Entity> getBirds() {
         return this.gamePerformance.getBirds();
     }
@@ -36,6 +47,10 @@ public class BirdController {
         this.gamePerformance.addEntity(bird);
     }
 
+    /**
+     * Moves the bird entities in the game.
+     * This method checks the direction of the bird and moves it accordingly.
+     */
     public void moveBird() {
         this.checkDirection();
         for (final Entity bird : this.gamePerformance.getBirds()) {
@@ -58,6 +73,10 @@ public class BirdController {
         }
     }
 
+    /**
+     * Updates the state of the bird controller.
+     * This method is responsible for creating new birds at regular intervals and moving the existing birds.
+     */
     public void update() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastCreationTime >= CREATION_INTERVAL) {
