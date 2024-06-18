@@ -14,7 +14,7 @@ public class LivesComponent extends AbstractComponent {
 
     /**
      * Initialize lives to 3.
-     * @param gamePerformance.
+     * @param gamePerformance the game performance.
      */
     public LivesComponent(final GamePerformance gamePerformance) {
         this.lives = 3;
