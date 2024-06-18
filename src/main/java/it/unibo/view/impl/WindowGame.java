@@ -108,7 +108,7 @@ public class WindowGame extends Application {
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() 
                                         * BUILDING_TOP_WIDTH_SCALE); 
         buildingTopImageView.setFitHeight(buildingTopImage.getHeight() 
-                                        * BUILDING_TOP_HEIGHT_SCALE);                                                                      // la sua dimensione originale
+                                        * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
@@ -122,11 +122,11 @@ public class WindowGame extends Application {
                                             * BUILDING_CENTRE_WIDTH_SCALE);
         buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() 
                                              * BUILDING_CENTRE_HEIGHT_SCALE);
-        buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X);                                                                                          // verticalmente
+        buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X); // verticalmente
         buildingCentreImageView.setTranslateY(BUILDING_CENTRE_TRANSLATE_Y);
         AnchorPane.setBottomAnchor(buildingCentreImageView, BUILDING_CENTRE_BOTTOM_ANCHOR);
         double centerX = (root.getWidth() 
-            - buildingCentreImageView.getFitWidth()) / 2;                                                                              // orizzontalmente
+            - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
         // Aggiunta delle immagini all'AnchorPane
@@ -179,7 +179,7 @@ public class WindowGame extends Application {
                     gameEngine.getGameController().moveFelixUp(event.getCode());
                     felixView.animateFelix();
                     break;
-                case Z:     
+                case Z:
                     zKeyPressed = true;
                     Thread timerThread = new Thread(() -> {
                         try {
@@ -189,7 +189,8 @@ public class WindowGame extends Application {
                                     Optional<Component> pointsComponentOptional = this.gameEngine.getGameController()
                                         .getFelixController().getFelix().getTheComponent(ComponentType.POINTS);
                                     Optional<Component> hitboxComponentOptional = this.gameEngine
-                                            .getGameController().getFelixController().getFelix().getTheComponent(ComponentType.HITBOX);
+                                            .getGameController().getFelixController().getFelix()
+                                                                                     .getTheComponent(ComponentType.HITBOX);
                                     HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
                                     Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
 
@@ -315,7 +316,6 @@ public class WindowGame extends Application {
     }
     /**
      * Method to add the bird view in the primary root.
-     * @return the view.
      */
     public void updateBird() {
         Set<Entity> birds = this.gameEngine.getGameController().getBirdController().getBirds();
