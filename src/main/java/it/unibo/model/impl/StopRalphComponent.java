@@ -7,7 +7,7 @@ import it.unibo.model.api.ComponentType;
  */
 public class StopRalphComponent extends AbstractComponent {
 
-    private static final int THRESHOLDTIME = 10000;
+    private static final int THRESHOLDTIME = 10_000;
     private long startTime;
 
     /**
@@ -30,7 +30,7 @@ public class StopRalphComponent extends AbstractComponent {
      */
     public void checkUnlockRalph(final ThrowBrickComponent throwBrickComponent) {
         if (throwBrickComponent.isBlocked()) {
-            long currentTime = System.currentTimeMillis();
+            final long currentTime = System.currentTimeMillis();
             if (currentTime - this.startTime >= THRESHOLDTIME) {
                 throwBrickComponent.setUnblocked();
             }
