@@ -9,8 +9,6 @@ import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
-import it.unibo.model.api.EntityFactory;
-import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.HitboxComponent;
 import it.unibo.model.impl.LivesComponent;
@@ -41,20 +39,15 @@ import it.unibo.core.impl.GameEngineImpl;
 public class WindowGame extends Application {
     private Stage primaryStage;
     private boolean zKeyPressed = false;
-    private GameEngineImpl gameEngine = new GameEngineImpl();
+    private final GameEngineImpl gameEngine = new GameEngineImpl();
     private RalphView ralphView;
-    private EntityFactory entityFactory = new EntityFactoryImpl(gameEngine.getGameController().getGamePerformance());
     private FelixView felixView;
-    private AnchorPane root = new AnchorPane();
-    private BrickView brickView;
-    private Set<BrickView> bricksToPrint = new HashSet<>();
-    private BirdView birdView;
-    private CakeView cakeView;
-    private Set<BirdView> birdsToPrint = new HashSet<>();
-    private  Set<CakeView> cakesToPrint = new HashSet<>();
+    private final AnchorPane root = new AnchorPane();
+    private final Set<BrickView> bricksToPrint = new HashSet<>();
+    private final Set<BirdView> birdsToPrint = new HashSet<>();
+    private final Set<CakeView> cakesToPrint = new HashSet<>();
     private static final double WIDTH = 800.0;
     private static final double HEIGHT = 600.0;
-    private static final double BACKGROUND_IMAGE_WIDTH = 800.0;
     private static final double BACKGROUND_IMAGE_HEIGHT = 25.0;
     private static final double BACKGROUND_IMAGE_TOP_ANCHOR = 53.0;
     private static final double BACKGROUND_IMAGE_LEFT_ANCHOR = 0.0;
@@ -89,14 +82,14 @@ public class WindowGame extends Application {
         final Pane blackPane = new Pane();
         blackPane.setPrefSize(WIDTH, HEIGHT); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        PointsComponent pointsComponent = new PointsComponent();
-        PointsView pointsView = new PointsView(pointsComponent);
-        HighPointsView highPointsView = new HighPointsView(pointsComponent);
-        MainMenu mainMenu = new MainMenu(primaryStage);
-        LivesComponent livesComponent = new LivesComponent(gameEngine.getGameController().getGamePerformance());
-        LivesView livesView = new LivesView(livesComponent);
-        Image backgroundImage = new Image("TopLine.png");
-        ImageView backgroundImageView = new ImageView(backgroundImage);
+        final PointsComponent pointsComponent = new PointsComponent();
+        final PointsView pointsView = new PointsView(pointsComponent);
+        final HighPointsView highPointsView = new HighPointsView(pointsComponent);
+        final MainMenu mainMenu = new MainMenu(primaryStage);
+        final LivesComponent livesComponent = new LivesComponent(gameEngine.getGameController().getGamePerformance());
+        final LivesView livesView = new LivesView(livesComponent);
+        final Image backgroundImage = new Image("TopLine.png");
+        final ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitHeight(BACKGROUND_IMAGE_HEIGHT);
         AnchorPane.setTopAnchor(backgroundImageView, BACKGROUND_IMAGE_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(backgroundImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
@@ -104,7 +97,7 @@ public class WindowGame extends Application {
 
         // Immagine di sfondo 2 (building_top.png)
         final Image buildingTopImage = new Image("building_top.png");
-        ImageView buildingTopImageView = new ImageView(buildingTopImage);
+        final ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() 
                                         * BUILDING_TOP_WIDTH_SCALE); 
         buildingTopImageView.setFitHeight(buildingTopImage.getHeight() 
@@ -116,8 +109,8 @@ public class WindowGame extends Application {
         buildingTopImageView.setTranslateY(BUILDING_TOP_TRANSLATE_Y);
 
         // Immagine di sfondo 3 (building_centre.png)
-        Image newBackgroundImage = new Image("building_centre.png");
-        ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
+        final Image newBackgroundImage = new Image("building_centre.png");
+        final ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
         buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() 
                                             * BUILDING_CENTRE_WIDTH_SCALE);
         buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() 
@@ -125,7 +118,7 @@ public class WindowGame extends Application {
         buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X); // verticalmente
         buildingCentreImageView.setTranslateY(BUILDING_CENTRE_TRANSLATE_Y);
         AnchorPane.setBottomAnchor(buildingCentreImageView, BUILDING_CENTRE_BOTTOM_ANCHOR);
-        double centerX = (root.getWidth() 
+        final double centerX = (root.getWidth() 
             - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 

@@ -17,14 +17,14 @@ import javafx.util.Duration;
  */
 public class WinGameView extends Application {
 
-    private final int width = 700;
-    private final int height = 500;
-    private final int imageWidth = 200;
-    private final int imageHeight = 25;
-    private final double animationDurationFirst = 0.25;
-    private final double animationDurationSecond = 0.5;
-    private final double animationDurationThird = 0.75;
-    private final int translateY = 100;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 500;
+    private static final int IMAGE_WIDTH = 200;
+    private static final int IMAGE_HEIGHT = 25;
+    private static final double ANIMATION_DURATION_FIRST = 0.25;
+    private static final double ANIMATION_DURATION_SECOND = 0.5;
+    private static final double ANIMATION_DURATION_THIRD = 0.75;
+    private static final int TRANSLATE_Y = 100;
 
     /**
      * This method is used to show the view of the game when the player wins.
@@ -34,55 +34,55 @@ public class WinGameView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         GameState.setGameState(GameState.WIN);
-        StackPane root = new StackPane();
+        final StackPane root = new StackPane();
 
-        Image newBackgroundImage = new Image("winEndview.png");
-        ImageView newBackgroundImageView = new ImageView(newBackgroundImage);
-        newBackgroundImageView.setFitWidth(width);
-        newBackgroundImageView.setFitHeight(height);
+        final Image newBackgroundImage = new Image("winEndview.png");
+        final ImageView newBackgroundImageView = new ImageView(newBackgroundImage);
+        newBackgroundImageView.setFitWidth(WIDTH);
+        newBackgroundImageView.setFitHeight(HEIGHT);
 
-        Image image1 = new Image("fix.png");
-        Image image2 = new Image("fix2.png");
-        Image image3 = new Image("fix3.png");
+        final Image image1 = new Image("fix.png");
+        final Image image2 = new Image("fix2.png");
+        final Image image3 = new Image("fix3.png");
 
-        ImageView imageView1 = new ImageView(image1);
-        ImageView imageView2 = new ImageView(image2);
-        ImageView imageView3 = new ImageView(image3);
+        final ImageView imageView1 = new ImageView(image1);
+        final ImageView imageView2 = new ImageView(image2);
+        final ImageView imageView3 = new ImageView(image3);
 
 
 
-        imageView1.setFitWidth(imageWidth);
-        imageView1.setFitHeight(imageHeight);
-        imageView2.setFitWidth(imageWidth);
-        imageView2.setFitHeight(imageHeight);
-        imageView3.setFitWidth(imageWidth);
-        imageView3.setFitHeight(imageHeight);
+        imageView1.setFitWidth(IMAGE_WIDTH);
+        imageView1.setFitHeight(IMAGE_HEIGHT);
+        imageView2.setFitWidth(IMAGE_WIDTH);
+        imageView2.setFitHeight(IMAGE_HEIGHT);
+        imageView3.setFitWidth(IMAGE_WIDTH);
+        imageView3.setFitHeight(IMAGE_HEIGHT);
 
         imageView1.setVisible(false);
         imageView2.setVisible(false);
         imageView3.setVisible(false);
 
-        StackPane imagesStack = new StackPane();
+        final StackPane imagesStack = new StackPane();
         imagesStack.getChildren().addAll(imageView1, imageView2, imageView3);
 
-        VBox topLayout = new VBox();
+        final VBox topLayout = new VBox();
         topLayout.getChildren().add(imagesStack);
         topLayout.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        topLayout.setTranslateY(translateY);
+        topLayout.setTranslateY(TRANSLATE_Y);
         root.getChildren().addAll(newBackgroundImageView, topLayout);
 
-        Timeline timeline = new Timeline(
-            new KeyFrame(Duration.seconds(animationDurationFirst), event -> {
+        final Timeline timeline = new Timeline(
+            new KeyFrame(Duration.seconds(ANIMATION_DURATION_FIRST), event -> {
                 imageView1.setVisible(true);
                 imageView2.setVisible(false);
                 imageView3.setVisible(false);
             }),
-            new KeyFrame(Duration.seconds(animationDurationSecond), event -> {
+            new KeyFrame(Duration.seconds(ANIMATION_DURATION_SECOND), event -> {
                 imageView1.setVisible(false);
                 imageView2.setVisible(true);
                 imageView3.setVisible(false);
             }),
-            new KeyFrame(Duration.seconds(animationDurationThird), event -> {
+            new KeyFrame(Duration.seconds(ANIMATION_DURATION_THIRD), event -> {
                 imageView1.setVisible(false);
                 imageView2.setVisible(false);
                 imageView3.setVisible(true);
@@ -104,7 +104,7 @@ public class WinGameView extends Application {
 
         timeline.play();
 
-        Scene scene = new Scene(root, width, height);
+        final Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("WinGame");
