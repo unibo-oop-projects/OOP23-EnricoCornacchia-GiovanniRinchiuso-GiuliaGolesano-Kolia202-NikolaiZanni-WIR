@@ -12,10 +12,10 @@ import it.unibo.model.impl.EntityFactoryImpl;
  * The CakeController class is responsible for managing the creation and removal of cakes in the game.
  */
 public class CakeController {
-    private static final long CREATION_INTERVAL = 11000;
+    private static final long CREATION_INTERVAL = 11_000;
     private static final long ACTIVE_DURATION = 5000;
 
-    private long lastCreationTime = 0;
+    private long lastCreationTime;
     private final GamePerformance gamePerformance;
     private final Set<Entity> activeCakes = new HashSet<>();
     private final Set<Pair<Entity, Long>> cakesCreationTimes = new HashSet<>();
@@ -39,9 +39,9 @@ public class CakeController {
     }
 
     private void createCake() {
-        CakePositionComponent cakePositionComponent = new CakePositionComponent();
-        Pair<Double, Double> position = cakePositionComponent.randomPosition();
-        Entity cake = new EntityFactoryImpl(this.gamePerformance).createCake(position);
+        final CakePositionComponent cakePositionComponent = new CakePositionComponent();
+        final Pair<Double, Double> position = cakePositionComponent.randomPosition();
+        final Entity cake = new EntityFactoryImpl(this.gamePerformance).createCake(position);
         this.gamePerformance.addEntity(cake);
         this.activeCakes.add(cake);
         this.cakesCreationTimes.add(new Pair<>(cake, System.currentTimeMillis()));
@@ -58,18 +58,18 @@ public class CakeController {
      * This method checks if it's time to create a new cake and removes cakes that have exceeded their active duration.
      */
     public void update() {
-        long currentTime = System.currentTimeMillis();
+        final long currentTime = System.currentTimeMillis();
         if (currentTime - lastCreationTime >= CREATION_INTERVAL) {
             createCake();
             lastCreationTime = currentTime;
         }
-        Set<Entity> cakesToRemove = new HashSet<>();
-        for (Pair<Entity, Long> pair : cakesCreationTimes) {
+        final Set<Entity> cakesToRemove = new HashSet<>();
+        for (final Pair<Entity, Long> pair : cakesCreationTimes) {
             if (currentTime - pair.getY() >= ACTIVE_DURATION) {
                 cakesToRemove.add(pair.getX());
             }
         }
-        for (Entity cake : cakesToRemove) {
+        for (final Entity cake : cakesToRemove) {
             removeCake(cake);
         }
     }

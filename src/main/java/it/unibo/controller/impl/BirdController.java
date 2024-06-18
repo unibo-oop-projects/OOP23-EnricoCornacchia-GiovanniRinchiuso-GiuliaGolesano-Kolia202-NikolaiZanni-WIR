@@ -16,8 +16,8 @@ import it.unibo.model.impl.MovementComponent;
  */
 public class BirdController {
 
-    private static final long CREATION_INTERVAL = 10000;
-    private long lastCreationTime = 0;
+    private static final long CREATION_INTERVAL = 10_000;
+    private long lastCreationTime;
 
     private final GamePerformance gamePerformance;
 
@@ -41,9 +41,9 @@ public class BirdController {
     }
 
     private void createBird() {
-        BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
-        Pair<Double, Double> position = birdPositionComponent.randomPosition();
-        Entity bird = new EntityFactoryImpl(this.gamePerformance).createBird(position);
+        final BirdPositionComponent birdPositionComponent = new BirdPositionComponent();
+        final Pair<Double, Double> position = birdPositionComponent.randomPosition();
+        final Entity bird = new EntityFactoryImpl(this.gamePerformance).createBird(position);
         this.gamePerformance.addEntity(bird);
     }
 
@@ -78,7 +78,7 @@ public class BirdController {
      * This method is responsible for creating new birds at regular intervals and moving the existing birds.
      */
     public void update() {
-        long currentTime = System.currentTimeMillis();
+        final long currentTime = System.currentTimeMillis();
         if (currentTime - lastCreationTime >= CREATION_INTERVAL) {
             createBird();
             lastCreationTime = currentTime;
