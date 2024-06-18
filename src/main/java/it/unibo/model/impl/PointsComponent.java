@@ -39,11 +39,11 @@ public class PointsComponent extends AbstractComponent {
      */
     public static void resetHighScoreOnFirstLaunch() {
         try (FileWriter fileWriter = new FileWriter(FILENAME);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
         } catch (IOException e) {
-                LOGGER.log(Level.SEVERE, "An error occurred", e);
+            LOGGER.log(Level.SEVERE, "Error in resetHighScoreOnFirstLaunch", e);
         }
     }
 
@@ -58,11 +58,11 @@ public class PointsComponent extends AbstractComponent {
                 try {
                     highScore = Integer.parseInt(line.trim());
                 } catch (NumberFormatException e) {
-                    LOGGER.log(Level.SEVERE, "An error occurred", e);
+                    LOGGER.log(Level.SEVERE, "Error in readFromFile", e);
                 }
             }
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "An error occurred", e);
+            LOGGER.log(Level.SEVERE, "Error in readFromFile fileReander", e);
         }
     }
     /**
@@ -125,7 +125,7 @@ public class PointsComponent extends AbstractComponent {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
         } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, "An error occurred", ex);
+            LOGGER.log(Level.SEVERE, "Error in writeToFile", ex);
         }
     }
     /**
