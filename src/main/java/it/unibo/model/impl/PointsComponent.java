@@ -49,7 +49,7 @@ public class PointsComponent extends AbstractComponent {
     public void readFromFile() {
         try (FileReader fileReader = new FileReader(FILENAME);
                 BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line = bufferedReader.readLine();
+            final String line = bufferedReader.readLine();
             if (line != null) {
                 try {
                     highScore = Integer.parseInt(line.trim());
