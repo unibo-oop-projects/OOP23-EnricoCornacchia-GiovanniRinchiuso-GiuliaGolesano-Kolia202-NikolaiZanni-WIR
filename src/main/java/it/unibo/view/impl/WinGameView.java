@@ -1,6 +1,8 @@
 package it.unibo.view.impl;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.unibo.utilities.GameState;
 import javafx.animation.KeyFrame;
@@ -27,6 +29,7 @@ public class WinGameView extends Application {
     private static final double ANIMATION_DURATION_SECOND = 0.5;
     private static final double ANIMATION_DURATION_THIRD = 0.75;
     private static final int TRANSLATE_Y = 100;
+    private static final Logger LOGGER = Logger.getLogger(WinGameView.class.getName());
 
     /**
      * This method is used to show the view of the game when the player wins.
@@ -99,8 +102,8 @@ public class WinGameView extends Application {
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
                 primaryStage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
         });
 

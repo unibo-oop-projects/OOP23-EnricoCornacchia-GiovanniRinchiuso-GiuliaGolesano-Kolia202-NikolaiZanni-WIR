@@ -18,6 +18,8 @@ import javafx.util.Duration;
 import javafx.animation.Interpolator;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.GameState;
@@ -59,7 +61,7 @@ public final class StartGameView extends Application {
     private static final int PADDING = 20;
     private static final int MOVE = 5;
     private static final String STYLE = "-fx-text-fill: white; -fx-font-size: 18px";
-
+    private static final Logger LOGGER = Logger.getLogger(StartGameView.class.getName());
 
 
 
@@ -290,8 +292,8 @@ public final class StartGameView extends Application {
             windowGame.getGameEngine().getGameController().setLevel(level);
             windowGame.start(primaryStage);
             GameState.setGameState(GameState.PLAYING);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "An error occurred", e);
         }
     }
 }

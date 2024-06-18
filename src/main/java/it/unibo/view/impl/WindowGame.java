@@ -1,9 +1,12 @@
 package it.unibo.view.impl;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
@@ -37,8 +40,7 @@ import it.unibo.core.impl.GameEngineImpl;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
-    private Stage primaryStage;
-    private boolean zKeyPressed = false;
+    private boolean zKeyPressed;
     private final GameEngineImpl gameEngine = new GameEngineImpl();
     private RalphView ralphView;
     private FelixView felixView;
@@ -71,13 +73,14 @@ public class WindowGame extends Application {
     private static final double LIVES_VIEW_TOP_ANCHOR = 7.0;
     private static final double POINTS_VIEW_TOP_ANCHOR = 0.0;
     private static final int Z_KEY_PRESS_DURATION_MS = 1500;
+    private static final Logger LOGGER = Logger.getLogger(WindowGame.class.getName());
     /**
      * {@inheritDoc}
      */
     @Override
-    public void start(final Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setResizable(false);
+    public void start(final Stage primaryStg) throws IOException {
+        final Stage primaryStage = primaryStg;
+        primaryStage.setResizable(false);
 
         final Pane blackPane = new Pane();
         blackPane.setPrefSize(WIDTH, HEIGHT); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
@@ -213,7 +216,7 @@ public class WindowGame extends Application {
                                 });
                             }
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            LOGGER.log(Level.SEVERE, "An error occurred", e);
                         } finally {
                             zKeyPressed = false;
                         }

@@ -17,6 +17,8 @@ import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.unibo.model.impl.PointsComponent;
 
@@ -43,6 +45,7 @@ public final class EndGameView extends Application {
     private static final int BUTTON_WIDTH = 125;
     private static final int BUTTON_HEIGHT = 50;
     private static final int TRANSLATE_Y = 50;
+    private static final Logger LOGGER = Logger.getLogger(EndGameView.class.getName());
 
 
     /**
@@ -141,8 +144,8 @@ public final class EndGameView extends Application {
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
                 primaryStage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
         });
 
