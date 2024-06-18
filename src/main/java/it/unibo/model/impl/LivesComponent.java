@@ -1,7 +1,6 @@
 package it.unibo.model.impl;
 
 import it.unibo.model.api.ComponentType;
-import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.GameState;
 
 /**
@@ -14,9 +13,8 @@ public class LivesComponent extends AbstractComponent {
 
     /**
      * Initialize lives to 3.
-     * @param gamePerformance the game performance.
      */
-    public LivesComponent(final GamePerformance gamePerformance) {
+    public LivesComponent() {
         this.lives = 3;
         immortality = false;
     }

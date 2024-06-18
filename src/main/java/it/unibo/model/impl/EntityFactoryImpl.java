@@ -33,7 +33,7 @@ public class EntityFactoryImpl implements EntityFactory {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
                 new PointsComponent(),
                 new ImmortalityComponent(),
-                new LivesComponent(this.gamePerformance),
+                new LivesComponent(),
                 new FixWindowsComponent(),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.FELIX)));
         return new EntityImpl(EntityType.FELIX, pos, this.gamePerformance, components);

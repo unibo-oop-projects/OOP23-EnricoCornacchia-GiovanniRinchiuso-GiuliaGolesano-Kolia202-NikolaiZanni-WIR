@@ -7,9 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.ComponentType;
-import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.ImmortalityComponent;
 import it.unibo.model.impl.LivesComponent;
 
@@ -21,7 +19,7 @@ public class ImmortalityComponentTest {
     @BeforeEach
     public void setUp() {
         immortalityComponent = new ImmortalityComponent();
-        livesComponent = new LivesComponent(new GamePerformanceImpl(new GameController()));
+        livesComponent = new LivesComponent();
     }
 
     @Test

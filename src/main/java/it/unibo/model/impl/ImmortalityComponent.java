@@ -5,7 +5,7 @@ import it.unibo.model.api.ComponentType;
  * Component to manage the immortality of the entity.
  */
 public class ImmortalityComponent extends AbstractComponent {
-    private static final int STARTTIME = 10000;
+    private static final int STARTTIME = 10_000;
     private long startTime;
     /**
      * Method to set the immortality.
@@ -21,7 +21,7 @@ public class ImmortalityComponent extends AbstractComponent {
      */
     public void chekStopImmortality(final LivesComponent livesComponent) {
         if (livesComponent.isImmortality()) {
-            long currentTime = System.currentTimeMillis();
+            final long currentTime = System.currentTimeMillis();
             if (currentTime - this.startTime >= STARTTIME) { 
                 livesComponent.setStopImmortality(); 
             }

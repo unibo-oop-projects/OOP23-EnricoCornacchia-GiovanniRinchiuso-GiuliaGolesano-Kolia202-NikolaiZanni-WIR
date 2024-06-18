@@ -86,7 +86,7 @@ public class WindowGame extends Application {
         final PointsView pointsView = new PointsView(pointsComponent);
         final HighPointsView highPointsView = new HighPointsView(pointsComponent);
         final MainMenu mainMenu = new MainMenu(primaryStage);
-        final LivesComponent livesComponent = new LivesComponent(gameEngine.getGameController().getGamePerformance());
+        final LivesComponent livesComponent = new LivesComponent();
         final LivesView livesView = new LivesView(livesComponent);
         final Image backgroundImage = new Image("TopLine.png");
         final ImageView backgroundImageView = new ImageView(backgroundImage);

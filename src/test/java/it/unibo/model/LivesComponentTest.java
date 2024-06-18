@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.model.api.ComponentType;
-import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.LivesComponent;
 
 public class LivesComponentTest {
@@ -18,8 +16,7 @@ public class LivesComponentTest {
 
     @BeforeEach
     void setUp() {
-        GamePerformance gamePerformance = new GamePerformanceImpl(null);
-        livesComponent = new LivesComponent(gamePerformance);
+        livesComponent = new LivesComponent();
     }
 
     @Test
