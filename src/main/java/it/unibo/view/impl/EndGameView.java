@@ -24,6 +24,23 @@ import it.unibo.model.impl.PointsComponent;
 public final class EndGameView extends Application {
     private PointsComponent pointsComponent;
     private HighPointsView highPointsView;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 500;
+    private static final int IMAGE1_HEIGHT = 175;
+    private static final int IMAGE1_WIDTH = 400;
+    private static final int IMAGE2_HEIGHT = 175;
+    private static final int IMAGE2_WIDTH = 400;
+    private static final double DURATION = 0.5;
+    private static final int CYCLE_COUNT = 10;
+    private static final int SPACING = 20;
+    private static final int WINDOW_WIDTH = 400;
+    private static final int WINDOW_HEIGHT = 75;
+    private static final double LEFT_ANCHOR = 10.0;
+    private static final double TOP_ANCHOR = 10.0;
+    private static final int BUTTON_WIDTH = 125;
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int TRANSLATE_Y = 50;
+
 
     /**
      * Starts the end game screen.
@@ -41,26 +58,26 @@ public final class EndGameView extends Application {
         pointsComponent.setHighPointsView(highPointsView);
 
         ImageView background = new ImageView(new Image("losegame1.png"));
-        background.setFitWidth(700);
-        background.setFitHeight(500);
+        background.setFitWidth(WIDTH);
+        background.setFitHeight(HEIGHT);
 
         ImageView imageView1 = new ImageView(new Image("gameOver3.png"));
-        imageView1.setFitWidth(400);
-        imageView1.setFitHeight(175);
+        imageView1.setFitWidth(IMAGE1_WIDTH);
+        imageView1.setFitHeight(IMAGE1_HEIGHT);
 
         ImageView imageView2 = new ImageView(new Image("gameOver2.png"));
-        imageView2.setFitWidth(400);
-        imageView2.setFitHeight(175);
+        imageView2.setFitWidth(IMAGE2_WIDTH);
+        imageView2.setFitHeight(IMAGE2_HEIGHT);
 
         StackPane root = new StackPane();
         root.getChildren().addAll(background, imageView1);
 
-        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
         primaryStage.setTitle("GAME OVER");
         primaryStage.show();
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), event -> {
+                new KeyFrame(Duration.seconds(DURATION), event -> {
                     if (root.getChildren().contains(imageView1)) {
                         root.getChildren().remove(imageView1);
                         root.getChildren().add(imageView2);
@@ -70,7 +87,7 @@ public final class EndGameView extends Application {
                     }
                 }));
 
-        timeline.setCycleCount(10);
+        timeline.setCycleCount(CYCLE_COUNT);
         timeline.setOnFinished(event -> {
             root.getChildren().remove(imageView1);
             root.getChildren().remove(imageView2);
@@ -85,7 +102,7 @@ public final class EndGameView extends Application {
      * @param root         the root StackPane
      * @param primaryStage the primary stage of the application
      */
-    private void showButtonsAndPoints(StackPane root, Stage primaryStage) {
+    private void showButtonsAndPoints(final StackPane root, final Stage primaryStage) {
 
         pointsComponent = new PointsComponent();
 
@@ -98,23 +115,23 @@ public final class EndGameView extends Application {
         // Update the high points label
         highPointsView.updateHighPointsLabel();
 
-        HBox pointsBox = new HBox(20, highPointsView);
+        HBox pointsBox = new HBox(SPACING, highPointsView);
         pointsBox.setAlignment(Pos.CENTER);
 
         AnchorPane pointsPane = new AnchorPane();
         pointsPane.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 3;");
-        pointsPane.setMaxWidth(400);
-        pointsPane.setMaxHeight(75);
-        pointsPane.setMinWidth(400);
-        pointsPane.setMinHeight(75);
+        pointsPane.setMaxWidth(WINDOW_WIDTH);
+        pointsPane.setMaxHeight(WINDOW_HEIGHT);
+        pointsPane.setMinWidth(WINDOW_WIDTH);
+        pointsPane.setMinHeight(WINDOW_HEIGHT);
 
-        AnchorPane.setTopAnchor(pointsBox, 10.0);
-        AnchorPane.setLeftAnchor(pointsBox, 10.0);
+        AnchorPane.setTopAnchor(pointsBox, TOP_ANCHOR);
+        AnchorPane.setLeftAnchor(pointsBox, LEFT_ANCHOR);
         pointsPane.getChildren().add(pointsBox);
 
         ImageView button1 = new ImageView(new Image("homeB.png"));
-        button1.setFitWidth(125);
-        button1.setFitHeight(50);
+        button1.setFitWidth(BUTTON_WIDTH);
+        button1.setFitHeight(BUTTON_HEIGHT);
         button1.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             try {
                 new StartGameView().start(new Stage());
@@ -126,18 +143,18 @@ public final class EndGameView extends Application {
         });
 
         ImageView button2 = new ImageView(new Image("quitB.png"));
-        button2.setFitWidth(125);
-        button2.setFitHeight(50);
+        button2.setFitWidth(BUTTON_WIDTH);
+        button2.setFitHeight(BUTTON_HEIGHT);
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             primaryStage.close();
         });
 
-        HBox buttonBox = new HBox(20, button1, button2);
+        HBox buttonBox = new HBox(SPACING, button1, button2);
         buttonBox.setAlignment(Pos.CENTER);
 
-        VBox vbox = new VBox(20, pointsPane, buttonBox);
+        VBox vbox = new VBox(SPACING, pointsPane, buttonBox);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setTranslateY(50);
+        vbox.setTranslateY(TRANSLATE_Y);
 
         StackPane.setAlignment(vbox, Pos.CENTER);
 
