@@ -19,8 +19,8 @@ public class WindowsView implements View {
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
     private static final int ANIMATION_DURATION = 1000; 
-    private ImageView imageView;
-    private Image spriteSheet;
+    private final ImageView imageView;
+    private final Image spriteSheet;
     private Timeline timeline;
     private int currentFrame;
     private boolean isFixed;
@@ -41,7 +41,7 @@ public class WindowsView implements View {
      * {@inheritDoc}
      */
     @Override
-    public Image getSource(final String name) {
+    public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
