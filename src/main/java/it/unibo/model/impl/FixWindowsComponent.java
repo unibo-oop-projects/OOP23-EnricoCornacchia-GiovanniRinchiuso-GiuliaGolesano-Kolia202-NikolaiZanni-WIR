@@ -9,7 +9,6 @@ import it.unibo.model.api.GamePerformance;
 public class FixWindowsComponent extends AbstractComponent {
     /**
      * Constructor empty.
-     * @param state
      */
     public FixWindowsComponent() {
     }
@@ -22,10 +21,10 @@ public class FixWindowsComponent extends AbstractComponent {
     }
     /**
      * Method to fix a windows.
-     * @param windowPosition.
-     * @param gamePerformance.
+     * @param windowPosition the position of the window.
+     * @param gamePerformance the game performance.
      */
-    public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance ) {
+    public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance) {
         //System.err.println("fixWindowComponent called");
         gamePerformance.getWindows().stream()
         .filter(w -> w.getPosition().equals(windowPosition))

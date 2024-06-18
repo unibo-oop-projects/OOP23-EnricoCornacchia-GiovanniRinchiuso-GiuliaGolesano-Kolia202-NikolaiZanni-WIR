@@ -77,12 +77,23 @@ public interface GamePerformance {
      * 
      * @return the list of birds.
      */
-
     Set<Entity> getBirds();
-    
+    /**
+     * Removes birds from the game based on their position.
+     *
+     * @param pos the position of the birds to be removed
+     */
     void removeBirds(Pair<Double, Double> pos);
-
+    /**
+     * Returns the set of cakes in the game.
+     *
+     * @return the set of cakes
+     */
     Set<Entity> getCakes();
-    
+    /**
+     * Removes cakes from the game at the specified position.
+     *
+     * @param pos the position of the cakes to be removed
+     */
     void removeCakes(Pair<Double, Double> pos);
 }

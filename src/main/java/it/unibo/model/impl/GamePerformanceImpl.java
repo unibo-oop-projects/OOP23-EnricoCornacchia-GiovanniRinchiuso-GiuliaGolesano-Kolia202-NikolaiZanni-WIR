@@ -127,12 +127,20 @@ public class GamePerformanceImpl implements GamePerformance {
                 .filter(entity -> entity.getEntityType() == EntityType.BRICK).collect(Collectors.toSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Entity> getBirds() {
         return this.entities.stream()
                 .filter(entity -> entity.getEntityType() == EntityType.BIRD)
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void removeBirds(final Pair<Double, Double> pos) {
         entities.remove(entities.stream()
                 .filter(e -> e.getEntityType() == EntityType.BIRD && e.getPosition().equals(pos))
@@ -140,12 +148,20 @@ public class GamePerformanceImpl implements GamePerformance {
                 .orElse(null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Entity> getCakes() {
         return this.entities.stream()
                 .filter(entity -> entity.getEntityType() == EntityType.CAKE)
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void removeCakes(final Pair<Double, Double> pos) {
         entities.remove(entities.stream()
                 .filter(e -> e.getEntityType() == EntityType.CAKE && e.getPosition().equals(pos))

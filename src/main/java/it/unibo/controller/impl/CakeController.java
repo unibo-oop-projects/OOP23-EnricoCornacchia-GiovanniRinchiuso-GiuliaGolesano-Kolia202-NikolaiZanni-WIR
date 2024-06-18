@@ -8,7 +8,10 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.CakePositionComponent;
 import it.unibo.model.impl.EntityFactoryImpl;
 
- public class CakeController {
+/**
+ * The CakeController class is responsible for managing the creation and removal of cakes in the game.
+ */
+public class CakeController {
     private static final long CREATION_INTERVAL = 11000;
     private static final long ACTIVE_DURATION = 5000;
 
@@ -17,10 +20,20 @@ import it.unibo.model.impl.EntityFactoryImpl;
     private final Set<Entity> activeCakes = new HashSet<>();
     private final Set<Pair<Entity, Long>> cakesCreationTimes = new HashSet<>();
 
+    /**
+     * Creates a new CakeController.
+     *
+     * @param gamePerformance the game performance
+     */
     public CakeController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }
 
+    /**
+     * Returns the set of active cakes.
+     *
+     * @return the set of active cakes
+     */
     public Set<Entity> getCakes() {
         return this.activeCakes;
     }
@@ -34,12 +47,16 @@ import it.unibo.model.impl.EntityFactoryImpl;
         this.cakesCreationTimes.add(new Pair<>(cake, System.currentTimeMillis()));
     }
 
-    private void removeCake(Entity cake) {
+    private void removeCake(final Entity cake) {
         this.gamePerformance.removeEntity(cake);
         this.activeCakes.remove(cake);
         this.cakesCreationTimes.removeIf(pair -> pair.getX().equals(cake));
     }
 
+    /**
+     * Updates the state of the cake controller.
+     * This method checks if it's time to create a new cake and removes cakes that have exceeded their active duration.
+     */
     public void update() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastCreationTime >= CREATION_INTERVAL) {
