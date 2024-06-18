@@ -1,7 +1,10 @@
 package it.unibo.view.impl;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import it.unibo.core.impl.GameEngineImpl;
 import it.unibo.utilities.Constants;
 import it.unibo.utilities.GameState;
 import javafx.geometry.Pos;
@@ -38,6 +41,7 @@ public class MainMenu extends StackPane {
     private static final int QUIT_BUTTON_HEIGHT = 50;
     private static final int HOME_BUTTON_WIDTH = 125;
     private static final int HOME_BUTTON_HEIGHT = 50;
+    private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
 
 
     /**
@@ -140,7 +144,7 @@ public class MainMenu extends StackPane {
                 try {
                     new EndGameView().start(new Stage());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.SEVERE, "Error in quitBottom", e);
                 }
             });
             homeButton.setOnMouseClicked(event -> {
@@ -149,7 +153,7 @@ public class MainMenu extends StackPane {
                 try {
                     new StartGameView().start(new Stage());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.SEVERE, "Error in homeBottom", e);
                 }
             });
             pane.getChildren().add(continueButton);
