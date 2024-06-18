@@ -7,14 +7,15 @@ import it.unibo.common.Pair;
  */
 public final class Constants {
     /**
+     * The name of the gamestate.
+     */
+    public static final String GAMESTATE = "GameState: ";
+    /**
      * Private constructor.
      */
     private Constants() {
     }
-    /**
-     * The name of the gamestate.
-     */
-    public static final String GAMESTATE = "GameState: ";
+    
     /**
      * Constaints of the edges positions.
      */
@@ -52,9 +53,7 @@ public final class Constants {
          * The height of Felix.
          */
         public static final double FELIX_HEIGHT = 40.0;
-        /**
-         * The points obtained by fixing a window.
-         */
+        
         public static final int FIXED_WINDOW_POINTS = 50;
     }
     /**
@@ -154,7 +153,7 @@ public final class Constants {
         /**
          * The height of the bird.
          */
-        public static final double BIRD_HEIGHT = 25;
+        public static final double BIRD_HEIGHT =25;
     }
     /**
      * Buttons constaints.
