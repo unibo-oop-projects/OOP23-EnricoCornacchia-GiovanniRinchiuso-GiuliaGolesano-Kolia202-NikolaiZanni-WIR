@@ -17,7 +17,7 @@ import it.unibo.view.impl.PointsView;
 public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
-    private final static String filename = "src/main/java/it/unibo/model/impl/scores.txt";
+    private static final String FILENAME = "src/main/java/it/unibo/model/impl/scores.txt";
     private PointsView pointsView;
     private HighPointsView highPointsView;
 
@@ -34,12 +34,12 @@ public class PointsComponent extends AbstractComponent {
      * Resets the high score to zero and writes it to the file on first launch.
      */
     public static void resetHighScoreOnFirstLaunch() {
-        try (FileWriter fileWriter = new FileWriter(filename);
+        try (FileWriter fileWriter = new FileWriter(FILENAME);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
         } catch (IOException ex) {
-            System.out.println("Error writing file: " + filename);
+            System.out.println("Error writing file: " + FILENAME);
         }
     }
 
@@ -47,7 +47,7 @@ public class PointsComponent extends AbstractComponent {
      * Reads high score from file.
      */
     public void readFromFile() {
-        try (FileReader fileReader = new FileReader(filename);
+        try (FileReader fileReader = new FileReader(FILENAME);
                 BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line = bufferedReader.readLine();
             if (line != null) {
@@ -58,7 +58,7 @@ public class PointsComponent extends AbstractComponent {
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Error reading file: " + filename);
+            System.out.println("Error reading file: " + FILENAME);
         }
     }
     /**
@@ -116,12 +116,12 @@ public class PointsComponent extends AbstractComponent {
      * @param score the high score to write
      */
     public void writeToFile(final int score) {
-        try (FileWriter fileWriter = new FileWriter(filename);
+        try (FileWriter fileWriter = new FileWriter(FILENAME);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
         } catch (IOException ex) {
-            System.out.println("Error writing file: " + filename);
+            System.out.println("Error writing file: " + FILENAME);
         }
     }
     /**
@@ -140,7 +140,7 @@ public class PointsComponent extends AbstractComponent {
      *
      * @param pointsView the PointsView to set
      */
-    public void setPointsView(PointsView pointsView) {
+    public void setPointsView(final PointsView pointsView) {
         this.pointsView = pointsView;
     }
 
@@ -149,7 +149,7 @@ public class PointsComponent extends AbstractComponent {
      *
      * @param highPointsView the HighPointsView to set
      */
-    public void setHighPointsView(HighPointsView highPointsView) {
+    public void setHighPointsView(final HighPointsView highPointsView) {
         this.highPointsView = highPointsView;
     }
 }

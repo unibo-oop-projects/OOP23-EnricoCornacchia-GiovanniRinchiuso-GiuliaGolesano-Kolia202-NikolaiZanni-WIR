@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 /**
  * Implementation of the game engine.
  */
-
 public class GameEngineImpl implements GameEngine {
 
     private final GameController gameController;
@@ -24,20 +23,20 @@ public class GameEngineImpl implements GameEngine {
         this.gameController = new GameController();
     }
     /**
-     *Loop of the game.
+     * Loop of the game.
+     * @param windowGame the main window of the game.
      */
     @Override
     public void gameLoop(final WindowGame windowGame) {
-        //System.out.println("Game loop started");
         if (gameController.gameIsNotOver() && !gameController.isWin()) {
             if (GameState.getGameState().equals(GameState.PLAYING)) {
                 this.update();
                 this.draw(windowGame);
-            }  
+            }
         }
         if (!gameController.gameIsNotOver() && !isEndShown) {
             GameState.setGameState(GameState.GAMEOVER);
-            try {   
+            try {
                 new EndGameView().start(new Stage());
                 isEndShown = true;
                 } catch (Exception e) {
@@ -55,15 +54,17 @@ public class GameEngineImpl implements GameEngine {
         }
     }
    /**
-    * @InheritDoc
+    * Draw the game.
+    * @param windowGame the main window of the game.
     */
+    @Override
     public void draw(final WindowGame windowGame) {
          windowGame.update();
          windowGame.updateBird();
          windowGame.updateCake();
     }
     /**
-     * @InheritDoc
+     * Update the game.
      */
     @Override
     public void update() {
