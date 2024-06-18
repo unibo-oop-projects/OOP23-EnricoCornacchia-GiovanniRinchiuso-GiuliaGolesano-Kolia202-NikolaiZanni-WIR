@@ -110,7 +110,8 @@ public final class EndGameView extends Application {
         pointsComponent.setHighPointsView(highPointsView);
 
         highPointsView.setStyle(
-                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
+                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;" 
+                + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
 
         // Update the high points label
         highPointsView.updateHighPointsLabel();
