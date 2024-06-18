@@ -41,7 +41,7 @@ public class WindowsController {
     public boolean won() {
         return this.gamePerformance.getWindows().stream()
             .allMatch(w -> w.getTheComponent(ComponentType.FIXEDWINDOWS)
-                            .map(c -> ((FixedWindowsComponent) c).getFixed())
+                            .map(c -> ((FixedWindowsComponent) c).isFixed())
                             .orElse(false));
     }
     /**

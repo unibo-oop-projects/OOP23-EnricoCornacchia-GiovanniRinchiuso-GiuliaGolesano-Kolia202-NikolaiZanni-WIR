@@ -31,7 +31,7 @@ public class FixedWindowsComponent extends AbstractComponent {
      * Getter for the boolean that indicate if a window is fixed or not.
      * @return isFixed variable.
      */
-    public boolean getFixed() {
+    public boolean isFixed() {
         return this.isFixed;
     }
 }
