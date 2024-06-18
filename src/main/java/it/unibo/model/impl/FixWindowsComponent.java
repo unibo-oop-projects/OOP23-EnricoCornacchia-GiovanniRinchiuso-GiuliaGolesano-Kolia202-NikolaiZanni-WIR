@@ -8,11 +8,6 @@ import it.unibo.model.api.GamePerformance;
  */
 public class FixWindowsComponent extends AbstractComponent {
     /**
-     * Constructor empty.
-     */
-    public FixWindowsComponent() {
-    }
-    /**
      * {@inheritDoc}
      */
     @Override

@@ -42,7 +42,7 @@ public class FixWindowsComponentTest {
         fixWindowsComponent.fixing(windowPosition, gamePerformance);
 
         FixedWindowsComponent fixedWindowsComponent = (FixedWindowsComponent) window.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-        assertEquals(true, fixedWindowsComponent.getFixed());
+        assertEquals(true, fixedWindowsComponent.isFixed());
     }
 
 

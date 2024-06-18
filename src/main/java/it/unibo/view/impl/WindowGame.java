@@ -197,7 +197,7 @@ public class WindowGame extends Application {
                                                 (FixedWindowsComponent) windowEntity.get()
                                                 .getTheComponent(ComponentType.FIXEDWINDOWS).get();
 
-                                            if (!fixedComponent.getFixed()) {
+                                            if (!fixedComponent.isFixed()) {
                                                 this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
                                                 fixedAnimation(windowPosition.get());
                                                 pointsComponentOptional.ifPresent(c -> 
@@ -250,7 +250,7 @@ public class WindowGame extends Application {
         entities.forEach(w -> {
             final WindowsView windowView = new WindowsView(w.getPosition());
             final FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
-            if (fixComp.getFixed()) {
+            if (fixComp.isFixed()) {
                 root.getChildren().add(windowView.fixedwindows());
             } else {
                 root.getChildren().add(windowView.brokenWindow());

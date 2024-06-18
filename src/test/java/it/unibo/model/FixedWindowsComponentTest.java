@@ -13,13 +13,13 @@ public class FixedWindowsComponentTest {
     public void testSetFixed() {
         FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(false);
         fixedWindowsComponent.setFixed();
-        assertEquals(true, fixedWindowsComponent.getFixed());
+        assertEquals(true, fixedWindowsComponent.isFixed());
     }
 
     @Test
     public void testGetFixed() {
         FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(true);
-        assertEquals(true, fixedWindowsComponent.getFixed());
+        assertEquals(true, fixedWindowsComponent.isFixed());
     }
 
     @Test
