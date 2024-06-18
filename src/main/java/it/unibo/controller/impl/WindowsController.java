@@ -60,14 +60,16 @@ public class WindowsController {
         int index = 0;
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
-                if (index >= windowStates.size()) break;
-                final double x = OFFSET_X + col * (WIDTH + SPACING);
-                final double y = OFFSET_Y + row * (HEIGHT + SPACING);
-                final boolean state = windowStates.get(index);
-                final Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
-                entities.add(window);
-                index++;
-                this.gamePerformance.addEntity(window);
+                if (!(index >= windowStates.size())){
+                    final double x = OFFSET_X + col * (WIDTH + SPACING);
+                    final double y = OFFSET_Y + row * (HEIGHT + SPACING);
+                    final boolean state = windowStates.get(index);
+                    final Entity window = this.entityFactoryImpl.createWindows(new Pair<>(x, y), state);
+                    entities.add(window);
+                    index++;
+                    this.gamePerformance.addEntity(window);
+                }
+                
             }
         }
 
