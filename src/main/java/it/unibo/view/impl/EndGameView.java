@@ -57,6 +57,7 @@ public final class EndGameView extends Application {
     @Override
     public void start(final Stage primaryStage) throws IOException {
         GameState.setGameState(GameState.GAMEOVER);
+        primaryStage.setResizable(false);
 
         final ImageView background = new ImageView(new Image("losegame1.png"));
         background.setFitWidth(WIDTH);

@@ -68,6 +68,7 @@ public final class StartGameView extends Application {
     @Override
     public void start(final Stage primaryStage) throws IOException {
         primaryStage.setTitle("StartGame");
+        primaryStage.setResizable(false);
         final StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
 

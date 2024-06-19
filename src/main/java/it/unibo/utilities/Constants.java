@@ -180,11 +180,11 @@ public final class Constants {
         /**
          * The height of the top image.
          */
-        public static final double TOP_IMAGE_HEIGHT = 125;
+        public static final double TOP_IMAGE_HEIGHT = 75;
         /**
          * The width of the top image.
          */
-        public static final double TOP_IMAGE_WIDTH = 450;
+        public static final double TOP_IMAGE_WIDTH = 300;
         /**
          * The height of the pause button.
          */
