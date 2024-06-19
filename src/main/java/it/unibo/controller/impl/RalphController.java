@@ -103,9 +103,7 @@ public class RalphController {
      * @param bricks the set of bricks.
      */
     private void throwBricks(final Set<Entity> bricks) {
-       for (int i = 0; i < gamePerformance.getLevel(); i++) {
            this.throwBrickLeftArm(bricks);
            this.throwBrickRightArm(bricks);
-       }
     }
 }
