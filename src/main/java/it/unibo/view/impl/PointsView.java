@@ -10,7 +10,7 @@ import it.unibo.model.impl.PointsComponent;
  * This class can be extended to customize the score display.
  */
 public class PointsView extends StackPane {
-    private final PointsComponent pointsComponent;
+    private PointsComponent pointsComponent;
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;
     private static final Double BOTTOM = 20.0;
@@ -22,6 +22,7 @@ public class PointsView extends StackPane {
      */
     public PointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
+        this.pointsComponent.addPointsView(this);
         updatePointsLabel();
     }
 
@@ -52,5 +53,11 @@ public class PointsView extends StackPane {
 
         final AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
         getChildren().add(pointsContainer);
+    }
+
+    public void setPointsComponent(PointsComponent pointsComponent) {
+        this.pointsComponent = pointsComponent;
+        this.pointsComponent.addPointsView(this);
+        updatePointsLabel();
     }
 }

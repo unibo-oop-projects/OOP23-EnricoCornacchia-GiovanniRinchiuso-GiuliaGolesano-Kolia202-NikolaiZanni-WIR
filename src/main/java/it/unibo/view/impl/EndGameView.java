@@ -58,10 +58,6 @@ public final class EndGameView extends Application {
     public void start(final Stage primaryStage) throws IOException {
         GameState.setGameState(GameState.GAMEOVER);
 
-        pointsComponent = new PointsComponent();
-
-        highPointsView = new HighPointsView(pointsComponent);
-        pointsComponent.setHighPointsView(highPointsView);
 
         final ImageView background = new ImageView(new Image("losegame1.png"));
         background.setFitWidth(WIDTH);
@@ -113,7 +109,7 @@ public final class EndGameView extends Application {
         pointsComponent = new PointsComponent();
 
         highPointsView = new HighPointsView(pointsComponent);
-        pointsComponent.setHighPointsView(highPointsView);
+   
 
         highPointsView.setStyle(
                 "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;" 

@@ -74,6 +74,7 @@ public class WindowGame extends Application {
     private static final double POINTS_VIEW_TOP_ANCHOR = 0.0;
     private static final int Z_KEY_PRESS_DURATION_MS = 1500;
     private static final Logger LOGGER = Logger.getLogger(WindowGame.class.getName());
+
     /**
      * {@inheritDoc}
      */
@@ -85,9 +86,7 @@ public class WindowGame extends Application {
         final Pane blackPane = new Pane();
         blackPane.setPrefSize(WIDTH, HEIGHT); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        final PointsComponent pointsComponent = new PointsComponent();
-        final PointsView pointsView = new PointsView(pointsComponent);
-        final HighPointsView highPointsView = new HighPointsView(pointsComponent);
+
         final MainMenu mainMenu = new MainMenu(primaryStage);
         final LivesComponent livesComponent = new LivesComponent();
         final LivesView livesView = new LivesView(livesComponent);
@@ -101,10 +100,8 @@ public class WindowGame extends Application {
         // Immagine di sfondo 2 (building_top.png)
         final Image buildingTopImage = new Image("building_top.png");
         final ImageView buildingTopImageView = new ImageView(buildingTopImage);
-        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() 
-                                        * BUILDING_TOP_WIDTH_SCALE); 
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() 
-                                        * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
+        buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE);
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
@@ -114,28 +111,35 @@ public class WindowGame extends Application {
         // Immagine di sfondo 3 (building_centre.png)
         final Image newBackgroundImage = new Image("building_centre.png");
         final ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
-        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() 
-                                            * BUILDING_CENTRE_WIDTH_SCALE);
-        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() 
-                                             * BUILDING_CENTRE_HEIGHT_SCALE);
+        buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * BUILDING_CENTRE_WIDTH_SCALE);
+        buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * BUILDING_CENTRE_HEIGHT_SCALE);
         buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X); // verticalmente
         buildingCentreImageView.setTranslateY(BUILDING_CENTRE_TRANSLATE_Y);
         AnchorPane.setBottomAnchor(buildingCentreImageView, BUILDING_CENTRE_BOTTOM_ANCHOR);
-        final double centerX = (root.getWidth() 
-            - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
+        final double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
         // Aggiunta delle immagini all'AnchorPane
         root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
         AnchorPane.setRightAnchor(mainMenu, MAIN_MENU_RIGHT_ANCHOR);
         AnchorPane.setTopAnchor(mainMenu, MAIN_MENU_TOP_ANCHOR);
-        AnchorPane.setLeftAnchor(pointsView, POINTS_VIEW_LEFT_ANCHOR);
-        AnchorPane.setTopAnchor(pointsView, POINTS_VIEW_TOP_ANCHOR);
-        AnchorPane.setLeftAnchor(highPointsView, HIGH_POINTS_VIEW_LEFT_ANCHOR);
-        AnchorPane.setTopAnchor(highPointsView, HIGH_POINTS_VIEW_TOP_ANCHOR);
         AnchorPane.setRightAnchor(livesView, LIVES_VIEW_RIGHT_ANCHOR);
         AnchorPane.setTopAnchor(livesView, LIVES_VIEW_TOP_ANCHOR);
-        root.getChildren().addAll(mainMenu, pointsView, highPointsView, livesView);
+
+        final Entity felix = this.gameEngine.getGameController().getFelixController().getFelix();
+        final Optional<Component> felixPointsComponent = felix.getTheComponent(ComponentType.POINTS);
+        if (felixPointsComponent.isPresent()) {
+            final PointsComponent felixPoints = (PointsComponent) felixPointsComponent.get();
+            final PointsView pointsView = new PointsView(felixPoints);
+            final HighPointsView highPointsView = new HighPointsView(felixPoints);
+            AnchorPane.setLeftAnchor(pointsView, POINTS_VIEW_LEFT_ANCHOR);
+            AnchorPane.setTopAnchor(pointsView, POINTS_VIEW_TOP_ANCHOR);
+            AnchorPane.setLeftAnchor(highPointsView, HIGH_POINTS_VIEW_LEFT_ANCHOR);
+            AnchorPane.setTopAnchor(highPointsView, HIGH_POINTS_VIEW_TOP_ANCHOR);
+            root.getChildren().addAll(pointsView, highPointsView);
+        }
+
+        root.getChildren().addAll(mainMenu, livesView);
 
         final Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
@@ -182,29 +186,32 @@ public class WindowGame extends Application {
                             Thread.sleep(Z_KEY_PRESS_DURATION_MS);
                             if (zKeyPressed) {
                                 Platform.runLater(() -> {
-                                    final Optional<Component> pointsComponentOptional = this.gameEngine.getGameController()
-                                        .getFelixController().getFelix().getTheComponent(ComponentType.POINTS);
+                                    final Optional<Component> pointsComponentOptional = this.gameEngine
+                                            .getGameController()
+                                            .getFelixController().getFelix().getTheComponent(ComponentType.POINTS);
                                     final Optional<Component> hitboxComponentOptional = this.gameEngine
                                             .getGameController().getFelixController().getFelix()
-                                                                                     .getTheComponent(ComponentType.HITBOX);
+                                            .getTheComponent(ComponentType.HITBOX);
                                     final HitboxComponent hitComp = (HitboxComponent) hitboxComponentOptional.get();
-                                    final Optional<Pair<Double, Double>> windowPosition = hitComp.checkWindowsCollisions();
+                                    final Optional<Pair<Double, Double>> windowPosition = hitComp
+                                            .checkWindowsCollisions();
 
                                     if (windowPosition.isPresent()) {
                                         final Optional<Entity> windowEntity = this.gameEngine.getGameController()
-                                            .getGamePerformance().getWindows().stream()
+                                                .getGamePerformance().getWindows().stream()
                                                 .filter(w -> w.getPosition().equals(windowPosition.get()))
                                                 .findFirst();
                                         if (windowEntity.isPresent()) {
-                                            final FixedWindowsComponent fixedComponent = 
-                                                (FixedWindowsComponent) windowEntity.get()
-                                                .getTheComponent(ComponentType.FIXEDWINDOWS).get();
+                                            final FixedWindowsComponent fixedComponent = (FixedWindowsComponent) windowEntity
+                                                    .get()
+                                                    .getTheComponent(ComponentType.FIXEDWINDOWS).get();
 
                                             if (!fixedComponent.isFixed()) {
-                                                this.gameEngine.getGameController().fixWindows(KeyCode.Z, windowPosition.get());
+                                                this.gameEngine.getGameController().fixWindows(KeyCode.Z,
+                                                        windowPosition.get());
                                                 fixedAnimation(windowPosition.get());
-                                                pointsComponentOptional.ifPresent(c -> 
-                                                    ((PointsComponent) c).addPoints(Constants.Felix.FIXED_WINDOW_POINTS));
+                                                pointsComponentOptional.ifPresent(c -> ((PointsComponent) c)
+                                                        .addPoints(Constants.Felix.FIXED_WINDOW_POINTS));
 
                                                 if (this.felixView != null) {
                                                     root.getChildren().remove(this.felixView.getImageView());
@@ -222,15 +229,15 @@ public class WindowGame extends Application {
                         }
                     });
                     timerThread.start();
-                        scene.setOnKeyReleased(releasedEvent -> {
-                            if (releasedEvent.getCode() == KeyCode.Z) {
-                                zKeyPressed = false;
-                            }
-                        });
-                        break;
-                    default:
-                        break;
-                }
+                    scene.setOnKeyReleased(releasedEvent -> {
+                        if (releasedEvent.getCode() == KeyCode.Z) {
+                            zKeyPressed = false;
+                        }
+                    });
+                    break;
+                default:
+                    break;
+            }
         });
 
         new AnimationTimer() {

@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,8 +23,8 @@ public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
     private static final String FILENAME = "src/main/java/it/unibo/model/impl/scores.txt";
-    private PointsView pointsView;
-    private HighPointsView highPointsView;
+    private final Set<PointsView> pointsViews = new HashSet<>();
+    private final Set<HighPointsView> highPointsViews = new HashSet<>();
     private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
 
     /**
@@ -30,7 +32,6 @@ public class PointsComponent extends AbstractComponent {
      */
     public PointsComponent() {
         this.points = 0;
-        this.highScore = 0;
         readFromFile();
     }
 
@@ -92,14 +93,13 @@ public class PointsComponent extends AbstractComponent {
             highScore = this.points;
             writeToFile(highScore);
         }
-
-        if (pointsView != null) {
-            pointsView.updatePointsLabel();
-        }
-
-        if (highPointsView != null) {
-            highPointsView.updateHighPointsLabel();
-        }
+    
+        pointsViews.forEach(view -> {
+            view.updatePointsLabel();
+        });
+        highPointsViews.forEach(view -> {
+            view.updateHighPointsLabel();
+        });
     }
 
     /**
@@ -109,9 +109,7 @@ public class PointsComponent extends AbstractComponent {
      */
     public void setPoints(final int points) {
         this.points = points;
-        if (pointsView != null) {
-            pointsView.updatePointsLabel();
-        }
+        pointsViews.forEach(PointsView::updatePointsLabel);
     }
 
     /**
@@ -139,20 +137,20 @@ public class PointsComponent extends AbstractComponent {
     }
 
     /**
-     * Sets the PointsView associated with this PointsComponent.
+     * Adds a PointsView to be notified when points change.
      *
-     * @param pointsView the PointsView to set
+     * @param pointsView the PointsView to add
      */
-    public void setPointsView(final PointsView pointsView) {
-        this.pointsView = pointsView;
+    public void addPointsView(final PointsView pointsView) {
+        this.pointsViews.add(pointsView);
     }
 
     /**
-     * Sets the HighPointsView associated with this PointsComponent.
+     * Adds a HighPointsView to be notified when high points change.
      *
-     * @param highPointsView the HighPointsView to set
+     * @param highPointsView the HighPointsView to add
      */
-    public void setHighPointsView(final HighPointsView highPointsView) {
-        this.highPointsView = highPointsView;
+    public void addHighPointsView(final HighPointsView highPointsView) {
+        this.highPointsViews.add(highPointsView);
     }
 }
