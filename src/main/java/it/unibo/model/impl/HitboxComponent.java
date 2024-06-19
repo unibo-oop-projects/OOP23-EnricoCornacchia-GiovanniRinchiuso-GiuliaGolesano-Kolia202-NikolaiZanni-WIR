@@ -24,12 +24,15 @@ public class HitboxComponent extends AbstractComponent {
     private boolean removeEntity;
 
     /**
-     * Constructs a new HitboxComponent with the specified x and y coordinates and entity type.
-     * Depending on the entity type, the dimensions of the hitbox are set differently.
+     * Constructs a new HitboxComponent with the specified x and y coordinates and
+     * entity type.
+     * Depending on the entity type, the dimensions of the hitbox are set
+     * differently.
      *
-     * @param x the x-coordinate of the entity initial position
-     * @param y the y-coordinate of the entity initial position
-     * @param type the type of the entity, which determines the dimensions of the hitbox.
+     * @param x    the x-coordinate of the entity initial position
+     * @param y    the y-coordinate of the entity initial position
+     * @param type the type of the entity, which determines the dimensions of the
+     *             hitbox.
      */
     public HitboxComponent(final double x, final double y, final EntityType type) {
         switch (type) {
@@ -77,9 +80,12 @@ public class HitboxComponent extends AbstractComponent {
     }
 
     /**
-     * Checks for collisions with the edges of the game area and handles them accordingly.
-     * If the hitbox of the entity goes beyond the left or right walls, it is repositioned to the nearest valid position.
-     * If the hitbox of the entity goes beyond the bottom wall and the entity is of type BRICK, it is removed from the game.
+     * Checks for collisions with the edges of the game area and handles them
+     * accordingly.
+     * If the hitbox of the entity goes beyond the left or right walls, it is
+     * repositioned to the nearest valid position.
+     * If the hitbox of the entity goes beyond the bottom wall and the entity is of
+     * type BRICK, it is removed from the game.
      */
     public void checkEdgesCollisions() {
         if (this.hitbox.getX() < Constants.GameEdges.LEFT_WALL) {
@@ -89,8 +95,9 @@ public class HitboxComponent extends AbstractComponent {
         if (this.hitbox.getX() > Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth()) {
             this.hitbox.setX(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth());
             this.getEntity()
-                .setPosition(
-                    new Pair<Double, Double>(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth(), this.hitbox.getY()));
+                    .setPosition(
+                            new Pair<Double, Double>(Constants.GameEdges.RIGHT_WALL - this.hitbox.getWidth(),
+                                    this.hitbox.getY()));
         }
         if (this.hitbox.getY() <= Constants.GameEdges.UP_WALL && this.getEntity().getEntityType() == EntityType.BRICK) {
             this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
@@ -102,44 +109,54 @@ public class HitboxComponent extends AbstractComponent {
      */
     public void checkOtherEntitiesCollisions() {
         this.getEntity().getGamePerformance().getEntity().stream()
-            .filter(e -> !e.equals(this.getEntity()))
-            .filter(e -> this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()))
-            .forEach(e -> {
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BRICK)
-                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)
-                && !(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).isImmortality())) {
-                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
-                ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
-            }
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.CAKE)
-                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
-                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
-                ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
-                .setImmortality((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get());
-            }
-            if (this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.BIRD)
-                && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
-                ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
-                final Entity ralph = this.getEntity().getGamePerformance().getEntity().stream()
-                    .filter(r -> r.getEntityType().equals(EntityType.RALPH)).findFirst().get();
-                ((StopRalphComponent) ralph.getTheComponent(ComponentType.STOPRALPH).get())
-                    .setStopRalph((ThrowBrickComponent) ralph.getTheComponent(ComponentType.THROWBRICK).get());
-            }
-            });
+                .filter(e -> !e.equals(this.getEntity()))
+                .filter(e -> this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()))
+                .forEach(e -> {
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX)
+                            && e.getEntityType().equals(EntityType.BRICK)
+                            && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)
+                            && !(((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get())
+                                    .isImmortality())) {
+                        ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                        ((LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get()).stealLives();
+                    }
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX)
+                            && e.getEntityType().equals(EntityType.CAKE)
+                            && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
+                        ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                        ((ImmortalityComponent) this.getEntity().getTheComponent(ComponentType.IMMORTALITY).get())
+                                .setImmortality(
+                                        (LivesComponent) this.getEntity().getTheComponent(ComponentType.LIFE).get());
+                    }
+                    if (this.getEntity().getEntityType().equals(EntityType.FELIX)
+                            && e.getEntityType().equals(EntityType.BIRD)
+                            && !(((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity)) {
+                        ((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()).removeEntity = true;
+                        final Entity ralph = this.getEntity().getGamePerformance().getEntity().stream()
+                                .filter(r -> r.getEntityType().equals(EntityType.RALPH)).findFirst().get();
+                        ((StopRalphComponent) ralph.getTheComponent(ComponentType.STOPRALPH).get())
+                                .setStopRalph(
+                                        (ThrowBrickComponent) ralph.getTheComponent(ComponentType.THROWBRICK).get());
+                    }
+                });
     }
 
     /**
-     * Checks for collisions with windows in the game and returns the position of the first window collided with.
-     * If the entity is Felix and collides with a window, the position of the window is returned.
+     * Checks for collisions with windows in the game and returns the position of
+     * the first window collided with.
+     * If the entity is Felix and collides with a window, the position of the window
+     * is returned.
      * If no collisions occur, an empty Optional is returned.
      * 
-     * @return An Optional containing the position of the first window collided with,
-     * or an empty Optional if no collisions occurred.
+     * @return An Optional containing the position of the first window collided
+     *         with,
+     *         or an empty Optional if no collisions occurred.
      */
     public Optional<Pair<Double, Double>> checkWindowsCollisions() {
         for (final Entity e : this.getEntity().getGamePerformance().getWindows()) {
-            if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get()) 
-                && this.getEntity().getEntityType().equals(EntityType.FELIX) && e.getEntityType().equals(EntityType.WINDOW)) {
+            if (this.collidesWith((HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get())
+                    && this.getEntity().getEntityType().equals(EntityType.FELIX)
+                    && e.getEntityType().equals(EntityType.WINDOW)) {
                 return Optional.of(e.getPosition());
             }
         }
@@ -185,6 +202,7 @@ public class HitboxComponent extends AbstractComponent {
 
     /**
      * getter of the type of the class.
+     * 
      * @return the type of the class.
      */
     @Override

@@ -58,7 +58,6 @@ public final class EndGameView extends Application {
     public void start(final Stage primaryStage) throws IOException {
         GameState.setGameState(GameState.GAMEOVER);
 
-
         final ImageView background = new ImageView(new Image("losegame1.png"));
         background.setFitWidth(WIDTH);
         background.setFitHeight(HEIGHT);
@@ -109,7 +108,6 @@ public final class EndGameView extends Application {
         pointsComponent = new PointsComponent();
 
         highPointsView = new HighPointsView(pointsComponent);
-   
 
         highPointsView.setStyle(
                 "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;" 
@@ -139,7 +137,7 @@ public final class EndGameView extends Application {
             try {
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
-                primaryStage.close();
+                primaryStage.close(); // Close the current window
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
@@ -149,7 +147,7 @@ public final class EndGameView extends Application {
         button2.setFitWidth(BUTTON_WIDTH);
         button2.setFitHeight(BUTTON_HEIGHT);
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            primaryStage.close();
+            primaryStage.close(); // Close the current window
         });
 
         final HBox buttonBox = new HBox(SPACING, button1, button2);

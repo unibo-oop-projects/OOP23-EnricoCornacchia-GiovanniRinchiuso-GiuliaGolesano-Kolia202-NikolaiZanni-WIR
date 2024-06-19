@@ -54,8 +54,6 @@ public class WinGameView extends Application {
         final ImageView imageView2 = new ImageView(image2);
         final ImageView imageView3 = new ImageView(image3);
 
-
-
         imageView1.setFitWidth(IMAGE_WIDTH);
         imageView1.setFitHeight(IMAGE_HEIGHT);
         imageView2.setFitWidth(IMAGE_WIDTH);
@@ -99,9 +97,10 @@ public class WinGameView extends Application {
         timeline.setCycleCount(10);
         timeline.setOnFinished(event -> {
             try {
+                Stage currentStage = (Stage) root.getScene().getWindow();
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
-                primaryStage.close();
+                currentStage.close();
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }

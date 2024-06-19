@@ -41,7 +41,9 @@ public class GameEngineImpl implements GameEngine {
         if (!gameController.gameIsNotOver() && !isEndShown) {
             GameState.setGameState(GameState.GAMEOVER);
             try {
+                Stage currentStage = windowGame.getStage();
                 new EndGameView().start(new Stage());
+                currentStage.close(); 
                 isEndShown = true;
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
@@ -50,7 +52,9 @@ public class GameEngineImpl implements GameEngine {
         if (gameController.isWin() && !isWinShown) {
             GameState.setGameState(GameState.WIN);
             try {
+                Stage currentStage = windowGame.getStage();
                 new WinGameView().start(new Stage());
+                currentStage.close(); 
                 isWinShown = true;
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);

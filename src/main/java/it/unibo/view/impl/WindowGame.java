@@ -40,6 +40,7 @@ import it.unibo.core.impl.GameEngineImpl;
  * This class can be extended to customize the game window.
  */
 public class WindowGame extends Application {
+    private Stage primaryStage;
     private boolean zKeyPressed;
     private final GameEngineImpl gameEngine = new GameEngineImpl();
     private RalphView ralphView;
@@ -80,7 +81,7 @@ public class WindowGame extends Application {
      */
     @Override
     public void start(final Stage primaryStg) throws IOException {
-        final Stage primaryStage = primaryStg;
+        this.primaryStage = primaryStg;
         primaryStage.setResizable(false);
 
         final Pane blackPane = new Pane();
@@ -408,8 +409,9 @@ public class WindowGame extends Application {
         bricksToPrint.forEach(BrickView::animateBrick);
     }
 
-    // Altri metodi e classi, incluso il controller e il modello del gioco
-
+    public Stage getStage() {
+        return this.primaryStage;
+    }
 
     /**
      * Getter for the gameEngine.

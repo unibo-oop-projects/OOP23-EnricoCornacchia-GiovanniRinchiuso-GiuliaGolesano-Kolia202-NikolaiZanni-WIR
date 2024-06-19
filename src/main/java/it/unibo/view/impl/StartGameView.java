@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.unibo.model.api.ComponentType;
+import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.GameState;
 
@@ -62,9 +64,6 @@ public final class StartGameView extends Application {
     private static final int MOVE = 5;
     private static final String STYLE = "-fx-text-fill: white; -fx-font-size: 18px";
     private static final Logger LOGGER = Logger.getLogger(StartGameView.class.getName());
-
-
-
 
     @Override
     public void start(final Stage primaryStage) throws IOException {
@@ -290,6 +289,11 @@ public final class StartGameView extends Application {
         try {
             final WindowGame windowGame = new WindowGame();
             windowGame.getGameEngine().getGameController().setLevel(level);
+            windowGame.getGameEngine().getGameController().getFelixController().getFelix().getTheComponent(ComponentType.LIFE).ifPresent(component -> {
+                if (component instanceof LivesComponent) {
+                    ((LivesComponent) component).resetLives();
+                }
+            });
             windowGame.start(primaryStage);
             GameState.setGameState(GameState.PLAYING);
         } catch (IOException e) {

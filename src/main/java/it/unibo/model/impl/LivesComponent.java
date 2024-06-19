@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.model.api.ComponentType;
-import it.unibo.utilities.GameState;
 
 /**
  * LivesComponent, it represents the lives of the entity.
@@ -30,17 +29,20 @@ public class LivesComponent extends AbstractComponent {
     }
 
     public LivesComponent() {
+        resetLives();
+        immortality = false;
+    }
+
+    public void resetLives() {
         this.lives = 3;
         immortality = false;
+        notifyLivesChange();
     }
 
     public void stealLives() {
         if (!immortality && getLives() > 0) {
-            lives--;
+            this.lives = this.lives - 1;
             notifyLivesChange();
-            if (getLives() == 0) {
-                GameState.setGameState(GameState.GAMEOVER);
-            }
         }
     }
 
