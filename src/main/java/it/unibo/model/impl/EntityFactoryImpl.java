@@ -78,7 +78,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public Entity createCake(final Pair<Double, Double> pos) {
         final Set<Component> components = new HashSet<>(Arrays.asList(new MovementComponent(),
-                new CakePositionComponent(),
+                new CakePositionComponent(gamePerformance),
                 new HitboxComponent(pos.getX(), pos.getY(), EntityType.CAKE)));
         return new EntityImpl(EntityType.CAKE, pos, this.gamePerformance, components);
     }

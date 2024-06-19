@@ -1,38 +1,53 @@
 package it.unibo.model.impl;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
-import it.unibo.utilities.Constants;
+import it.unibo.model.api.GamePerformance;
+import it.unibo.model.api.Entity;
 
 /**
- * Class to manage a cake power up position.
+ * Class to manage a cake power-up position.
  */
 public class CakePositionComponent extends AbstractComponent {
-    private static final double POS_Y = 30;
+    private final GamePerformance gamePerformance;
+    private static final double OFFSET_X = 10;
+    private static final double OFFSET_Y = 35; 
 
     /**
-     * Method to return a randomic position.
+     * Constructor to initialize GamePerformance.
+     * @param gamePerformance the game performance.
+     */
+    public CakePositionComponent(GamePerformance gamePerformance) {
+        this.gamePerformance = gamePerformance;
+    }
+
+    /**
+     * Method to return a random position from window positions.
      * @return a pair with the x and y position of the cake.
      */
-     public Pair<Double, Double> randomPosition() {
-        final Random rand = new Random();
-        final double cakeX = rand.nextDouble() * (Constants.PowerUps.CAKE_MAX_X - Constants.PowerUps.CAKE_MIN_X)
-                + Constants.PowerUps.CAKE_MIN_X;
-        double cakeY;
-        switch (rand.nextInt(3)) {
-            case 0:
-                cakeY = Constants.Floors.FLOOR_1_Y + POS_Y;
-                break;
-            case 1:
-                cakeY = Constants.Floors.FLOOR_2_Y + POS_Y;
-                break;
-            default:
-                cakeY = Constants.Floors.FLOOR_3_Y + POS_Y;
-                break;
+    public Pair<Double, Double> randomPosition() {
+        List<Pair<Double, Double>> windowPositions = this.gamePerformance.getWindows().stream()
+                .map(Entity::getPosition)
+                .collect(Collectors.toList());
+
+        if (windowPositions.isEmpty()) {
+            throw new IllegalStateException("No windows available to place the cake.");
         }
+
+        final Random rand = new Random();
+        Pair<Double, Double> chosenPosition = windowPositions.get(rand.nextInt(windowPositions.size()));
+
+        // Apply the offset
+        double cakeX = chosenPosition.getX() + OFFSET_X;
+        double cakeY = chosenPosition.getY() + OFFSET_Y;
+
         return new Pair<>(cakeX, cakeY);
     }
+
     /**
      * {@inheritDoc}
      */

@@ -39,7 +39,7 @@ public class CakeController {
     }
 
     private void createCake() {
-        final CakePositionComponent cakePositionComponent = new CakePositionComponent();
+        final CakePositionComponent cakePositionComponent = new CakePositionComponent(this.gamePerformance);
         final Pair<Double, Double> position = cakePositionComponent.randomPosition();
         final Entity cake = new EntityFactoryImpl(this.gamePerformance).createCake(position);
         this.gamePerformance.addEntity(cake);
