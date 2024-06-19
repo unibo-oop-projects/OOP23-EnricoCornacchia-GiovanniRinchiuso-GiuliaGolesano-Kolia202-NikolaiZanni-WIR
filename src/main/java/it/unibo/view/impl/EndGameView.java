@@ -135,9 +135,10 @@ public final class EndGameView extends Application {
         button1.setFitHeight(BUTTON_HEIGHT);
         button1.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             try {
+                primaryStage.close(); // Close the current window
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
-                primaryStage.close(); // Close the current window
+                
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
