@@ -88,7 +88,7 @@ public class WindowGame extends Application {
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         final MainMenu mainMenu = new MainMenu(primaryStage);
-        final LivesComponent livesComponent = new LivesComponent();
+        final LivesComponent livesComponent = (LivesComponent) gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.LIFE).get();
         final LivesView livesView = new LivesView(livesComponent);
         final Image backgroundImage = new Image("TopLine.png");
         final ImageView backgroundImageView = new ImageView(backgroundImage);

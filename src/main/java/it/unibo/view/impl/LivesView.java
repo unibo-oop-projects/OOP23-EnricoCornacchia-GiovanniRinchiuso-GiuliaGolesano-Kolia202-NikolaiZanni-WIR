@@ -16,20 +16,17 @@ public class LivesView extends StackPane {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 40;
     private static final int SPACING = 5;
-    /**
-     * Constructs a LivesView with the given LivesComponent.
-     *
-     * @param livesComponent the LivesComponent to use for lives data
-     */
+
     public LivesView(final LivesComponent livesComponent) {
         this.livesComponent = livesComponent;
         this.livesContainer = new HBox();
         this.getChildren().add(livesContainer);
         updateLivesLabel();
+
+        // Aggiungi il listener per aggiornare la vista quando le vite cambiano
+        this.livesComponent.addLivesChangeListener(newLives -> updateLivesLabel());
     }
-    /**
-     * Updates the lives label.
-     */
+
     private void updateLivesLabel() {
         final int actualLives = livesComponent.getLives();
         livesContainer.getChildren().clear();
