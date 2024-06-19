@@ -142,6 +142,7 @@ public class MainMenu extends StackPane {
                 gameStage.close();
                 close();
                 try {
+                    GameState.setGameState(GameState.GAMEOVER);
                     new EndGameView().start(new Stage());
                 } catch (IOException e) {
                     LOGGER.log(Level.SEVERE, "Error in quitBottom", e);
@@ -151,6 +152,7 @@ public class MainMenu extends StackPane {
                 gameStage.close();
                 close();
                 try {
+                    GameState.setGameState(GameState.HOME);
                     new StartGameView().start(new Stage());
                 } catch (IOException e) {
                     LOGGER.log(Level.SEVERE, "Error in homeBottom", e);
