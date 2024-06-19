@@ -290,7 +290,8 @@ public final class StartGameView extends Application {
         try {
             final WindowGame windowGame = new WindowGame();
             windowGame.getGameEngine().getGameController().setLevel(level);
-            windowGame.getGameEngine().getGameController().getFelixController().getFelix().getTheComponent(ComponentType.LIFE).ifPresent(component -> {
+            windowGame.getGameEngine().getGameController().getFelixController().getFelix()
+                .getTheComponent(ComponentType.LIFE).ifPresent(component -> {
                 if (component instanceof LivesComponent) {
                     ((LivesComponent) component).resetLives();
                 }

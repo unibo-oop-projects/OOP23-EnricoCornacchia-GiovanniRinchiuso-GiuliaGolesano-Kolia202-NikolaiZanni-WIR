@@ -152,7 +152,7 @@ public class MainMenu extends StackPane {
                 gameStage.close();
                 close();
                 try {
-                    GameState.setGameState(GameState.HOME);
+                    GameState.setGameState(GameState.GAMEOVER);
                     new StartGameView().start(new Stage());
                 } catch (IOException e) {
                     LOGGER.log(Level.SEVERE, "Error in homeBottom", e);

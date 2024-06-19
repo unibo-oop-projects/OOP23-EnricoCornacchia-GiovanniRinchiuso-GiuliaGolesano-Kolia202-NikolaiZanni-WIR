@@ -89,7 +89,8 @@ public class WindowGame extends Application {
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         final MainMenu mainMenu = new MainMenu(primaryStage);
-        final LivesComponent livesComponent = (LivesComponent) gameEngine.getGameController().getFelixController().getFelix().getTheComponent(ComponentType.LIFE).get();
+        final LivesComponent livesComponent = (LivesComponent) gameEngine.getGameController().getFelixController()
+            .getFelix().getTheComponent(ComponentType.LIFE).get();
         final LivesView livesView = new LivesView(livesComponent);
         final Image backgroundImage = new Image("TopLine.png");
         final ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -102,7 +103,8 @@ public class WindowGame extends Application {
         final Image buildingTopImage = new Image("building_top.png");
         final ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE);
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() 
+            * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
@@ -241,14 +243,22 @@ public class WindowGame extends Application {
             }
         });
 
-        new AnimationTimer() {
+        AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(final long now) {
-                if (!GameState.getGameState().equals(GameState.PAUSED)) {
+                if (GameState.getGameState().equals(GameState.GAMEOVER) || GameState.getGameState().equals(GameState.WIN)) {
+                    this.stop();
+                } else if (!GameState.getGameState().equals(GameState.PAUSED)) {
                     gameEngine.gameLoop(WindowGame.this);
-                }
+                } 
             }
-        }.start();
+        };
+        animationTimer.start();
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Game closed");
+            animationTimer.stop();
+            this.primaryStage.close();
+        });
     }
 
     /**
@@ -408,7 +418,10 @@ public class WindowGame extends Application {
         // Anima i mattoni
         bricksToPrint.forEach(BrickView::animateBrick);
     }
-
+    /**
+     * Getter for the primary stage.
+     * @return the primary stage.
+     */
     public Stage getStage() {
         return this.primaryStage;
     }

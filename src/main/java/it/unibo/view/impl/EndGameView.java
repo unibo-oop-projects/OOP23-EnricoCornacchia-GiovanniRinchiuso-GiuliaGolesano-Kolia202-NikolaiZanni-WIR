@@ -139,7 +139,6 @@ public final class EndGameView extends Application {
                 primaryStage.close(); // Close the current window
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
-                
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }

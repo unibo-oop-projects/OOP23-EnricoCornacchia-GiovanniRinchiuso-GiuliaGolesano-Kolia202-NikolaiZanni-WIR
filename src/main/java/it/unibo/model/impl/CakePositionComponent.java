@@ -21,7 +21,7 @@ public class CakePositionComponent extends AbstractComponent {
      * Constructor to initialize GamePerformance.
      * @param gamePerformance the game performance.
      */
-    public CakePositionComponent(GamePerformance gamePerformance) {
+    public CakePositionComponent(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }
 
