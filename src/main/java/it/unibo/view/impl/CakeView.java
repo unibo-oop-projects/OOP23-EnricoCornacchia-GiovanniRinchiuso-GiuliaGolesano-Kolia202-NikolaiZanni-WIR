@@ -1,6 +1,5 @@
 package it.unibo.view.impl;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -63,7 +62,7 @@ public class CakeView implements View {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    
     public final Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
@@ -93,8 +92,7 @@ public class CakeView implements View {
      */
     @Override
     public ImageView getImageView() {
-        final ImageView newImageView = this.imageView;
-        return newImageView;
+        return this.imageView;
     }
 
     /**
@@ -102,6 +100,7 @@ public class CakeView implements View {
      * 
      * @return the image view.
      */
+
     public Entity getCake() {
         return this.cake;
     }
