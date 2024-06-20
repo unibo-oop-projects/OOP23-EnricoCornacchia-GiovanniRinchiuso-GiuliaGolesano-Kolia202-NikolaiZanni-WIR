@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -39,8 +40,7 @@ public class PointsComponent extends AbstractComponent {
      * Resets the high score to zero and writes it to the file on first launch.
      */
     public static void resetHighScoreOnFirstLaunch() {
-        try (FileWriter fileWriter = new FileWriter(FILENAME);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILENAME, StandardCharsets.UTF_8))) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
         } catch (IOException e) {
@@ -52,8 +52,7 @@ public class PointsComponent extends AbstractComponent {
      * Reads high score from file.
      */
     public final void readFromFile() {
-        try (FileReader fileReader = new FileReader(FILENAME);
-                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME, StandardCharsets.UTF_8))) {
             final String line = bufferedReader.readLine();
             if (line != null) {
                 try {
@@ -121,8 +120,7 @@ public class PointsComponent extends AbstractComponent {
      * @param score the high score to write
      */
     public void writeToFile(final int score) {
-        try (FileWriter fileWriter = new FileWriter(FILENAME);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILENAME, StandardCharsets.UTF_8))) {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
         } catch (IOException ex) {
