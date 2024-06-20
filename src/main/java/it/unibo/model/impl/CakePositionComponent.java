@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.utilities.Constants;
 import it.unibo.model.api.Entity;
 
 /**
@@ -14,8 +15,6 @@ import it.unibo.model.api.Entity;
  */
 public class CakePositionComponent extends AbstractComponent {
     private final GamePerformance gamePerformance;
-    private static final double OFFSET_X = 10;
-    private static final double OFFSET_Y = 35;
 
     /**
      * Constructor to initialize GamePerformance.
@@ -44,8 +43,8 @@ public class CakePositionComponent extends AbstractComponent {
         final Pair<Double, Double> chosenPosition = windowPositions.get(rand.nextInt(windowPositions.size()));
 
         // Apply the offset
-        final double cakeX = chosenPosition.getX() + OFFSET_X;
-        final double cakeY = chosenPosition.getY() + OFFSET_Y;
+        final double cakeX = chosenPosition.getX() + Constants.Cake.OFFSET_X;
+        final double cakeY = chosenPosition.getY() + Constants.Cake.OFFSET_Y;
 
         return new Pair<>(cakeX, cakeY);
     }

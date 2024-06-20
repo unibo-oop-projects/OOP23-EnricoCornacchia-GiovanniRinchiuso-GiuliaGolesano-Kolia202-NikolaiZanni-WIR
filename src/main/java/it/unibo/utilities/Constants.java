@@ -153,14 +153,22 @@ public final class Constants {
          * The time of creation easy level.
          */
         public static final long CREATION_INTERVA_1_C = 11000;
-         /**
+        /**
          * The time of creation medium level.
          */
         public static final long CREATION_INTERVA_2_C = 13500;
-         /**
+        /**
          * The time of creation hard level.
          */
         public static final long CREATION_INTERVA_3_C = 16000;
+        /**
+         * The offset x for the cake.
+         */
+        public static final double OFFSET_X = 10;
+        /**
+         * The offset y for the cake.
+         */
+        public static final double OFFSET_Y = 35;
     }
 
     /**
@@ -179,15 +187,15 @@ public final class Constants {
          * The time of creation easy level.
          */
         public static final long CREATION_INTERVA_1_B = 10000;
-         /**
+        /**
          * The time of creation medium level.
          */
         public static final long CREATION_INTERVA_2_B = 12500;
-         /**
+        /**
          * The time of creation hard level.
          */
         public static final long CREATION_INTERVA_3_B = 15000;
-         /**
+        /**
          * The position of the first floor Bird.
          */
         public static final double FLOOR_1_Y_B = 347;
@@ -199,7 +207,6 @@ public final class Constants {
          * The position of the third floor Bird.
          */
         public static final double FLOOR_3_Y_B = 505;
-
     }
 
     /**
@@ -246,44 +253,6 @@ public final class Constants {
          * The width of the under image.
          */
         public static final double UNDER_IMAGE_WIDTH = 450;
-    }
-
-    /**
-     * Power ups constains.
-     */
-    public static class PowerUps {
-        /**
-         * Starting x of the bird.
-         */
-        public static final double BIRD_MAX_X = 800.0;
-        /**
-         * Strating x of the bird.
-         */
-        public static final double BIRD_MIN_X = 0.0;
-        /**
-         * Minimum y of the bird.
-         */
-        public static final double BIRD_MIN_Y = 200.0;
-        /**
-         * Maximum y of the bird.
-         */
-        public static final double BIRD_MAX_Y = 600.0;
-        /**
-         * Maximum x of the cake.
-         */
-        public static final double CAKE_MAX_X = 500.0;
-        /**
-         * Minimum y of the cake.
-         */
-        public static final double CAKE_MIN_X = 300.0;
-        /**
-         * The initial delay of the power ups.
-         */
-        public static final long INITIAL_DELAY = 5;
-        /**
-         * The period of the power ups.
-         */
-        public static final long PERIOD = 10;
     }
 
     /**

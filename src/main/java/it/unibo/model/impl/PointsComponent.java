@@ -22,7 +22,7 @@ import it.unibo.view.impl.PointsView;
 public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
-    private static final String FILENAME = "src/main/java/it/unibo/model/impl/scores.txt";
+    private static final String FILENAME = "src/main/java/it/unibo/model/impl/Scores.txt";
     private final Set<PointsView> pointsViews = new HashSet<>();
     private final Set<HighPointsView> highPointsViews = new HashSet<>();
     private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
