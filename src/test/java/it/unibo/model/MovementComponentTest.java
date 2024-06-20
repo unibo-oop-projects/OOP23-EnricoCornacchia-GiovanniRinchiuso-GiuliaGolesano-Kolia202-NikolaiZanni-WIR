@@ -36,6 +36,13 @@ class MovementComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeMovementComponent();
+    }
+
+    /**
+     * Initializes the MovementComponent and Entity instances.
+     */
+    private void initializeMovementComponent() {
         component = new MovementComponent();
         final EntityFactoryImpl entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
         entity = entityFactoryImpl.createRalph(new Pair<>(INITIAL_X, INITIAL_Y));

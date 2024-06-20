@@ -33,6 +33,13 @@ final class ImmortalityComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeComponents();
+    }
+
+    /**
+     * Initializes the components.
+     */
+    private void initializeComponents() {
         immortalityComponent = new ImmortalityComponent();
         livesComponent = new LivesComponent();
     }

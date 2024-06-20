@@ -26,6 +26,13 @@ final class BirdPositionComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeBirdPositionComponent();
+    }
+
+    /**
+     * Initializes the BirdPositionComponent instance.
+     */
+    private void initializeBirdPositionComponent() {
         birdPositionComponent = new BirdPositionComponent();
     }
 

@@ -31,6 +31,13 @@ final class EntityFactoryImplTest {
          */
         @BeforeEach
         void setUp() {
+                initializeEntityFactory();
+        }
+
+        /**
+         * Initializes the EntityFactoryImpl instance.
+         */
+        private void initializeEntityFactory() {
                 final GameController gameController = new GameController();
                 final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
                 entityFactoryImpl = new EntityFactoryImpl(gamePerformance);

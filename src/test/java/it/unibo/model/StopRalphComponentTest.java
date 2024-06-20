@@ -26,6 +26,13 @@ final class StopRalphComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeComponents();
+    }
+
+    /**
+     * Initializes the components.
+     */
+    private void initializeComponents() {
         stopRalphComponent = new StopRalphComponent();
         throwBrickComponent = new ThrowBrickComponent(new GamePerformanceImpl(new GameController()));
     }
