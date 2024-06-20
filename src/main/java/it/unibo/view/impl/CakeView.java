@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -29,6 +30,7 @@ public final class CakeView implements View {
      * 
      * @param cake the entity representing the cake
      */
+     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakeView(final Entity cake) {
         this.cake = cake;
         this.imageView = new ImageView();

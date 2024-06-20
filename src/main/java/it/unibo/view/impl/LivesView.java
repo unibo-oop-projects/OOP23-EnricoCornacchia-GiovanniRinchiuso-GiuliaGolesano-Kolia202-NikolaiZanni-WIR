@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.LivesComponent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +22,7 @@ public final class LivesView extends StackPane {
      *
      * @param livesComponent the LivesComponent to use for lives data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public LivesView(final LivesComponent livesComponent) {
         this.livesComponent = livesComponent;
         this.livesContainer = new HBox();

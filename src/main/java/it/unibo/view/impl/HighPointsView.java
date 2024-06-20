@@ -3,6 +3,7 @@ package it.unibo.view.impl;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.PointsComponent;
 
 /**
@@ -20,6 +21,7 @@ public final class HighPointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public HighPointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addHighPointsView(this);
@@ -60,6 +62,7 @@ public final class HighPointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addHighPointsView(this);

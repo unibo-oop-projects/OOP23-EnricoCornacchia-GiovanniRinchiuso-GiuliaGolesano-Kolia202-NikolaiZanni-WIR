@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constants;
 import it.unibo.view.api.View;
@@ -24,6 +25,7 @@ public final class BrickView implements View {
      * Constructor.
      * @param brick
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BrickView(final Entity brick) {
         spriteSheet = getSource("brick");
         this.brick = brick;

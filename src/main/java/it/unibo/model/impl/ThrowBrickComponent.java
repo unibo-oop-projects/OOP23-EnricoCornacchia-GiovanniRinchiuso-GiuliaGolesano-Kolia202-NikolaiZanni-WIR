@@ -6,6 +6,8 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.Constants;
 
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 
 /**
@@ -20,6 +22,7 @@ public class ThrowBrickComponent extends AbstractComponent {
          * Constructor for the ThrowBrickComponent.
          * @param gamePerformance the game performance.
          */
+        @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
         public ThrowBrickComponent(final GamePerformance gamePerformance) {
             this.gamePerformance = gamePerformance;
             this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);

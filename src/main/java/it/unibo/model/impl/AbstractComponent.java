@@ -1,5 +1,6 @@
 package it.unibo.model.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.Entity;
 
@@ -25,6 +26,7 @@ public abstract class AbstractComponent implements Component {
      *
      * @param entity the entity to set.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setEntity(final Entity entity) {
         this.entity = entity;
     }
