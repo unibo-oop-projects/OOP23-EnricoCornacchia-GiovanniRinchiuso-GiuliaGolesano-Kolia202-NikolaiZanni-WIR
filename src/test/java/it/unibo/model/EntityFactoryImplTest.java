@@ -16,61 +16,91 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.utilities.EntityType;
 
-public class EntityFactoryImplTest {
-    EntityFactoryImpl entityFactoryImpl;
-    private GameController gameController;
-    private GamePerformance gamePerformance;
+/**
+ * Test class for {@link EntityFactoryImpl}.
+ */
+final class EntityFactoryImplTest {
 
-    @BeforeEach
-    void setUp() {
-        gameController = new GameController();
-        gamePerformance = new GamePerformanceImpl(this.gameController);
-        entityFactoryImpl = new EntityFactoryImpl(gamePerformance);
-    }
+        /**
+         * The EntityFactoryImpl instance to be tested.
+         */
+        private EntityFactoryImpl entityFactoryImpl;
 
-    @Test
-    void testCreateFelix() {
-    }
+        /**
+         * Sets up the test environment before each test.
+         */
+        @BeforeEach
+        void setUp() {
+                final GameController gameController = new GameController();
+                final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
+                entityFactoryImpl = new EntityFactoryImpl(gamePerformance);
+        }
 
-    @Test
-    void testCreateRalph() {
-    }
+        /**
+         * Tests the createFelix method.
+         */
+        @Test
+        void testCreateFelix() {
+                // Test implementation goes here
+        }
 
-    @Test
-    void testCreateWindows() {
-    }
+        /**
+         * Tests the createRalph method.
+         */
+        @Test
+        void testCreateRalph() {
+                // Test implementation goes here
+        }
 
-    @Test
-    void testCreateBrick() {
-    }
+        /**
+         * Tests the createWindows method.
+         */
+        @Test
+        void testCreateWindows() {
+                // Test implementation goes here
+        }
 
-    @Test
-    void testCreateCake() {
-        Pair<Double, Double> position = new Pair<>(10.0, 10.0);
-        Entity cake = entityFactoryImpl.createCake(position);
-        assertNotNull(cake, "Cake entity should not be null");
-        assertEquals(EntityType.CAKE, cake.getEntityType(), "Entity type should be CAKE");
-        assertEquals(position, cake.getPosition(), "Cake position should be as initialized");
-        assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
-                "Cake should have a MovementComponent");
-        assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.CAKEPOSITION),
-                "Cake should have a CakePositionComponent");
-        assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
-                "Cake should have a HitboxComponent");
-    }
+        /**
+         * Tests the createBrick method.
+         */
+        @Test
+        void testCreateBrick() {
+                // Test implementation goes here
+        }
 
-    @Test
-    void testCreateBird() {
-        Pair<Double, Double> position = new Pair<>(10.0, 10.0);
-        Entity bird = entityFactoryImpl.createBird(position);
-        assertNotNull(bird, "Bird entity should not be null");
-        assertEquals(EntityType.BIRD, bird.getEntityType(), "Entity type should be BIRD");
-        assertEquals(position, bird.getPosition(), "Bird position should be as initialized");
-        assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
-                "Bird should have a MovementComponent");
-        assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.BIRDPOSITION),
-                "Bird should have a BirdPositionComponent");
-        assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
-                "Bird should have a HitboxComponent");
-    }
+        /**
+         * Tests the createCake method.
+         */
+        @Test
+        void testCreateCake() {
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity cake = entityFactoryImpl.createCake(position);
+                assertNotNull(cake, "Cake entity should not be null");
+                assertEquals(EntityType.CAKE, cake.getEntityType(), "Entity type should be CAKE");
+                assertEquals(position, cake.getPosition(), "Cake position should be as initialized");
+                assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Cake should have a MovementComponent");
+                assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.CAKEPOSITION),
+                                "Cake should have a CakePositionComponent");
+                assertTrue(cake.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Cake should have a HitboxComponent");
+        }
+
+        /**
+         * Tests the createBird method.
+         */
+        @Test
+        void testCreateBird() {
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity bird = entityFactoryImpl.createBird(position);
+                assertNotNull(bird, "Bird entity should not be null");
+                assertEquals(EntityType.BIRD, bird.getEntityType(), "Entity type should be BIRD");
+                assertEquals(position, bird.getPosition(), "Bird position should be as initialized");
+                assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Bird should have a MovementComponent");
+                assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.BIRDPOSITION),
+                                "Bird should have a BirdPositionComponent");
+                assertTrue(bird.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Bird should have a HitboxComponent");
+        }
 }

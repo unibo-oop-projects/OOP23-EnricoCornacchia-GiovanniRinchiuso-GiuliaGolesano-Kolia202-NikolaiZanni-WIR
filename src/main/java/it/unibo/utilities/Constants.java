@@ -168,7 +168,7 @@ public final class Constants {
         /**
          * The offset y of the cake.
          */
-        public static final double OFFSET_Y = 30;
+        public static final double OFFSET_Y = 35;
     }
 
     /**

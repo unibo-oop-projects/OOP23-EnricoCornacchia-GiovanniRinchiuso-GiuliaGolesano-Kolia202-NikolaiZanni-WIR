@@ -11,39 +11,53 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Test class for {@link FelixController}.
+ */
 class FelixControllerTest {
-    private GameController gameController;
-    private FelixController felixController;
-    private GamePerformance gamePerformance;
 
+    private FelixController felixController;
+
+    /**
+     * Sets up the test environment before each test.
+     */
     @BeforeEach
     void setUp() {
-        gameController = new GameController();
-        gamePerformance = new GamePerformanceImpl(this.gameController);
+        final GameController gameController = new GameController();
+        final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
         felixController = new FelixController(gamePerformance);
     }
 
+    /**
+     * Tests the getFelix method.
+     */
     @Test
     void testGetFelix() {
-        Entity felix = felixController.getFelix();
+        final Entity felix = felixController.getFelix();
         assertNotNull(felix, "Felix should not be null after initialization");
     }
 
+    /**
+     * Tests the moveLeft method.
+     */
     @Test
     void testMoveFelixLeft() {
-        Entity felix = felixController.getFelix();
-        double initialX = felix.getPosition().getX();
+        final Entity felix = felixController.getFelix();
+        final double initialX = felix.getPosition().getX();
         felixController.moveLeft();
-        double newX = felix.getPosition().getX();
+        final double newX = felix.getPosition().getX();
         assertTrue(newX < initialX, "Felix should have moved left");
     }
 
+    /**
+     * Tests the moveRight method.
+     */
     @Test
     void testMoveFelixRight() {
-        Entity felix = felixController.getFelix();
-        double initialX = felix.getPosition().getX();
+        final Entity felix = felixController.getFelix();
+        final double initialX = felix.getPosition().getX();
         felixController.moveRight();
-        double newX = felix.getPosition().getX();
+        final double newX = felix.getPosition().getX();
         assertTrue(newX > initialX, "Felix should have moved right");
     }
 }

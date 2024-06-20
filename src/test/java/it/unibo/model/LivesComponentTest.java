@@ -10,15 +10,27 @@ import org.junit.jupiter.api.Test;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.impl.LivesComponent;
 
-public class LivesComponentTest {
+/**
+ * Test class for {@link LivesComponent}.
+ */
+final class LivesComponentTest {
 
-    LivesComponent livesComponent;
+    /**
+     * The LivesComponent instance to be tested.
+     */
+    private LivesComponent livesComponent;
 
+    /**
+     * Sets up the test environment before each test.
+     */
     @BeforeEach
     void setUp() {
         livesComponent = new LivesComponent();
     }
 
+    /**
+     * Tests the resetLives method.
+     */
     @Test
     void testResetLives() {
         livesComponent.stealLives();
@@ -28,6 +40,9 @@ public class LivesComponentTest {
         assertFalse(livesComponent.isImmortality(), "Immortality should be disabled after resetting lives");
     }
 
+    /**
+     * Tests the stealLives method.
+     */
     @Test
     void testStealLives() {
         livesComponent.resetLives();
@@ -38,17 +53,26 @@ public class LivesComponentTest {
         assertEquals(2, livesComponent.getLives(), "Lives should not decrease when entity is immortal");
     }
 
+    /**
+     * Tests the getLives method.
+     */
     @Test
     void testGetLives() {
         assertEquals(3, livesComponent.getLives(), "Default lives should be 3");
     }
 
+    /**
+     * Tests the setImmortality method.
+     */
     @Test
     void testSetImmortality() {
         livesComponent.setImmortality();
         assertTrue(livesComponent.isImmortality(), "Immortality should be enabled");
     }
 
+    /**
+     * Tests the isImmortality method.
+     */
     @Test
     void testIsImmortality() {
         assertFalse(livesComponent.isImmortality(), "Default immortality should be false");
@@ -56,6 +80,9 @@ public class LivesComponentTest {
         assertTrue(livesComponent.isImmortality(), "Immortality should be enabled");
     }
 
+    /**
+     * Tests the setStopImmortality method.
+     */
     @Test
     void testSetStopImmortality() {
         livesComponent.setImmortality();
@@ -63,8 +90,11 @@ public class LivesComponentTest {
         assertFalse(livesComponent.isImmortality(), "Immortality should be disabled");
     }
 
+    /**
+     * Tests the getComponent method.
+     */
     @Test
-    public void testGetComponent() {
+    void testGetComponent() {
         assertEquals(ComponentType.LIFE, livesComponent.getComponent());
     }
 }
