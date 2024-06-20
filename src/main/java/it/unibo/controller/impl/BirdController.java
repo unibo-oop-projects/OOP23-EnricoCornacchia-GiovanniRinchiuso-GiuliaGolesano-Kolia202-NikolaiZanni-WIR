@@ -3,6 +3,7 @@ package it.unibo.controller.impl;
 import java.util.Set;
 
 import it.unibo.common.Pair;
+import it.unibo.controller.api.Controller;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
@@ -15,7 +16,7 @@ import it.unibo.utilities.Constants;
 /**
  * Class to manage a bird power up.
  */
-public class BirdController {
+public class BirdController implements Controller {
 
     private long lastCreationTime;
 
@@ -92,6 +93,7 @@ public class BirdController {
      * This method is responsible for creating new birds at regular intervals and
      * moving the existing birds.
      */
+    @Override
     public void update() {
         final long currentTime = System.currentTimeMillis();
         if (currentTime - lastCreationTime >= getTimeByLevel()) {

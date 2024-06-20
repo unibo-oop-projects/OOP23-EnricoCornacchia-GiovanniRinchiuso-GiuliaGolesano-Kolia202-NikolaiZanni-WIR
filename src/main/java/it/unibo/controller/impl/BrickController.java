@@ -1,6 +1,7 @@
 package it.unibo.controller.impl;
 import java.util.Set;
 
+import it.unibo.controller.api.Controller;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
@@ -12,7 +13,7 @@ import it.unibo.utilities.Constants.Brick;
 /**
  * Controller for the bricks.
  */
-public class BrickController {
+public class BrickController implements Controller{
 
     private final GamePerformance gamePerformance;
 
@@ -33,7 +34,7 @@ public class BrickController {
     /**
      * make the bricks fall.
      */
-    public void fallBricks() {
+    public void update() {
         this.checkBricks();
         for (final Entity brick : this.gamePerformance.getBricks()) {
             for (final Component component : brick.getComponents()) {
