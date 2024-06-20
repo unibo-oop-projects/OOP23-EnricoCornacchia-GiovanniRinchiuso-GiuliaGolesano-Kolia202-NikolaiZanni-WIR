@@ -54,12 +54,13 @@ public class HighPointsView extends StackPane {
         final AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
         getChildren().add(pointsContainer);
     }
+
     /**
      * Sets the PointsComponent to use for high score data.
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
-    public void setPointsComponent(PointsComponent pointsComponent) {
+    public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addHighPointsView(this);
         updateHighPointsLabel();

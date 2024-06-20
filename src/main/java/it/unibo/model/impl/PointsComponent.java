@@ -40,7 +40,7 @@ public class PointsComponent extends AbstractComponent {
      */
     public static void resetHighScoreOnFirstLaunch() {
         try (FileWriter fileWriter = new FileWriter(FILENAME);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
         } catch (IOException e) {
@@ -63,9 +63,10 @@ public class PointsComponent extends AbstractComponent {
                 }
             }
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error in readFromFile fileReander", e);
+            LOGGER.log(Level.SEVERE, "Error in readFromFile fileReader", e);
         }
     }
+
     /**
      * Gets the current points.
      * 
@@ -74,6 +75,7 @@ public class PointsComponent extends AbstractComponent {
     public int getPoints() {
         return this.points;
     }
+
     /**
      * Gets the high score.
      * 
@@ -82,6 +84,7 @@ public class PointsComponent extends AbstractComponent {
     public int getHighScore() {
         return this.highScore;
     }
+
     /**
      * Adds points to the current total.
      * 
@@ -93,7 +96,7 @@ public class PointsComponent extends AbstractComponent {
             highScore = this.points;
             writeToFile(highScore);
         }
-    
+
         pointsViews.forEach(view -> {
             view.updatePointsLabel();
         });
@@ -126,6 +129,7 @@ public class PointsComponent extends AbstractComponent {
             LOGGER.log(Level.SEVERE, "Error in writeToFile", ex);
         }
     }
+
     /**
      * Gets the component type associated with points.
      * 

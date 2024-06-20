@@ -55,7 +55,12 @@ public class PointsView extends StackPane {
         getChildren().add(pointsContainer);
     }
 
-    public void setPointsComponent(PointsComponent pointsComponent) {
+    /**
+     * Sets the PointsComponent to use for score data.
+     *
+     * @param pointsComponent the PointsComponent to use for score data
+     */
+    public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addPointsView(this);
         updatePointsLabel();
