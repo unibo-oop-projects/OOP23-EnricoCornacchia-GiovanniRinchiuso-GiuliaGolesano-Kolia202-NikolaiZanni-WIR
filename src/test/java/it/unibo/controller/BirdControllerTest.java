@@ -27,6 +27,13 @@ class BirdControllerTest {
      */
     @BeforeEach
     void setUp() {
+        initializeBirdController();
+    }
+
+    /**
+     * Initializes the BirdController instance.
+     */
+    private void initializeBirdController() {
         final GameController gameController = new GameController();
         final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
         birdController = new BirdController(gamePerformance);
