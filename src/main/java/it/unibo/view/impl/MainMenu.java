@@ -141,7 +141,7 @@ public final class MainMenu extends StackPane {
                 close();
             });
             quitButton.setOnMouseClicked(event -> {
-                gameStage.close();
+                this.gameStage.close();
                 close();
                 try {
                     GameState.setGameState(GameState.GAMEOVER);
@@ -151,7 +151,7 @@ public final class MainMenu extends StackPane {
                 }
             });
             homeButton.setOnMouseClicked(event -> {
-                gameStage.close();
+                this.gameStage.close();
                 close();
                 try {
                     GameState.setGameState(GameState.GAMEOVER);
