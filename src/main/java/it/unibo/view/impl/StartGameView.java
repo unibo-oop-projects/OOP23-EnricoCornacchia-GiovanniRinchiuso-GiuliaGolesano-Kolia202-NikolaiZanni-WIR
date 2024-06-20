@@ -27,7 +27,8 @@ import it.unibo.model.impl.PointsComponent;
 import it.unibo.utilities.GameState;
 
 /**
- * This class is used to show the view of the game when the player starts the game.
+ * This class is used to show the view of the game when the player starts the
+ * game.
  */
 public final class StartGameView extends Application {
     private Button level1Button;
@@ -72,10 +73,8 @@ public final class StartGameView extends Application {
         final StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
 
-        if (firstLaunch) {
-            PointsComponent.resetHighScoreOnFirstLaunch();
-            firstLaunch = false;
-        }
+        checkFirstLaunch();
+
         final Image imageA = new Image("fix-it_felix_title.png");
         final ImageView imageViewA = new ImageView(imageA);
         imageViewA.setFitWidth(IMAGE1_WIDTH);
@@ -143,16 +142,25 @@ public final class StartGameView extends Application {
         timeline.play();
     }
 
+    private void checkFirstLaunch() {
+        synchronized (StartGameView.class) {
+            if (firstLaunch) {
+                PointsComponent.resetHighScoreOnFirstLaunch();
+                firstLaunch = false;
+            }
+        }
+    }
+
     private Button createStyledButton(final String text) {
         final Button button = new Button(text);
         button.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"
                 + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;");
         button.setOnMouseEntered(e -> button.setStyle(
-                "-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;" 
-                + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
+                "-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;"
+                        + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
         button.setOnMouseExited(e -> button.setStyle(
-                "-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;" 
-                + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
+                "-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"
+                        + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
         return button;
     }
 
@@ -160,7 +168,7 @@ public final class StartGameView extends Application {
         final Stage infoStage = new Stage();
         infoStage.setTitle("Instructions");
 
-        // Disabilita i pulsanti dei livelli
+        // Disable the level buttons
         level1Button.setDisable(true);
         level2Button.setDisable(true);
         level3Button.setDisable(true);
@@ -196,7 +204,7 @@ public final class StartGameView extends Application {
         final Button backButton = createStyledButton("BACK");
         backButton.setOnAction(e -> {
             infoStage.close();
-            // Abilita i pulsanti dei livelli
+            // Enable the level buttons
             level1Button.setDisable(false);
             level2Button.setDisable(false);
             level3Button.setDisable(false);
@@ -211,9 +219,9 @@ public final class StartGameView extends Application {
 
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
         infoStage.setScene(scene);
-        infoStage.initModality(Modality.APPLICATION_MODAL); // Imposta la finestra come modale
-        infoStage.setResizable(false); // Impedisce il ridimensionamento
-        infoStage.setOnCloseRequest(event -> event.consume()); // Impedisce la chiusura con la X
+        infoStage.initModality(Modality.APPLICATION_MODAL); // Set the window as modal
+        infoStage.setResizable(false); // Prevent resizing
+        infoStage.setOnCloseRequest(event -> event.consume()); // Prevent closing with X
         infoStage.show();
     }
 
@@ -273,7 +281,8 @@ public final class StartGameView extends Application {
         transitionRightToLeft.setToX(-TRANSLATE_X);
         transitionRightToLeft.setInterpolator(Interpolator.LINEAR);
         transitionRightToLeft.setOnFinished(e -> {
-            final TranslateTransition transitionLeftToRight = new TranslateTransition(Duration.seconds(10), cloudImageView);
+            final TranslateTransition transitionLeftToRight = new TranslateTransition(Duration.seconds(10),
+                    cloudImageView);
             transitionLeftToRight.setFromX(-TRANSLATE_X);
             transitionLeftToRight.setToX(TRANSLATE_X);
             transitionLeftToRight.setInterpolator(Interpolator.LINEAR);
@@ -291,11 +300,11 @@ public final class StartGameView extends Application {
             final WindowGame windowGame = new WindowGame();
             windowGame.getGameEngine().getGameController().setLevel(level);
             windowGame.getGameEngine().getGameController().getFelixController().getFelix()
-                .getTheComponent(ComponentType.LIFE).ifPresent(component -> {
-                if (component instanceof LivesComponent) {
-                    ((LivesComponent) component).resetLives();
-                }
-            });
+                    .getTheComponent(ComponentType.LIFE).ifPresent(component -> {
+                        if (component instanceof LivesComponent) {
+                            ((LivesComponent) component).resetLives();
+                        }
+                    });
             windowGame.start(primaryStage);
             GameState.setGameState(GameState.PLAYING);
         } catch (IOException e) {
