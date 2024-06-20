@@ -19,23 +19,20 @@ import it.unibo.utilities.EntityType;
 /**
  * Test class for {@link EntityFactoryImpl}.
  */
-public final class EntityFactoryImplTest {
+final class EntityFactoryImplTest {
 
         /**
          * The EntityFactoryImpl instance to be tested.
          */
         private EntityFactoryImpl entityFactoryImpl;
 
-        private GameController gameController;
-        private GamePerformance gamePerformance;
-
         /**
          * Sets up the test environment before each test.
          */
         @BeforeEach
         void setUp() {
-                gameController = new GameController();
-                gamePerformance = new GamePerformanceImpl(this.gameController);
+                final GameController gameController = new GameController();
+                final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
                 entityFactoryImpl = new EntityFactoryImpl(gamePerformance);
         }
 
@@ -76,8 +73,8 @@ public final class EntityFactoryImplTest {
          */
         @Test
         void testCreateCake() {
-                Pair<Double, Double> position = new Pair<>(10.0, 10.0);
-                Entity cake = entityFactoryImpl.createCake(position);
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity cake = entityFactoryImpl.createCake(position);
                 assertNotNull(cake, "Cake entity should not be null");
                 assertEquals(EntityType.CAKE, cake.getEntityType(), "Entity type should be CAKE");
                 assertEquals(position, cake.getPosition(), "Cake position should be as initialized");
@@ -94,8 +91,8 @@ public final class EntityFactoryImplTest {
          */
         @Test
         void testCreateBird() {
-                Pair<Double, Double> position = new Pair<>(10.0, 10.0);
-                Entity bird = entityFactoryImpl.createBird(position);
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity bird = entityFactoryImpl.createBird(position);
                 assertNotNull(bird, "Bird entity should not be null");
                 assertEquals(EntityType.BIRD, bird.getEntityType(), "Entity type should be BIRD");
                 assertEquals(position, bird.getPosition(), "Bird position should be as initialized");

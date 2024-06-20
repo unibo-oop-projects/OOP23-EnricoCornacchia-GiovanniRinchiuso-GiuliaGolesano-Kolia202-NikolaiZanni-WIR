@@ -14,7 +14,7 @@ import it.unibo.model.impl.LivesComponent;
 /**
  * Test class for {@link ImmortalityComponent}.
  */
-public final class ImmortalityComponentTest {
+final class ImmortalityComponentTest {
 
     /**
      * The ImmortalityComponent instance to be tested.
@@ -26,7 +26,7 @@ public final class ImmortalityComponentTest {
      */
     private LivesComponent livesComponent;
 
-    private static final int IMMORTALITY_DURATION_MS = 10001;
+    private static final int IMMORTALITY_DURATION_MS = 10_001;
 
     /**
      * Sets up the test environment before each test.

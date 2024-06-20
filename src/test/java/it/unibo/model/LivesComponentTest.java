@@ -13,7 +13,7 @@ import it.unibo.model.impl.LivesComponent;
 /**
  * Test class for {@link LivesComponent}.
  */
-public final class LivesComponentTest {
+final class LivesComponentTest {
 
     /**
      * The LivesComponent instance to be tested.
@@ -94,7 +94,7 @@ public final class LivesComponentTest {
      * Tests the getComponent method.
      */
     @Test
-    public void testGetComponent() {
+    void testGetComponent() {
         assertEquals(ComponentType.LIFE, livesComponent.getComponent());
     }
 }

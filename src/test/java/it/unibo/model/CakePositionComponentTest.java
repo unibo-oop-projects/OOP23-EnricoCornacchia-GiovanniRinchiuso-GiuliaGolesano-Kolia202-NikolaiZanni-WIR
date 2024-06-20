@@ -19,26 +19,24 @@ import it.unibo.utilities.Constants;
 /**
  * Test class for {@link CakePositionComponent}.
  */
-public final class CakePositionComponentTest {
+final class CakePositionComponentTest {
 
     /**
      * The CakePositionComponent instance to be tested.
      */
     private CakePositionComponent cakePositionComponent;
 
-    private GameController gameController;
     private GamePerformance gamePerformance;
-    private WindowsController windowsController;
 
     /**
      * Sets up the test environment before each test.
      */
     @BeforeEach
     void setUp() {
-        gameController = new GameController();
-        gamePerformance = new GamePerformanceImpl(this.gameController);
+        final GameController gameController = new GameController();
+        gamePerformance = new GamePerformanceImpl(gameController);
         cakePositionComponent = new CakePositionComponent(gamePerformance);
-        windowsController = new WindowsController(gamePerformance);
+        final WindowsController windowsController = new WindowsController(gamePerformance);
         windowsController.windowsGrid(Constants.Windows.NUM_WINDOWS);
     }
 
@@ -47,11 +45,11 @@ public final class CakePositionComponentTest {
      */
     @Test
     void testRandomPosition() {
-        Pair<Double, Double> position = cakePositionComponent.randomPosition();
+        final Pair<Double, Double> position = cakePositionComponent.randomPosition();
         assertNotNull(position, "Position should not be null");
-        boolean isValidPosition = gamePerformance.getWindows().stream()
+        final boolean isValidPosition = gamePerformance.getWindows().stream()
                 .anyMatch(window -> {
-                    Pair<Double, Double> windowPos = window.getPosition();
+                    final Pair<Double, Double> windowPos = window.getPosition();
                     return position.getX().equals(windowPos.getX() + Constants.Cake.OFFSET_X)
                             && position.getY().equals(windowPos.getY() + Constants.Cake.OFFSET_Y);
                 });

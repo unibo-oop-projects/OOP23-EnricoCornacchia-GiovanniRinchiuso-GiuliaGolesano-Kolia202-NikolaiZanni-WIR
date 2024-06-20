@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Test class for {@link PointsComponent}.
  */
-public final class PointsComponentTest {
+final class PointsComponentTest {
 
     /**
      * The PointsComponent instance to be tested.
@@ -98,7 +98,7 @@ public final class PointsComponentTest {
      * Tests the getComponent method.
      */
     @Test
-    public void testGetComponent() {
+    void testGetComponent() {
         assertEquals(ComponentType.POINTS, pointsComponent.getComponent());
     }
 }

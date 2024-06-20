@@ -14,7 +14,7 @@ import it.unibo.utilities.Constants;
 /**
  * Test class for {@link BirdPositionComponent}.
  */
-public final class BirdPositionComponentTest {
+final class BirdPositionComponentTest {
 
     /**
      * The BirdPositionComponent instance to be tested.
@@ -34,9 +34,9 @@ public final class BirdPositionComponentTest {
      */
     @Test
     void testRandomPosition() {
-        Pair<Double, Double> position = birdPositionComponent.randomPosition();
+        final Pair<Double, Double> position = birdPositionComponent.randomPosition();
         assertEquals(Constants.GameEdges.LEFT_WALL, position.getX());
-        double birdY = position.getY();
+        final double birdY = position.getY();
         assertTrue(birdY == Constants.Bird.FLOOR_1_Y_B
                 || birdY == Constants.Bird.FLOOR_2_Y_B
                 || birdY == Constants.Bird.FLOOR_3_Y_B,

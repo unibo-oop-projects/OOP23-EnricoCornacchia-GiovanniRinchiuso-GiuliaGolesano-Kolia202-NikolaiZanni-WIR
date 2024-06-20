@@ -22,38 +22,45 @@ import it.unibo.utilities.Constants;
 class CakeControllerTest {
     private static final long TIME_SLEEP = 6000;
 
-    private GameController gameController;
     private CakeController cakeController;
-    private GamePerformance gamePerformance;
-    private WindowsController windowsController;
 
-
+    /**
+     * Sets up the test environment before each test.
+     */
     @BeforeEach
     void setUp() {
-        gameController = new GameController();
-        gamePerformance = new GamePerformanceImpl(this.gameController);
+        final GameController gameController = new GameController();
+        final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
         cakeController = new CakeController(gamePerformance);
-        windowsController = new WindowsController(gamePerformance);
+        final WindowsController windowsController = new WindowsController(gamePerformance);
         windowsController.windowsGrid(Constants.Windows.NUM_WINDOWS);
     }
 
+    /**
+     * Tests the getCakes method.
+     */
     @Test
-    void testGetCake() {
-        Set<Entity> cake = cakeController.getCakes();
-        assertNotNull(cake, "Birds should not be null after initialization");
+    void testGetCakes() {
+        final Set<Entity> cakes = cakeController.getCakes();
+        assertNotNull(cakes, "Cakes should not be null after initialization");
     }
 
+    /**
+     * Tests the update method.
+     * 
+     * @throws InterruptedException if the sleep is interrupted
+     */
     @Test
     void testUpdate() throws InterruptedException {
-        long initialTime = System.currentTimeMillis();
+        final long initialTime = System.currentTimeMillis();
         cakeController.update();
-        long currentTime = System.currentTimeMillis();
+        final long currentTime = System.currentTimeMillis();
         if (currentTime - initialTime >= Constants.Cake.CREATION_INTERVA_1_C) {
             assertTrue(cakeController.getCakes().size() > 0, "Cake should be created after the time interval");
         }
         Thread.sleep(TIME_SLEEP);
         cakeController.update();
-        Set<Entity> cakes = cakeController.getCakes();
+        final Set<Entity> cakes = cakeController.getCakes();
         assertTrue(cakes.isEmpty(), "All cakes should be removed after their active duration");
     }
 }
