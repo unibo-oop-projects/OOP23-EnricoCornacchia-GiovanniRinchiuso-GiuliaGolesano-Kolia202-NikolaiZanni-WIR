@@ -50,7 +50,7 @@ public class FelixView implements View {
     }
 
     /**
-     * {@InheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void animate() {

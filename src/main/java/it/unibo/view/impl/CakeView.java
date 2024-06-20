@@ -47,7 +47,7 @@ public class CakeView implements View {
     }
 
     /**
-     * {@InheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void animate() {

@@ -46,7 +46,7 @@ public class BirdView implements View {
     }
 
     /**
-     * {@InheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void animate() {

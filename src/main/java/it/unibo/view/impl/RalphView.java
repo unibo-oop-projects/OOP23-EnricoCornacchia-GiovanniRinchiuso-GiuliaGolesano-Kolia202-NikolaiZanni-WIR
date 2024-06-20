@@ -50,7 +50,7 @@ public class RalphView implements View {
     }
 
     /**
-     * {@InheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public void animate() {
