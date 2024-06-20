@@ -260,7 +260,6 @@ public final class WindowGame extends Application {
         primaryStage.setOnCloseRequest(event -> {
             LOGGER.info("Game closed");
             animationTimer.stop();
-            this.primaryStage.close();
         });
     }
 
@@ -422,6 +421,9 @@ public final class WindowGame extends Application {
             return false;
         });
 
+        if (ralphView == null) {
+            ralphView = addRalphView();
+        }
         // Anima Ralph
         ralphView.animate();
 

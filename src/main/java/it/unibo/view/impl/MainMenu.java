@@ -78,7 +78,7 @@ public final class MainMenu extends StackPane {
     /**
      * AnotherStage represents the pause menu stage.
      */
-    public static class AnotherStage extends Stage {
+    public static final class AnotherStage extends Stage {
         private static final int WIDTH = 500;
         private static final int HEIGHT = 400;
         private static final String BACKGROUND = "pauseMenu.png";
