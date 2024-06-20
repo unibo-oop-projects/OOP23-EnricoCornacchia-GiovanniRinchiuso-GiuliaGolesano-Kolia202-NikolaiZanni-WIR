@@ -10,10 +10,11 @@ import it.unibo.model.impl.LivesComponent;
 import it.unibo.model.impl.StopRalphComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
 import javafx.scene.input.KeyCode;
+import it.unibo.controller.api.Controller;
 /**
  * Main controller of the game.
  */
-public class GameController {
+public class GameController implements Controller {
     private final RalphController ralphController;
     private final FelixController felixController;
     private final BrickController brickController;
@@ -38,10 +39,11 @@ public class GameController {
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
-     * Update the game, makes Ralph move and the bricks fall.
+     * @InheritDoc
      */
+    @Override
     public void update() {
-        this.brickController.fallBricks();
+        this.brickController.update();
         this.ralphController.update(brickController.getBricks());
         this.birdController.update();
         this.cakeController.update();

@@ -12,6 +12,7 @@ import it.unibo.utilities.Constants;
 import java.util.Set;
 import it.unibo.common.Pair;
 
+
 /**
  * Controller for Ralph.
  */
