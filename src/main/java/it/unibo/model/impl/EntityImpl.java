@@ -104,7 +104,7 @@ public class EntityImpl implements Entity {
         return this.type;
     }
     /**
-     * @{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public GamePerformance getGamePerformance() {
