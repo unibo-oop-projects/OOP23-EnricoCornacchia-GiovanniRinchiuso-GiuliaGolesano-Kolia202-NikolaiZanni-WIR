@@ -34,6 +34,7 @@ public class BrickController implements Controller {
     /**
      * make the bricks fall.
      */
+    @Override
     public void update() {
         this.checkBricks();
         for (final Entity brick : this.gamePerformance.getBricks()) {

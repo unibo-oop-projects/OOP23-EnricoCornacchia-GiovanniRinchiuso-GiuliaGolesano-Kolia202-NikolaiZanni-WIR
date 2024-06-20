@@ -90,7 +90,7 @@ public final class Constants {
         /**
          * The Ralph speed in throwing bricks.
          */
-        public static final long THROW_TIME = 4000;
+        public static final long THROW_TIME = 4_000;
         /**
          * The divider for the level.
          */
@@ -152,15 +152,15 @@ public final class Constants {
         /**
          * The time of creation easy level.
          */
-        public static final long CREATION_INTERVA_1_C = 11000;
+        public static final long CREATION_INTERVA_1_C = 11_000;
          /**
          * The time of creation medium level.
          */
-        public static final long CREATION_INTERVA_2_C = 13500;
+        public static final long CREATION_INTERVA_2_C = 13_500;
          /**
          * The time of creation hard level.
          */
-        public static final long CREATION_INTERVA_3_C = 16000;
+        public static final long CREATION_INTERVA_3_C = 16_000;
     }
 
     /**
@@ -178,15 +178,15 @@ public final class Constants {
         /**
          * The time of creation easy level.
          */
-        public static final long CREATION_INTERVA_1_B = 10000;
+        public static final long CREATION_INTERVA_1_B = 10_000;
          /**
          * The time of creation medium level.
          */
-        public static final long CREATION_INTERVA_2_B = 12500;
+        public static final long CREATION_INTERVA_2_B = 12_500;
          /**
          * The time of creation hard level.
          */
-        public static final long CREATION_INTERVA_3_B = 15000;
+        public static final long CREATION_INTERVA_3_B = 15_000;
          /**
          * The position of the first floor Bird.
          */

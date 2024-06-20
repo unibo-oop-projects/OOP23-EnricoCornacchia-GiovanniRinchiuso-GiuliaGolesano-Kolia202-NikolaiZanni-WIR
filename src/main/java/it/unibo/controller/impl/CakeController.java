@@ -15,8 +15,7 @@ import it.unibo.controller.api.Controller;
  * of cakes in the game.
  */
 public class CakeController implements Controller {
-    private static final long CREATION_INTERVAL = 11_000;
-    private static final long ACTIVE_DURATION = 5000;
+    private static final long ACTIVE_DURATION = 5_000;
 
     private long lastCreationTime;
     private final GamePerformance gamePerformance;
