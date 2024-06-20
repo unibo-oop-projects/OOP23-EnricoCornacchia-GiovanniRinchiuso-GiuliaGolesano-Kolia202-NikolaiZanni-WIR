@@ -29,10 +29,17 @@ class CakeControllerTest {
      */
     @BeforeEach
     void setUp() {
+        initializeCakeController();
+    }
+
+    /**
+     * Initializes the CakeController instance.
+     */
+    private void initializeCakeController() {
         final GameController gameController = new GameController();
         final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
-        cakeController = new CakeController(gamePerformance);
         final WindowsController windowsController = new WindowsController(gamePerformance);
+        cakeController = new CakeController(gamePerformance);
         windowsController.windowsGrid(Constants.Windows.NUM_WINDOWS);
     }
 
