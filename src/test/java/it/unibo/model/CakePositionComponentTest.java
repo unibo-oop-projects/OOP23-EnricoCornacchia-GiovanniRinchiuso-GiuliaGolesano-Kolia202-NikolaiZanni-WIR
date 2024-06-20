@@ -16,12 +16,23 @@ import it.unibo.model.impl.CakePositionComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.utilities.Constants;
 
-public class CakePositionComponentTest {
-    CakePositionComponent cakePositionComponent;
+/**
+ * Test class for {@link CakePositionComponent}.
+ */
+public final class CakePositionComponentTest {
+
+    /**
+     * The CakePositionComponent instance to be tested.
+     */
+    private CakePositionComponent cakePositionComponent;
+
     private GameController gameController;
     private GamePerformance gamePerformance;
     private WindowsController windowsController;
 
+    /**
+     * Sets up the test environment before each test.
+     */
     @BeforeEach
     void setUp() {
         gameController = new GameController();
@@ -31,6 +42,9 @@ public class CakePositionComponentTest {
         windowsController.windowsGrid(Constants.Windows.NUM_WINDOWS);
     }
 
+    /**
+     * Tests the randomPosition method.
+     */
     @Test
     void testRandomPosition() {
         Pair<Double, Double> position = cakePositionComponent.randomPosition();
@@ -38,13 +52,16 @@ public class CakePositionComponentTest {
         boolean isValidPosition = gamePerformance.getWindows().stream()
                 .anyMatch(window -> {
                     Pair<Double, Double> windowPos = window.getPosition();
-                    return position.getX().equals(windowPos.getX() + Constants.Cake.OFFSET_X) &&
-                            position.getY().equals(windowPos.getY() + Constants.Cake.OFFSET_Y);
+                    return position.getX().equals(windowPos.getX() + Constants.Cake.OFFSET_X)
+                            && position.getY().equals(windowPos.getY() + Constants.Cake.OFFSET_Y);
                 });
 
         assertTrue(isValidPosition, "Position should be one of the window positions with the correct offsets");
     }
 
+    /**
+     * Tests the getComponent method.
+     */
     @Test
     void testGetComponent() {
         assertEquals(ComponentType.CAKEPOSITION, cakePositionComponent.getComponent());

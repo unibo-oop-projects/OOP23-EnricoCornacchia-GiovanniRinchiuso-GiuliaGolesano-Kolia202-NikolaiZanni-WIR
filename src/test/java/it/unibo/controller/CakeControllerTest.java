@@ -20,10 +20,13 @@ import it.unibo.utilities.Constants;
  * Test for the CakeController.
  */
 class CakeControllerTest {
+    private static final long TIME_SLEEP = 6000;
+
     private GameController gameController;
     private CakeController cakeController;
     private GamePerformance gamePerformance;
     private WindowsController windowsController;
+
 
     @BeforeEach
     void setUp() {
@@ -48,7 +51,7 @@ class CakeControllerTest {
         if (currentTime - initialTime >= Constants.Cake.CREATION_INTERVA_1_C) {
             assertTrue(cakeController.getCakes().size() > 0, "Cake should be created after the time interval");
         }
-        Thread.sleep(6000);
+        Thread.sleep(TIME_SLEEP);
         cakeController.update();
         Set<Entity> cakes = cakeController.getCakes();
         assertTrue(cakes.isEmpty(), "All cakes should be removed after their active duration");

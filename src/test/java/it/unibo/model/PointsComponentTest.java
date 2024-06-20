@@ -11,10 +11,27 @@ import it.unibo.utilities.Constants;
 
 import java.io.IOException;
 
+/**
+ * Test class for {@link PointsComponent}.
+ */
 public final class PointsComponentTest {
 
+    /**
+     * The PointsComponent instance to be tested.
+     */
     private PointsComponent pointsComponent;
 
+    private static final int INITIAL_POINTS = 0;
+    private static final int POINTS_TO_ADD_FIRST = 10;
+    private static final int POINTS_TO_ADD_SECOND = 5;
+    private static final int EXPECTED_POINTS_AFTER_FIRST_ADD = 10;
+    private static final int EXPECTED_POINTS_AFTER_SECOND_ADD = 15;
+
+    /**
+     * Sets up the test environment before each test.
+     * 
+     * @throws IOException if an I/O error occurs
+     */
     @SuppressWarnings("static-access")
     @BeforeEach
     void setUp() throws IOException {
@@ -22,33 +39,53 @@ public final class PointsComponentTest {
         pointsComponent.resetHighScoreOnFirstLaunch();
     }
 
+    /**
+     * Tests the readFromFile method.
+     */
     @Test
     void testReadFromFile() {
         pointsComponent.readFromFile();
-        assertEquals(0, pointsComponent.getHighScore(), "High score should be read as 0 from file");
+        assertEquals(INITIAL_POINTS, pointsComponent.getHighScore(), "High score should be read as 0 from file");
     }
 
+    /**
+     * Tests the getPoints method.
+     */
     @Test
     void testGetPoints() {
-        assertEquals(0, pointsComponent.getPoints(), "Initial points should be 0");
+        assertEquals(INITIAL_POINTS, pointsComponent.getPoints(), "Initial points should be 0");
     }
 
+    /**
+     * Tests the getHighScore method.
+     */
     @Test
     void testGetHighScore() {
-        assertEquals(0, pointsComponent.getHighScore(), "Initial high score should be 0");
+        assertEquals(INITIAL_POINTS, pointsComponent.getHighScore(), "Initial high score should be 0");
     }
 
+    /**
+     * Tests the addPoints method.
+     */
     @Test
     void testAddPoints() {
-        pointsComponent.addPoints(10);
-        assertEquals(10, pointsComponent.getPoints(), "Points should be 10 after adding 10 points");
-        assertEquals(10, pointsComponent.getHighScore(), "High score should be updated to 10 after adding 10 points");
-        pointsComponent.addPoints(5);
-        assertEquals(15, pointsComponent.getPoints(), "Points should be 15 after adding 5 more points");
-        assertEquals(15, pointsComponent.getHighScore(),
+        pointsComponent.addPoints(POINTS_TO_ADD_FIRST);
+        assertEquals(EXPECTED_POINTS_AFTER_FIRST_ADD, pointsComponent.getPoints(),
+                "Points should be 10 after adding 10 points");
+        assertEquals(EXPECTED_POINTS_AFTER_FIRST_ADD, pointsComponent.getHighScore(),
+                "High score should be updated to 10 after adding 10 points");
+        pointsComponent.addPoints(POINTS_TO_ADD_SECOND);
+        assertEquals(EXPECTED_POINTS_AFTER_SECOND_ADD, pointsComponent.getPoints(),
+                "Points should be 15 after adding 5 more points");
+        assertEquals(EXPECTED_POINTS_AFTER_SECOND_ADD, pointsComponent.getHighScore(),
                 "High score should be updated to 15 after adding 5 more points");
     }
 
+    /**
+     * Tests the writeToFile method.
+     * 
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void testWriteToFile() throws IOException {
         pointsComponent.writeToFile(Constants.Felix.FIXED_WINDOW_POINTS);
@@ -57,6 +94,9 @@ public final class PointsComponentTest {
                 "High score should be written as 50 to the file");
     }
 
+    /**
+     * Tests the getComponent method.
+     */
     @Test
     public void testGetComponent() {
         assertEquals(ComponentType.POINTS, pointsComponent.getComponent());
