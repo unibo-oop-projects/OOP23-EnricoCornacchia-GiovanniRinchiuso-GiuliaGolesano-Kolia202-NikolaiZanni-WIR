@@ -28,6 +28,13 @@ class FixWindowsComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeFixWindowsComponent();
+    }
+
+    /**
+     * Initializes the FixWindowsComponent instance.
+     */
+    private void initializeFixWindowsComponent() {
         fixWindowsComponent = new FixWindowsComponent();
     }
 
