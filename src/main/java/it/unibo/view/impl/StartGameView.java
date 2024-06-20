@@ -157,10 +157,10 @@ public final class StartGameView extends Application {
                 + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;");
         button.setOnMouseEntered(e -> button.setStyle(
                 "-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 18px;"
-                        + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
+                + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
         button.setOnMouseExited(e -> button.setStyle(
                 "-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 18px;"
-                        + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
+                + "-fx-font-family: 'Arial Black'; -fx-padding: 10 20 10 20; -fx-border-color: white; -fx-border-width: 2px;"));
         return button;
     }
 
