@@ -11,7 +11,6 @@ import it.unibo.utilities.Constants;
 public class BirdPositionComponent extends AbstractComponent {
 
     private final Random rand = new Random();
-    private static final double POS_Y = 30;
 
     /**
      * Generates a random position for a bird.
@@ -26,13 +25,13 @@ public class BirdPositionComponent extends AbstractComponent {
         double birdY;
         switch (rand.nextInt(3)) {
             case 0:
-                birdY = Constants.Floors.FLOOR_1_Y + POS_Y;
+                birdY = Constants.Bird.FLOOR_1_Y_B;
                 break;
             case 1:
-                birdY = Constants.Floors.FLOOR_2_Y + POS_Y;
+                birdY = Constants.Bird.FLOOR_2_Y_B;
                 break;
             default:
-                birdY = Constants.Floors.FLOOR_3_Y + POS_Y;
+                birdY = Constants.Bird.FLOOR_3_Y_B;
                 break;
         }
         return new Pair<>(birdX, birdY);

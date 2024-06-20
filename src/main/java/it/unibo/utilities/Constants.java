@@ -10,6 +10,7 @@ public final class Constants {
      * The name of the gamestate.
      */
     public static final String GAMESTATE = "GameState: ";
+
     /**
      * Private constructor.
      */
@@ -37,6 +38,7 @@ public final class Constants {
          */
         public static final double DOWN_WALL_1 = 600.0;
     }
+
     /**
      * Felix constaints.
      */
@@ -58,6 +60,7 @@ public final class Constants {
          */
         public static final int FIXED_WINDOW_POINTS = 50;
     }
+
     /**
      * Ralph constaints.
      */
@@ -93,6 +96,7 @@ public final class Constants {
          */
         public static final double LEVEL_DIVIDER = 1.5;
     }
+
     /**
      * Brick constaints.
      */
@@ -107,17 +111,18 @@ public final class Constants {
         public static final double BRICK_HEIGHT = 20;
         /**
          * The speed of the brick at level 1.
-        */
+         */
         public static final double BRICK_SPEED_LEVEL_1 = 1;
         /**
          * The speed of the brick at level 2.
-        */
+         */
         public static final double BRICK_SPEED_LEVEL_2 = 1.5;
         /**
          * The speed of the brick at level 3.
-        */
+         */
         public static final double BRICK_SPEED_LEVEL_3 = 1.8;
     }
+
     /**
      * Window constaints.
      */
@@ -131,6 +136,7 @@ public final class Constants {
          */
         public static final double WINDOW_HEIGHT = 60;
     }
+
     /**
      * Cake constaints.
      */
@@ -143,7 +149,20 @@ public final class Constants {
          * The height of the cake.
          */
         public static final double CAKE_HEIGHT = 20;
+        /**
+         * The time of creation easy level.
+         */
+        public static final long CREATION_INTERVA_1_C = 11000;
+         /**
+         * The time of creation medium level.
+         */
+        public static final long CREATION_INTERVA_2_C = 13500;
+         /**
+         * The time of creation hard level.
+         */
+        public static final long CREATION_INTERVA_3_C = 16000;
     }
+
     /**
      * Bird constaints.
      */
@@ -156,7 +175,33 @@ public final class Constants {
          * The height of the bird.
          */
         public static final double BIRD_HEIGHT = 25;
+        /**
+         * The time of creation easy level.
+         */
+        public static final long CREATION_INTERVA_1_B = 10000;
+         /**
+         * The time of creation medium level.
+         */
+        public static final long CREATION_INTERVA_2_B = 12500;
+         /**
+         * The time of creation hard level.
+         */
+        public static final long CREATION_INTERVA_3_B = 15000;
+         /**
+         * The position of the first floor Bird.
+         */
+        public static final double FLOOR_1_Y_B = 347;
+        /**
+         * The position of the second floor Bird.
+         */
+        public static final double FLOOR_2_Y_B = 426;
+        /**
+         * The position of the third floor Bird.
+         */
+        public static final double FLOOR_3_Y_B = 505;
+
     }
+
     /**
      * Buttons constaints.
      */
@@ -202,6 +247,7 @@ public final class Constants {
          */
         public static final double UNDER_IMAGE_WIDTH = 450;
     }
+
     /**
      * Power ups constains.
      */
@@ -239,6 +285,7 @@ public final class Constants {
          */
         public static final long PERIOD = 10;
     }
+
     /**
      * Floors constains.
      */
@@ -256,6 +303,7 @@ public final class Constants {
          */
         public static final double FLOOR_3_Y = 600.0;
     }
+
     /**
      * Windows constains.
      */
@@ -277,6 +325,7 @@ public final class Constants {
          */
         public static final int NUM_WINDOWS = 15;
     }
+
     /**
      * Animations constaints.
      */
@@ -304,6 +353,6 @@ public final class Constants {
         /**
          * Number of frames for Bird fly animation.
          */
-        public static final int NUM_FRAMES_BIRD = 2; 
+        public static final int NUM_FRAMES_BIRD = 2;
     }
 }
