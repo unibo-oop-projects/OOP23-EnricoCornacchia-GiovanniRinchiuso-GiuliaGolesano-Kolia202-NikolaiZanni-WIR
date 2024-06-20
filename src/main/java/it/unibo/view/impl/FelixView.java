@@ -50,10 +50,9 @@ public class FelixView implements View {
     }
 
     /**
-     * Animates the Felix sprite.
-     * If the animation is already running, the method returns without doing anything.
+     * {@InheritDoc}
      */
-    public void animateFelix() {
+    public void animate() {
         this.imageView.setX(this.felix.getPosition().getX());
         this.imageView.setY(this.felix.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {

@@ -47,9 +47,10 @@ public class CakeView implements View {
     }
 
     /**
-     * Method to animate the cake.
+     * {@InheritDoc}
      */
-    void animateCake() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.cake.getPosition().getX());
         this.imageView.setY(this.cake.getPosition().getY());
         if (this.timeline.getStatus() != Animation.Status.RUNNING) {

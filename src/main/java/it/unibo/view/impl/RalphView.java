@@ -50,10 +50,9 @@ public class RalphView implements View {
     }
 
     /**
-     * Animates the Ralph character by updating its position and displaying the frames of the animation.
-     * If the animation is already running, it does nothing.
+     * {@InheritDoc}
      */
-    void animateRalph() {
+    public void animate() {
         this.imageView.setX(this.ralph.getPosition().getX());
         this.imageView.setY(this.ralph.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {

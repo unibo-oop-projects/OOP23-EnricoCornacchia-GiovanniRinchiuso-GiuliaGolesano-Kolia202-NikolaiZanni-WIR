@@ -115,4 +115,9 @@ public class WindowsView implements View {
         isFixed = false;
         return this.imageView;
     }
+    @Override
+    public void animate() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'animate'");
+    }
 }

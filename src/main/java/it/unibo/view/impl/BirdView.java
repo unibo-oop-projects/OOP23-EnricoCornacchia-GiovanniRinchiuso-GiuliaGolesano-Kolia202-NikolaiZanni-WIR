@@ -46,9 +46,9 @@ public class BirdView implements View {
     }
 
     /**
-     * Method to create the animation.
+     * {@InheritDoc}
      */
-    public void animateBird() {
+    public void animate() {
         if (this.bird != null) {
             this.imageView.setX(this.bird.getPosition().getX());
             this.imageView.setY(this.bird.getPosition().getY());

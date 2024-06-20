@@ -41,9 +41,10 @@ public class BrickView implements View {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     /**
-     * Method to animate the brick.
+     * @{InheritDoc}
      */
-    public void animateBrick() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.brick.getPosition().getX());
         this.imageView.setY(this.brick.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
