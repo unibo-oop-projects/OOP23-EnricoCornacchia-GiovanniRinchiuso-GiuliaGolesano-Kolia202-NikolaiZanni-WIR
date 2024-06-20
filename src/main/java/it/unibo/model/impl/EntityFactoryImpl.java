@@ -3,6 +3,8 @@ package it.unibo.model.impl;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
@@ -21,6 +23,7 @@ public class EntityFactoryImpl implements EntityFactory {
      * 
      * @param gamePerformance the game performance of the entity factory.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityFactoryImpl(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

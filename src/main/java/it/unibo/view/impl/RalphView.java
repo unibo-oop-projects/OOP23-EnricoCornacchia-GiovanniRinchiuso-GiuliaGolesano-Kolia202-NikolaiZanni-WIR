@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -35,6 +36,7 @@ public class RalphView implements View {
      * 
      * @param ralph the Ralph entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public RalphView(final Entity ralph) {
         this.ralph = ralph;
         this.imageView = new ImageView();

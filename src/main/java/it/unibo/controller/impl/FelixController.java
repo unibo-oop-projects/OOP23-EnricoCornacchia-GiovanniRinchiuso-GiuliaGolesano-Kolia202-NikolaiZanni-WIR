@@ -14,6 +14,8 @@ import it.unibo.utilities.Constants;
 import it.unibo.utilities.Movements;
 import it.unibo.utilities.Constants.Felix;
 import java.util.Optional;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 /**
  * Controller for the Felix character.
  */
@@ -32,6 +34,7 @@ public class FelixController {
      * Initializes the felix instance using the provided entityFactoryImpl.
      * @param gamePerformance the game performance.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public FelixController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         final EntityFactory entityFactory = new EntityFactoryImpl(this.gamePerformance);

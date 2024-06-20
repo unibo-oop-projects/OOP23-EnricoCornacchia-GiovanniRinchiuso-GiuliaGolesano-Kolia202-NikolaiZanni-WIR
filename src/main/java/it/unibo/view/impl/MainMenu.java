@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.core.impl.GameEngineImpl;
 import it.unibo.utilities.Constants;
 import it.unibo.utilities.GameState;
@@ -48,6 +49,7 @@ public class MainMenu extends StackPane {
      * 
      * @param gameStage the stage of the game
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public MainMenu(final Stage gameStage) {
         ImageView pauseButton;
         this.gameStage = gameStage;
@@ -90,6 +92,7 @@ public class MainMenu extends StackPane {
          * 
          * @param gameStage the stage of the game
          */
+        @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
         public AnotherStage(final Stage gameStage) {
             this.gameStage = gameStage;
             initStyle(StageStyle.UNDECORATED);

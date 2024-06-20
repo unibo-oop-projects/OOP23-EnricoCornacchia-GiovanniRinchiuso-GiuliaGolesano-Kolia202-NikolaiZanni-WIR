@@ -10,6 +10,8 @@ import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
 import it.unibo.utilities.Constants;
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 
 
@@ -26,6 +28,7 @@ public class RalphController {
      * Constructor for the RalphController.
      * @param gamePerformance the game performance.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         final EntityFactory entityFactory = new EntityFactoryImpl(this.gamePerformance);

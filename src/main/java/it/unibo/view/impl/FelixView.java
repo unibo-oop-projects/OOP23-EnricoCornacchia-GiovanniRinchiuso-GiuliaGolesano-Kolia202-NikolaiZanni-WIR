@@ -2,6 +2,7 @@ package it.unibo.view.impl;
 
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -35,6 +36,7 @@ public class FelixView implements View {
      * 
      * @param felix the Felix entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public FelixView(final Entity felix) {
         this.felix = felix;
         this.imageView = new ImageView();

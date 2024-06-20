@@ -12,6 +12,8 @@ import it.unibo.model.api.GamePerformance;
 import it.unibo.utilities.EntityType;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Class that manages the game performance of the play.
  */
@@ -25,6 +27,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * 
      * @param gameController the game controller.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
         new EntityFactoryImpl(this);
