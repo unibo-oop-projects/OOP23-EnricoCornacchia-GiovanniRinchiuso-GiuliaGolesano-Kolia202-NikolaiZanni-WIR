@@ -62,7 +62,6 @@ public final class CakeView implements View {
      * {@inheritDoc}
      */
     @Override
-    
     public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
