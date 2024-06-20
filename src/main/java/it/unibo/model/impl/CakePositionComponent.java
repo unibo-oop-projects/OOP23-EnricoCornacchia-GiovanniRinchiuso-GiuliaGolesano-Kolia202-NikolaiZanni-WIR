@@ -16,15 +16,17 @@ import it.unibo.model.api.Entity;
  */
 public class CakePositionComponent extends AbstractComponent {
     private final GamePerformance gamePerformance;
+    private final Random rand;
 
     /**
-     * Constructor to initialize GamePerformance.
+     * Constructor to initialize GamePerformance and Random.
      * 
      * @param gamePerformance the game performance.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakePositionComponent(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
+        this.rand = new Random();
     }
 
     /**
@@ -41,7 +43,6 @@ public class CakePositionComponent extends AbstractComponent {
             throw new IllegalStateException("No windows available to place the cake.");
         }
 
-        final Random rand = new Random();
         final Pair<Double, Double> chosenPosition = windowPositions.get(rand.nextInt(windowPositions.size()));
 
         // Apply the offset
