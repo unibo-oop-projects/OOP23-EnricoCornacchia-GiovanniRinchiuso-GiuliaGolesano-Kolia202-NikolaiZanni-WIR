@@ -30,7 +30,6 @@ public class GamePerformanceImpl implements GamePerformance {
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
-        new EntityFactoryImpl(this);
     }
 
     /**
@@ -47,7 +46,7 @@ public class GamePerformanceImpl implements GamePerformance {
      */
     @Override
     public Set<Entity> getEntity() {
-        return this.entities;
+        return new HashSet<>(this.entities);
     }
 
     /**
@@ -55,7 +54,7 @@ public class GamePerformanceImpl implements GamePerformance {
      */
     @Override
     public List<KeyCode> getInputs() {
-        return this.inputs;
+        return new ArrayList<>(this.inputs);
     }
 
     /**

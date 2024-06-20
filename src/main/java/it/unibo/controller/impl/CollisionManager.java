@@ -25,15 +25,6 @@ public class CollisionManager {
     }
 
     /**
-     * Getter for the hitboxes.
-     * @return the set of hitboxes.
-     */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
-    public GamePerformance getGamePerformance() {
-        return this.gamePerformance;
-    }
-
-    /**
      * Check if there is a collision.
      */
     public void check() {
@@ -43,6 +34,7 @@ public class CollisionManager {
             final HitboxComponent hitboxComponent = (HitboxComponent) e.getTheComponent(ComponentType.HITBOX).get();
             hitboxComponent.update();
             if (hitboxComponent.shouldRemoveEntity()) {
+                this.gamePerformance.removeEntity(e);
                 iterator.remove();
             }
         }
