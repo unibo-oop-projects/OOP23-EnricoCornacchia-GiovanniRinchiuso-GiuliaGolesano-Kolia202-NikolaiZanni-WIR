@@ -1,6 +1,7 @@
 package it.unibo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,47 +15,48 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixWindowsComponent;
 import it.unibo.model.impl.FixedWindowsComponent;
 import it.unibo.model.impl.GamePerformanceImpl;
+
 /**
  * Class to test the fix windows component.
  */
-public class FixWindowsComponentTest {
+class FixWindowsComponentTest {
 
     private FixWindowsComponent fixWindowsComponent;
-    @SuppressWarnings("unused")
-    private FixedWindowsComponent fixedWindowsComponent;
+
     /**
      * Set the variables.
      */
     @BeforeEach
-    public final void setUp() {
+    void setUp() {
         fixWindowsComponent = new FixWindowsComponent();
-        fixedWindowsComponent = new FixedWindowsComponent(false);
     }
+
     /**
-     * Test for the method that fix a window.
+     * Test for the method that fixes a window.
      */
     @Test
-    public void testFixing() {
-        Pair<Double, Double> windowPosition = new Pair<>(0.0, 0.0);
-        EntityFactoryImpl entityFactory = new EntityFactoryImpl(new GamePerformanceImpl(new GameController()));
-        Entity window = entityFactory.createWindows(windowPosition, false);
+    void testFixing() {
+        final Pair<Double, Double> windowPosition = new Pair<>(0.0, 0.0);
+        final EntityFactoryImpl entityFactory = new EntityFactoryImpl(new GamePerformanceImpl(new GameController()));
+        final Entity window = entityFactory.createWindows(windowPosition, false);
 
-        GameController gameController = new GameController();
-        GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
+        final GameController gameController = new GameController();
+        final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
         gamePerformance.addEntity(window);
 
-        FixWindowsComponent fixWindowsComponent = new FixWindowsComponent();
+        final FixWindowsComponent fixWindowsComponent = new FixWindowsComponent();
         fixWindowsComponent.fixing(windowPosition, gamePerformance);
 
-        FixedWindowsComponent fixedWindowsComponent = (FixedWindowsComponent) window
-                                                    .getTheComponent(ComponentType.FIXEDWINDOWS).get();
-        assertEquals(true, fixedWindowsComponent.isFixed());
+        final FixedWindowsComponent fixedWindowsComponent = (FixedWindowsComponent) window
+                .getTheComponent(ComponentType.FIXEDWINDOWS).get();
+        assertTrue(fixedWindowsComponent.isFixed(), "Window should be fixed");
     }
+
     /**
-     * Test for the method that get the right component.
+     * Test for the method that gets the right component.
      */
     @Test
-    public void testGetComponent() {
+    void testGetComponent() {
         assertEquals(ComponentType.FIXWINDOWS, fixWindowsComponent.getComponent());
     }
 }

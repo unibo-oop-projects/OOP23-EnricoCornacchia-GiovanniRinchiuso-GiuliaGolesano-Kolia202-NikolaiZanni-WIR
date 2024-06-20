@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for the class StopRalphComponent.
  */
-public final class StopRalphComponentTest {
+final class StopRalphComponentTest {
 
-    private static final int UNBLOCK_WAIT_TIME_MS = 10100;
+    private static final int UNBLOCK_WAIT_TIME_MS = 10_100;
 
     private StopRalphComponent stopRalphComponent;
     private ThrowBrickComponent throwBrickComponent;
@@ -25,7 +25,7 @@ public final class StopRalphComponentTest {
      * Set up the test components before each test.
      */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         stopRalphComponent = new StopRalphComponent();
         throwBrickComponent = new ThrowBrickComponent(new GamePerformanceImpl(new GameController()));
     }
@@ -49,6 +49,7 @@ public final class StopRalphComponentTest {
         stopRalphComponent.setStopRalph(throwBrickComponent);
         Thread.sleep(UNBLOCK_WAIT_TIME_MS);
         stopRalphComponent.checkUnlockRalph(throwBrickComponent);
-        assertFalse(throwBrickComponent.isBlocked(), "ThrowBrickComponent should be unblocked after calling checkUnlockRalph");
+        assertFalse(throwBrickComponent.isBlocked(),
+                "ThrowBrickComponent should be unblocked after calling checkUnlockRalph");
     }
 }

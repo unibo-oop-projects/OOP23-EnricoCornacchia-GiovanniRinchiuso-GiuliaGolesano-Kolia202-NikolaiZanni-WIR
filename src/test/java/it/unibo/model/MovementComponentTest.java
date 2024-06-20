@@ -13,10 +13,11 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.utilities.Constants;
+
 /**
  * Class to test the Movement Component.
  */
-public class MovementComponentTest {
+class MovementComponentTest {
     private static final double INITIAL_X = 300.0;
     private static final double INITIAL_Y = 200.0;
     private static final double MOVE_DISTANCE_X = 5.0;
@@ -29,58 +30,63 @@ public class MovementComponentTest {
     private static final double MOVE_OUT_LEFT_Y = 0.0;
     private MovementComponent component;
     private Entity entity;
-    private EntityFactoryImpl entityFactoryImpl;
+
     /**
      * Set the variables.
      */
     @BeforeEach
-    public final void setUp() {
+    void setUp() {
         component = new MovementComponent();
-        entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
+        final EntityFactoryImpl entityFactoryImpl = new EntityFactoryImpl(new GamePerformanceImpl(null));
         entity = entityFactoryImpl.createRalph(new Pair<>(INITIAL_X, INITIAL_Y));
     }
+
     /**
      * Test moving the entity within bounds.
      */
     @Test
-    public void testMoveWithinBounds() {
-        double initialX = entity.getPosition().getX();
-        double initialY = entity.getPosition().getY();
+    void testMoveWithinBounds() {
+        final double initialX = entity.getPosition().getX();
+        final double initialY = entity.getPosition().getY();
         component.move(MOVE_DISTANCE_X, MOVE_DISTANCE_Y, entity);
         assertEquals(new Pair<>(initialX + MOVE_DISTANCE_X, initialY + MOVE_DISTANCE_Y), entity.getPosition());
     }
+
     /**
      * Test moving the entity out of the right wall bounds.
      */
     @Test
-    public void testMoveOutOfRightWall() {
+    void testMoveOutOfRightWall() {
         entity.setPosition(new Pair<>(Constants.GameEdges.RIGHT_WALL - 1, 0.0));
         component.move(MOVE_OUT_RIGHT_X, MOVE_OUT_RIGHT_Y, entity);
         assertEquals(new Pair<>(Constants.GameEdges.RIGHT_WALL - 1, 0.0), entity.getPosition());
     }
+
     /**
      * Test that the entity cannot move when given extreme negative values.
      */
     @Test
-    public void testCanMoveFalseWhenStopped() {
-        boolean canMove = component.canMove(NEGATIVE_MOVE_X, NEGATIVE_MOVE_Y, entity);
+    void testCanMoveFalseWhenStopped() {
+        final boolean canMove = component.canMove(NEGATIVE_MOVE_X, NEGATIVE_MOVE_Y, entity);
         assertFalse(canMove);
     }
+
     /**
      * Test that the entity can move within bounds.
      */
     @Test
-    public void testCanMoveTrueWithinBounds() {
-        boolean canMove = component.canMove(MOVE_DISTANCE_X, MOVE_DISTANCE_Y, entity);
+    void testCanMoveTrueWithinBounds() {
+        final boolean canMove = component.canMove(MOVE_DISTANCE_X, MOVE_DISTANCE_Y, entity);
         assertTrue(canMove);
     }
+
     /**
      * Test that the entity cannot move out of the left wall bounds.
      */
     @Test
-    public void testCanMoveFalseOutOfLeftWall() {
+    void testCanMoveFalseOutOfLeftWall() {
         entity.setPosition(new Pair<>(Constants.GameEdges.LEFT_WALL, 0.0));
-        boolean canMove = component.canMove(MOVE_OUT_LEFT_X, MOVE_OUT_LEFT_Y, entity);
+        final boolean canMove = component.canMove(MOVE_OUT_LEFT_X, MOVE_OUT_LEFT_Y, entity);
         assertFalse(canMove);
     }
 }

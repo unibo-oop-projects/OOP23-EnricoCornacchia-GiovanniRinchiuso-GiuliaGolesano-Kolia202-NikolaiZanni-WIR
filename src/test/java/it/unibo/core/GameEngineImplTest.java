@@ -1,19 +1,31 @@
 package it.unibo.core;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import it.unibo.core.impl.GameEngineImpl;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 /**
- * Test class for the GameEngineImpl.
+ * Test class for the {@link GameEngineImpl}.
  */
-public class GameEngineImplTest {
-    @SuppressWarnings("unused")
+class GameEngineImplTest {
+
     private GameEngineImpl gameEngine;
 
     /**
-     * Method that .
+     * Sets up the test environment before each test.
      */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         gameEngine = new GameEngineImpl();
-    } 
+    }
+
+    /**
+     * Tests if the game engine is initialized correctly.
+     */
+    @Test
+    void testGameEngineInitialization() {
+        assertNotNull(gameEngine, "GameEngine should be initialized");
+    }
 }

@@ -1,36 +1,43 @@
 package it.unibo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.impl.FixedWindowsComponent;
+
 /**
  * Class to test the fixed window component.
  */
-public class FixedWindowsComponentTest {
+class FixedWindowsComponentTest {
+
     /**
-     * Test for the method that set the isFixed variable.
+     * Test for the method that sets the isFixed variable.
      */
     @Test
-    public void testSetFixed() {
-        FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(false);
+    void testSetFixed() {
+        final FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(false);
         fixedWindowsComponent.setFixed();
-        assertEquals(true, fixedWindowsComponent.isFixed());
+        assertTrue(fixedWindowsComponent.isFixed(), "Window should be fixed");
     }
+
     /**
-     * Test for the method that get the isFixed variable.
+     * Test for the method that gets the isFixed variable.
      */
     @Test
-    public void testGetFixed() {
-        FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(true);
-        assertEquals(true, fixedWindowsComponent.isFixed());
+    void testGetFixed() {
+        final FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(true);
+        assertTrue(fixedWindowsComponent.isFixed(), "Window should be fixed");
     }
+
     /**
-     * Test for the method that get the right component.
+     * Test for the method that gets the right component.
      */
     @Test
-    public void testGetComponent() {
-        FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(true);
+    void testGetComponent() {
+        final FixedWindowsComponent fixedWindowsComponent = new FixedWindowsComponent(true);
         assertEquals(ComponentType.FIXEDWINDOWS, fixedWindowsComponent.getComponent());
     }
 }
