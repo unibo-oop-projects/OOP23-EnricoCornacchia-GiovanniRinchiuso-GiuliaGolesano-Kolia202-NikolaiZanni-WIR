@@ -52,6 +52,7 @@ public class RalphView implements View {
     /**
      * {@InheritDoc}
      */
+    @Override
     public void animate() {
         this.imageView.setX(this.ralph.getPosition().getX());
         this.imageView.setY(this.ralph.getPosition().getY());

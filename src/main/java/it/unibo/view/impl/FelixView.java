@@ -52,6 +52,7 @@ public class FelixView implements View {
     /**
      * {@InheritDoc}
      */
+    @Override
     public void animate() {
         this.imageView.setX(this.felix.getPosition().getX());
         this.imageView.setY(this.felix.getPosition().getY());

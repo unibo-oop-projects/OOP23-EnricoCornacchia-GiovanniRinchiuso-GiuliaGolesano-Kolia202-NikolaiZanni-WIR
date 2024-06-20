@@ -48,6 +48,7 @@ public class BirdView implements View {
     /**
      * {@InheritDoc}
      */
+    @Override
     public void animate() {
         if (this.bird != null) {
             this.imageView.setX(this.bird.getPosition().getX());
