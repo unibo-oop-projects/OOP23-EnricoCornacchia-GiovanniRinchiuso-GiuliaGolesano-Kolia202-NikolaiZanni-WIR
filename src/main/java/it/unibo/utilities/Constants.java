@@ -161,6 +161,14 @@ public final class Constants {
          * The time of creation hard level.
          */
         public static final long CREATION_INTERVA_3_C = 16_000;
+        /**
+         * The offset x of the cake.
+         */
+        public static final double OFFSET_X = 10;
+        /**
+         * The offset y of the cake.
+         */
+        public static final double OFFSET_Y = 30;
     }
 
     /**
