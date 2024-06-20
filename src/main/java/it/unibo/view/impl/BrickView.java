@@ -37,7 +37,7 @@ public final class BrickView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     /**

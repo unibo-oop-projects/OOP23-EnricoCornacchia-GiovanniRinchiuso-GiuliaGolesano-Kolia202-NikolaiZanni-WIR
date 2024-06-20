@@ -63,7 +63,7 @@ public final class CakeView implements View {
      */
     @Override
     
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
