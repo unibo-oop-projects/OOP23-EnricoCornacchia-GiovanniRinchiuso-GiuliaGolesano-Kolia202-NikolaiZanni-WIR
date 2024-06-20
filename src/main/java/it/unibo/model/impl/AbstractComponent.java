@@ -28,7 +28,7 @@ public abstract class AbstractComponent implements Component {
      * @param entity the entity to set.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
-    public void setEntity(final Entity entity) {
+    public final void setEntity(final Entity entity) {
         this.entity = entity;
     }
 }

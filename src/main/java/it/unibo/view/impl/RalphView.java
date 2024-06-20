@@ -65,7 +65,7 @@ public final class RalphView implements View {
                           ? Movements.RIGHT : Movements.LEFT;
             final int frameCount = lastMovement.equals(Movements.RIGHT) ? FRAME_COUNT_DX : FRAME_COUNT_SX;
             this.timeline = new Timeline(
-                            new KeyFrame(Duration.millis(ANIMATION_DURATION / frameCount), e -> updateFrame()));
+                            new KeyFrame(Duration.millis((double) ANIMATION_DURATION / frameCount), e -> updateFrame()));
             this.timeline.setCycleCount(frameCount);
             this.timeline.setOnFinished(e -> this.imageView.setImage(getFrame(0)));
             this.timeline.play();

@@ -104,7 +104,7 @@ public final class Constants {
         /**
          * The width of the brick.
          */
-        public static final double BRICK_WIDTH = 20;
+        public static final double BRICK_WIDTH = 18;
         /**
          * The height of the brick.
          */
