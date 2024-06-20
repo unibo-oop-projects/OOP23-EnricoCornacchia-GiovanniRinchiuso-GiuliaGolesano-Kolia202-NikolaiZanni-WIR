@@ -2,6 +2,8 @@ package it.unibo.controller.impl;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
@@ -15,8 +17,7 @@ import it.unibo.controller.api.Controller;
  * of cakes in the game.
  */
 public class CakeController implements Controller {
-    private static final long CREATION_INTERVAL = 11_000;
-    private static final long ACTIVE_DURATION = 5000;
+    private static final long ACTIVE_DURATION = 5_000;
 
     private long lastCreationTime;
     private final GamePerformance gamePerformance;
@@ -28,6 +29,7 @@ public class CakeController implements Controller {
      *
      * @param gamePerformance the game performance
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakeController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

@@ -14,7 +14,7 @@ import javafx.util.Duration;
 /**
  * Class to manage a view of a window.
  */
-public class WindowsView implements View {
+public final class WindowsView implements View {
     private static final int FRAME_COUNT = 4;
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 
@@ -41,7 +41,7 @@ public class WindowsView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 
@@ -114,5 +114,11 @@ public class WindowsView implements View {
         this.imageView.setImage(getFrame(FRAME_COUNT - 1));
         isFixed = false;
         return this.imageView;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void animate() {
     }
 }

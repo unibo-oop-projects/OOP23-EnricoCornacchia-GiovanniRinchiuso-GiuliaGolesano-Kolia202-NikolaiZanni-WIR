@@ -2,6 +2,7 @@ package it.unibo.controller.impl;
 
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.controller.api.Controller;
 import it.unibo.model.api.Component;
@@ -29,6 +30,7 @@ public class BirdController implements Controller {
      * 
      * @param gamePerformance the game performance.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BirdController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

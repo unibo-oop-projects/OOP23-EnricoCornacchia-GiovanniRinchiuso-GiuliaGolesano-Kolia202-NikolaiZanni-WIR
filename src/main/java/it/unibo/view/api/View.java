@@ -28,4 +28,8 @@ public interface View {
      * @return the image created.
      */
     ImageView getImageView();
+    /**
+     * Method to animate the entity.
+     */
+    void animate();
 }

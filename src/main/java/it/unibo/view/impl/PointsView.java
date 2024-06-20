@@ -3,13 +3,14 @@ package it.unibo.view.impl;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.PointsComponent;
 
 /**
  * PointsView represents the view for displaying the current score.
  * This class can be extended to customize the score display.
  */
-public class PointsView extends StackPane {
+public final class PointsView extends StackPane {
     private PointsComponent pointsComponent;
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;
@@ -20,6 +21,7 @@ public class PointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public PointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addPointsView(this);
@@ -29,7 +31,7 @@ public class PointsView extends StackPane {
     /**
      * Updates the score label.
      */
-    public final void updatePointsLabel() {
+    public void updatePointsLabel() {
         getChildren().clear();
 
         final Label scoreTitleLabel = new Label("SCORE:");
@@ -60,6 +62,7 @@ public class PointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addPointsView(this);

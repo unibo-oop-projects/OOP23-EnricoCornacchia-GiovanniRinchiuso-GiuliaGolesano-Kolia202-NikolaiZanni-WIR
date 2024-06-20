@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
@@ -28,6 +30,7 @@ public class EntityImpl implements Entity {
      * @param gamePerformance the game performance of the entity
      * @param components the components of the entity
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityImpl(final EntityType type, final Pair<Double, Double> position, 
                       final GamePerformance gamePerformance, final Set<Component> components) {
         this.type = type;
@@ -104,7 +107,7 @@ public class EntityImpl implements Entity {
         return this.type;
     }
     /**
-     * @{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public GamePerformance getGamePerformance() {

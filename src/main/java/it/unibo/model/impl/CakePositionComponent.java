@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
@@ -21,6 +22,7 @@ public class CakePositionComponent extends AbstractComponent {
      * 
      * @param gamePerformance the game performance.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakePositionComponent(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

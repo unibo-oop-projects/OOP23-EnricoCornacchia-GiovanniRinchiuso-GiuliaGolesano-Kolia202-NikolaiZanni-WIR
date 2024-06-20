@@ -3,13 +3,14 @@ package it.unibo.view.impl;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.PointsComponent;
 
 /**
  * HighPointsView represents the view for displaying the high score.
  * This class can be extended to customize the high score display.
  */
-public class HighPointsView extends StackPane {
+public final class HighPointsView extends StackPane {
     private PointsComponent pointsComponent;
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;
@@ -20,6 +21,7 @@ public class HighPointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public HighPointsView(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addHighPointsView(this);
@@ -29,7 +31,7 @@ public class HighPointsView extends StackPane {
     /**
      * Updates the high score label.
      */
-    public final void updateHighPointsLabel() {
+    public void updateHighPointsLabel() {
         getChildren().clear();
 
         final Label scoreTitleLabel = new Label("HIGHSCORE:");
@@ -60,6 +62,7 @@ public class HighPointsView extends StackPane {
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
         this.pointsComponent.addHighPointsView(this);

@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -16,7 +17,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Ralph.
  */
-public class RalphView implements View {
+public final class RalphView implements View {
 
     private static final int FRAME_COUNT_DX = 3;
     private static final int FRAME_COUNT_SX = 2;
@@ -35,6 +36,7 @@ public class RalphView implements View {
      * 
      * @param ralph the Ralph entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public RalphView(final Entity ralph) {
         this.ralph = ralph;
         this.imageView = new ImageView();
@@ -50,10 +52,10 @@ public class RalphView implements View {
     }
 
     /**
-     * Animates the Ralph character by updating its position and displaying the frames of the animation.
-     * If the animation is already running, it does nothing.
+     * {@inheritDoc}
      */
-    void animateRalph() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.ralph.getPosition().getX());
         this.imageView.setY(this.ralph.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
@@ -74,7 +76,7 @@ public class RalphView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 

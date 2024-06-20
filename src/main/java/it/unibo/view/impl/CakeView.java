@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -15,7 +16,7 @@ import javafx.util.Duration;
 /**
  * Class that implements the view of a cake power-up.
  */
-public class CakeView implements View {
+public final class CakeView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
     private final Entity cake;
@@ -29,6 +30,7 @@ public class CakeView implements View {
      * 
      * @param cake the entity representing the cake
      */
+     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakeView(final Entity cake) {
         this.cake = cake;
         this.imageView = new ImageView();
@@ -47,9 +49,10 @@ public class CakeView implements View {
     }
 
     /**
-     * Method to animate the cake.
+     * {@inheritDoc}
      */
-    void animateCake() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.cake.getPosition().getX());
         this.imageView.setY(this.cake.getPosition().getY());
         if (this.timeline.getStatus() != Animation.Status.RUNNING) {
@@ -61,7 +64,7 @@ public class CakeView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 

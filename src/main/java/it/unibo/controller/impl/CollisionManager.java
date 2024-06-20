@@ -2,6 +2,7 @@ package it.unibo.controller.impl;
 
 import java.util.Iterator;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
@@ -18,6 +19,7 @@ public class CollisionManager {
      * Constructor for the CollisionManager.
      * @param gamePerformance the game performance, where every entity is stored.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CollisionManager(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

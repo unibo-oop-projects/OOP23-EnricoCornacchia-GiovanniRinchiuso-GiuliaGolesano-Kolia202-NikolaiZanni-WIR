@@ -2,6 +2,7 @@ package it.unibo.view.impl;
 
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -18,7 +19,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Felix.
  */
-public class FelixView implements View {
+public final class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;
@@ -35,6 +36,7 @@ public class FelixView implements View {
      * 
      * @param felix the Felix entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public FelixView(final Entity felix) {
         this.felix = felix;
         this.imageView = new ImageView();
@@ -50,10 +52,10 @@ public class FelixView implements View {
     }
 
     /**
-     * Animates the Felix sprite.
-     * If the animation is already running, the method returns without doing anything.
+     * {@inheritDoc}
      */
-    public void animateFelix() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.felix.getPosition().getX());
         this.imageView.setY(this.felix.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {
@@ -70,7 +72,7 @@ public class FelixView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 

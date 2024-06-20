@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.FixedWindowsComponent;
 
@@ -31,6 +33,7 @@ public class WindowsController {
      * Constructor.
      * @param gamePerformance the game performance.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public WindowsController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.entityFactoryImpl = new EntityFactoryImpl(this.gamePerformance);

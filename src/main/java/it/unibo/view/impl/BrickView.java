@@ -1,5 +1,6 @@
 package it.unibo.view.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.Entity;
 import it.unibo.utilities.Constants;
 import it.unibo.view.api.View;
@@ -14,7 +15,7 @@ import javafx.util.Duration;
 /**
  * Class that implement the view of a brick.
  */
-public class BrickView implements View {
+public final class BrickView implements View {
     private static final int ANIMATION_DURATION = 16; 
     private final ImageView imageView;
     private final Image spriteSheet;
@@ -24,6 +25,7 @@ public class BrickView implements View {
      * Constructor.
      * @param brick
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BrickView(final Entity brick) {
         spriteSheet = getSource("brick");
         this.brick = brick;
@@ -37,13 +39,14 @@ public class BrickView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
     /**
-     * Method to animate the brick.
+     * @{InheritDoc}
      */
-    public void animateBrick() {
+    @Override
+    public void animate() {
         this.imageView.setX(this.brick.getPosition().getX());
         this.imageView.setY(this.brick.getPosition().getY());
         if (timeline == null || timeline.getStatus() != Animation.Status.RUNNING) {

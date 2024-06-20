@@ -2,6 +2,7 @@ package it.unibo.model.impl;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.common.Rectangle;
 import it.unibo.model.api.ComponentType;
@@ -177,6 +178,7 @@ public class HitboxComponent extends AbstractComponent {
      *
      * @param hitbox the new hitbox of the entity.
      */
+     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setHitbox(final Rectangle hitbox) {
         this.hitbox = hitbox;
     }

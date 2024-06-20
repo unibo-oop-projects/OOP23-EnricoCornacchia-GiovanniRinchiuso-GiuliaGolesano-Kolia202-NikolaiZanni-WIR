@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.util.Duration;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.impl.HitboxComponent;
@@ -15,7 +16,7 @@ import it.unibo.model.impl.HitboxComponent;
 /**
  * Class that implements the view of a bird power up.
  */
-public class BirdView implements View {
+public final class BirdView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
     private final ImageView imageView;
@@ -28,6 +29,7 @@ public class BirdView implements View {
      * Constructor.
      * @param bird
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BirdView(final Entity bird) {
         this.bird = bird;
         this.imageView = new ImageView();
@@ -46,9 +48,10 @@ public class BirdView implements View {
     }
 
     /**
-     * Method to create the animation.
+     * {@inheritDoc}
      */
-    public void animateBird() {
+    @Override
+    public void animate() {
         if (this.bird != null) {
             this.imageView.setX(this.bird.getPosition().getX());
             this.imageView.setY(this.bird.getPosition().getY());
@@ -62,7 +65,7 @@ public class BirdView implements View {
      * {@inheritDoc}
      */
     @Override
-    public final Image getSource(final String name) {
+    public Image getSource(final String name) {
         return new Image(getClass().getResourceAsStream("/" + name + ".png"));
     }
 

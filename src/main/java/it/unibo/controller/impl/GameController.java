@@ -39,7 +39,7 @@ public class GameController implements Controller {
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
-     * @InheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void update() {

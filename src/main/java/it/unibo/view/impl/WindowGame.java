@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.Component;
 import it.unibo.model.api.ComponentType;
@@ -39,7 +40,7 @@ import it.unibo.core.impl.GameEngineImpl;
  * WindowGame represents the window of the game.
  * This class can be extended to customize the game window.
  */
-public class WindowGame extends Application {
+public final class WindowGame extends Application {
     private Stage primaryStage;
     private boolean zKeyPressed;
     private final GameEngineImpl gameEngine = new GameEngineImpl();
@@ -80,6 +81,7 @@ public class WindowGame extends Application {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void start(final Stage primaryStg) throws IOException {
         this.primaryStage = primaryStg;
         primaryStage.setResizable(false);
@@ -168,19 +170,19 @@ public class WindowGame extends Application {
             switch (event.getCode()) {
                 case S:
                     gameEngine.getGameController().moveFelixDown(event.getCode());
-                    felixView.animateFelix();
+                    felixView.animate();
                     break;
                 case A:
                     gameEngine.getGameController().moveFelixLeft(event.getCode());
-                    felixView.animateFelix();
+                    felixView.animate();
                     break;
                 case D:
                     gameEngine.getGameController().moveFelixRight(event.getCode());
-                    felixView.animateFelix();
+                    felixView.animate();
                     break;
                 case W:
                     gameEngine.getGameController().moveFelixUp(event.getCode());
-                    felixView.animateFelix();
+                    felixView.animate();
                     break;
                 case Z:
                     zKeyPressed = true;
@@ -338,7 +340,7 @@ public class WindowGame extends Application {
                 root.getChildren().add(newBirdView.getImageView());
                 birdsToPrint.add(newBirdView);
             } else {
-                existingBirdView.animateBird();
+                existingBirdView.animate();
             }
         });
         birdsToPrint.removeIf(birdview -> {
@@ -351,7 +353,7 @@ public class WindowGame extends Application {
             }
             return false;
         });
-        birdsToPrint.forEach(BirdView::animateBird);
+        birdsToPrint.forEach(BirdView::animate);
     }
 
     /**
@@ -369,7 +371,7 @@ public class WindowGame extends Application {
                 root.getChildren().add(newCakeView.getImageView());
                 cakesToPrint.add(newCakeView);
             } else {
-                existCakeView.animateCake();
+                existCakeView.animate();
             }
         });
 
@@ -384,7 +386,7 @@ public class WindowGame extends Application {
             return false;
         });
 
-        cakesToPrint.forEach(CakeView::animateCake);
+        cakesToPrint.forEach(CakeView::animate);
     }
 
     /**
@@ -407,7 +409,7 @@ public class WindowGame extends Application {
                 bricksToPrint.add(newBrickView);
             } else {
                 // Se esiste, aggiorna la posizione del BrickView esistente
-                existingBrickView.animateBrick();
+                existingBrickView.animate();
             }
         });
 
@@ -421,10 +423,10 @@ public class WindowGame extends Application {
         });
 
         // Anima Ralph
-        ralphView.animateRalph();
+        ralphView.animate();
 
         // Anima i mattoni
-        bricksToPrint.forEach(BrickView::animateBrick);
+        bricksToPrint.forEach(BrickView::animate);
     }
 
     /**
