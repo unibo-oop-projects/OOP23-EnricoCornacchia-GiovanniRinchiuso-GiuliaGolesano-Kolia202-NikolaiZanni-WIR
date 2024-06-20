@@ -106,6 +106,7 @@ public class FelixController {
      * Getter for the Felix entity.
      * @return the Felix entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getFelix() {
         return this.felix;
     }

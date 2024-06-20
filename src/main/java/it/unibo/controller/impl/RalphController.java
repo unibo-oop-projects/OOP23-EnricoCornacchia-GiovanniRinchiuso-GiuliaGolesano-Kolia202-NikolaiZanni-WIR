@@ -80,6 +80,7 @@ public class RalphController {
      * Getter for the ralph entity.
      * @return the ralph entity.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getRalph() {
         return ralph;
     }

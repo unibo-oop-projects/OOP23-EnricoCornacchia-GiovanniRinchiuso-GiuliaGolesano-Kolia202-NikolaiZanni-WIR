@@ -28,6 +28,7 @@ public class CollisionManager {
      * Getter for the hitboxes.
      * @return the set of hitboxes.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
     }

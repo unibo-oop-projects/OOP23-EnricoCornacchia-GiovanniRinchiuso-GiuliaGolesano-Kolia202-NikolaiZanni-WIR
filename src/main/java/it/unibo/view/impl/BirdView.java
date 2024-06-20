@@ -93,6 +93,7 @@ public final class BirdView implements View {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -103,6 +104,7 @@ public final class BirdView implements View {
      *
      * @return the bird entity
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getBird() {
         return this.bird;
     }

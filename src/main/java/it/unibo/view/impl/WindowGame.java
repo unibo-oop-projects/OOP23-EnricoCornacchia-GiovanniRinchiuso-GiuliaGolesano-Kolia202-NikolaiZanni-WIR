@@ -434,6 +434,7 @@ public final class WindowGame extends Application {
      * 
      * @return the primary stage.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Stage getStage() {
         return this.primaryStage;
     }

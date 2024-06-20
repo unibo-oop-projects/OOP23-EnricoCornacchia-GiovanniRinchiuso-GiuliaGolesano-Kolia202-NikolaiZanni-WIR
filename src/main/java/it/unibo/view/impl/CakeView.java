@@ -92,6 +92,7 @@ public final class CakeView implements View {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -101,7 +102,7 @@ public final class CakeView implements View {
      * 
      * @return the image view.
      */
-
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getCake() {
         return this.cake;
     }

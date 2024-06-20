@@ -1,5 +1,6 @@
 package it.unibo.controller.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
@@ -82,6 +83,7 @@ public class GameController implements Controller {
      * Getter for the Brick controller.
      * @return the Brick controller.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public BrickController getBrickController() {
         return this.brickController;
     }
@@ -103,6 +105,7 @@ public class GameController implements Controller {
      * Getter for the Cake controller.
      * @return the Cake controller.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public CakeController getCakeController() {
         return this.cakeController;
     }
@@ -117,6 +120,7 @@ public class GameController implements Controller {
      * Getter for the level.
      * @return the level.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
     }

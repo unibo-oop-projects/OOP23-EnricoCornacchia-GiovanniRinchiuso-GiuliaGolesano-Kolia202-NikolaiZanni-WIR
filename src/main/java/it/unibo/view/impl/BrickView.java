@@ -77,12 +77,14 @@ public final class BrickView implements View {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Image getImage() {
         return this.spriteSheet;
     }
@@ -90,6 +92,7 @@ public final class BrickView implements View {
      * Getter for the brick.
      * @return the brick.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getBrick() {
         return this.brick;
     }

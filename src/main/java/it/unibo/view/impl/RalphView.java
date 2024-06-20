@@ -104,6 +104,7 @@ public final class RalphView implements View {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -113,6 +114,7 @@ public final class RalphView implements View {
      *
      * @return The standing Ralph image view.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getStandingRalph() {
         this.sprite = this.spriteRight;
         this.imageView.setImage(getFrame(0));

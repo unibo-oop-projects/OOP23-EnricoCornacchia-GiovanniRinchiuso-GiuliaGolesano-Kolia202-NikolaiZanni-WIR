@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.controller.impl.GameController;
 import it.unibo.view.impl.EndGameView;
 import it.unibo.view.impl.WinGameView;
@@ -91,6 +92,7 @@ public class GameEngineImpl implements GameEngine {
      * 
      * @return the GameController.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GameController getGameController() {
         return this.gameController;
     }

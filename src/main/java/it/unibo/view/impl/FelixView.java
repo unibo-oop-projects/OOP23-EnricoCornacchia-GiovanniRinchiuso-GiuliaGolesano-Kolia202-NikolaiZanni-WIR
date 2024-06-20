@@ -99,6 +99,7 @@ public final class FelixView implements View {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -108,6 +109,7 @@ public final class FelixView implements View {
      *
      * @return The standing Felix image view.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getStandingFelix() {
         this.imageView.setImage(getFrame(0));
         return this.imageView;
