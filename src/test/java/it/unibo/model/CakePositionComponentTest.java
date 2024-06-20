@@ -33,6 +33,13 @@ final class CakePositionComponentTest {
      */
     @BeforeEach
     void setUp() {
+        initializeComponents();
+    }
+
+    /**
+     * Initializes the components.
+     */
+    private void initializeComponents() {
         final GameController gameController = new GameController();
         gamePerformance = new GamePerformanceImpl(gameController);
         cakePositionComponent = new CakePositionComponent(gamePerformance);

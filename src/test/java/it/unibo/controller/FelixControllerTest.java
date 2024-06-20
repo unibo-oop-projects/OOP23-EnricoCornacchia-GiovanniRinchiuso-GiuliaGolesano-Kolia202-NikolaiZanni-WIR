@@ -23,6 +23,13 @@ class FelixControllerTest {
      */
     @BeforeEach
     void setUp() {
+        initializeFelixController();
+    }
+
+    /**
+     * Initializes the FelixController instance.
+     */
+    private void initializeFelixController() {
         final GameController gameController = new GameController();
         final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
         felixController = new FelixController(gamePerformance);
