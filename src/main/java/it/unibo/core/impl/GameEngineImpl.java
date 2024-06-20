@@ -22,55 +22,62 @@ public class GameEngineImpl implements GameEngine {
     private boolean isEndShown;
     private boolean isWinShown;
     private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
+
     /**
      * Constructor for the game engine.
      */
     public GameEngineImpl() {
         this.gameController = new GameController();
     }
+
     /**
      * Loop of the game.
+     * 
      * @param windowGame the main window of the game.
      */
     @Override
     public void gameLoop(final WindowGame windowGame) {
-        if (gameController.gameIsNotOver() && !gameController.isWin() && GameState.getGameState().equals(GameState.PLAYING)) {
+        if (gameController.gameIsNotOver() && !gameController.isWin()
+                && GameState.getGameState().equals(GameState.PLAYING)) {
             this.update();
             this.draw(windowGame);
         }
         if (!gameController.gameIsNotOver() && !isEndShown) {
             GameState.setGameState(GameState.GAMEOVER);
             try {
-                Stage currentStage = windowGame.getStage();
+                final Stage currentStage = windowGame.getStage();
                 new EndGameView().start(new Stage());
-                currentStage.close(); 
+                currentStage.close();
                 isEndShown = true;
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
-        } 
+        }
         if (gameController.isWin() && !isWinShown) {
             GameState.setGameState(GameState.WIN);
             try {
-                Stage currentStage = windowGame.getStage();
+                final Stage currentStage = windowGame.getStage();
                 new WinGameView().start(new Stage());
-                currentStage.close(); 
+                currentStage.close();
                 isWinShown = true;
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
         }
     }
-   /**
-    * Draw the game.
-    * @param windowGame the main window of the game.
-    */
+
+    /**
+     * Draw the game.
+     * 
+     * @param windowGame the main window of the game.
+     */
     @Override
     public void draw(final WindowGame windowGame) {
-         windowGame.update();
-         windowGame.updateBird();
-         windowGame.updateCake();
+        windowGame.update();
+        windowGame.updateBird();
+        windowGame.updateCake();
     }
+
     /**
      * Update the game.
      */
@@ -78,11 +85,13 @@ public class GameEngineImpl implements GameEngine {
     public void update() {
         gameController.update();
     }
+
     /**
      * Getter of the GameController.
+     * 
      * @return the GameController.
      */
     public GameController getGameController() {
-       return this.gameController;
+        return this.gameController;
     }
 }

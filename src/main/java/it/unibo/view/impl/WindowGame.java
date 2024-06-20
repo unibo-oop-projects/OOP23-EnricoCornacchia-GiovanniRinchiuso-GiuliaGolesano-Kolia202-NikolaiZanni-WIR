@@ -90,7 +90,7 @@ public class WindowGame extends Application {
 
         final MainMenu mainMenu = new MainMenu(primaryStage);
         final LivesComponent livesComponent = (LivesComponent) gameEngine.getGameController().getFelixController()
-            .getFelix().getTheComponent(ComponentType.LIFE).get();
+                .getFelix().getTheComponent(ComponentType.LIFE).get();
         final LivesView livesView = new LivesView(livesComponent);
         final Image backgroundImage = new Image("TopLine.png");
         final ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -103,8 +103,8 @@ public class WindowGame extends Application {
         final Image buildingTopImage = new Image("building_top.png");
         final ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE);
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() 
-            * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight()
+                * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
         AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
@@ -243,19 +243,20 @@ public class WindowGame extends Application {
             }
         });
 
-        AnimationTimer animationTimer = new AnimationTimer() {
+        final AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(final long now) {
-                if (GameState.getGameState().equals(GameState.GAMEOVER) || GameState.getGameState().equals(GameState.WIN)) {
+                if (GameState.getGameState().equals(GameState.GAMEOVER)
+                        || GameState.getGameState().equals(GameState.WIN)) {
                     this.stop();
                 } else if (!GameState.getGameState().equals(GameState.PAUSED)) {
                     gameEngine.gameLoop(WindowGame.this);
-                } 
+                }
             }
         };
         animationTimer.start();
         primaryStage.setOnCloseRequest(event -> {
-            System.out.println("Game closed");
+            LOGGER.info("Game closed");
             animationTimer.stop();
             this.primaryStage.close();
         });
@@ -270,7 +271,8 @@ public class WindowGame extends Application {
         final Set<Entity> entities = this.gameEngine.getGameController().getWindowsController().windowsGrid(broken);
         entities.forEach(w -> {
             final WindowsView windowView = new WindowsView(w.getPosition());
-            final FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS).get();
+            final FixedWindowsComponent fixComp = (FixedWindowsComponent) w.getTheComponent(ComponentType.FIXEDWINDOWS)
+                    .get();
             if (fixComp.isFixed()) {
                 root.getChildren().add(windowView.fixedwindows());
             } else {
@@ -278,21 +280,23 @@ public class WindowGame extends Application {
             }
         });
     }
+
     /**
      * Method for the animation of a window being fixed.
+     * 
      * @param windowPosition the position of the window.
      */
     private void fixedAnimation(final Pair<Double, Double> windowPosition) {
         final List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
 
         windows.stream()
-        .filter(w -> w.getPosition().equals(windowPosition))
-        .findFirst()
-        .ifPresent(window -> {
+                .filter(w -> w.getPosition().equals(windowPosition))
+                .findFirst()
+                .ifPresent(window -> {
                     final WindowsView windowView = new WindowsView(window.getPosition());
                     windowView.fixAnimation();
                     root.getChildren().add(windowView.fixedwindows());
-            });
+                });
     }
 
     /**
@@ -306,8 +310,10 @@ public class WindowGame extends Application {
         root.getChildren().add(felixView.getStandingFelix());
         return felixView;
     }
+
     /**
      * Creates and adds a RalphView to the specified root pane.
+     * 
      * @return The created RalphView instance.
      */
     private RalphView addRalphView() {
@@ -316,6 +322,7 @@ public class WindowGame extends Application {
         root.getChildren().add(ralphView.getStandingRalph());
         return ralphView;
     }
+
     /**
      * Method to add the bird view in the primary root.
      */
@@ -346,6 +353,7 @@ public class WindowGame extends Application {
         });
         birdsToPrint.forEach(BirdView::animateBird);
     }
+
     /**
      * Update cake view.
      */
@@ -418,8 +426,10 @@ public class WindowGame extends Application {
         // Anima i mattoni
         bricksToPrint.forEach(BrickView::animateBrick);
     }
+
     /**
      * Getter for the primary stage.
+     * 
      * @return the primary stage.
      */
     public Stage getStage() {
@@ -428,6 +438,7 @@ public class WindowGame extends Application {
 
     /**
      * Getter for the gameEngine.
+     * 
      * @return the gameEngine.
      */
     public GameEngineImpl getGameEngine() {

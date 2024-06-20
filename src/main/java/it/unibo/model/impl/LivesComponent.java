@@ -41,7 +41,7 @@ public class LivesComponent extends AbstractComponent {
      * Notifies all listeners of a change in lives.
      */
     private void notifyLivesChange() {
-        for (LivesChangeListener listener : listeners) {
+        for (final LivesChangeListener listener : listeners) {
             listener.onLivesChanged(this.lives);
         }
     }
@@ -50,14 +50,15 @@ public class LivesComponent extends AbstractComponent {
      * Constructs a LivesComponent with default lives and immortality settings.
      */
     public LivesComponent() {
-        resetLives();
-        immortality = false;
+        this.lives = 3; // Set default lives directly in the constructor
+        this.immortality = false;
+        notifyLivesChange(); // Notify the initial state
     }
 
     /**
      * Resets the number of lives to the default value and disables immortality.
      */
-    public void resetLives() {
+    public final void resetLives() {
         this.lives = 3;
         immortality = false;
         notifyLivesChange();
@@ -69,7 +70,7 @@ public class LivesComponent extends AbstractComponent {
      */
     public void stealLives() {
         if (!immortality && getLives() > 0) {
-            this.lives = this.lives - 1;
+            this.lives -= 1;
             notifyLivesChange();
         }
     }

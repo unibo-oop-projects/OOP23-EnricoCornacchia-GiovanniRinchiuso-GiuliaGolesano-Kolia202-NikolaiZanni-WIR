@@ -15,10 +15,11 @@ import it.unibo.model.api.Entity;
 public class CakePositionComponent extends AbstractComponent {
     private final GamePerformance gamePerformance;
     private static final double OFFSET_X = 10;
-    private static final double OFFSET_Y = 35; 
+    private static final double OFFSET_Y = 35;
 
     /**
      * Constructor to initialize GamePerformance.
+     * 
      * @param gamePerformance the game performance.
      */
     public CakePositionComponent(final GamePerformance gamePerformance) {
@@ -27,10 +28,11 @@ public class CakePositionComponent extends AbstractComponent {
 
     /**
      * Method to return a random position from window positions.
+     * 
      * @return a pair with the x and y position of the cake.
      */
     public Pair<Double, Double> randomPosition() {
-        List<Pair<Double, Double>> windowPositions = this.gamePerformance.getWindows().stream()
+        final List<Pair<Double, Double>> windowPositions = this.gamePerformance.getWindows().stream()
                 .map(Entity::getPosition)
                 .collect(Collectors.toList());
 
@@ -39,11 +41,11 @@ public class CakePositionComponent extends AbstractComponent {
         }
 
         final Random rand = new Random();
-        Pair<Double, Double> chosenPosition = windowPositions.get(rand.nextInt(windowPositions.size()));
+        final Pair<Double, Double> chosenPosition = windowPositions.get(rand.nextInt(windowPositions.size()));
 
         // Apply the offset
-        double cakeX = chosenPosition.getX() + OFFSET_X;
-        double cakeY = chosenPosition.getY() + OFFSET_Y;
+        final double cakeX = chosenPosition.getX() + OFFSET_X;
+        final double cakeY = chosenPosition.getY() + OFFSET_Y;
 
         return new Pair<>(cakeX, cakeY);
     }

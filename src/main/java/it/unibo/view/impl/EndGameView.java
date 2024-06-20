@@ -27,8 +27,6 @@ import it.unibo.model.impl.PointsComponent;
  * This class provides a simple "Game Over" message.
  */
 public final class EndGameView extends Application {
-    private PointsComponent pointsComponent;
-    private HighPointsView highPointsView;
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;
     private static final int IMAGE1_HEIGHT = 175;
@@ -46,7 +44,6 @@ public final class EndGameView extends Application {
     private static final int BUTTON_HEIGHT = 50;
     private static final int TRANSLATE_Y = 50;
     private static final Logger LOGGER = Logger.getLogger(EndGameView.class.getName());
-
 
     /**
      * Starts the end game screen.
@@ -105,14 +102,12 @@ public final class EndGameView extends Application {
      * @param primaryStage the primary stage of the application
      */
     private void showButtonsAndPoints(final StackPane root, final Stage primaryStage) {
-
-        pointsComponent = new PointsComponent();
-
-        highPointsView = new HighPointsView(pointsComponent);
+        final PointsComponent pointsComponent = new PointsComponent();
+        final HighPointsView highPointsView = new HighPointsView(pointsComponent);
 
         highPointsView.setStyle(
-                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;" 
-                + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
+                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;"
+                        + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
 
         // Update the high points label
         highPointsView.updateHighPointsLabel();

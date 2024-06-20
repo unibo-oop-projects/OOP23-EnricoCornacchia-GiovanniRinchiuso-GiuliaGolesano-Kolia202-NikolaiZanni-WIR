@@ -34,7 +34,7 @@ import javafx.scene.paint.Color;
 public class MainMenu extends StackPane {
     private final Stage gameStage;
     private static final int BORDER_WIDTH = 5;
-    private static final int  SPACING_HBOX = 20;
+    private static final int SPACING_HBOX = 20;
     private static final int CONTINUE_BUTTON_WIDTH = 125;
     private static final int CONTINUE_BUTTON_HEIGHT = 50;
     private static final int QUIT_BUTTON_WIDTH = 125;
@@ -42,7 +42,6 @@ public class MainMenu extends StackPane {
     private static final int HOME_BUTTON_WIDTH = 125;
     private static final int HOME_BUTTON_HEIGHT = 50;
     private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
-
 
     /**
      * Constructs a MainMenu.
@@ -64,6 +63,7 @@ public class MainMenu extends StackPane {
      *
      * @param event the mouse event
      */
+    @SuppressWarnings("unused")
     private void handlePauseButtonClick(final MouseEvent event) {
         GameState.setGameState(GameState.PAUSED);
         final AnotherStage secondStage = new AnotherStage(gameStage);
@@ -84,7 +84,6 @@ public class MainMenu extends StackPane {
         private static final String UNDER_IMAGE = "underImage.png";
         @SuppressWarnings("unused")
         private final Stage gameStage;
-
 
         /**
          * Constructs an AnotherStage.
@@ -145,7 +144,7 @@ public class MainMenu extends StackPane {
                     GameState.setGameState(GameState.GAMEOVER);
                     new EndGameView().start(new Stage());
                 } catch (IOException e) {
-                    LOGGER.log(Level.SEVERE, "Error in quitBottom", e);
+                    LOGGER.log(Level.SEVERE, "Error in quitButton", e);
                 }
             });
             homeButton.setOnMouseClicked(event -> {
@@ -155,7 +154,7 @@ public class MainMenu extends StackPane {
                     GameState.setGameState(GameState.GAMEOVER);
                     new StartGameView().start(new Stage());
                 } catch (IOException e) {
-                    LOGGER.log(Level.SEVERE, "Error in homeBottom", e);
+                    LOGGER.log(Level.SEVERE, "Error in homeButton", e);
                 }
             });
             pane.getChildren().add(continueButton);

@@ -33,6 +33,7 @@ public class WinGameView extends Application {
 
     /**
      * This method is used to show the view of the game when the player wins.
+     * 
      * @param primaryStage the stage of the game.
      * @throws Exception if an error occurs.
      */
@@ -75,29 +76,28 @@ public class WinGameView extends Application {
         root.getChildren().addAll(newBackgroundImageView, topLayout);
 
         final Timeline timeline = new Timeline(
-            new KeyFrame(Duration.seconds(ANIMATION_DURATION_FIRST), event -> {
-                imageView1.setVisible(true);
-                imageView2.setVisible(false);
-                imageView3.setVisible(false);
-            }),
-            new KeyFrame(Duration.seconds(ANIMATION_DURATION_SECOND), event -> {
-                imageView1.setVisible(false);
-                imageView2.setVisible(true);
-                imageView3.setVisible(false);
-            }),
-            new KeyFrame(Duration.seconds(ANIMATION_DURATION_THIRD), event -> {
-                imageView1.setVisible(false);
-                imageView2.setVisible(false);
-                imageView3.setVisible(true);
-            }),
-            new KeyFrame(Duration.seconds(1), event -> {
-            })
-        );
+                new KeyFrame(Duration.seconds(ANIMATION_DURATION_FIRST), event -> {
+                    imageView1.setVisible(true);
+                    imageView2.setVisible(false);
+                    imageView3.setVisible(false);
+                }),
+                new KeyFrame(Duration.seconds(ANIMATION_DURATION_SECOND), event -> {
+                    imageView1.setVisible(false);
+                    imageView2.setVisible(true);
+                    imageView3.setVisible(false);
+                }),
+                new KeyFrame(Duration.seconds(ANIMATION_DURATION_THIRD), event -> {
+                    imageView1.setVisible(false);
+                    imageView2.setVisible(false);
+                    imageView3.setVisible(true);
+                }),
+                new KeyFrame(Duration.seconds(1), event -> {
+                }));
 
         timeline.setCycleCount(10);
         timeline.setOnFinished(event -> {
             try {
-                Stage currentStage = (Stage) root.getScene().getWindow();
+                final Stage currentStage = (Stage) root.getScene().getWindow();
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
                 currentStage.close();
