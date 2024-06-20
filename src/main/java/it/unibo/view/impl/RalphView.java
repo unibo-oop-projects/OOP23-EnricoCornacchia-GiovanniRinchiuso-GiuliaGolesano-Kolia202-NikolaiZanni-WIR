@@ -17,7 +17,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Ralph.
  */
-public class RalphView implements View {
+public final class RalphView implements View {
 
     private static final int FRAME_COUNT_DX = 3;
     private static final int FRAME_COUNT_SX = 2;

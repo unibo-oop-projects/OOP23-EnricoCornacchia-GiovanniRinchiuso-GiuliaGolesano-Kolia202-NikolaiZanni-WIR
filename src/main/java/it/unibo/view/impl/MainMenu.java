@@ -32,7 +32,7 @@ import javafx.scene.paint.Color;
 /**
  * MainMenu represents the main menu of the game.
  */
-public class MainMenu extends StackPane {
+public final class MainMenu extends StackPane {
     private final Stage gameStage;
     private static final int BORDER_WIDTH = 5;
     private static final int SPACING_HBOX = 20;

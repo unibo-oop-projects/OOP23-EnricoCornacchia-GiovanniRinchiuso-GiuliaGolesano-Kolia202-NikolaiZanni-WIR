@@ -9,7 +9,7 @@ import it.unibo.model.impl.PointsComponent;
  * PointsView represents the view for displaying the current score.
  * This class can be extended to customize the score display.
  */
-public class PointsView extends StackPane {
+public final class PointsView extends StackPane {
     private PointsComponent pointsComponent;
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;

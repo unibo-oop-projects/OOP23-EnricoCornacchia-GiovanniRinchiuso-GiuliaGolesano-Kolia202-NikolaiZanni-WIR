@@ -9,7 +9,7 @@ import it.unibo.model.impl.PointsComponent;
  * HighPointsView represents the view for displaying the high score.
  * This class can be extended to customize the high score display.
  */
-public class HighPointsView extends StackPane {
+public final class HighPointsView extends StackPane {
     private PointsComponent pointsComponent;
     private static final int PREWIDTH = 150;
     private static final int PREHEIGH = 25;

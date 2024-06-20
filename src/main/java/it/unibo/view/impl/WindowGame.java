@@ -40,7 +40,7 @@ import it.unibo.core.impl.GameEngineImpl;
  * WindowGame represents the window of the game.
  * This class can be extended to customize the game window.
  */
-public class WindowGame extends Application {
+public final class WindowGame extends Application {
     private Stage primaryStage;
     private boolean zKeyPressed;
     private final GameEngineImpl gameEngine = new GameEngineImpl();

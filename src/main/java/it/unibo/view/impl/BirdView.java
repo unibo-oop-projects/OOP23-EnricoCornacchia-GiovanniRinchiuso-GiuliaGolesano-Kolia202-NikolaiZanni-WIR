@@ -16,7 +16,7 @@ import it.unibo.model.impl.HitboxComponent;
 /**
  * Class that implements the view of a bird power up.
  */
-public class BirdView implements View {
+public final class BirdView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
     private final ImageView imageView;

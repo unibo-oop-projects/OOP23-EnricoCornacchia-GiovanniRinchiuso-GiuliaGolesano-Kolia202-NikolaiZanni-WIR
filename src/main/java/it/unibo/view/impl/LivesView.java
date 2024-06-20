@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
  * LivesView represents the view for displaying the player's remaining lives.
  * This class can be extended to customize the lives display.
  */
-public class LivesView extends StackPane {
+public final class LivesView extends StackPane {
     private final LivesComponent livesComponent;
     private final HBox livesContainer;
     private static final int WIDTH = 40;

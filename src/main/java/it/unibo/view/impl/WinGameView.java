@@ -19,7 +19,7 @@ import javafx.util.Duration;
 /**
  * This class is used to show the view of the game when the player wins.
  */
-public class WinGameView extends Application {
+public final class WinGameView extends Application {
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;

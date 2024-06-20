@@ -14,7 +14,7 @@ import javafx.util.Duration;
 /**
  * Class to manage a view of a window.
  */
-public class WindowsView implements View {
+public final class WindowsView implements View {
     private static final int FRAME_COUNT = 4;
     private static final int FRAME_WIDTH = 39; 
     private static final int FRAME_HEIGHT = 60; 

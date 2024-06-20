@@ -15,7 +15,7 @@ import javafx.util.Duration;
 /**
  * Class that implements the view of a cake power-up.
  */
-public class CakeView implements View {
+public final class CakeView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
     private final Entity cake;

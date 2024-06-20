@@ -19,7 +19,7 @@ import javafx.util.Duration;
 /**
  * Class responsible for the view of Felix.
  */
-public class FelixView implements View {
+public final class FelixView implements View {
 
     private static final int FRAME_COUNT = 4;
     private static final int ANIMATION_DURATION = 1000;

@@ -14,7 +14,7 @@ import javafx.util.Duration;
 /**
  * Class that implement the view of a brick.
  */
-public class BrickView implements View {
+public final class BrickView implements View {
     private static final int ANIMATION_DURATION = 16; 
     private final ImageView imageView;
     private final Image spriteSheet;
