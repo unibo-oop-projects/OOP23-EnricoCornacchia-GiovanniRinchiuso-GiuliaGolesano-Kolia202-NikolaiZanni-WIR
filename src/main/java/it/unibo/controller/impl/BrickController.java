@@ -13,7 +13,7 @@ import it.unibo.utilities.Constants.Brick;
 /**
  * Controller for the bricks.
  */
-public class BrickController implements Controller{
+public class BrickController implements Controller {
 
     private final GamePerformance gamePerformance;
 

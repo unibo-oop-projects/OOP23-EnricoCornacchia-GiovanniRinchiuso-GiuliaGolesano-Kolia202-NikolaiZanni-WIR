@@ -46,11 +46,11 @@ class BrickControllerTest {
     void testFallBricks() {
         Entity brick = entityFactory.createBrick(new Pair<>(INITIAL_X_POSITION, INITIAL_Y_POSITION));
         this.brickController.addBrick(brick);
-        this.brickController.fallBricks();
+        this.brickController.update();
         assertEquals(INITIAL_X_POSITION, brick.getPosition().getX(), "The brick should not have moved horizontally");
         assertEquals(SECOND_LEVEL_Y_POSITION, brick.getPosition().getY(), "The brick should have moved vertically");
         this.gameController.setLevel(2);
-        this.brickController.fallBricks();
+        this.brickController.update();
         assertEquals(INITIAL_X_POSITION, brick.getPosition().getX(), "The brick should not have moved horizontally");
         assertEquals(THIRD_LEVEL_Y_POSITION, brick.getPosition().getY(), "The brick should have moved vertically");
     }
@@ -60,7 +60,7 @@ class BrickControllerTest {
         this.brickController.addBrick(brick);
         assertEquals(1, this.brickController.getBricks().size(), "The set of bricks should contain one brick");
         for (int i = 0; i < 1000; i++) {
-            this.brickController.fallBricks();
+            this.brickController.update();
         }
         assertEquals(0, this.brickController.getBricks().size(), "The set of bricks should be empty");
     }
