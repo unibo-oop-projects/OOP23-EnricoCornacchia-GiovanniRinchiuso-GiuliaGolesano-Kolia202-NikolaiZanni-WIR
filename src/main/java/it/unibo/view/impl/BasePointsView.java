@@ -30,7 +30,7 @@ public abstract class BasePointsView extends StackPane {
     /**
      * Non-overridable method to initialize the base view.
      */
-    private final void initializeBaseView() {
+    private void initializeBaseView() {
         addViewToComponent();
     }
 

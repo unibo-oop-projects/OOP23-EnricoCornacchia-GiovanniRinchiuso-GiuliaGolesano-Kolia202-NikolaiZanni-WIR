@@ -13,9 +13,10 @@ public final class BirdView extends BaseBirdCakeView {
      * 
      * @param bird the entity representing the bird
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BirdView(final Entity bird) {
-        super(bird, "birdMovementRight");
+        super(bird);
+        initializeSprite("birdMovementRight");
     }
 
     /**
@@ -26,5 +27,4 @@ public final class BirdView extends BaseBirdCakeView {
     public Entity getBird() {
         return super.getEntity();
     }
-
 }

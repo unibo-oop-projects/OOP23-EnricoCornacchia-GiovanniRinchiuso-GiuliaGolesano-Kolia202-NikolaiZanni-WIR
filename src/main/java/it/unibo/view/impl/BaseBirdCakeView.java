@@ -21,32 +21,46 @@ public abstract class BaseBirdCakeView implements View {
     private static final int ANIMATION_DURATION = 1000;
     private final Entity entity;
     private final ImageView imageView;
-    private final Image sprite;
+    private Image sprite;
     private final Timeline timeline;
     private int currentFrame;
 
     /**
      * Constructor.
      * 
-     * @param entity     the entity to be represented
-     * @param spriteName the name of the sprite image
+     * @param entity the entity to be represented
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
-    public BaseBirdCakeView(final Entity entity, final String spriteName) {
+    public BaseBirdCakeView(final Entity entity) {
         this.entity = entity;
         this.imageView = new ImageView();
-        this.sprite = getSource(spriteName);
+        initializeImageView();
+        this.timeline = new Timeline(
+                new KeyFrame(
+                        Duration.millis(ANIMATION_DURATION / FRAME_COUNT),
+                        e -> updateFrame()));
+        this.timeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    /**
+     * Initializes the image view based on the entity's hitbox.
+     */
+    private void initializeImageView() {
         this.imageView.setFitHeight(
                 ((HitboxComponent) this.entity.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getHeight());
         this.imageView.setFitWidth(
                 ((HitboxComponent) this.entity.getTheComponent(ComponentType.HITBOX).get()).getHitbox().getWidth());
         this.imageView.setX(this.entity.getPosition().getX());
         this.imageView.setY(this.entity.getPosition().getY());
-        this.timeline = new Timeline(
-                new KeyFrame(
-                        Duration.millis(ANIMATION_DURATION / FRAME_COUNT),
-                        e -> updateFrame()));
-        this.timeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    /**
+     * Initializes the sprite after construction.
+     * 
+     * @param spriteName the name of the sprite image
+     */
+    protected void initializeSprite(final String spriteName) {
+        this.sprite = getSource(spriteName);
     }
 
     /**
