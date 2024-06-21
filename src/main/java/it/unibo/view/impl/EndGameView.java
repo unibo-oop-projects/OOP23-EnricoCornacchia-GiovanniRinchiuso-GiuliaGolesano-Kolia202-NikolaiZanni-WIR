@@ -110,7 +110,7 @@ public final class EndGameView extends Application {
                         + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
 
         // Update the high points label
-        highPointsView.updateHighPointsLabel();
+        highPointsView.updateLabel();
 
         final HBox pointsBox = new HBox(SPACING, highPointsView);
         pointsBox.setAlignment(Pos.CENTER);
