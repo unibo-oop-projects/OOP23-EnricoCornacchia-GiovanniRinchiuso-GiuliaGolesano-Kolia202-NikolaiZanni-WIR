@@ -7,8 +7,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 import java.util.HashSet;
 import it.unibo.common.Pair;
+import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
+import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.ThrowBrickComponent;
 
@@ -18,16 +21,19 @@ import it.unibo.model.impl.ThrowBrickComponent;
 class ThrowBrickComponentTest {
 
     private ThrowBrickComponent throwBrickComponent;
-    private Set<Entity> bricks;
+    private GameController gameController;
+    private GamePerformance gamePerformance;
+    
 
     /**
      * Set up the test environment before each test.
      */
     @BeforeEach
     void setUp() {
-        final GamePerformance gamePerformance = new GamePerformanceImpl(null);
+        gameController = new GameController();
+        gamePerformance = new GamePerformanceImpl(gameController);
         throwBrickComponent = new ThrowBrickComponent(gamePerformance);
-        bricks = new HashSet<>();
+        
     }
 
     /**
@@ -35,10 +41,10 @@ class ThrowBrickComponentTest {
      */
     @Test
     void testAddBrickWhenUnblocked() {
-        final Pair<Double, Double> position = new Pair<>(1.0, 2.0);
-        throwBrickComponent.addBrickToThrow(bricks, position);
+        final Pair<Double, Double> position = new Pair<>(300.0, 300.0);
+        throwBrickComponent.addBrickToThrow(gamePerformance.getBricks(), position);
         assertFalse(throwBrickComponent.isBlocked(), "ThrowBrickComponent should not be blocked when adding a brick");
-        assertTrue(bricks.size() == 1, "A brick should be added when component is not blocked");
+        assertTrue(gamePerformance.getBricks().size() == 1, "A brick should be added when component is not blocked");
     }
 
     /**
@@ -46,11 +52,12 @@ class ThrowBrickComponentTest {
      */
     @Test
     void testAddBrickWhenBlocked() {
+        assertTrue(gamePerformance.getBricks().isEmpty(), "The set of bricks should be empty");
         throwBrickComponent.setBlocked();
-        final Pair<Double, Double> position = new Pair<>(1.0, 2.0);
-        throwBrickComponent.addBrickToThrow(bricks, position);
+        final Pair<Double, Double> position = new Pair<>(300.0, 300.0);
+        throwBrickComponent.addBrickToThrow(gamePerformance.getBricks(), position);
         assertTrue(throwBrickComponent.isBlocked(), "ThrowBrickComponent should be blocked when adding a brick");
-        assertTrue(bricks.isEmpty(), "No brick should be added when component is blocked");
+        assertTrue(gamePerformance.getBricks().isEmpty(), "No brick should be added when component is blocked");
     }
 
     /**
