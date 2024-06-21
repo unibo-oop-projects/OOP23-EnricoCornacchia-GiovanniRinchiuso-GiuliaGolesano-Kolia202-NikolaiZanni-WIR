@@ -25,6 +25,7 @@ class BrickControllerTest {
     private static final double THIRD_LEVEL_Y_POSITION = 302.5;
     private static final double HIGH_X_POSITION = 10_000.0;
     private static final double HIGH_Y_POSITION = 300.0;
+    private static final int CYCLE = 1_000;
 
     private BrickController brickController;
     private GameController gameController;
@@ -62,7 +63,7 @@ class BrickControllerTest {
         final Entity brick = entityFactory.createBrick(new Pair<>(HIGH_X_POSITION, HIGH_Y_POSITION));
         this.brickController.addBrick(brick);
         assertEquals(1, this.brickController.getBricks().size(), "The set of bricks should contain one brick");
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < CYCLE; i++) {
             this.brickController.update();
         }
         assertEquals(0, this.brickController.getBricks().size(), "The set of bricks should be empty");
