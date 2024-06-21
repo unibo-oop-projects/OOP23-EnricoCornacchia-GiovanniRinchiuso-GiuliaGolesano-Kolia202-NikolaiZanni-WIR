@@ -2,10 +2,10 @@ package it.unibo.model.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -40,7 +40,7 @@ public class PointsComponent extends AbstractComponent {
      * Resets the high score to zero and writes it to the file on first launch.
      */
     public static void resetHighScoreOnFirstLaunch() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILENAME, StandardCharsets.UTF_8))) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(FILENAME), StandardCharsets.UTF_8)) {
             bufferedWriter.write(Integer.toString(0));
             bufferedWriter.newLine();
         } catch (IOException e) {
@@ -52,7 +52,7 @@ public class PointsComponent extends AbstractComponent {
      * Reads high score from file.
      */
     public final void readFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME, StandardCharsets.UTF_8))) {
+        try (BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(FILENAME), StandardCharsets.UTF_8)) {
             final String line = bufferedReader.readLine();
             if (line != null) {
                 try {
@@ -96,12 +96,12 @@ public class PointsComponent extends AbstractComponent {
             writeToFile(highScore);
         }
 
-        pointsViews.forEach(view -> {
-            view.updatePointsLabel();
-        });
-        highPointsViews.forEach(view -> {
-            view.updateHighPointsLabel();
-        });
+        for (final PointsView view : pointsViews) {
+            view.updateLabel();
+        }
+        for (final HighPointsView view : highPointsViews) {
+            view.updateLabel();
+        }
     }
 
     /**
@@ -111,7 +111,9 @@ public class PointsComponent extends AbstractComponent {
      */
     public void setPoints(final int points) {
         this.points = points;
-        pointsViews.forEach(PointsView::updatePointsLabel);
+        for (final PointsView view : pointsViews) {
+            view.updateLabel();
+        }
     }
 
     /**
@@ -120,7 +122,7 @@ public class PointsComponent extends AbstractComponent {
      * @param score the high score to write
      */
     public void writeToFile(final int score) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILENAME, StandardCharsets.UTF_8))) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(FILENAME), StandardCharsets.UTF_8)) {
             bufferedWriter.write(Integer.toString(score));
             bufferedWriter.newLine();
         } catch (IOException ex) {

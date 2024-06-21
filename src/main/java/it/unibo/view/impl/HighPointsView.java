@@ -1,71 +1,34 @@
 package it.unibo.view.impl;
 
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.model.impl.PointsComponent;
 
 /**
  * HighPointsView represents the view for displaying the high score.
- * This class can be extended to customize the high score display.
  */
-public final class HighPointsView extends StackPane {
-    private PointsComponent pointsComponent;
-    private static final int PREWIDTH = 150;
-    private static final int PREHEIGH = 25;
-    private static final Double BOTTOM = 20.0;
+public final class HighPointsView extends BasePointsView {
 
     /**
      * Constructs a HighPointsView with the given PointsComponent.
      *
      * @param pointsComponent the PointsComponent to use for high score data
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public HighPointsView(final PointsComponent pointsComponent) {
-        this.pointsComponent = pointsComponent;
-        this.pointsComponent.addHighPointsView(this);
-        updateHighPointsLabel();
+        super(pointsComponent);
+        initializeView();
     }
 
-    /**
-     * Updates the high score label.
-     */
-    public void updateHighPointsLabel() {
-        getChildren().clear();
-
-        final Label scoreTitleLabel = new Label("HIGHSCORE:");
-        final Label scoreValueLabel = new Label(" " + pointsComponent.getHighScore());
-
-        scoreTitleLabel.setStyle(
-                "-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: red; -fx-background-color: transparent;");
-        scoreValueLabel.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: transparent;");
-
-        scoreTitleLabel.setPrefWidth(PREWIDTH);
-        scoreValueLabel.setPrefWidth(PREWIDTH);
-
-        scoreTitleLabel.setPrefHeight(PREHEIGH);
-        scoreValueLabel.setPrefHeight(PREHEIGH);
-
-        AnchorPane.setBottomAnchor(scoreTitleLabel, BOTTOM);
-        AnchorPane.setLeftAnchor(scoreTitleLabel, 0.0);
-        AnchorPane.setBottomAnchor(scoreValueLabel, 0.0);
-        AnchorPane.setLeftAnchor(scoreValueLabel, 0.0);
-
-        final AnchorPane pointsContainer = new AnchorPane(scoreTitleLabel, scoreValueLabel);
-        getChildren().add(pointsContainer);
+    @Override
+    protected void addViewToComponent() {
+        this.getPointsComponent().addHighPointsView(this);
     }
 
-    /**
-     * Sets the PointsComponent to use for high score data.
-     *
-     * @param pointsComponent the PointsComponent to use for high score data
-     */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
-    public void setPointsComponent(final PointsComponent pointsComponent) {
-        this.pointsComponent = pointsComponent;
-        this.pointsComponent.addHighPointsView(this);
-        updateHighPointsLabel();
+    @Override
+    protected String getLabelTitle() {
+        return "HIGHSCORE:";
+    }
+
+    @Override
+    protected String getLabelValue() {
+        return String.valueOf(this.getPointsComponent().getHighScore());
     }
 }
