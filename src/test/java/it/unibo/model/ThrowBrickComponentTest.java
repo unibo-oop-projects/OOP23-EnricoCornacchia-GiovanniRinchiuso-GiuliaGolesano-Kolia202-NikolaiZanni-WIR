@@ -4,14 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Set;
-import java.util.HashSet;
 import it.unibo.common.Pair;
 import it.unibo.controller.impl.GameController;
-import it.unibo.model.api.Entity;
-import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
-import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
 import it.unibo.model.impl.ThrowBrickComponent;
 
