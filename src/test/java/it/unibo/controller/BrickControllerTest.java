@@ -11,6 +11,7 @@ import it.unibo.common.Pair;
 import it.unibo.controller.impl.BrickController;
 import it.unibo.controller.impl.GameController;
 import it.unibo.model.api.Entity;
+import it.unibo.model.api.EntityFactory;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.GamePerformanceImpl;
@@ -28,15 +29,19 @@ class BrickControllerTest {
     private static final int CYCLE = 1_000;
 
     private BrickController brickController;
+    private EntityFactory entityFactory;
     private GameController gameController;
-    private EntityFactoryImpl entityFactory;
 
     @BeforeEach
     void setUp() {
-        gameController = new GameController();
-        final GamePerformance gamePerformance = new GamePerformanceImpl(this.gameController);
-        brickController = new BrickController(gamePerformance);
-        entityFactory = new EntityFactoryImpl(gamePerformance);
+        this.initializeBrickController();
+    }
+
+    private void initializeBrickController() {
+        this.gameController = new GameController();
+        final GamePerformance gamePerformance = new GamePerformanceImpl(gameController);
+        this.brickController = gameController.getBrickController();
+        this.entityFactory = new EntityFactoryImpl(gamePerformance);
     }
 
     @Test

@@ -16,21 +16,16 @@ import it.unibo.model.impl.ThrowBrickComponent;
 class ThrowBrickComponentTest {
 
     private ThrowBrickComponent throwBrickComponent;
-    private GameController gameController;
     private GamePerformance gamePerformance;
-    
-
     /**
      * Set up the test environment before each test.
      */
     @BeforeEach
     void setUp() {
-        gameController = new GameController();
+        final GameController gameController = new GameController();
         gamePerformance = new GamePerformanceImpl(gameController);
         throwBrickComponent = new ThrowBrickComponent(gamePerformance);
-        
     }
-
     /**
      * Test adding a brick when the component is not blocked.
      */
