@@ -280,12 +280,13 @@ Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni Windo
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/throw.jpg}
-\caption{Rappresentazione UML della logica di spawn dei barili.}
+\caption{Rappresentazione UML della logica di spawn dei mattoni.}
 \end{figure}
 
 \paragraph{Problema} Gestione dello spawn dei mattoni durante la partita.
 
-\paragraph{Soluzione} Per gestire la generazione delle entità mattoni durante la partita da parte del nemico (Ralph), ho implementato un Component da associare esso, sfruttando così il Template Method Pattern, ereditando getEntity() e setEntity() da AbstractComponent. Questi metodi 
+\paragraph{Soluzione} Per gestire la generazione delle entità mattoni durante la partita da parte del nemico (Ralph), ho implementato un Component da associare a Ralph, ThrowBrickComponent che estende la classe AbstractComponent. Quando ralph viene creato nell'EntityFactory, gli viene associato un ThrowBrickComponent, quando viene richiamato il metodo update del GameController(), delega al RalphController il compito di lanciare mattoni. In particolare nel RalphController ci sono due metodi per generare mattoni nelle posizioni della mano sinistra e della mano destra di Ralph ogni intervallo di tempo, il quale varia a seconda del livello selezionato. 
+Questi metodi utilizzano il metodo addBricks() del ThrowBrickComponent di Ralph per generare questi nuovi mattoni, il quale li aggiunge alla lista di entità presente nel GamePerformance. Sempre nel GamePerformance è presennte un metodo getBricks() che restituisce, dell'intera lista di entità solo i mattoni. 
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
@@ -318,8 +319,9 @@ Quando ho iniziato a lavorare al progetto mi sentivo molto spaesata e incapace, 
 Man mano che i mesi andavano avanti, la possibilità di lavorarci con calma, durante le lezioni, senza la fretta della sessione di esami, mi ha reso sempre più consapevole di come le cose funzionavano e come potevo realizzare le mie idee.
 Sento inoltre che mi è servito tanto il lavoro di gruppo con i miei compagni, perché ho appreso elasticità rispetto alle velocità e tecniche di lavoro degli altri.
 In conclusione, penso che tutto il gruppo abbia fatto un discreto lavoro.
-\subsection{Cornacchia Enrico}
-
+\subsubsection{Cornacchia Enrico}
+\subsubsection{Rinchiuso Giovanni}
+Inizialmente avevo molti timori riguardo a questo progetto, in quanto essendo uno studente al terzo anno, avevo bisogno di superare questo esame per potermi laureare. Inoltre tutti i miei compagni di corso mi hanno sempre parlato di questo progetto come il più stimolante ma anche come il più impegnativo che avessero affrontato. Questa cosa mi spaventava molto, perché credevo di non essere in grado di portarlo a termine, però mi ha anche aiutato ad affrontare questo progetto con il dovuto impegno. E' stato molto stimolante vedere che il nostro gioco diventava sempre più simile a come l'avevamo immaginato. Il gruppo ha lavorato molto bene, è stato gratificante poter contare sull'aiuto degli altri ed essere io stesso utile a loro. Penso che ci siano margini di miglioramento sia per la nostra applicazione, sia per il mio metodo di programmazione, ma penso di essere sulla strada giusta e che il lavoro svolto sia buono. 
 
 \chapter{Guida Utente}
 L'obiettivo del gioco è aggiustare tutte le finestre, schivando i mattoni lanciati da Ralph e cercando di raggiungere tutti i power ups disponibili.
@@ -330,6 +332,6 @@ I comandi di gioco sono:
 \item D: Movimento verso destra.
 \item Z: Se premuto per 1.5 secondi aggiusta la finestra in cui si trova Felix.
 I power ups sono:
-\item Cake:
-\item Bird:
+\item Cake: rende immortale Felix per 5 secondi
+\item Bird: Ralph non lancia più mattoni per un tempo variabile
 \end{document}
