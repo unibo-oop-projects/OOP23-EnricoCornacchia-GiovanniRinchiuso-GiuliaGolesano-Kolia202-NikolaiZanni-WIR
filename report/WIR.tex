@@ -249,7 +249,7 @@ Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni Windo
 
 \paragraph{Problema} Il gioco deve essere in grado di permettere un gameplay fluido senza lag, aggiornando ciclicamente la grafica (view) e la logica di gioco (model) in contemporanea.
 
-\paragraph{Soluzione} Ho deciso di scorporare la gestione del game loop dal controller principale (Application) implementando un’interfaccia GameEngine, al fine di evitare la condivisione di codice sensibile e garantire una maggiore indipendenza, permettendo così di estendere anche in altre classi, in caso di bisogno, il motore del gioco. Il GameEngine viene fatto partire all’avvio dell’applicazione dal controller, richiamando il metodo mainLoop(), nucleo vero e proprio del game che gestisce il ciclo e fa in modo che non si verifichino perdite di frame. Tuttavia, durante lo sviluppo, mi son reso conto che è necessario aggiornare la parte di model e gestione delle varie entità solo nel caso in cui si stia effettivamente giocando; per questa ragione il suddetto metodo prevede che nel caso in cui ci si trovi nel menù iniziale, di pausa, o finale (vittoria o sconfitta), venga aggiornata solo la grafica e non la logica di gioco, risparmiando memoria e processi inutili.
+\paragraph{Soluzione} Ho deciso di scorporare la gestione del game loop dal controller principale (GameController) implementando un’interfaccia GameEngine, al fine di evitare la condivisione di codice sensibile e garantire una maggiore indipendenza, permettendo così di estendere anche in altre classi, in caso di bisogno, il motore del gioco. All'avvio del gioco viene richiamato il metodo start() di WindowGame, che dopo aver disegnato la schermata principale, utilizza la classe AnimationTimer e più in particolare il suo metodo handle(long now), per ciclare ed eseguire il metodo gameLoop() di GameEngine. Tuttavia, durante lo sviluppo, mi son reso conto che è necessario aggiornare la parte di model e gestione delle varie entità solo nel caso in cui si stia effettivamente giocando; per questa ragione il metodo handle prevede che nel caso in cui ci si trovi nel menù di pausa, o finale (vittoria o sconfitta), venga aggiornata solo la grafica, uscendo dal loop della funzione handle() e richiamando le opportune classi di grafica, e non venga aggiornata invece la logica di gioco, risparmiando memoria e processi inutili.
 
 \subsubsection{Gestione di inizio gioco}
 
@@ -259,9 +259,9 @@ Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni Windo
 \caption{Rappresentazione UML della logica di inizio gioco.}
 \end{figure}
 
-\paragraph{Problema} Avviare una partita in maniera totalmente indipendente ed efficace in qualunque momento e stato dell’applicazione
+\paragraph{Problema} Avviare una partita in maniera totalmente indipendente ed efficace in qualunque momento e stato dell’applicazione.
 
-\paragraph{Soluzione} Per permettere che una nuova partita possa essere sempre iniziata quando viene cliccato il tasto “Play”, ho implementato nel controller principale Application un metodo startGame(). Esso va a creare un nuovo GameController, che si occupa a sua volta di creare un nuovo Gameplay. Attraverso il metodo initializeGame() di quest’ultimo, verranno poi inizializzate tutte le istanze necessarie affinchè si possa giocare una partita.
+\paragraph{Soluzione} Per permettere che una nuova partita possa essere sempre iniziata quando viene premuto il tasto "Start Game" e selezionato il livello, ho implementato il costruttore del GameEngine, che richiama il costruttore del controller principale GameController, che richiama i costruttori di tutti gli altri controller, i quali provvedono eventualmente a creare le varie entità del gioco. Il costruttore di GameEngine viene richiamato nel metodo start() del WindowGame, nel quale il gioco entra ogni volta che dalla home, la StartGameView, viene premuto il tasto "Start Game" e selezionato il livello.
 
 \subsubsection{Gestione di fine gioco}
 
@@ -273,7 +273,7 @@ Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni Windo
 
 \paragraph{Problema} Controllare che il giocatore abbia perso o vinto una partita.
 
-\paragraph{Soluzione} Per fare in modo che fosse verificata la condizione di vittoria e sconfitta e fosse aggiornato il Gamestate, ho utilizzato un metodo update() all’interno del controller di gioco, che viene eseguito ad ogni ciclo. Questo verifica la condizione di vittoria o sconfitta; se la partita è terminata, aggiorna solamente la grafica senza aggiornare le entità. Per fare ciò, richiama i metodi del gameplay checkIsOver(), isOver(), e setIsWin(). I primi due verificano che esista ancora un player nella lista delle entità di gioco: nel caso non esistesse, cambia il Gamestate in Death e fermano il timer di gioco. Il terzo, è un metodo che viene richiamato all’interno delle Collision quando l’entità del player va a collidere con la principessa, e setta il Gamestate a Win (fermando anch’esso il timer di gioco).
+\paragraph{Soluzione} Per fare in modo che fosse verificata la condizione di vittoria e sconfitta e fosse aggiornato il Gamestate, effettuo dei controlli all'interno del metodo gameLoop() del gameEngine. Questi controlli vengono quindi eseguiti ogni volta che la funzione handle richiama il metodo gameLoop(). Questi if in particolare controllano tramite metodi implementati nei Controller, che la partita non sia vinta nè persa. Nel caso la partita sia vinta, metodo isWon() del WindowController, vero se tutte le finestre sono state aggiustate, il GameState viene messo a WIN, mentre se la partita è stata persa, metodo isAlive() del FelixController che è falso quando Felix viene colpito tre volte da un mattone, il GameState viene messo a GAMEOVER. La funzione handle è implementata in modo per cui se il GameState è GAMEOVER o WIN, smette di ciclare e richiama le opportune view. 
 
 \subsubsection{Gestione dei mattoni}
 
@@ -285,7 +285,7 @@ Poi, di nuovo WindowGame, seguendo la griglia appena creata, richiama ogni Windo
 
 \paragraph{Problema} Gestione dello spawn dei mattoni durante la partita.
 
-\paragraph{Soluzione} Per gestire la generazione delle entità mattoni durante la partita da parte del nemico (Donkey Kong), ho implementato un Component da associare esso, sfruttando così il Template Method Pattern, ereditando update() da AbstractComponent. Questo verifica se DK si trova in uno stato di congelamento per via di un powerup, e quindi se non deve generare barili, o se al contrario gli è concesso lanciare gli ostacoli.
+\paragraph{Soluzione} Per gestire la generazione delle entità mattoni durante la partita da parte del nemico (Ralph), ho implementato un Component da associare esso, sfruttando così il Template Method Pattern, ereditando getEntity() e setEntity() da AbstractComponent. Questi metodi 
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
