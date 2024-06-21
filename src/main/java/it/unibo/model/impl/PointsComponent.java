@@ -2,6 +2,7 @@ package it.unibo.model.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -23,7 +24,7 @@ import it.unibo.view.impl.PointsView;
 public class PointsComponent extends AbstractComponent {
     private int points;
     private int highScore;
-    private static final String FILENAME = "src/main/java/it/unibo/model/impl/Scores.txt";
+    private static final String FILENAME = "Scores.txt";
     private final Set<PointsView> pointsViews = new HashSet<>();
     private final Set<HighPointsView> highPointsViews = new HashSet<>();
     private static final Logger LOGGER = Logger.getLogger(GameEngineImpl.class.getName());
@@ -33,7 +34,33 @@ public class PointsComponent extends AbstractComponent {
      */
     public PointsComponent() {
         this.points = 0;
+        initialize();
+    }
+
+    private void initialize() {
+        final File scoreFile = new File(FILENAME);
+        if (!scoreFile.exists()) {
+            try {
+                final boolean fileCreated = scoreFile.createNewFile();
+                if (fileCreated) {
+                    writeInitialScore();
+                } else {
+                    LOGGER.log(Level.WARNING, "Score file already exists but was not found initially");
+                }
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "Error creating new score file", e);
+            }
+        }
         readFromFile();
+    }
+
+    private void writeInitialScore() {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(FILENAME), StandardCharsets.UTF_8)) {
+            bufferedWriter.write(Integer.toString(0));
+            bufferedWriter.newLine();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, "Error writing initial score to file", ex);
+        }
     }
 
     /**
