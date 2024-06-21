@@ -24,7 +24,7 @@ public final class CakeView extends BaseBirdCakeView {
      * @return the bird entity
      */
     public Entity getCake() {
-        return this.entity;
+        return super.getEntity();
     }
 
 }

@@ -19,7 +19,7 @@ import javafx.util.Duration;
 public abstract class BaseBirdCakeView implements View {
     private static final int FRAME_COUNT = 2;
     private static final int ANIMATION_DURATION = 1000;
-    protected final Entity entity;
+    private final Entity entity;
     private final ImageView imageView;
     private final Image sprite;
     private final Timeline timeline;
