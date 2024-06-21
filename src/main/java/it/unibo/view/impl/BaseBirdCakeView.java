@@ -24,13 +24,14 @@ public abstract class BaseBirdCakeView implements View {
     private Image sprite;
     private final Timeline timeline;
     private int currentFrame;
+    private static final String JUSTIFICATION = "We need the original object";
 
     /**
      * Constructor.
      * 
      * @param entity the entity to be represented
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = JUSTIFICATION)
     public BaseBirdCakeView(final Entity entity) {
         this.entity = entity;
         this.imageView = new ImageView();
@@ -80,14 +81,14 @@ public abstract class BaseBirdCakeView implements View {
      */
     @Override
     public Image getSource(final String name) {
-        return new Image(getClass().getResourceAsStream("/" + name + ".png"));
+        return new Image(BaseBirdCakeView.class.getResourceAsStream("/" + name + ".png"));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void updateFrame() {
+    public final void updateFrame() {
         imageView.setImage(getFrame(currentFrame));
         currentFrame = (currentFrame + 1) % FRAME_COUNT;
     }
@@ -107,7 +108,7 @@ public abstract class BaseBirdCakeView implements View {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -117,7 +118,7 @@ public abstract class BaseBirdCakeView implements View {
      *
      * @return the entity
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public Entity getEntity() {
         return this.entity;
     }
@@ -127,6 +128,7 @@ public abstract class BaseBirdCakeView implements View {
      *
      * @return the sprite image
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public Image getSprite() {
         return this.sprite;
     }
