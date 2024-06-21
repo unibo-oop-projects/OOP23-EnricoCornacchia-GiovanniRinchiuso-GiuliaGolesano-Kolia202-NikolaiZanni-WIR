@@ -81,13 +81,13 @@ public final class WindowGame extends Application {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void start(final Stage primaryStg) throws IOException {
         this.primaryStage = primaryStg;
         primaryStage.setResizable(false);
 
         final Pane blackPane = new Pane();
-        blackPane.setPrefSize(WIDTH, HEIGHT); // Imposta le dimensioni dello sfondo nero alle dimensioni della finestra
+        blackPane.setPrefSize(WIDTH, HEIGHT);
         blackPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         final MainMenu mainMenu = new MainMenu(primaryStage);
@@ -105,8 +105,7 @@ public final class WindowGame extends Application {
         final Image buildingTopImage = new Image("building_top.png");
         final ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE);
-        buildingTopImageView.setFitHeight(buildingTopImage.getHeight()
-                * BUILDING_TOP_HEIGHT_SCALE); // la sua dimensione originale
+        buildingTopImageView.setFitHeight(buildingTopImage.getHeight() * BUILDING_TOP_HEIGHT_SCALE);
         AnchorPane.setTopAnchor(buildingTopImageView, BUILDING_TOP_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(buildingTopImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
@@ -118,13 +117,12 @@ public final class WindowGame extends Application {
         final ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
         buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * BUILDING_CENTRE_WIDTH_SCALE);
         buildingCentreImageView.setFitHeight(newBackgroundImage.getHeight() * BUILDING_CENTRE_HEIGHT_SCALE);
-        buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X); // verticalmente
+        buildingCentreImageView.setTranslateX(BUILDING_CENTRE_TRANSLATE_X);
         buildingCentreImageView.setTranslateY(BUILDING_CENTRE_TRANSLATE_Y);
         AnchorPane.setBottomAnchor(buildingCentreImageView, BUILDING_CENTRE_BOTTOM_ANCHOR);
-        final double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2; // orizzontalmente
+        final double centerX = (root.getWidth() - buildingCentreImageView.getFitWidth()) / 2;
         AnchorPane.setLeftAnchor(buildingCentreImageView, centerX);
 
-        // Aggiunta delle immagini all'AnchorPane
         root.getChildren().addAll(blackPane, backgroundImageView, buildingTopImageView, buildingCentreImageView);
         AnchorPane.setRightAnchor(mainMenu, MAIN_MENU_RIGHT_ANCHOR);
         AnchorPane.setTopAnchor(mainMenu, MAIN_MENU_TOP_ANCHOR);
@@ -137,6 +135,8 @@ public final class WindowGame extends Application {
             final PointsComponent felixPoints = (PointsComponent) felixPointsComponent.get();
             final PointsView pointsView = new PointsView(felixPoints);
             final HighPointsView highPointsView = new HighPointsView(felixPoints);
+            pointsView.initializeView();
+            highPointsView.initializeView();
             AnchorPane.setLeftAnchor(pointsView, POINTS_VIEW_LEFT_ANCHOR);
             AnchorPane.setTopAnchor(pointsView, POINTS_VIEW_TOP_ANCHOR);
             AnchorPane.setLeftAnchor(highPointsView, HIGH_POINTS_VIEW_LEFT_ANCHOR);
@@ -264,9 +264,9 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Method that creates a windows grid on the main pane.
+     * Creates and adds a grid of windows to the game.
      * 
-     * @param broken the number of broken windows.
+     * @param broken the number of broken windows to be displayed.
      */
     private void addWindowsGrid(final int broken) {
         final Set<Entity> entities = this.gameEngine.getGameController().getWindowsController().windowsGrid(broken);
@@ -283,13 +283,12 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Method for the animation of a window being fixed.
+     * Plays the fixed animation for a window at the specified position.
      * 
-     * @param windowPosition the position of the window.
+     * @param windowPosition the position of the window to animate.
      */
     private void fixedAnimation(final Pair<Double, Double> windowPosition) {
         final List<Entity> windows = gameEngine.getGameController().getGamePerformance().getWindows();
-
         windows.stream()
                 .filter(w -> w.getPosition().equals(windowPosition))
                 .findFirst()
@@ -301,9 +300,9 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Method that adds Felix to the main pane.
+     * Creates and adds a FelixView to the root pane.
      * 
-     * @return the FelixView.
+     * @return the created FelixView.
      */
     private FelixView addFelixView() {
         final Entity felix = this.gameEngine.getGameController().getFelixController().getFelix();
@@ -313,9 +312,9 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Creates and adds a RalphView to the specified root pane.
+     * Creates and adds a RalphView to the root pane.
      * 
-     * @return The created RalphView instance.
+     * @return the created RalphView.
      */
     private RalphView addRalphView() {
         final Entity ralph = this.gameEngine.getGameController().getRalphController().getRalph();
@@ -325,7 +324,7 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Method to add the bird view in the primary root.
+     * Updates the bird views in the game.
      */
     public void updateBird() {
         final Set<Entity> birds = this.gameEngine.getGameController().getBirdController().getBirds();
@@ -356,7 +355,7 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Update cake view.
+     * Updates the cake views in the game.
      */
     public void updateCake() {
         final Set<Entity> cakes = this.gameEngine.getGameController().getCakeController().getCakes();
@@ -389,30 +388,25 @@ public final class WindowGame extends Application {
     }
 
     /**
-     * Update brick view.
+     * Updates the brick views in the game.
      */
     public void update() {
-        // Ottieni i nuovi mattoni
         final Set<Entity> bricks = this.gameEngine.getGameController().getBrickController().getBricks();
         bricks.forEach(brick -> {
-            // Cerca se c'è già una BrickView per questo mattone
             final BrickView existingBrickView = bricksToPrint.stream()
                     .filter(view -> view.getBrick().equals(brick))
                     .findFirst()
                     .orElse(null);
 
             if (existingBrickView == null) {
-                // Se non esiste, crea una nuova BrickView e aggiungila al pane
                 final BrickView newBrickView = new BrickView(brick);
                 root.getChildren().add(newBrickView.getImageView());
                 bricksToPrint.add(newBrickView);
             } else {
-                // Se esiste, aggiorna la posizione del BrickView esistente
                 existingBrickView.animate();
             }
         });
 
-        // Rimuovi i BrickView non più presenti
         bricksToPrint.removeIf(brickView -> {
             if (!bricks.contains(brickView.getBrick())) {
                 root.getChildren().remove(brickView.getImageView());
@@ -424,10 +418,7 @@ public final class WindowGame extends Application {
         if (ralphView == null) {
             ralphView = addRalphView();
         }
-        // Anima Ralph
         ralphView.animate();
-
-        // Anima i mattoni
         bricksToPrint.forEach(BrickView::animate);
     }
 
@@ -436,15 +427,15 @@ public final class WindowGame extends Application {
      * 
      * @return the primary stage.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Stage getStage() {
         return this.primaryStage;
     }
 
     /**
-     * Getter for the gameEngine.
+     * Getter for the game engine.
      * 
-     * @return the gameEngine.
+     * @return the game engine.
      */
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;

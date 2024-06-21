@@ -9,12 +9,12 @@ public final class HighPointsView extends BasePointsView {
 
     /**
      * Constructs a HighPointsView with the given PointsComponent.
-     *
+     * 
      * @param pointsComponent the PointsComponent to use for high score data
      */
     public HighPointsView(final PointsComponent pointsComponent) {
         super(pointsComponent);
-        initializeView();
+        initialize(); // Ensure to call this method to complete initialization
     }
 
     @Override

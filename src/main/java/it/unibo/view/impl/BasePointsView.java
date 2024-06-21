@@ -31,7 +31,23 @@ public abstract class BasePointsView extends StackPane {
      * Non-overridable method to initialize the base view.
      */
     private void initializeBaseView() {
+        initializeComponent();
+    }
+
+    /**
+     * Initialize the PointsComponent.
+     */
+    private void initializeComponent() {
+        // Add any base initialization here if needed in future
+    }
+
+    /**
+     * Adds the view to the PointsComponent.
+     * This method should be called after the subclass is fully initialized.
+     */
+    public final void initialize() {
         addViewToComponent();
+        updateLabel();
     }
 
     /**
@@ -97,7 +113,7 @@ public abstract class BasePointsView extends StackPane {
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public void setPointsComponent(final PointsComponent pointsComponent) {
         this.pointsComponent = pointsComponent;
-        addViewToComponent();
+        initializeBaseView();
         updateLabel();
     }
 
