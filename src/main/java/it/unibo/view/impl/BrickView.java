@@ -21,11 +21,12 @@ public final class BrickView implements View {
     private final Image spriteSheet;
     private final Entity brick;
     private Timeline timeline;
+    private static final String JUSTIFICATION = "We need the original object";
     /**
      * Constructor.
      * @param brick
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = JUSTIFICATION)
     public BrickView(final Entity brick) {
         spriteSheet = getSource("brick");
         this.brick = brick;
@@ -77,14 +78,14 @@ public final class BrickView implements View {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public ImageView getImageView() {
         return this.imageView;
     }
     /**
      * {@inheritDoc}
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public Image getImage() {
         return this.spriteSheet;
     }
@@ -92,7 +93,7 @@ public final class BrickView implements View {
      * Getter for the brick.
      * @return the brick.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = JUSTIFICATION)
     public Entity getBrick() {
         return this.brick;
     }
