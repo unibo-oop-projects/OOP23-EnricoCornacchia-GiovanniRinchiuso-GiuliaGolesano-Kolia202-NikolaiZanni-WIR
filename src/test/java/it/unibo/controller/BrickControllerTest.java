@@ -22,7 +22,7 @@ class BrickControllerTest {
     private static final double INITIAL_X_POSITION = 300.0;
     private static final double INITIAL_Y_POSITION = 300.0;
     private static final double SECOND_LEVEL_Y_POSITION = 301.0;
-    private static final double THIRD_LEVEL_Y_POSITION = 303.0;
+    private static final double THIRD_LEVEL_Y_POSITION = 302.5;
     private static final double HIGH_X_POSITION = 10_000.0;
     private static final double HIGH_Y_POSITION = 300.0;
 

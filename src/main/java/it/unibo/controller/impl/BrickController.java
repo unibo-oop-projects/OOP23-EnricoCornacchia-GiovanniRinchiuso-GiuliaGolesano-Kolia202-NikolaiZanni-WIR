@@ -39,7 +39,7 @@ public class BrickController implements Controller {
     @Override
     public void update() {
         this.checkBricks();
-        for (final Entity brick : this.gamePerformance.getBricks()) {
+        for (final Entity brick : this.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT) {
                     ((MovementComponent) component).move(0.0, this.getBrickSpeedByLevel(), brick);
@@ -52,7 +52,7 @@ public class BrickController implements Controller {
      * If not, remove them by the set of bricks and also by the set of entities in the gamePerformance.
      */
     private void checkBricks() {
-        for (final Entity brick : this.gamePerformance.getBricks()) {
+        for (final Entity brick : this.getBricks()) {
             for (final Component component : brick.getComponents()) {
                 if (component.getComponent() == ComponentType.MOVEMENT 
                 && !((MovementComponent) component).canMove(0.0, this.getBrickSpeedByLevel(), brick)) {
