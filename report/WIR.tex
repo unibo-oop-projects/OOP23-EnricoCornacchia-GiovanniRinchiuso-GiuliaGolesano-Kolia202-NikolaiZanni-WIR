@@ -162,22 +162,35 @@ Ho deciso di creare un component per ogni powerup, in modo da ottenere una gesti
 Nel contesto di un gioco, le entità sono elementi centrali e la loro gestione deve essere efficiente. In particolare, è comune che diverse entità condividano comportamenti simili o identici, il che può portare a duplicazione di codice. 
 
 \paragraph{Soluzione:}
-Per affrontare il problema della duplicazione di codice e gestire in modo efficiente le entità, ho adottato il Composite Pattern. In questo approccio, ogni entità è rappresentata da una singola classe, con enumeratore che ne identifica la tipologia. Questa classe può essere vista come un contenitore vuoto che può essere arricchito con vari componenti durante la sua creazione. Questi componenti, che rappresentano comportamenti o caratteristiche specifiche, possono essere combinati in vari modi per creare entità diverse. Questo rende il codice più modulare, facilita le modifiche e le estensioni, e promuove il riutilizzo del codice. 
+Per affrontare il problema della duplicazione di codice e gestire in modo efficiente le entità, ho adottato il Composite pattern. In questo approccio, ogni entità è rappresentata da una singola classe, con enumeratore che ne identifica la tipologia. Questa classe può essere vista come un contenitore vuoto che può essere arricchito con vari componenti durante la sua creazione. Questi componenti, che rappresentano comportamenti o caratteristiche specifiche, possono essere combinati in vari modi per creare entità diverse. Questo rende il codice più modulare, facilita le modifiche e le estensioni, e promuove il riutilizzo del codice. 
 
-\subsubsection{Gestione della produzione di nuove entità}
+\subsubsection{Creazione di nuove entità}
 
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/create_entities.png}
-\caption{Rappresentazione UML della gestione della creazione delle entità.}
+\includegraphics[width=\textwidth]{img/entity_factory.png}
+\caption{Rappresentazione UML della creazione di entità.}
 \end{figure}
 
 \paragraph{Problema:}
 Sia in fase di avvio del gioco che nel corso dello stesso, è indispensabile generare varie entità, ciascuna con diversi componenti, a seconda dei comportamenti definiti per ciascuna.
 
 \paragraph{Soluzione:}
-Ho usato il Factory Pattern visto che permette di generare nuove istanze di entità in maniera centralizzata, ognuna diversa e con componenti vari, in modo relativamente veloce e semplice. Ciò comporta numerosi benefici, tra cui la separazione della logica di creazione delle entità dal resto dell'applicazione, rendendo il codice più modulare. Inoltre, in futuro, se fosse necessario modificare la creazione, i parametri o i componenti di una o più entità, ciò potrebbe essere fatto con maggiore facilità. La factory può accettare parametri in ingresso per la creazione di queste entità, come ad esempio la posizione o lo stato iniziale.
+Ho, quindi, usato il Factory pattern visto che permette di generare nuove istanze di entità in maniera centralizzata, ognuna diversa e con componenti vari, in modo relativamente veloce e semplice. Ciò comporta numerosi benefici, tra cui la separazione della logica di creazione delle entità dal resto dell'applicazione, rendendo il codice più modulare. Inoltre, in futuro, se fosse necessario modificare la creazione, i parametri o i componenti di una o più entità, ciò potrebbe essere fatto con maggiore facilità. La factory può accettare parametri in ingresso per la creazione di queste entità, come ad esempio la posizione o lo stato iniziale. In alternativa si sarebbe potuto usare anche il Builder Pattern, tuttavia le entità in questo gioco non richiedono particolari passaggi per la loro creazione e avere classi builder per ogni tipo di entità renderebbe complesso il codice più di quanto sia necessario in questo caso.
 
+\subsubsection{Gestione delle collisioni tra entità}
+
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/collisions.png}
+\caption{Rappresentazione UML della gestione delle collisioni tra entità.}
+\end{figure}
+
+\paragraph{Problema:}
+Come gestire le collisioni tra le varie entità in modo dinamico, permettendo quindi aggiunte e rimozioni di entità di varie tipologie e cambiamenti di stato.
+
+\paragraph{Soluzione:}
+Per poter gestirle ho scelto un pattern Observer che permette di cambiare stato di certe entità Observer a seconda di una collisione o no tramite l'observable CollisionManager e se vengono introdotte nuove entità, la classe CollisionManager ha in suo possesso già il nuovo insieme. Ciò permette anche la creazione in futuro di altre entità, con caratteristiche nuove, senza dover cambiare la classe CollisionManager, ma bisogna aggiungere le nuove interazioni tra le nuove tipologie di entità e le preesistenti all'interno del metodo update() della classe HitboxComponent. In particolare, in quest'ultima classe lo Strategy pattern sarebbe potuto essere utilizzato nella gestione delle varie casistiche di collisione, permettendo di creare delle ulteriori componenti che gestiscono le collisioni tra certe entità, facilitando anche la gestione, ad esempio, di casi particolari come la collisione tra le entità finestra e Felix.
 
 
 \subsection{Golesano Giulia}
@@ -323,15 +336,32 @@ In conclusione, penso che tutto il gruppo abbia fatto un discreto lavoro.
 \subsubsection{Rinchiuso Giovanni}
 Inizialmente avevo molti timori riguardo a questo progetto, in quanto essendo uno studente al terzo anno, avevo bisogno di superare questo esame per potermi laureare. Inoltre tutti i miei compagni di corso mi hanno sempre parlato di questo progetto come il più stimolante ma anche come il più impegnativo che avessero affrontato. Questa cosa mi spaventava molto, perché credevo di non essere in grado di portarlo a termine, però mi ha anche aiutato ad affrontare questo progetto con il dovuto impegno. E' stato molto stimolante vedere che il nostro gioco diventava sempre più simile a come l'avevamo immaginato. Il gruppo ha lavorato molto bene, è stato gratificante poter contare sull'aiuto degli altri ed essere io stesso utile a loro. Penso che ci siano margini di miglioramento sia per la nostra applicazione, sia per il mio metodo di programmazione, ma penso di essere sulla strada giusta e che il lavoro svolto sia buono. 
 
+\appendix
 \chapter{Guida Utente}
 L'obiettivo del gioco è aggiustare tutte le finestre, schivando i mattoni lanciati da Ralph e cercando di raggiungere tutti i power ups disponibili.
 I comandi di gioco sono:
-\item A: Movimento verso sinistra.
-\item W: Movimento verso l'alto.
-\item S: Movimento verso il basso.
-\item D: Movimento verso destra.
-\item Z: Se premuto per 1.5 secondi aggiusta la finestra in cui si trova Felix.
+\begin{itemize}
+ \item A: Movimento verso sinistra.
+ \item W: Movimento verso l'alto.
+ \item S: Movimento verso il basso.
+ \item D: Movimento verso destra.
+ \item Z: Se premuto per 1.5 secondi aggiusta la finestra in cui si trova Felix.
+\end{itemize}
 I power ups sono:
-\item Cake: rende immortale Felix per 5 secondi
-\item Bird: Ralph non lancia più mattoni per un tempo variabile
+\begin{itemize}
+ \item Cake: rende immortale Felix per 5 secondi
+ \item Bird: Ralph non lancia più mattoni per un tempo variabile
+\end{itemize}
+\chapter{Esecitazioni di laboratorio} 
+
+\subsection{enrico.cornacchia@studio.unibo.it}
+
+\begin{itemize}
+ \item Laboratorio 06: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=146511#p208416}
+ \item Laboratorio 07: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=147598#p209350}
+ \item Laboratorio 08: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=148025#p210126}
+ \item Laboratorio 09: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=149231#p211607}
+ \item Laboratorio 10: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=150252#p212636}
+\end{itemize}
+
 \end{document}
