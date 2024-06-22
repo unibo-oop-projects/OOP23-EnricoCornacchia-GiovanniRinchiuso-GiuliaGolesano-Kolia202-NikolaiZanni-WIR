@@ -1,5 +1,7 @@
 package it.unibo.controller.impl;
 
+import java.util.Set;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
 import it.unibo.model.api.ComponentType;
@@ -16,27 +18,23 @@ import it.unibo.controller.api.Controller;
  * Main controller of the game.
  */
 public class GameController implements Controller {
-    private final RalphController ralphController;
-    private final FelixController felixController;
-    private final BrickController brickController;
-    private final WindowsController windowsController;
-    private final CollisionManager collisionManager;
     private final GamePerformance gamePerformance;
-    private final BirdController birdController;
-    private final CakeController cakeController;
+    private final Set<Controller> controllers;
     private int level;
     /**
      * Constructor for the GameController.
      */
     public GameController() {
         this.gamePerformance = new GamePerformanceImpl(this);
-        this.ralphController = new RalphController(this.gamePerformance);
-        this.felixController = new FelixController(this.gamePerformance);
-        this.brickController = new BrickController(this.gamePerformance);
-        this.windowsController = new WindowsController(gamePerformance);
-        this.birdController = new BirdController(gamePerformance);
-        this.cakeController = new CakeController(gamePerformance);
-        this.collisionManager = new CollisionManager(this.gamePerformance);
+        final Controller ralphController = new RalphController(this.gamePerformance);
+        final Controller felixController = new FelixController(this.gamePerformance);
+        final Controller brickController = new BrickController(this.gamePerformance);
+        final Controller windowsController = new WindowsController(gamePerformance);
+        final Controller birdController = new BirdController(gamePerformance);
+        final Controller cakeController = new CakeController(gamePerformance);
+        final Controller collisionManager = new CollisionManager(this.gamePerformance);
+        this.controllers = Set.of(ralphController, felixController, brickController, 
+            windowsController, birdController, cakeController, collisionManager);
         this.level = 1; //level will be set by the settings view, if is not set it will be 1
     }
     /**
@@ -44,70 +42,90 @@ public class GameController implements Controller {
      */
     @Override
     public void update() {
-        this.brickController.update();
-        this.ralphController.update(brickController.getBricks());
-        this.birdController.update();
-        this.cakeController.update();
-        ((ImmortalityComponent) this.felixController.getFelix()
+        this.controllers.forEach(Controller::update);
+        ((ImmortalityComponent) this.getFelixController().getFelix()
                                     .getTheComponent(ComponentType.IMMORTALITY).get())
-                                    .chekStopImmortality((LivesComponent) this.felixController.getFelix()
+                                    .chekStopImmortality((LivesComponent) this.getFelixController().getFelix()
                                                          .getTheComponent(ComponentType.LIFE).get());
-        ((StopRalphComponent) this.ralphController.getRalph()
+        ((StopRalphComponent) this.getRalphController().getRalph()
                                     .getTheComponent(ComponentType.STOPRALPH).get())
-                                    .checkUnlockRalph((ThrowBrickComponent) this.ralphController.getRalph()
+                                    .checkUnlockRalph((ThrowBrickComponent) this.getRalphController().getRalph()
                                                         .getTheComponent(ComponentType.THROWBRICK).get());
-        this.collisionManager.update();
     }
     /**
      * Controls if the game is over.
      * @return true if the game is over, false otherwise.
      */
     public boolean gameIsNotOver() {
-        return this.felixController.isAlive();
+        return this.getFelixController().isAlive();
     }
     /**
      * Getter for the Ralph controller.
      * @return the Ralph controller.
      */
     public RalphController getRalphController() {
-        return this.ralphController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof RalphController)
+                               .map(c -> (RalphController) c)
+                               .findFirst()
+                               .get();
     } 
     /**
      * Getter for the Felix controller.
      * @return the Felix controller.
      */
     public FelixController getFelixController() {
-        return this.felixController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof FelixController)
+                               .map(c -> (FelixController) c)
+                               .findFirst()
+                               .get();
     }
     /**
      * Getter for the Brick controller.
      * @return the Brick controller.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    //@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public BrickController getBrickController() {
-        return this.brickController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof BrickController)
+                               .map(c -> (BrickController) c)
+                               .findFirst()
+                               .get();
     }
     /**
      * Getter for the Windows controller.
      * @return the Windows controller.
      */
     public WindowsController getWindowsController() {
-        return this.windowsController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof WindowsController)
+                               .map(c -> (WindowsController) c)
+                               .findFirst()
+                               .get();
     }
     /**
      * Getter for the Bird controller.
      * @return the Bird Controller.
      */
     public BirdController getBirdController() {
-        return this.birdController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof BirdController)
+                               .map(c -> (BirdController) c)
+                               .findFirst()
+                               .get();
     }
     /**
      * Getter for the Cake controller.
      * @return the Cake controller.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    //@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public CakeController getCakeController() {
-        return this.cakeController;
+        return this.controllers.stream()
+                               .filter(c -> c instanceof CakeController)
+                               .map(c -> (CakeController) c)
+                               .findFirst()
+                               .get();
     }
     /**
      * Getter for the level.
@@ -136,14 +154,14 @@ public class GameController implements Controller {
      * @return true if the game is won, false otherwise.
      */
     public boolean isWin() {
-        return this.windowsController.won();
+        return this.getWindowsController().won();
     }
     /**
      * Method to move the player after receiving keyboard input "down".
      * @param e the keyCode
      */
     public void moveFelixDown(final KeyCode e) {
-        this.felixController.moveDown();
+        this.getFelixController().moveDown();
         this.gamePerformance.addKey(e);
     }
     /**
@@ -151,7 +169,7 @@ public class GameController implements Controller {
      * @param e the keyCode
      */
     public void moveFelixLeft(final KeyCode e) {
-        this.felixController.moveLeft();
+        this.getFelixController().moveLeft();
         this.gamePerformance.addKey(e);
     }
     /**
@@ -159,7 +177,7 @@ public class GameController implements Controller {
      * @param e the KeyCode
      */
     public void moveFelixRight(final KeyCode e) { 
-        this.felixController.moveRight();
+        this.getFelixController().moveRight();
         this.gamePerformance.addKey(e);
     }
     /**
@@ -167,7 +185,7 @@ public class GameController implements Controller {
      * @param e the KeyCode
      */
     public void moveFelixUp(final KeyCode e) {
-        this.felixController.moveUp();
+        this.getFelixController().moveUp();
         this.gamePerformance.addKey(e);
     }
     /**
@@ -176,9 +194,8 @@ public class GameController implements Controller {
      * @param pos the position of the window to fix.
      */
     public void fixWindows(final KeyCode e, final Pair<Double, Double> pos) {
-        final FixWindowsComponent fixComp = (FixWindowsComponent) this.felixController.getFelix()
-                                                                                .getTheComponent(ComponentType.FIXWINDOWS)
-                                                                                .get();
+        final FixWindowsComponent fixComp = (FixWindowsComponent) this.getFelixController().getFelix()
+                                                                        .getTheComponent(ComponentType.FIXWINDOWS).get();
         fixComp.fixing(pos, this.gamePerformance);
         this.gamePerformance.addKey(e);
     }

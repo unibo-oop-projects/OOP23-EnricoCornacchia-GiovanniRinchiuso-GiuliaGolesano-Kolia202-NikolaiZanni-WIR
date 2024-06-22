@@ -9,16 +9,16 @@ import it.unibo.model.impl.EntityFactoryImpl;
 import it.unibo.model.impl.MovementComponent;
 import it.unibo.model.impl.ThrowBrickComponent;
 import it.unibo.utilities.Constants;
-import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.common.Pair;
+import it.unibo.controller.api.Controller;
 
 
 /**
  * Controller for Ralph.
  */
-public class RalphController {
+public class RalphController implements Controller {
     private final Entity ralph;
     private final GamePerformance gamePerformance;
     private long lastThrowTime;
@@ -48,31 +48,27 @@ public class RalphController {
     }
     /**
      * Throw a brick with the left arm.
-     * @param bricks the set of bricks.
      */
-    public void throwBrickLeftArm(final Set<Entity> bricks) {
+    public void throwBrickLeftArm() {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
                 final double x = Constants.Ralph.RALPH_LEFT_HAND.getX() + ralph.getPosition().getX();
                 final double y = ralph.getPosition().getY() + Constants.Ralph.RALPH_LEFT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
-                //System.out.println("Brick thrown");
+                ((ThrowBrickComponent) c).addBrickToThrow(gamePerformance.getBricks(), position);
             }
         }
     }
     /**
      * Throw a brick with the right arm.
-     * @param bricks the set of bricks.
      */
-    public void throwBrickRightArm(final Set<Entity> bricks) {
+    public void throwBrickRightArm() {
         for (final Component c : ralph.getComponents()) {
             if (c.getComponent() == ComponentType.THROWBRICK) {
                 final double x = Constants.Ralph.RALPH_RIGHT_HAND.getX() + ralph.getPosition().getX();
                 final double y = ralph.getPosition().getY() + Constants.Ralph.RALPH_RIGHT_HAND.getY();
                 final Pair<Double, Double> position = new Pair<>(x, y);
-                ((ThrowBrickComponent) c).addBrickToThrow(bricks, position);
-                //System.out.println("Brick thrown");
+                ((ThrowBrickComponent) c).addBrickToThrow(gamePerformance.getBricks(), position);
             }
         }
     }
@@ -93,22 +89,21 @@ public class RalphController {
     }
     /**
      * Update Ralph position, and make him throwing bricks.
-     * @param bricks the set of bricks.
      */
-    public void update(final Set<Entity> bricks) {
+    @Override
+    public void update() {
         this.move();
         if (System.currentTimeMillis() - lastThrowTime >= this.getTimeToWait()) {
             //System.out.println("Throwing bricks");
-            this.throwBricks(bricks);
+            this.throwBricks();
             lastThrowTime = System.currentTimeMillis();
         }
     }
     /**
      * Make Ralph throw bricks.
-     * @param bricks the set of bricks.
      */
-    private void throwBricks(final Set<Entity> bricks) {
-           this.throwBrickLeftArm(bricks);
-           this.throwBrickRightArm(bricks);
+    private void throwBricks() {
+           this.throwBrickLeftArm();
+           this.throwBrickRightArm();
     }
 }
