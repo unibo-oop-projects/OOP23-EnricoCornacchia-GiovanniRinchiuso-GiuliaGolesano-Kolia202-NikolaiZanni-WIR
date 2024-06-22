@@ -20,7 +20,7 @@ import it.unibo.model.impl.FixedWindowsComponent;
 /**
  * Class to control a window entity.
  */
-public class WindowsController implements Controller{
+public class WindowsController implements Controller {
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
     private static final int WIDTH = 53;

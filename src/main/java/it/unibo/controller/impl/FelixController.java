@@ -1,6 +1,7 @@
 package it.unibo.controller.impl;
 
 import it.unibo.common.Pair;
+import it.unibo.controller.api.Controller;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.EntityFactory;
@@ -19,7 +20,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 /**
  * Controller for the Felix character.
  */
-public class FelixController {
+public class FelixController implements Controller {
 
     private final Entity felix;
     private final GamePerformance gamePerformance;
@@ -127,5 +128,11 @@ public class FelixController {
             () -> new IllegalStateException("Felix does not have a HitboxComponent")
         );
         return hitboxComponent.checkWindowsCollisions();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update() {
     }
 }
