@@ -1,6 +1,7 @@
 package it.unibo.controller.impl;
 
 import it.unibo.common.Pair;
+import it.unibo.controller.api.Controller;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.GamePerformance;
 import it.unibo.model.api.Entity;
@@ -19,7 +20,7 @@ import it.unibo.model.impl.FixedWindowsComponent;
 /**
  * Class to control a window entity.
  */
-public class WindowsController {
+public class WindowsController implements Controller{
     private final EntityFactoryImpl entityFactoryImpl;
     private final GamePerformance gamePerformance;
     private static final int WIDTH = 53;
@@ -76,5 +77,11 @@ public class WindowsController {
             }
         }
         return entities;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update() {
     }
 }
