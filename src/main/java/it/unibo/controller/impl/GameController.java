@@ -56,7 +56,7 @@ public class GameController implements Controller {
                                     .getTheComponent(ComponentType.STOPRALPH).get())
                                     .checkUnlockRalph((ThrowBrickComponent) this.ralphController.getRalph()
                                                         .getTheComponent(ComponentType.THROWBRICK).get());
-        this.collisionManager.check();
+        this.collisionManager.update();
     }
     /**
      * Controls if the game is over.
