@@ -3,6 +3,7 @@ package it.unibo.controller.impl;
 import java.util.Iterator;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.controller.api.Controller;
 import it.unibo.model.api.ComponentType;
 import it.unibo.model.api.Entity;
 import it.unibo.model.api.GamePerformance;
@@ -11,7 +12,7 @@ import it.unibo.model.impl.HitboxComponent;
 /**
  * Controller for the collision.
  */
-public class CollisionManager {
+public class CollisionManager implements Controller {
 
     private final GamePerformance gamePerformance;
 
@@ -27,7 +28,8 @@ public class CollisionManager {
     /**
      * Check if there is a collision.
      */
-    public void check() {
+    @Override
+    public void update() {
         final Iterator<Entity> iterator = this.gamePerformance.getEntity().iterator();
         while (iterator.hasNext()) {
             final Entity e = iterator.next();
