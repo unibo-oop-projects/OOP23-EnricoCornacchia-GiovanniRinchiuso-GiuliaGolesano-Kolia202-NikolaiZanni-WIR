@@ -48,7 +48,23 @@ final class EntityFactoryImplTest {
          */
         @Test
         void testCreateFelix() {
-                // Test implementation goes here
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity felix = entityFactoryImpl.createFelix(position);
+                assertNotNull(felix, "Felix entity should not be null");
+                assertEquals(EntityType.FELIX, felix.getEntityType(), "Entity type should be FELIX");
+                assertEquals(position, felix.getPosition(), "Felix position should be as initialized");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Felix should have a MovementComponent");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Felix should have a HitboxComponent");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.POINTS),
+                                "Felix should have a PointsComponent");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.IMMORTALITY),
+                                "Felix should have an ImmortalityComponent");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.LIFE),
+                                "Felix should have a LivesComponent");
+                assertTrue(felix.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.FIXWINDOWS),
+                                "Felix should have a FixWindowsComponent");
         }
 
         /**
@@ -56,7 +72,19 @@ final class EntityFactoryImplTest {
          */
         @Test
         void testCreateRalph() {
-                // Test implementation goes here
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity ralph = entityFactoryImpl.createRalph(position);
+                assertNotNull(ralph, "Ralph entity should not be null");
+                assertEquals(EntityType.RALPH, ralph.getEntityType(), "Entity type should be RALPH");
+                assertEquals(position, ralph.getPosition(), "Ralph position should be as initialized");
+                assertTrue(ralph.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Ralph should have a MovementComponent");
+                assertTrue(ralph.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Ralph should have a HitboxComponent");
+                assertTrue(ralph.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.STOPRALPH),
+                                "Ralph should have a StopRalphComponent");
+                assertTrue(ralph.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.THROWBRICK),
+                                "Ralph should have a ThrowBrickComponent");
         }
 
         /**
@@ -64,7 +92,17 @@ final class EntityFactoryImplTest {
          */
         @Test
         void testCreateWindows() {
-                // Test implementation goes here
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity windows = entityFactoryImpl.createWindows(position, true);
+                assertNotNull(windows, "Windows entity should not be null");
+                assertEquals(EntityType.WINDOW, windows.getEntityType(), "Entity type should be WINDOW");
+                assertEquals(position, windows.getPosition(), "Windows position should be as initialized");
+                assertTrue(windows.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Windows should have a MovementComponent");
+                assertTrue(windows.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Windows should have a HitboxComponent");
+                assertTrue(windows.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.FIXEDWINDOWS),
+                                "Windows should have a FixedWindowsComponent");
         }
 
         /**
@@ -72,7 +110,15 @@ final class EntityFactoryImplTest {
          */
         @Test
         void testCreateBrick() {
-                // Test implementation goes here
+                final Pair<Double, Double> position = new Pair<>(10.0, 10.0);
+                final Entity brick = entityFactoryImpl.createBrick(position);
+                assertNotNull(brick, "Brick entity should not be null");
+                assertEquals(EntityType.BRICK, brick.getEntityType(), "Entity type should be BRICK");
+                assertEquals(position, brick.getPosition(), "Brick position should be as initialized");
+                assertTrue(brick.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.MOVEMENT),
+                                "Brick should have a MovementComponent");
+                assertTrue(brick.getComponents().stream().anyMatch(c -> c.getComponent() == ComponentType.HITBOX),
+                                "Brick should have a HitboxComponent");
         }
 
         /**
