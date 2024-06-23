@@ -14,7 +14,7 @@ public final class PointsView extends BasePointsView {
      */
     public PointsView(final PointsComponent pointsComponent) {
         super(pointsComponent);
-        initialize(); // Ensure to call this method to complete initialization
+        initialize(); 
     }
 
     @Override

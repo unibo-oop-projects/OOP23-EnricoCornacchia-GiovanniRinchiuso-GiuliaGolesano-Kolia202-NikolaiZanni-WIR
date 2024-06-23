@@ -100,8 +100,6 @@ public final class WindowGame extends Application {
         AnchorPane.setTopAnchor(backgroundImageView, BACKGROUND_IMAGE_TOP_ANCHOR);
         AnchorPane.setLeftAnchor(backgroundImageView, BACKGROUND_IMAGE_LEFT_ANCHOR);
         AnchorPane.setRightAnchor(backgroundImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
-
-        // Immagine di sfondo 2 (building_top.png)
         final Image buildingTopImage = new Image("building_top.png");
         final ImageView buildingTopImageView = new ImageView(buildingTopImage);
         buildingTopImageView.setFitWidth(buildingTopImage.getWidth() * BUILDING_TOP_WIDTH_SCALE);
@@ -111,8 +109,6 @@ public final class WindowGame extends Application {
         AnchorPane.setRightAnchor(buildingTopImageView, BACKGROUND_IMAGE_RIGHT_ANCHOR);
         buildingTopImageView.setTranslateX(BUILDING_TOP_TRANSLATE_X);
         buildingTopImageView.setTranslateY(BUILDING_TOP_TRANSLATE_Y);
-
-        // Immagine di sfondo 3 (building_centre.png)
         final Image newBackgroundImage = new Image("building_centre.png");
         final ImageView buildingCentreImageView = new ImageView(newBackgroundImage);
         buildingCentreImageView.setFitWidth(newBackgroundImage.getWidth() * BUILDING_CENTRE_WIDTH_SCALE);
