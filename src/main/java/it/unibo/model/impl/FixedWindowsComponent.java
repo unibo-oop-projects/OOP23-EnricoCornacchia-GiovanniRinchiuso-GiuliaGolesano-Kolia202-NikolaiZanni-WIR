@@ -24,7 +24,6 @@ public class FixedWindowsComponent extends AbstractComponent {
      * Set the boolean variable.
      */
     public void setFixed() {
-        //System.err.println("Valore settato anche dentro al fixedwindows");
         this.isFixed = true;
     }
     /**
