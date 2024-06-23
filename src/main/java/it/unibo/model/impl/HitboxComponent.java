@@ -101,7 +101,7 @@ public class HitboxComponent extends AbstractComponent {
                                     this.hitbox.getY()));
         }
         if (this.hitbox.getY() <= Constants.GameEdges.UP_WALL && this.getEntity().getEntityType() == EntityType.BRICK) {
-            this.getEntity().getGamePerformance().removeBrick(this.getEntity().getPosition());
+            this.removeEntity = true;
         }
     }
 
