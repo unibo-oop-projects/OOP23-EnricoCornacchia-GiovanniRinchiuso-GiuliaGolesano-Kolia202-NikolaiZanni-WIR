@@ -42,7 +42,7 @@ public final class WinGameView extends Application {
         GameState.setGameState(GameState.WIN);
         final StackPane root = new StackPane();
 
-        final Image newBackgroundImage = new Image("winEndview.png");
+        final Image newBackgroundImage = new Image(getClass().getResourceAsStream("/winEndView.png"));
         final ImageView newBackgroundImageView = new ImageView(newBackgroundImage);
         newBackgroundImageView.setFitWidth(WIDTH);
         newBackgroundImageView.setFitHeight(HEIGHT);
