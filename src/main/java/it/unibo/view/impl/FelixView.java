@@ -36,7 +36,7 @@ public final class FelixView implements View {
      * 
      * @param felix the Felix entity.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public FelixView(final Entity felix) {
         this.felix = felix;
         this.imageView = new ImageView();
@@ -99,7 +99,7 @@ public final class FelixView implements View {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -109,7 +109,7 @@ public final class FelixView implements View {
      *
      * @return The standing Felix image view.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getStandingFelix() {
         this.imageView.setImage(getFrame(0));
         return this.imageView;

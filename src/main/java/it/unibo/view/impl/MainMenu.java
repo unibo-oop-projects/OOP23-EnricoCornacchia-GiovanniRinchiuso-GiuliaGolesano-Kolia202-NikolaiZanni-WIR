@@ -49,7 +49,7 @@ public final class MainMenu extends StackPane {
      * 
      * @param gameStage the stage of the game
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public MainMenu(final Stage gameStage) {
         ImageView pauseButton;
         this.gameStage = gameStage;
@@ -92,7 +92,7 @@ public final class MainMenu extends StackPane {
          * 
          * @param gameStage the stage of the game
          */
-        @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+        @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
         public AnotherStage(final Stage gameStage) {
             this.gameStage = gameStage;
             initStyle(StageStyle.UNDECORATED);

@@ -21,7 +21,7 @@ public final class BrickView implements View {
     private final Image spriteSheet;
     private final Entity brick;
     private Timeline timeline;
-    private static final String JUSTIFICATION = "We need the original object";
+    private static final String JUSTIFICATION = "We need the original object";
     /**
      * Constructor.
      * @param brick

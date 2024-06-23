@@ -22,7 +22,7 @@ public final class LivesView extends StackPane {
      *
      * @param livesComponent the LivesComponent to use for lives data
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public LivesView(final LivesComponent livesComponent) {
         this.livesComponent = livesComponent;
         this.livesContainer = new HBox();

@@ -93,7 +93,7 @@ public final class WindowsView implements View {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView getImageView() {
         return this.imageView;
     }
@@ -102,7 +102,7 @@ public final class WindowsView implements View {
      * Static view of a fixed window.
      * @return the image view of a fixed window.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView fixedwindows() {
         this.imageView.setImage(getFrame(0));
         isFixed = true;
@@ -113,7 +113,7 @@ public final class WindowsView implements View {
      * Static view of a broken window.
      * @return the image view of a broken window.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public ImageView brokenWindow() {
         this.imageView.setImage(getFrame(FRAME_COUNT - 1));
         isFixed = false;
