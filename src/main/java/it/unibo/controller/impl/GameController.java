@@ -35,7 +35,7 @@ public class GameController implements Controller {
         final Controller collisionManager = new CollisionManager(this.gamePerformance);
         this.controllers = Set.of(ralphController, felixController, brickController, 
             windowsController, birdController, cakeController, collisionManager);
-        this.level = 1; //level will be set by the settings view, if is not set it will be 1
+        this.level = 1; 
     }
     /**
      * {@inheritDoc}
@@ -85,7 +85,6 @@ public class GameController implements Controller {
      * Getter for the Brick controller.
      * @return the Brick controller.
      */
-    //@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public BrickController getBrickController() {
         return this.controllers.stream()
                                .filter(c -> c instanceof BrickController)
@@ -119,7 +118,6 @@ public class GameController implements Controller {
      * Getter for the Cake controller.
      * @return the Cake controller.
      */
-    //@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public CakeController getCakeController() {
         return this.controllers.stream()
                                .filter(c -> c instanceof CakeController)
