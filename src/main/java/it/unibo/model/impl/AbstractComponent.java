@@ -17,7 +17,7 @@ public abstract class AbstractComponent implements Component {
      *
      * @return the entity associated with this component.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getEntity() {
         return this.entity;
     }
@@ -27,7 +27,7 @@ public abstract class AbstractComponent implements Component {
      *
      * @param entity the entity to set.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public final void setEntity(final Entity entity) {
         this.entity = entity;
     }
