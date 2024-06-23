@@ -23,7 +23,7 @@ public class CakePositionComponent extends AbstractComponent {
      * 
      * @param gamePerformance the game performance.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakePositionComponent(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         this.rand = new Random();

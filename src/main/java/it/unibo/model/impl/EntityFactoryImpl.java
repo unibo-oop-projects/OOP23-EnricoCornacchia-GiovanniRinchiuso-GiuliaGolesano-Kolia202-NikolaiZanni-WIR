@@ -23,7 +23,7 @@ public class EntityFactoryImpl implements EntityFactory {
      * 
      * @param gamePerformance the game performance of the entity factory.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityFactoryImpl(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

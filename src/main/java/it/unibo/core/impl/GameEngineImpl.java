@@ -92,7 +92,7 @@ public class GameEngineImpl implements GameEngine {
      * 
      * @return the GameController.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GameController getGameController() {
         return this.gameController;
     }
