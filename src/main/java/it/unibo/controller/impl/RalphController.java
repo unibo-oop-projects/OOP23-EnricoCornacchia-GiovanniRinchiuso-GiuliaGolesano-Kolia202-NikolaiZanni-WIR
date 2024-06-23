@@ -28,7 +28,7 @@ public class RalphController implements Controller {
      * Constructor for the RalphController.
      * @param gamePerformance the game performance.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public RalphController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
         final EntityFactory entityFactory = new EntityFactoryImpl(this.gamePerformance);
@@ -76,7 +76,7 @@ public class RalphController implements Controller {
      * Getter for the ralph entity.
      * @return the ralph entity.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public Entity getRalph() {
         return ralph;
     }
@@ -94,7 +94,6 @@ public class RalphController implements Controller {
     public void update() {
         this.move();
         if (System.currentTimeMillis() - lastThrowTime >= this.getTimeToWait()) {
-            //System.out.println("Throwing bricks");
             this.throwBricks();
             lastThrowTime = System.currentTimeMillis();
         }

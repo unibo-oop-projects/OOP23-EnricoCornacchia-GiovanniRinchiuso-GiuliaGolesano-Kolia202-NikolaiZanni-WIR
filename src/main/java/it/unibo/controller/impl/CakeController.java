@@ -29,7 +29,7 @@ public class CakeController implements Controller {
      *
      * @param gamePerformance the game performance
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public CakeController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }
