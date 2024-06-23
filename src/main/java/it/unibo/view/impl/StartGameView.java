@@ -104,8 +104,6 @@ public final class StartGameView extends Application {
 
         final Label selectLevelLabel = new Label("SELECT LEVEL TO START GAME");
         selectLevelLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-family: 'Arial Black';");
-
-        // Create buttons with text
         level1Button = createStyledButton("EASY");
         level1Button.setOnAction(e -> startWindowGame(primaryStage, 1));
 
@@ -167,8 +165,6 @@ public final class StartGameView extends Application {
     private void showInfoStage() {
         final Stage infoStage = new Stage();
         infoStage.setTitle("Instructions");
-
-        // Disable the level buttons
         level1Button.setDisable(true);
         level2Button.setDisable(true);
         level3Button.setDisable(true);
@@ -204,7 +200,6 @@ public final class StartGameView extends Application {
         final Button backButton = createStyledButton("BACK");
         backButton.setOnAction(e -> {
             infoStage.close();
-            // Enable the level buttons
             level1Button.setDisable(false);
             level2Button.setDisable(false);
             level3Button.setDisable(false);
@@ -219,9 +214,9 @@ public final class StartGameView extends Application {
 
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
         infoStage.setScene(scene);
-        infoStage.initModality(Modality.APPLICATION_MODAL); // Set the window as modal
-        infoStage.setResizable(false); // Prevent resizing
-        infoStage.setOnCloseRequest(event -> event.consume()); // Prevent closing with X
+        infoStage.initModality(Modality.APPLICATION_MODAL); 
+        infoStage.setResizable(false); 
+        infoStage.setOnCloseRequest(event -> event.consume()); 
         infoStage.show();
     }
 

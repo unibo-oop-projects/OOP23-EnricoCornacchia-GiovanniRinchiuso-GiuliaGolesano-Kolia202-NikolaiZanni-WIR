@@ -28,8 +28,6 @@ public final class LivesView extends StackPane {
         this.livesContainer = new HBox();
         this.getChildren().add(livesContainer);
         updateLivesLabel();
-
-        // Aggiungi il listener per aggiornare la vista quando le vite cambiano
         this.livesComponent.addLivesChangeListener(newLives -> updateLivesLabel());
     }
 

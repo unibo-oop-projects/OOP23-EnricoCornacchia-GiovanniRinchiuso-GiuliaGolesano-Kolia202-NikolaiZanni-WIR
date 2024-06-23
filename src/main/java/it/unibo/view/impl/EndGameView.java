@@ -108,8 +108,6 @@ public final class EndGameView extends Application {
         highPointsView.setStyle(
                 "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: yellow;"
                         + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);");
-
-        // Update the high points label
         highPointsView.updateLabel();
 
         final HBox pointsBox = new HBox(SPACING, highPointsView);
@@ -131,7 +129,7 @@ public final class EndGameView extends Application {
         button1.setFitHeight(BUTTON_HEIGHT);
         button1.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             try {
-                primaryStage.close(); // Close the current window
+                primaryStage.close(); 
                 new StartGameView().start(new Stage());
                 GameState.setGameState(GameState.HOME);
             } catch (IOException e) {
@@ -143,7 +141,7 @@ public final class EndGameView extends Application {
         button2.setFitWidth(BUTTON_WIDTH);
         button2.setFitHeight(BUTTON_HEIGHT);
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            primaryStage.close(); // Close the current window
+            primaryStage.close(); 
         });
 
         final HBox buttonBox = new HBox(SPACING, button1, button2);
