@@ -22,7 +22,7 @@ public class BrickController implements Controller {
      * Constructor for the BrickController.
      * @param gamePerformance the game performance, where every entity is stored.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public BrickController(final GamePerformance gamePerformance) {
         this.gamePerformance = gamePerformance;
     }

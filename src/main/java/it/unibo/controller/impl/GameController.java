@@ -136,7 +136,7 @@ public class GameController implements Controller {
      * Getter for the level.
      * @return the level.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
     }
