@@ -20,7 +20,6 @@ public class FixWindowsComponent extends AbstractComponent {
      * @param gamePerformance the game performance.
      */
     public void fixing(final Pair<Double, Double> windowPosition, final GamePerformance gamePerformance) {
-        //System.err.println("fixWindowComponent called");
         gamePerformance.getWindows().stream()
         .filter(w -> w.getPosition().equals(windowPosition))
         .findFirst()

@@ -30,7 +30,7 @@ public class EntityImpl implements Entity {
      * @param gamePerformance the game performance of the entity
      * @param components the components of the entity
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityImpl(final EntityType type, final Pair<Double, Double> position, 
                       final GamePerformance gamePerformance, final Set<Component> components) {
         this.type = type;
@@ -110,7 +110,7 @@ public class EntityImpl implements Entity {
      * {@inheritDoc}
      */
     @Override
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     public GamePerformance getGamePerformance() {
         return this.gamePerformance;
     }

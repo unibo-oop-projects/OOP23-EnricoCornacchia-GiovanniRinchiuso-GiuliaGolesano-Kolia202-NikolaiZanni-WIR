@@ -27,7 +27,7 @@ public class GamePerformanceImpl implements GamePerformance {
      * 
      * @param gameController the game controller.
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public GamePerformanceImpl(final GameController gameController) {
         this.gameController = gameController;
     }
